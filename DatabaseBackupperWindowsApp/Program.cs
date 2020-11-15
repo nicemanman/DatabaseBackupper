@@ -1,0 +1,26 @@
+﻿using DatabaseBackupper;
+using DatabaseBackupperWindowsApp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace DatabaseBackupperWindowsApp
+{
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            ConnectForm connectForm = new ConnectForm();
+            connectForm.Show();
+            Application.Run();
+        }
+    }
+}
