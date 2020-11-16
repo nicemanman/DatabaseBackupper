@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseBackupperWindowsApp
 EndProject
 Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "Installer", "Installer\Installer.aiproj", "{D66132C4-9F90-4BCB-A4D2-F01A64692A66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseBackupperWindowsService", "DatabaseBackupperWindowsService\DatabaseBackupperWindowsService.csproj", "{CEED5E3B-D3D4-474E-9280-0AB609F2E840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -31,6 +33,12 @@ Global
 		{D66132C4-9F90-4BCB-A4D2-F01A64692A66}.All|Any CPU.ActiveCfg = DefaultBuild
 		{D66132C4-9F90-4BCB-A4D2-F01A64692A66}.Debug|Any CPU.ActiveCfg = DefaultBuild
 		{D66132C4-9F90-4BCB-A4D2-F01A64692A66}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{CEED5E3B-D3D4-474E-9280-0AB609F2E840}.All|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEED5E3B-D3D4-474E-9280-0AB609F2E840}.All|Any CPU.Build.0 = Debug|Any CPU
+		{CEED5E3B-D3D4-474E-9280-0AB609F2E840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEED5E3B-D3D4-474E-9280-0AB609F2E840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEED5E3B-D3D4-474E-9280-0AB609F2E840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEED5E3B-D3D4-474E-9280-0AB609F2E840}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

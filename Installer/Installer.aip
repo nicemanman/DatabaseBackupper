@@ -11,10 +11,11 @@
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsApp.exe.config" Value="DatabaseBackupperWindowsApp.exe.config"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsLibrary.dll" Value="DatabaseBackupperWindowsLibrary.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Newtonsoft.Json.dll" Value="Newtonsoft.Json.dll"/>
+    <ROW Property="AI_RUN_AS_ADMIN" Value="1"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="DatabaseBackupper installer" ValueLocId="*"/>
     <ROW Property="ARPNOREPAIR" MultiBuildValue="DefaultBuild:1"/>
-    <ROW Property="ARPPRODUCTICON" Value="IconleakCeruleanDatabase.exe" Type="8"/>
+    <ROW Property="ARPPRODUCTICON" Value="IconleakCeruleanDatabase_1.exe" Type="8"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="NicemanSoft"/>
     <ROW Property="ProductCode" Value="1033:{EC5A8E39-F990-47D6-B1EF-5E8A1A64F078} " Type="16"/>
@@ -165,7 +166,7 @@
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="IconleakCeruleanDatabase.exe" SourcePath="..\..\..\..\Downloads\Iconleak-Cerulean-Database.ico" Index="0"/>
+    <ROW Name="IconleakCeruleanDatabase_1.exe" SourcePath="..\..\..\Users\i.falko\Pictures\Iconleak-Cerulean-Database.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
