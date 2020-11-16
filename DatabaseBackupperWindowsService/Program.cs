@@ -17,7 +17,7 @@ namespace DatabaseBackupperWindowsService
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new DatabaseBackupperService()
             };
             ServiceBase.Run(ServicesToRun);
         }

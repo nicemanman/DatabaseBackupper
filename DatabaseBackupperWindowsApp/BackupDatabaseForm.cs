@@ -1,5 +1,6 @@
 ﻿using DatabaseBackupper;
 using Newtonsoft.Json;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,7 @@ namespace DatabaseBackupperWindowsApp
     public partial class BackupDatabaseForm : Form
     {
         private Databases databases;
-
+        Logger logger = LogManager.GetCurrentClassLogger();
         public BackupDatabaseForm(Databases databases)
         {
             InitializeComponent();

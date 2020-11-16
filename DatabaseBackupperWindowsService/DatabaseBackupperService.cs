@@ -10,19 +10,21 @@ using System.Threading.Tasks;
 
 namespace DatabaseBackupperWindowsService
 {
-    public partial class Service1 : ServiceBase
+    public partial class DatabaseBackupperService : ServiceBase
     {
-        public Service1()
+        public DatabaseBackupperService()
         {
             InitializeComponent();
         }
 
         protected override void OnStart(string[] args)
         {
+
         }
 
         protected override void OnStop()
         {
+
         }
     }
 }

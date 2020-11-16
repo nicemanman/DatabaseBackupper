@@ -1,6 +1,6 @@
 ﻿namespace DatabaseBackupperWindowsService
 {
-    partial class Service1
+    partial class DatabaseBackupperService
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            // 
+            // Service1
+            // 
             this.ServiceName = "Service1";
+
         }
 
         #endregion

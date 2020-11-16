@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
@@ -16,6 +17,7 @@ namespace DatabaseBackupper
         private string ServerName { get; set; }
         private string UserName { get; set; }
         private string Password { get; set; }
+        Logger logger = LogManager.GetCurrentClassLogger();
         public Databases(string serverName, string userName, string password)
         {
             ServerName = serverName;
@@ -34,7 +36,7 @@ namespace DatabaseBackupper
         private List<string> GetAllOfThem()
         {
             var list = new List<String>();
-            
+            logger.Error("Something happened");
             string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
