@@ -31,12 +31,14 @@ namespace DatabaseBackupperWindowsApp
             {
                 Databases.Items.Add(databases[i]);
             }
+            logger.Info($"Успешно загрузили базы данных с сервера");
             if (File.Exists(@"BackupData.json"))
             using (StreamReader file = File.OpenText(@"BackupData.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 BackupData data = (BackupData)serializer.Deserialize(file, typeof(BackupData));
                 Path.Text = data.Path;
+                logger.Info($"Успешно загрузили путь бэкапа {Path.Text} из файла BackupData.json");
             }
         }
 
@@ -57,12 +59,15 @@ namespace DatabaseBackupperWindowsApp
             }
             try
             {
+                logger.Info($"Начат бэкап баз данных");
                 databases.SetSettings(selectedDatabases, Path.Text);
                 databases.Backup();
+                logger.Info($"Бэкап баз данных завершен");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, "Ошибка", "Бэкап баз данных");
+                logger.Error(ex);
             }
             //save data
             var backupData = new BackupData() { Path = Path.Text };
@@ -70,6 +75,7 @@ namespace DatabaseBackupperWindowsApp
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Serialize(file, backupData);
+                logger.Info($"Успешно записали путь бэкапа {Path.Text} в файл BackupData.json");
             }
         }
 

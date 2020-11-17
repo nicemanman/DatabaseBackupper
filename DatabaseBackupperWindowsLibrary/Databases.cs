@@ -36,13 +36,15 @@ namespace DatabaseBackupper
         private List<string> GetAllOfThem()
         {
             var list = new List<String>();
-            logger.Error("Something happened");
             string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
+            logger.Info($"Connection string: \"{connectionString}\"");
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
+                logger.Info("Подключение открыто.");
                 using (SqlCommand cmd = new SqlCommand("SELECT name from sys.databases", con))
                 {
+                    logger.Info(cmd.CommandText);
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
@@ -50,9 +52,12 @@ namespace DatabaseBackupper
                             var name = dr[0].ToString();
                             if (!SystemDatabases.Contains(name))
                                 list.Add(dr[0].ToString());
+                            logger.Info(name);
                         }
                     }
+                    logger.Info("Подключение закрыто.");
                 }
+                
                 return list;
             }
         }
@@ -72,18 +77,24 @@ namespace DatabaseBackupper
         public int Backup() 
         {
             var result = 0;
-            foreach (var database in DatabasesToBackup)
-            {
+            
                 string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
+
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand($"BACKUP DATABASE [{database}] TO  DISK = '{Path}\\{database}{Guid.NewGuid().ToString()}.bak'", con))
+                    con.Open();
+                    logger.Info("Подключение открыто.");
+                    foreach (var database in DatabasesToBackup)
                     {
-                        con.Open();
-                        result += cmd.ExecuteNonQuery();
+                        using (SqlCommand cmd = new SqlCommand($"BACKUP DATABASE [{database}] TO  DISK = '{Path}\\{database}{DateTime.Now.ToString().Replace(":",".")}.bak'", con))
+                        {
+                            result += cmd.ExecuteNonQuery();
+                            logger.Info($"{cmd.CommandText} - Сделано изменений - {result}");
+                        }
                     }
-                }
+                    logger.Info("Подключение закрыто.");
             }
+            
             return result;
         }
     }
