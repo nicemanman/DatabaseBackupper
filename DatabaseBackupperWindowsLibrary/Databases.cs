@@ -18,6 +18,7 @@ namespace DatabaseBackupper
         private string UserName { get; set; }
         private string Password { get; set; }
         Logger logger = LogManager.GetCurrentClassLogger();
+
         public Databases(string serverName, string userName, string password)
         {
             ServerName = serverName;
@@ -62,40 +63,30 @@ namespace DatabaseBackupper
             }
         }
 
-        public void SetSettings(List<string> databasesToBackup, string path) 
+        
+
+       
+        public Task Backup(string database, string path) 
         {
             if (string.IsNullOrEmpty(path))
             {
                 throw new ArgumentException($"'{nameof(path)}' cannot be null or empty", nameof(path));
             }
-
-            DatabasesToBackup = databasesToBackup ?? throw new ArgumentNullException(nameof(databasesToBackup));
-            Path = path;
-        }
-
-       
-        public int Backup() 
-        {
-            var result = 0;
-            
-                string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
-
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    con.Open();
-                    logger.Info("Подключение открыто.");
-                    foreach (var database in DatabasesToBackup)
-                    {
-                        using (SqlCommand cmd = new SqlCommand($"BACKUP DATABASE [{database}] TO  DISK = '{Path}\\{database}{DateTime.Now.ToString().Replace(":",".")}.bak'", con))
-                        {
-                            result += cmd.ExecuteNonQuery();
-                            logger.Info($"{cmd.CommandText} - Сделано изменений - {result}");
-                        }
-                    }
-                    logger.Info("Подключение закрыто.");
+            if (string.IsNullOrEmpty(database))
+            {
+                throw new ArgumentException($"'{nameof(database)}' cannot be null or empty", nameof(database));
             }
-            
-            return result;
+            var result = 0;
+            string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand($"BACKUP DATABASE [{database}] TO  DISK = '{path}\\{database}{DateTime.Now.ToString().Replace(":",".")}.bak'", con))
+                {
+                    result += cmd.ExecuteNonQuery();
+                }
+            }
+            return Task.CompletedTask;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace DatabaseBackupperWindowsApp
         {
             for (int i = 0; i < databases.Length; i++)
             {
-                Databases.Items.Add(databases[i]);
+                DatabasesList.Items.Add(databases[i]);
             }
             logger.Info($"Успешно загрузили базы данных с сервера");
             if (File.Exists(@"BackupData.json"))
@@ -50,19 +50,29 @@ namespace DatabaseBackupperWindowsApp
             Hide();
         }
 
-        private void BackupButton_Click(object sender, EventArgs e)
+        private async void BackupButton_Click(object sender, EventArgs e)
         {
             List<string> selectedDatabases = new List<string>();
-            foreach (var item in Databases.CheckedItems)
+            foreach (var item in DatabasesList.CheckedItems)
             {
                 selectedDatabases.Add(item as string);
             }
             try
             {
                 logger.Info($"Начат бэкап баз данных");
-                databases.SetSettings(selectedDatabases, Path.Text);
-                databases.Backup();
+                var tasks = new List<Task>();
+                int index = 0;
+                foreach (var database in selectedDatabases) 
+                {
+                    Func<Task> action = async () => await databases.Backup(database, Path.Text);
+                    tasks.Add(await Task.Factory.StartNew(action));
+                }
+                foreach (var task in tasks) 
+                {
+                    await task.ContinueWith((obj) => { index++; logger.Info(index); });
+                }
                 logger.Info($"Бэкап баз данных завершен");
+                MessageBox.Show(this, "Успех", "Бэкап баз данных");
             }
             catch (Exception ex)
             {
@@ -91,5 +101,8 @@ namespace DatabaseBackupperWindowsApp
                 }
             }
         }
+
+        
+
     }
 }

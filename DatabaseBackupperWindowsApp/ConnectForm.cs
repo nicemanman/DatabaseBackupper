@@ -62,7 +62,6 @@ namespace DatabaseBackupperWindowsApp
             }
             
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             if (File.Exists(@"LoginData.json"))

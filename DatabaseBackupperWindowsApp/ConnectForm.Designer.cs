@@ -29,6 +29,7 @@ namespace DatabaseBackupperWindowsApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectForm));
             this.ServerNameLabel = new System.Windows.Forms.Label();
             this.ChooseDirectoryToBackup = new System.Windows.Forms.FolderBrowserDialog();
             this.ServerName = new System.Windows.Forms.TextBox();
@@ -38,12 +39,13 @@ namespace DatabaseBackupperWindowsApp
             this.label1 = new System.Windows.Forms.Label();
             this.UserName = new System.Windows.Forms.TextBox();
             this.RememberMe = new System.Windows.Forms.CheckBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // ServerNameLabel
             // 
             this.ServerNameLabel.AutoSize = true;
-            this.ServerNameLabel.Location = new System.Drawing.Point(5, 13);
+            this.ServerNameLabel.Location = new System.Drawing.Point(3, 6);
             this.ServerNameLabel.Name = "ServerNameLabel";
             this.ServerNameLabel.Size = new System.Drawing.Size(38, 13);
             this.ServerNameLabel.TabIndex = 1;
@@ -51,14 +53,14 @@ namespace DatabaseBackupperWindowsApp
             // 
             // ServerName
             // 
-            this.ServerName.Location = new System.Drawing.Point(57, 6);
+            this.ServerName.Location = new System.Drawing.Point(59, 6);
             this.ServerName.Name = "ServerName";
-            this.ServerName.Size = new System.Drawing.Size(223, 20);
+            this.ServerName.Size = new System.Drawing.Size(221, 20);
             this.ServerName.TabIndex = 12;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(130, 92);
+            this.button1.Location = new System.Drawing.Point(130, 104);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 29);
             this.button1.TabIndex = 13;
@@ -68,51 +70,60 @@ namespace DatabaseBackupperWindowsApp
             // 
             // Password
             // 
-            this.Password.Location = new System.Drawing.Point(57, 58);
+            this.Password.Location = new System.Drawing.Point(59, 58);
             this.Password.Name = "Password";
-            this.Password.Size = new System.Drawing.Size(223, 20);
+            this.Password.PasswordChar = '*';
+            this.Password.Size = new System.Drawing.Size(221, 20);
             this.Password.TabIndex = 14;
+            this.Password.UseSystemPasswordChar = true;
+            this.Password.Visible = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 61);
+            this.label4.Location = new System.Drawing.Point(2, 58);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 15;
             this.label4.Text = "Password";
+            this.label4.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(2, 35);
+            this.label1.Location = new System.Drawing.Point(3, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 17;
             this.label1.Text = "Username";
+            this.label1.Visible = false;
             // 
             // UserName
             // 
-            this.UserName.Location = new System.Drawing.Point(57, 32);
+            this.UserName.Location = new System.Drawing.Point(59, 32);
             this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(223, 20);
+            this.UserName.Size = new System.Drawing.Size(221, 20);
             this.UserName.TabIndex = 16;
+            this.UserName.Visible = false;
             // 
             // RememberMe
             // 
             this.RememberMe.AutoSize = true;
-            this.RememberMe.Location = new System.Drawing.Point(13, 98);
+            this.RememberMe.Location = new System.Drawing.Point(5, 111);
             this.RememberMe.Name = "RememberMe";
             this.RememberMe.Size = new System.Drawing.Size(94, 17);
             this.RememberMe.TabIndex = 18;
             this.RememberMe.Text = "Remember me";
             this.RememberMe.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // ConnectForm
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 133);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(292, 145);
             this.Controls.Add(this.RememberMe);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UserName);
@@ -121,7 +132,9 @@ namespace DatabaseBackupperWindowsApp
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ServerName);
             this.Controls.Add(this.ServerNameLabel);
-            this.Name = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "ConnectForm";
             this.Text = "Бэкап баз данных";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -139,6 +152,7 @@ namespace DatabaseBackupperWindowsApp
         private Label label1;
         private TextBox UserName;
         private CheckBox RememberMe;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
