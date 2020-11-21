@@ -52,6 +52,8 @@ namespace DatabaseBackupperWindowsApp
 
         private async void BackupButton_Click(object sender, EventArgs e)
         {
+            BackupButton.Enabled = false;
+            DisconnectButton.Enabled = false;
             List<string> selectedDatabases = new List<string>();
             foreach (var item in DatabasesList.CheckedItems)
             {
@@ -61,24 +63,30 @@ namespace DatabaseBackupperWindowsApp
             {
                 logger.Info($"Начат бэкап баз данных");
                 var tasks = new List<Task>();
-                int index = 0;
+                
+                var progress = new Progress<string>(status =>
+                {
+                    ProgressList.Clear();
+                    ProgressList.Items.Add(String.Join(Environment.NewLine, status));
+
+                    logger.Info(status);
+                });
                 foreach (var database in selectedDatabases) 
                 {
-                    Func<Task> action = async () => await databases.Backup(database, Path.Text);
+                    Func<Task> action = async () => await databases.Backup(database, Path.Text, progress);
                     tasks.Add(await Task.Factory.StartNew(action));
                 }
-                foreach (var task in tasks) 
-                {
-                    await task.ContinueWith((obj) => { index++; logger.Info(index); });
-                }
+                await Task.WhenAll(tasks.ToArray());
+                ProgressList.Items.Add(new ListViewItem("Финиш"));
                 logger.Info($"Бэкап баз данных завершен");
-                MessageBox.Show(this, "Успех", "Бэкап баз данных");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, "Ошибка", "Бэкап баз данных");
                 logger.Error(ex);
             }
+            BackupButton.Enabled = true;
+            DisconnectButton.Enabled = true;
             //save data
             var backupData = new BackupData() { Path = Path.Text };
             using (StreamWriter file = File.CreateText(@"BackupData.json"))

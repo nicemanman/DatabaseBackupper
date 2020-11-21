@@ -34,10 +34,6 @@ namespace DatabaseBackupperWindowsApp
             this.ChooseDirectoryToBackup = new System.Windows.Forms.FolderBrowserDialog();
             this.ServerName = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.Password = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.UserName = new System.Windows.Forms.TextBox();
             this.RememberMe = new System.Windows.Forms.CheckBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
@@ -45,7 +41,7 @@ namespace DatabaseBackupperWindowsApp
             // ServerNameLabel
             // 
             this.ServerNameLabel.AutoSize = true;
-            this.ServerNameLabel.Location = new System.Drawing.Point(3, 6);
+            this.ServerNameLabel.Location = new System.Drawing.Point(2, 9);
             this.ServerNameLabel.Name = "ServerNameLabel";
             this.ServerNameLabel.Size = new System.Drawing.Size(38, 13);
             this.ServerNameLabel.TabIndex = 1;
@@ -60,56 +56,18 @@ namespace DatabaseBackupperWindowsApp
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(130, 104);
+            this.button1.Location = new System.Drawing.Point(130, 32);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 29);
             this.button1.TabIndex = 13;
             this.button1.Text = "Connect";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // Password
-            // 
-            this.Password.Location = new System.Drawing.Point(59, 58);
-            this.Password.Name = "Password";
-            this.Password.PasswordChar = '*';
-            this.Password.Size = new System.Drawing.Size(221, 20);
-            this.Password.TabIndex = 14;
-            this.Password.UseSystemPasswordChar = true;
-            this.Password.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Password";
-            this.label4.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Username";
-            this.label1.Visible = false;
-            // 
-            // UserName
-            // 
-            this.UserName.Location = new System.Drawing.Point(59, 32);
-            this.UserName.Name = "UserName";
-            this.UserName.Size = new System.Drawing.Size(221, 20);
-            this.UserName.TabIndex = 16;
-            this.UserName.Visible = false;
+            this.button1.Click += new System.EventHandler(this.backupNowButtonClick);
             // 
             // RememberMe
             // 
             this.RememberMe.AutoSize = true;
-            this.RememberMe.Location = new System.Drawing.Point(5, 111);
+            this.RememberMe.Location = new System.Drawing.Point(5, 39);
             this.RememberMe.Name = "RememberMe";
             this.RememberMe.Size = new System.Drawing.Size(94, 17);
             this.RememberMe.TabIndex = 18;
@@ -123,12 +81,8 @@ namespace DatabaseBackupperWindowsApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(292, 145);
+            this.ClientSize = new System.Drawing.Size(292, 71);
             this.Controls.Add(this.RememberMe);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.UserName);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.Password);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ServerName);
             this.Controls.Add(this.ServerNameLabel);
@@ -147,10 +101,6 @@ namespace DatabaseBackupperWindowsApp
         private System.Windows.Forms.FolderBrowserDialog ChooseDirectoryToBackup;
         private TextBox ServerName;
         private Button button1;
-        private TextBox Password;
-        private Label label4;
-        private Label label1;
-        private TextBox UserName;
         private CheckBox RememberMe;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }

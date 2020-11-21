@@ -35,7 +35,8 @@
             this.Path = new System.Windows.Forms.TextBox();
             this.ChoosePath = new System.Windows.Forms.Button();
             this.DatabasesList = new System.Windows.Forms.CheckedListBox();
-            this.Progress = new System.Windows.Forms.Label();
+            this.ProgressList = new System.Windows.Forms.ListView();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // BackupButton
@@ -83,23 +84,23 @@
             this.DatabasesList.Size = new System.Drawing.Size(230, 229);
             this.DatabasesList.TabIndex = 7;
             // 
-            // Progress
+            // ProgressList
             // 
-            this.Progress.AutoSize = true;
-            this.Progress.Location = new System.Drawing.Point(13, 336);
-            this.Progress.Name = "Progress";
-            this.Progress.Size = new System.Drawing.Size(35, 13);
-            this.Progress.TabIndex = 8;
-            this.Progress.Text = "label1";
-            this.Progress.Visible = false;
+            this.ProgressList.HideSelection = false;
+            this.ProgressList.Location = new System.Drawing.Point(248, 40);
+            this.ProgressList.Name = "ProgressList";
+            this.ProgressList.Size = new System.Drawing.Size(236, 229);
+            this.ProgressList.TabIndex = 8;
+            this.ProgressList.UseCompatibleStateImageBehavior = false;
+            this.ProgressList.View = System.Windows.Forms.View.List;
             // 
             // BackupDatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(255, 363);
-            this.Controls.Add(this.Progress);
+            this.ClientSize = new System.Drawing.Size(496, 363);
+            this.Controls.Add(this.ProgressList);
             this.Controls.Add(this.DatabasesList);
             this.Controls.Add(this.ChoosePath);
             this.Controls.Add(this.Path);
@@ -122,6 +123,7 @@
         private System.Windows.Forms.TextBox Path;
         private System.Windows.Forms.Button ChoosePath;
         private System.Windows.Forms.CheckedListBox DatabasesList;
-        private System.Windows.Forms.Label Progress;
+        private System.Windows.Forms.ListView ProgressList;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }

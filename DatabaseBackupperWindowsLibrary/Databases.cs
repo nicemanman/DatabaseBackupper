@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,8 +67,10 @@ namespace DatabaseBackupper
         
 
        
-        public Task Backup(string database, string path) 
+        public Task Backup(string database, string path, IProgress<string> progress) 
         {
+            Directory.CreateDirectory(path);
+            
             if (string.IsNullOrEmpty(path))
             {
                 throw new ArgumentException($"'{nameof(path)}' cannot be null or empty", nameof(path));
@@ -76,16 +79,28 @@ namespace DatabaseBackupper
             {
                 throw new ArgumentException($"'{nameof(database)}' cannot be null or empty", nameof(database));
             }
-            var result = 0;
+            
             string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
+            
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand($"BACKUP DATABASE [{database}] TO  DISK = '{path}\\{database}{DateTime.Now.ToString().Replace(":",".")}.bak'", con))
+                try
                 {
-                    result += cmd.ExecuteNonQuery();
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand($"BACKUP DATABASE [{database}] TO  DISK = '{path}\\{database} {DateTime.Now.ToString().Replace(":", ".")}.bak'", con))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    progress.Report($"{database} - OK");
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex);
+                    progress.Report($"{database} - Error");
                 }
             }
+            
+            
             return Task.CompletedTask;
         }
     }
