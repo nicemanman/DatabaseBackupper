@@ -10,8 +10,8 @@ namespace DatabaseBackupper
 {
     public class Databases
     {
-        private List<string> DatabasesList = new List<string>();
-        private List<string> DatabasesToBackup = new List<string>();
+        public List<string> DatabasesList = new List<string>();
+        public List<string> DatabasesToBackup = new List<string>();
         private List<string> SystemDatabases = new List<string>(){"master","msdb","model","resource","tempdb" };
         public string Path { get; private set; }
         public int Length { get => DatabasesList.Count; }
@@ -32,8 +32,6 @@ namespace DatabaseBackupper
         {
             get => DatabasesList[index];
         }
-
- 
 
         private List<string> GetAllOfThem()
         {

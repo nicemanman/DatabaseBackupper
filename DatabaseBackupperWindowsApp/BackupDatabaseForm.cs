@@ -1,4 +1,5 @@
 ﻿using DatabaseBackupper;
+using DatabaseBackupperWindowsLibrary.Models;
 using Newtonsoft.Json;
 using NLog;
 using System;
@@ -11,18 +12,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Linq;
 namespace DatabaseBackupperWindowsApp
 {
     public partial class BackupDatabaseForm : Form
     {
         private Databases databases;
+        private LoginData loginData;
+        private BackupData backupData;
         Logger logger = LogManager.GetCurrentClassLogger();
-        public BackupDatabaseForm(Databases databases)
+        public BackupDatabaseForm(Databases databases, LoginData loginData)
         {
             InitializeComponent();
             this.databases = databases;
-            Closed += (s, args) => Application.Exit();
+            this.loginData = loginData;
+            Closed += (s, args) => {
+                ConnectForm form = new ConnectForm();
+                form.Show();
+            };
         }
 
         private void BackupDatabaseForm_Load(object sender, EventArgs e)
@@ -36,8 +43,8 @@ namespace DatabaseBackupperWindowsApp
             using (StreamReader file = File.OpenText(@"BackupData.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                BackupData data = (BackupData)serializer.Deserialize(file, typeof(BackupData));
-                Path.Text = data.Path;
+                backupData = (BackupData)serializer.Deserialize(file, typeof(BackupData));
+                Path.Text = backupData.Path;
                 logger.Info($"Успешно загрузили путь бэкапа {Path.Text} из файла BackupData.json");
             }
         }
@@ -47,18 +54,14 @@ namespace DatabaseBackupperWindowsApp
         {
             ConnectForm form = new ConnectForm();
             form.Show();
-            Hide();
+            Close();
         }
 
         private async void BackupButton_Click(object sender, EventArgs e)
         {
             BackupButton.Enabled = false;
             DisconnectButton.Enabled = false;
-            List<string> selectedDatabases = new List<string>();
-            foreach (var item in DatabasesList.CheckedItems)
-            {
-                selectedDatabases.Add(item as string);
-            }
+            List<string> selectedDatabases = GetSelectedDatabases();
             try
             {
                 logger.Info($"Начат бэкап баз данных");
@@ -110,7 +113,32 @@ namespace DatabaseBackupperWindowsApp
             }
         }
 
-        
-
+        private void ScheduleButtonClick(object sender, EventArgs e)
+        {
+            Hide();
+            backupData = new BackupData()
+            {
+                AllDatabases = databases.DatabasesList,
+                DatabasesToBackup = GetSelectedDatabases(),
+                Path = Path.Text
+            };
+            TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData, ID = Guid.NewGuid() }, this);
+            details.Show();
+        }
+        public List<string> GetSelectedDatabases() 
+        {
+            List<string> selectedDatabases = new List<string>();
+            foreach (var item in DatabasesList.CheckedItems)
+            {
+                selectedDatabases.Add(item as string);
+            }
+            return selectedDatabases;
+        }
+        private void AllTasks_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Tasks tasksForm = new Tasks(this, loginData, databases);
+            tasksForm.Show();
+        }
     }
 }

@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseBackupperWindowsApp
+namespace DatabaseBackupperWindowsLibrary.Models
 {
     public class BackupData
     {
         public string Path { get; set; }
+        public List<string> AllDatabases { get; set; }
+        public List<string> DatabasesToBackup { get; set; }
     }
 }

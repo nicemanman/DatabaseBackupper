@@ -175,7 +175,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Databases.cs" />
+    <Compile Include="Models\BackupData.cs" />
+    <Compile Include="Models\LoginData.cs" />
+    <Compile Include="Models\TaskData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,5 +1,6 @@
 ﻿using DatabaseBackupper;
 using DatabaseBackupperWindowsApp;
+using DatabaseBackupperWindowsLibrary.Models;
 using Newtonsoft.Json;
 using NLog;
 using System;
@@ -17,7 +18,7 @@ namespace DatabaseBackupperWindowsApp
 {
     public partial class ConnectForm : Form
     {
-        private LoginData loginData { get; set; }
+        
         private Logger logger = LogManager.GetCurrentClassLogger();
         public ConnectForm()
         {
@@ -33,15 +34,15 @@ namespace DatabaseBackupperWindowsApp
                 logger.Info($"Подключение к базе данных");
                 var databases = new Databases(ServerName.Text, "", "");
                 logger.Info($"Успешно подключились к базе данных, получили список базы данных");
+                var loginData = new LoginData()
+                {
+                    ServerName = ServerName.Text,
+                    UserName = "",
+                    Password = ""
+                };
                 if (RememberMe.Checked) 
                 {
                     logger.Info($"Запоминаем данные для входа");
-                    var loginData = new LoginData()
-                    {
-                        ServerName = ServerName.Text,
-                        UserName = "",
-                        Password = ""
-                    };
                     logger.Info($"Записываем данные в файл LoginData.json");
                     using (StreamWriter file = File.CreateText(@"LoginData.json"))
                     {
@@ -49,9 +50,8 @@ namespace DatabaseBackupperWindowsApp
                         serializer.Serialize(file, loginData);
                         logger.Info($"Успешно записали данные в файл LoginData.json");
                     }
-                    
                 }
-                BackupDatabaseForm form = new BackupDatabaseForm(databases);
+                BackupDatabaseForm form = new BackupDatabaseForm(databases, loginData);
                 form.Show();
                 Hide();
             }

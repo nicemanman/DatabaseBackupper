@@ -37,6 +37,8 @@
             this.DatabasesList = new System.Windows.Forms.CheckedListBox();
             this.ProgressList = new System.Windows.Forms.ListView();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.Schedule = new System.Windows.Forms.Button();
+            this.AllTasks = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BackupButton
@@ -94,12 +96,34 @@
             this.ProgressList.UseCompatibleStateImageBehavior = false;
             this.ProgressList.View = System.Windows.Forms.View.List;
             // 
+            // Schedule
+            // 
+            this.Schedule.Location = new System.Drawing.Point(249, 277);
+            this.Schedule.Name = "Schedule";
+            this.Schedule.Size = new System.Drawing.Size(235, 23);
+            this.Schedule.TabIndex = 9;
+            this.Schedule.Text = "Schedule this";
+            this.Schedule.UseVisualStyleBackColor = true;
+            this.Schedule.Click += new System.EventHandler(this.ScheduleButtonClick);
+            // 
+            // AllTasks
+            // 
+            this.AllTasks.Location = new System.Drawing.Point(249, 306);
+            this.AllTasks.Name = "AllTasks";
+            this.AllTasks.Size = new System.Drawing.Size(235, 23);
+            this.AllTasks.TabIndex = 10;
+            this.AllTasks.Text = "All tasks";
+            this.AllTasks.UseVisualStyleBackColor = true;
+            this.AllTasks.Click += new System.EventHandler(this.AllTasks_Click);
+            // 
             // BackupDatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(496, 363);
+            this.Controls.Add(this.AllTasks);
+            this.Controls.Add(this.Schedule);
             this.Controls.Add(this.ProgressList);
             this.Controls.Add(this.DatabasesList);
             this.Controls.Add(this.ChoosePath);
@@ -125,5 +149,7 @@
         private System.Windows.Forms.CheckedListBox DatabasesList;
         private System.Windows.Forms.ListView ProgressList;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.Button Schedule;
+        private System.Windows.Forms.Button AllTasks;
     }
 }
