@@ -62,7 +62,7 @@ namespace DatabaseBackupperWindowsApp
             this.button1.TabIndex = 13;
             this.button1.Text = "Connect";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.backupNowButtonClick);
+            this.button1.Click += new System.EventHandler(this.ConnectButton);
             // 
             // RememberMe
             // 

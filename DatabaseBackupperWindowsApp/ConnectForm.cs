@@ -27,12 +27,12 @@ namespace DatabaseBackupperWindowsApp
             RememberMe.Checked = true;
         }
 
-        private void backupNowButtonClick(object sender, EventArgs e)
+        private void ConnectButton(object sender, EventArgs e)
         {
             try
             {
                 logger.Info($"Подключение к базе данных");
-                var databases = new Databases(ServerName.Text, "", "");
+                var databases = new DatabasesManager(ServerName.Text, "", "");
                 logger.Info($"Успешно подключились к базе данных, получили список базы данных");
                 var loginData = new LoginData()
                 {
@@ -72,7 +72,6 @@ namespace DatabaseBackupperWindowsApp
                 JsonSerializer serializer = new JsonSerializer();
                 LoginData data = (LoginData)serializer.Deserialize(file, typeof(LoginData));
                 ServerName.Text = data.ServerName;
-                
             }
 
         }

@@ -17,11 +17,12 @@ namespace DatabaseBackupperWindowsApp
 {
     public partial class BackupDatabaseForm : Form
     {
-        private Databases databases;
+        private DatabasesManager databases;
         private LoginData loginData;
         private BackupData backupData;
+        private static bool allSelected = false;
         Logger logger = LogManager.GetCurrentClassLogger();
-        public BackupDatabaseForm(Databases databases, LoginData loginData)
+        public BackupDatabaseForm(DatabasesManager databases, LoginData loginData)
         {
             InitializeComponent();
             this.databases = databases;
@@ -47,13 +48,30 @@ namespace DatabaseBackupperWindowsApp
                 Path.Text = backupData.Path;
                 logger.Info($"Успешно загрузили путь бэкапа {Path.Text} из файла BackupData.json");
             }
+            DatabasesList.ItemCheck += DatabasesList_ItemCheck;
         }
 
+        private void DatabasesList_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            //allSelected = true;
+            //if (e.NewValue == CheckState.Unchecked) 
+            //{
+            //    allSelected = false;
+            //    return;
+            //}
+            //for (int i = 0; i < DatabasesList.Items.Count; i++) 
+            //{
+            //    if (i == e.Index) continue;
+            //    if (!DatabasesList.GetItemChecked(i)) 
+            //    {
+            //        allSelected = false;
+            //        return;
+            //    }
+            //}
+        }
 
         private void DisconnectButton_Click(object sender, EventArgs e)
         {
-            ConnectForm form = new ConnectForm();
-            form.Show();
             Close();
         }
 
@@ -66,12 +84,10 @@ namespace DatabaseBackupperWindowsApp
             {
                 logger.Info($"Начат бэкап баз данных");
                 var tasks = new List<Task>();
-                
+                ProgressList.Clear();
                 var progress = new Progress<string>(status =>
                 {
-                    ProgressList.Clear();
                     ProgressList.Items.Add(String.Join(Environment.NewLine, status));
-
                     logger.Info(status);
                 });
                 foreach (var database in selectedDatabases) 
@@ -139,6 +155,26 @@ namespace DatabaseBackupperWindowsApp
             Hide();
             Tasks tasksForm = new Tasks(this, loginData, databases);
             tasksForm.Show();
+        }
+
+        private void SelectAll_Click(object sender, EventArgs e)
+        {
+            for (var i = 0; i < DatabasesList.Items.Count; i++)
+            {
+                DatabasesList.SetItemChecked(i, !allSelected);
+            }
+            allSelected = !allSelected;
+            ChangeSelectAllButtonText();
+        }
+
+        public void ChangeSelectAllButtonText() 
+        {
+            string buttontext = "Select all";
+            if (allSelected)
+            {
+                buttontext = "Undo selection";
+            }
+            SelectAll.Text = buttontext;
         }
     }
 }

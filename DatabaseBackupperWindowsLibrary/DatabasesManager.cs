@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseBackupper
 {
-    public class Databases
+    public class DatabasesManager
     {
         public List<string> DatabasesList = new List<string>();
         public List<string> DatabasesToBackup = new List<string>();
@@ -20,7 +20,7 @@ namespace DatabaseBackupper
         private string Password { get; set; }
         Logger logger = LogManager.GetCurrentClassLogger();
 
-        public Databases(string serverName, string userName, string password)
+        public DatabasesManager(string serverName, string userName, string password)
         {
             ServerName = serverName;
             UserName = userName;
@@ -67,6 +67,10 @@ namespace DatabaseBackupper
        
         public Task Backup(string database, string path, IProgress<string> progress) 
         {
+            var dateNow = DateTime.Now.ToShortDateString();
+            var timeNow = DateTime.Now.ToLongTimeString();
+            path += "\\" + dateNow + "\\" + database;
+            var databaseFileName = database + " " + timeNow.Replace(":",".");
             Directory.CreateDirectory(path);
             
             if (string.IsNullOrEmpty(path))
@@ -85,7 +89,7 @@ namespace DatabaseBackupper
                 try
                 {
                     con.Open();
-                    using (SqlCommand cmd = new SqlCommand($"BACKUP DATABASE [{database}] TO  DISK = '{path}\\{database} {DateTime.Now.ToString().Replace(":", ".")}.bak'", con))
+                    using (SqlCommand cmd = new SqlCommand($"BACKUP DATABASE [{database}] TO  DISK = '{path}\\{databaseFileName}.bak'", con))
                     {
                         cmd.ExecuteNonQuery();
                     }

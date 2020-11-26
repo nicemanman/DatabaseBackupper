@@ -19,9 +19,9 @@ namespace DatabaseBackupperWindowsApp
         
         private Form parentWindow;
         private LoginData loginData;
-        private readonly Databases databases;
+        private readonly DatabasesManager databases;
         private readonly TasksManager tasksManager;
-        public Tasks(Form parentForm, LoginData loginData, Databases databases)
+        public Tasks(Form parentForm, LoginData loginData, DatabasesManager databases)
         {
             InitializeComponent();
             this.parentWindow = parentForm;

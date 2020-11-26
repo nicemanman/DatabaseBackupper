@@ -39,11 +39,12 @@
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.Schedule = new System.Windows.Forms.Button();
             this.AllTasks = new System.Windows.Forms.Button();
+            this.SelectAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BackupButton
             // 
-            this.BackupButton.Location = new System.Drawing.Point(12, 277);
+            this.BackupButton.Location = new System.Drawing.Point(11, 307);
             this.BackupButton.Name = "BackupButton";
             this.BackupButton.Size = new System.Drawing.Size(230, 23);
             this.BackupButton.TabIndex = 1;
@@ -53,7 +54,7 @@
             // 
             // DisconnectButton
             // 
-            this.DisconnectButton.Location = new System.Drawing.Point(13, 306);
+            this.DisconnectButton.Location = new System.Drawing.Point(12, 335);
             this.DisconnectButton.Name = "DisconnectButton";
             this.DisconnectButton.Size = new System.Drawing.Size(229, 23);
             this.DisconnectButton.TabIndex = 2;
@@ -116,12 +117,23 @@
             this.AllTasks.UseVisualStyleBackColor = true;
             this.AllTasks.Click += new System.EventHandler(this.AllTasks_Click);
             // 
+            // SelectAll
+            // 
+            this.SelectAll.Location = new System.Drawing.Point(11, 278);
+            this.SelectAll.Name = "SelectAll";
+            this.SelectAll.Size = new System.Drawing.Size(230, 23);
+            this.SelectAll.TabIndex = 11;
+            this.SelectAll.Text = "Select all";
+            this.SelectAll.UseVisualStyleBackColor = true;
+            this.SelectAll.Click += new System.EventHandler(this.SelectAll_Click);
+            // 
             // BackupDatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(496, 363);
+            this.Controls.Add(this.SelectAll);
             this.Controls.Add(this.AllTasks);
             this.Controls.Add(this.Schedule);
             this.Controls.Add(this.ProgressList);
@@ -151,5 +163,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Button Schedule;
         private System.Windows.Forms.Button AllTasks;
+        private System.Windows.Forms.Button SelectAll;
     }
 }
