@@ -18,13 +18,16 @@ namespace DatabaseBackupper
         private string ServerName { get; set; }
         private string UserName { get; set; }
         private string Password { get; set; }
+
+        private readonly bool winAuth;
         Logger logger = LogManager.GetCurrentClassLogger();
 
-        public DatabasesManager(string serverName, string userName, string password)
+        public DatabasesManager(string serverName, string userName, string password, bool winAuth)
         {
             ServerName = serverName;
             UserName = userName;
             Password = password;
+            this.winAuth = winAuth;
             DatabasesList = GetAllOfThem();
         }
 
@@ -35,8 +38,9 @@ namespace DatabaseBackupper
 
         private List<string> GetAllOfThem()
         {
+            string auth = (winAuth ? "True" : "False");
             var list = new List<String>();
-            string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
+            string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security={auth};";
             logger.Info($"Connection string: \"{connectionString}\"");
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -67,6 +71,7 @@ namespace DatabaseBackupper
        
         public Task Backup(string database, string path, IProgress<string> progress) 
         {
+            string auth = (winAuth ? "True" : "False");
             var dateNow = DateTime.Now.ToShortDateString();
             var timeNow = DateTime.Now.ToLongTimeString();
             path += "\\" + dateNow + "\\" + database;
@@ -82,7 +87,7 @@ namespace DatabaseBackupper
                 throw new ArgumentException($"'{nameof(database)}' cannot be null or empty", nameof(database));
             }
             
-            string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
+            string connectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security={auth};";
             
             using (SqlConnection con = new SqlConnection(connectionString))
             {

@@ -13,5 +13,6 @@ namespace DatabaseBackupperWindowsLibrary.Models
         public LoginData LoginData { get; set; }
         public BackupData BackupData { get; set; }
         public string CronJob { get; set; }
+        public ScheduleData Schedule { get; set; }
     }
 }

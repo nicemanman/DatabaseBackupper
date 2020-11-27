@@ -1,5 +1,6 @@
 ﻿using DatabaseBackupper;
 using DatabaseBackupperWindowsApp;
+using DatabaseBackupperWindowsLibrary;
 using DatabaseBackupperWindowsLibrary.Models;
 using Newtonsoft.Json;
 using NLog;
@@ -20,6 +21,7 @@ namespace DatabaseBackupperWindowsApp
     {
         
         private Logger logger = LogManager.GetCurrentClassLogger();
+        private bool winAuth = true;
         public ConnectForm()
         {
             InitializeComponent();
@@ -32,7 +34,8 @@ namespace DatabaseBackupperWindowsApp
             try
             {
                 logger.Info($"Подключение к базе данных");
-                var databases = new DatabasesManager(ServerName.Text, "", "");
+                Status.Text = "Ожидайте...";
+                var databases = new DatabasesManager(ServerName.Text, Username.Text, Password.Text, winAuth);
                 logger.Info($"Успешно подключились к базе данных, получили список базы данных");
                 var loginData = new LoginData()
                 {
@@ -57,22 +60,53 @@ namespace DatabaseBackupperWindowsApp
             }
             catch (Exception ex) 
             {
-                MessageBox.Show(this,"Ошибка","Подключение к базе данных");
+                Status.Text = "Ошибка подключения к базе данных";
                 logger.Error(ex);
             }
             
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (File.Exists(@"LoginData.json"))
-            using (StreamReader file = File.OpenText(@"LoginData.json"))
+            SqlServersManager manager = new SqlServersManager();
+            var sqlServers = manager.GetAllOfThem();
+            ServerName.DataSource = sqlServers;
+            Authentication.Items.Add("Windows");
+            Authentication.Items.Add("SQL Server");
+            Authentication.SelectedIndexChanged += Authentication_SelectedIndexChanged;
+            Authentication.SelectedIndex = 0;
+            
+        }
+
+        private void Authentication_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Authentication.SelectedIndex == 0)
             {
-                logger.Info($"Не первое подключение!");
-                logger.Info($"Успешно прочитали файл LoginData.json");
-                JsonSerializer serializer = new JsonSerializer();
-                LoginData data = (LoginData)serializer.Deserialize(file, typeof(LoginData));
-                ServerName.Text = data.ServerName;
+                winAuth = true;
+                Username.Enabled = false;
+                Password.Enabled = false;
+                Username.Text = Environment.UserDomainName+"\\"+Environment.UserName;
             }
+            else 
+            {
+                winAuth = false;
+                Username.Text = "sa";
+                Username.Enabled = true;
+                Password.Enabled = true;
+            }
+        }
+
+        private void Username_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Password_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RememberMe_CheckedChanged(object sender, EventArgs e)
+        {
 
         }
     }

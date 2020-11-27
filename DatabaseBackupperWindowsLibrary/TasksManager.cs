@@ -32,14 +32,12 @@ namespace DatabaseBackupperWindowsLibrary
         }
         public void BuildTasksQueue() 
         {
-
             if (File.Exists(@"TaskData.json"))
                 using (StreamReader file = File.OpenText(@"TaskData.json"))
                 {
                     JsonSerializer serializer = new JsonSerializer();
                     tasks = (List<TaskData>)serializer.Deserialize(file, typeof(List<TaskData>));
                 }
-            
         }
         
         public void AddTask(TaskData task) 

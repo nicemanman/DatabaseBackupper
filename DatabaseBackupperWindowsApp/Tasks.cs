@@ -24,6 +24,7 @@ namespace DatabaseBackupperWindowsApp
         public Tasks(Form parentForm, LoginData loginData, DatabasesManager databases)
         {
             InitializeComponent();
+            
             this.parentWindow = parentForm;
             this.loginData = loginData;
             this.databases = databases;
@@ -31,8 +32,12 @@ namespace DatabaseBackupperWindowsApp
             Closed += (s, args) => {
                 parentForm.Show();
             };
+            Activated += new System.EventHandler(this.Tasks_OnShown);
         }
-
+        private void Tasks_OnShown(object sender, EventArgs e)
+        {
+            TasksTable.Refill(tasksManager);
+        }
         private void Tasks_Load(object sender, EventArgs e)
         {
             TasksTable.Refill(tasksManager);

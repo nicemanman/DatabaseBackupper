@@ -36,7 +36,7 @@ namespace DatabaseBackupperWindowsApp
                 var selected = task.BackupData.DatabasesToBackup.Contains(database);
                 DatabasesList.Items.Add(database, selected);
             }
-            Schedule.Text = task.CronJob;
+            //Schedule.Text = task.CronJob;
             PathToBackup.Text = task.BackupData.Path;
         }
 
@@ -54,7 +54,7 @@ namespace DatabaseBackupperWindowsApp
             {
                 task.BackupData.DatabasesToBackup.Add(database as string);
             }
-            task.CronJob = Schedule.Text;
+            //task.CronJob = Schedule.Text;
             task.BackupData.Path = PathToBackup.Text;
             task.Name = TaskName.Text;
             tasksManager.AddTask(task);

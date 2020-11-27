@@ -38,10 +38,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.TaskName = new System.Windows.Forms.TextBox();
-            this.Schedule = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.button1 = new System.Windows.Forms.Button();
             this.ServerName = new System.Windows.Forms.Label();
+            this.ScheduleDropDownList = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -117,13 +117,6 @@
             this.TaskName.Size = new System.Drawing.Size(178, 20);
             this.TaskName.TabIndex = 10;
             // 
-            // Schedule
-            // 
-            this.Schedule.Location = new System.Drawing.Point(71, 286);
-            this.Schedule.Name = "Schedule";
-            this.Schedule.Size = new System.Drawing.Size(164, 20);
-            this.Schedule.TabIndex = 5;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(13, 367);
@@ -143,11 +136,20 @@
             this.ServerName.TabIndex = 13;
             this.ServerName.Text = "Server";
             // 
+            // ScheduleDropDownList
+            // 
+            this.ScheduleDropDownList.FormattingEnabled = true;
+            this.ScheduleDropDownList.Location = new System.Drawing.Point(72, 285);
+            this.ScheduleDropDownList.Name = "ScheduleDropDownList";
+            this.ScheduleDropDownList.Size = new System.Drawing.Size(163, 21);
+            this.ScheduleDropDownList.TabIndex = 14;
+            // 
             // TaskDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(247, 398);
+            this.Controls.Add(this.ScheduleDropDownList);
             this.Controls.Add(this.ServerName);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
@@ -156,7 +158,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.PathToBackup);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.Schedule);
             this.Controls.Add(this.DatabasesList);
             this.Controls.Add(this.label1);
             this.Name = "TaskDetail";
@@ -177,9 +178,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TaskName;
-        private System.Windows.Forms.TextBox Schedule;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label ServerName;
+        private System.Windows.Forms.ComboBox ScheduleDropDownList;
     }
 }
