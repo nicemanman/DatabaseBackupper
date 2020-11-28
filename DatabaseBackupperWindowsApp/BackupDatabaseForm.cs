@@ -165,5 +165,15 @@ namespace DatabaseBackupperWindowsApp
                 DatabasesList.SetItemChecked(i, checkBox1.Checked);
             }
         }
+
+        private void создатьЗадачуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

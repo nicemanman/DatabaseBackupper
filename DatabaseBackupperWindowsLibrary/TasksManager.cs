@@ -23,45 +23,49 @@ namespace DatabaseBackupperWindowsLibrary
         //}
         public TasksManager()
         {
-            context = new AppDbContext();
             BuildTasksQueue();
         }
         public int Count() 
         {
-            var result = context.Tasks.Count();
-            return result;
-            //return tasks?.Count() ?? 0;
+            using (context = new AppDbContext()) 
+            {
+                var result = context.Tasks.Count();
+                return result;
+            }
         }
         public List<TaskData> GetAllOfThem() 
         {
-            var taskModels = context.Tasks.Include("Schedule").ToList();
-            List<TaskData> tasks = new List<TaskData>();
-            foreach (var item in taskModels)
+            using (context = new AppDbContext()) 
             {
-                var task = new TaskData()
+                var taskModels = context.Tasks.Include("Schedule").ToList();
+                List<TaskData> tasks = new List<TaskData>();
+                foreach (var item in taskModels)
                 {
-                    ID = item.TaskModelID,
-                    Name = item.Name,
-                    BackupData = new BackupData()
+                    var task = new TaskData()
                     {
-                        DatabasesToBackup = item.Databases.Split(';').ToList<string>(),
-                        Path = item.Path
-                    },
-                    LoginData = new LoginData() 
-                    {
-                        ServerName = item.ServerName
-                    },
-                    ScheduleID = item.schedule.ScheduleModelID,
-                    Schedule = new ScheduleData() 
-                    {
-                        ID = item.schedule.ScheduleModelID,
-                        Description = item.schedule.Name,
-                        Cron = item.schedule.Cron
-                    }
-                };
-                tasks.Add(task);
+                        ID = item.TaskModelID,
+                        Name = item.Name,
+                        BackupData = new BackupData()
+                        {
+                            DatabasesToBackup = item.Databases.Split(';').ToList<string>(),
+                            Path = item.Path
+                        },
+                        LoginData = new LoginData() 
+                        {
+                            ServerName = item.ServerName
+                        },
+                        ScheduleID = item.schedule.ScheduleModelID,
+                        Schedule = new ScheduleData() 
+                        {
+                            ID = item.schedule.ScheduleModelID,
+                            Description = item.schedule.Name,
+                            Cron = item.schedule.Cron
+                        }
+                    };
+                    tasks.Add(task);
+                }
+                return tasks;
             }
-            return tasks;
         }
         public void BuildTasksQueue() 
         {
@@ -77,66 +81,75 @@ namespace DatabaseBackupperWindowsLibrary
         
         public void AddTask(TaskData task) 
         {
-            var find = context.Tasks.Find(task.ID);
-            var scheduleRow = context.Schedules.Find(task.ScheduleID);
-            var taskModel = new TaskModel()
+            using (context = new AppDbContext()) 
             {
-                Name = task.Name,
-                Databases = string.Join(";", task.BackupData.DatabasesToBackup),
-                Path = task.BackupData.Path,
-                ServerName = task.LoginData.ServerName,
-                schedule = scheduleRow
-            };
-            if (find == null)
-            {
-                context.Tasks.Add(taskModel);
+                var find = context.Tasks.Find(task.ID);
+                var scheduleRow = context.Schedules.Find(task.ScheduleID);
+                var taskModel = new TaskModel()
+                {
+                    Name = task.Name,
+                    Databases = string.Join(";", task.BackupData.DatabasesToBackup),
+                    Path = task.BackupData.Path,
+                    ServerName = task.LoginData.ServerName,
+                    schedule = scheduleRow
+                };
+                if (find == null)
+                {
+                    context.Tasks.Add(taskModel);
+                }
+                else
+                {
+                    find.Name = taskModel.Name;
+                    find.Databases = taskModel.Databases;
+                    find.Path = taskModel.Path;
+                    find.schedule = taskModel.schedule;
+                    find.ServerName = taskModel.ServerName;
+                }
+                context.SaveChanges();
             }
-            else
-            {
-                find.Name = taskModel.Name;
-                find.Databases = taskModel.Databases;
-                find.Path = taskModel.Path;
-                find.schedule = taskModel.schedule;
-                find.ServerName = taskModel.ServerName;
-            }
-            context.SaveChanges();
+            
         }
         public TaskData GetTask(int id)
         {
-            
-            var item = context.Tasks.Include("Schedule").Where(x => x.TaskModelID == id).FirstOrDefault();
-            DatabasesManager manager = new DatabasesManager(item.ServerName,"","");
-            var task = new TaskData()
-            {
-                ID = item.TaskModelID,
-                Name = item.Name,
-                BackupData = new BackupData()
+            using (context = new AppDbContext()) 
+            { 
+                var item = context.Tasks.Include("Schedule").Where(x => x.TaskModelID == id).FirstOrDefault();
+                DatabasesManager manager = new DatabasesManager(item.ServerName,"","");
+                var task = new TaskData()
                 {
-                    AllDatabases = manager.DatabasesList,
-                    DatabasesToBackup = item.Databases.Split(';').ToList<string>(),
-                    Path = item.Path
-                },
-                LoginData = new LoginData()
-                {
-                    ServerName = item.ServerName
-                },
-                ScheduleID = item.schedule.ScheduleModelID,
-                Schedule = new ScheduleData()
-                {
-                    ID = item.schedule.ScheduleModelID,
-                    Description = item.schedule.Name,
-                    Cron = item.schedule.Cron
-                }
-            };
-            return task;
+                    ID = item.TaskModelID,
+                    Name = item.Name,
+                    BackupData = new BackupData()
+                    {
+                        AllDatabases = manager.DatabasesList,
+                        DatabasesToBackup = item.Databases.Split(';').ToList<string>(),
+                        Path = item.Path
+                    },
+                    LoginData = new LoginData()
+                    {
+                        ServerName = item.ServerName
+                    },
+                    ScheduleID = item.schedule.ScheduleModelID,
+                    Schedule = new ScheduleData()
+                    {
+                        ID = item.schedule.ScheduleModelID,
+                        Description = item.schedule.Name,
+                        Cron = item.schedule.Cron
+                    }
+                };
+                return task;
+            }
         }
         public void DeleteTask(int id)
         {
-            var task = context.Tasks.Find(id);
-            if (task != null) 
+            using (context = new AppDbContext()) 
             {
-                context.Tasks.Remove(task);
-                context.SaveChanges();
+                var task = context.Tasks.Find(id);
+                if (task != null)
+                {
+                    context.Tasks.Remove(task);
+                    context.SaveChanges();
+                }
             }
         }
     }

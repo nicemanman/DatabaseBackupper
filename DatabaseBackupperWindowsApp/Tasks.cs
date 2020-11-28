@@ -58,29 +58,29 @@ namespace DatabaseBackupperWindowsApp
             {
                 var active = TasksTable.CurrentRow;
                 var taskData = tasksManager.GetTask((int)active.Cells["ID"].Value);
-                Hide();
+                
                 
                 TaskDetail details = new TaskDetail(taskData, this);
-                details.Show();
+                details.ShowDialog();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
-            parentWindow.Show();
+            parentWindow.Activate();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Hide();
+            
             var backupData = new BackupData()
             {
                 AllDatabases = databases.DatabasesList,
                 DatabasesToBackup = new List<string>()
             };
             TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData }, this);
-            details.Show();
+            details.ShowDialog();
         }
 
         
