@@ -1,7 +1,7 @@
 ﻿using DatabaseBackupper;
 using DatabaseBackupperWindowsApp.Extensions;
 using DatabaseBackupperWindowsLibrary;
-using DatabaseBackupperWindowsLibrary.Models;
+using DatabaseBackupperWindowsLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,14 +50,14 @@ namespace DatabaseBackupperWindowsApp
             if (e.KeyCode == Keys.Delete) { 
                 var active = TasksTable.CurrentRow;
                 
-                tasksManager.DeleteTask((Guid)active.Cells["ID"].Value);
+                tasksManager.DeleteTask((int)active.Cells["ID"].Value);
                 TasksTable.Rows.Remove(active);
                 
             }
             if (e.KeyCode == Keys.Enter)
             {
                 var active = TasksTable.CurrentRow;
-                var taskData = tasksManager.GetTask((Guid)active.Cells["ID"].Value);
+                var taskData = tasksManager.GetTask((int)active.Cells["ID"].Value);
                 Hide();
                 
                 TaskDetail details = new TaskDetail(taskData, this);
@@ -79,7 +79,7 @@ namespace DatabaseBackupperWindowsApp
                 AllDatabases = databases.DatabasesList,
                 DatabasesToBackup = new List<string>()
             };
-            TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData, ID = Guid.NewGuid() }, this);
+            TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData }, this);
             details.Show();
         }
 

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseBackupperWindowsLibrary.Models
+namespace DatabaseBackupperWindowsLibrary.ViewModels
 {
     public class TaskData
     {
-        public Guid ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public LoginData LoginData { get; set; }
         public BackupData BackupData { get; set; }
-        public string CronJob { get; set; }
+        public int ScheduleID { get; set; } = 0;
         public ScheduleData Schedule { get; set; }
     }
 }

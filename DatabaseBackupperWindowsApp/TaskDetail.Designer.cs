@@ -34,7 +34,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.PathToBackup = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.TaskName = new System.Windows.Forms.TextBox();
@@ -42,6 +41,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.ServerName = new System.Windows.Forms.Label();
             this.ScheduleDropDownList = new System.Windows.Forms.ComboBox();
+            this.PathToBackup = new System.Windows.Forms.Label();
+            this.ChoosePath = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +59,7 @@
             this.DatabasesList.FormattingEnabled = true;
             this.DatabasesList.Location = new System.Drawing.Point(13, 66);
             this.DatabasesList.Name = "DatabasesList";
-            this.DatabasesList.Size = new System.Drawing.Size(222, 214);
+            this.DatabasesList.Size = new System.Drawing.Size(390, 214);
             this.DatabasesList.TabIndex = 2;
             // 
             // contextMenuStrip1
@@ -84,18 +85,11 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Path";
             // 
-            // PathToBackup
-            // 
-            this.PathToBackup.Location = new System.Drawing.Point(71, 312);
-            this.PathToBackup.Name = "PathToBackup";
-            this.PathToBackup.Size = new System.Drawing.Size(164, 20);
-            this.PathToBackup.TabIndex = 7;
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(16, 338);
+            this.button2.Location = new System.Drawing.Point(241, 338);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(219, 23);
+            this.button2.Size = new System.Drawing.Size(162, 23);
             this.button2.TabIndex = 9;
             this.button2.Text = "Save";
             this.button2.UseVisualStyleBackColor = true;
@@ -114,14 +108,14 @@
             // 
             this.TaskName.Location = new System.Drawing.Point(57, 14);
             this.TaskName.Name = "TaskName";
-            this.TaskName.Size = new System.Drawing.Size(178, 20);
+            this.TaskName.Size = new System.Drawing.Size(346, 20);
             this.TaskName.TabIndex = 10;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 367);
+            this.button1.Location = new System.Drawing.Point(241, 367);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 23);
+            this.button1.Size = new System.Drawing.Size(162, 23);
             this.button1.TabIndex = 12;
             this.button1.Text = "Return";
             this.button1.UseVisualStyleBackColor = true;
@@ -139,16 +133,36 @@
             // ScheduleDropDownList
             // 
             this.ScheduleDropDownList.FormattingEnabled = true;
-            this.ScheduleDropDownList.Location = new System.Drawing.Point(72, 285);
+            this.ScheduleDropDownList.Location = new System.Drawing.Point(72, 284);
             this.ScheduleDropDownList.Name = "ScheduleDropDownList";
-            this.ScheduleDropDownList.Size = new System.Drawing.Size(163, 21);
+            this.ScheduleDropDownList.Size = new System.Drawing.Size(331, 21);
             this.ScheduleDropDownList.TabIndex = 14;
+            // 
+            // PathToBackup
+            // 
+            this.PathToBackup.AutoSize = true;
+            this.PathToBackup.Location = new System.Drawing.Point(69, 313);
+            this.PathToBackup.Name = "PathToBackup";
+            this.PathToBackup.Size = new System.Drawing.Size(0, 13);
+            this.PathToBackup.TabIndex = 15;
+            // 
+            // ChoosePath
+            // 
+            this.ChoosePath.Location = new System.Drawing.Point(333, 310);
+            this.ChoosePath.Name = "ChoosePath";
+            this.ChoosePath.Size = new System.Drawing.Size(70, 20);
+            this.ChoosePath.TabIndex = 16;
+            this.ChoosePath.Text = "path";
+            this.ChoosePath.UseVisualStyleBackColor = true;
+            this.ChoosePath.Click += new System.EventHandler(this.ChoosePath_Click);
             // 
             // TaskDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(247, 398);
+            this.ClientSize = new System.Drawing.Size(415, 398);
+            this.Controls.Add(this.ChoosePath);
+            this.Controls.Add(this.PathToBackup);
             this.Controls.Add(this.ScheduleDropDownList);
             this.Controls.Add(this.ServerName);
             this.Controls.Add(this.button1);
@@ -156,7 +170,6 @@
             this.Controls.Add(this.TaskName);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.PathToBackup);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.DatabasesList);
             this.Controls.Add(this.label1);
@@ -174,7 +187,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox PathToBackup;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TaskName;
@@ -182,5 +194,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label ServerName;
         private System.Windows.Forms.ComboBox ScheduleDropDownList;
+        private System.Windows.Forms.Label PathToBackup;
+        private System.Windows.Forms.Button ChoosePath;
     }
 }

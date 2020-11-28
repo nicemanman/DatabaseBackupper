@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using DatabaseBackupperWindowsLibrary;
+using NLog;
 using Quartz;
 using Quartz.Impl;
 using System;
@@ -31,21 +32,32 @@ namespace DatabaseBackupperWindowsService
 
             // and start it off
             Task.Run(async () => await scheduler.Start()).Wait();
+            Dictionary<IJobDetail, ITrigger> jobs = new Dictionary<IJobDetail, ITrigger>();
+            ScheduleManager manager = new ScheduleManager();
+            var schedules = manager.GetAllOfThem();
+            foreach (var schedule in schedules)
+            {
+                var data = new Dictionary<string, object>();
+                data.Add("tasks", schedule.tasks);
+                // define the job and tie it to our HelloJob class
+                IJobDetail job = JobBuilder.Create<BackupJob>()
+                    .WithIdentity(schedule.ID.ToString(), "group1")
+                    .Build();
 
-            // define the job and tie it to our HelloJob class
-            IJobDetail job = JobBuilder.Create<BackupJob>()
-                .WithIdentity("job1", "group1")
-                .Build();
-
-            // Trigger the job to run now, and then repeat every 10 seconds
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("trigger1", "group1")
-                .StartNow()
-                .WithCronSchedule("")
-                .Build();
-
-            // Tell quartz to schedule the job using our trigger
-            Task.Run(async () => await scheduler.ScheduleJob(job, trigger)).Wait();
+                job.JobDataMap["tasks"] = schedule.tasks;
+                // Trigger the job to run now, and then repeat every 10 seconds
+                ITrigger trigger = TriggerBuilder.Create()
+                    .WithIdentity(schedule.ID.ToString(), "group1")
+                    .StartNow()
+                    .WithCronSchedule(schedule.Cron)
+                    .Build();
+                jobs.Add(job, trigger);
+            }
+            foreach (var job in jobs)
+            {
+                Task.Run(async () => await scheduler.ScheduleJob(job.Key, job.Value)).Wait();
+            }
+            
         }
         protected override void OnStop()
         {

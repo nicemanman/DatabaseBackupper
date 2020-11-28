@@ -32,7 +32,6 @@ namespace DatabaseBackupperWindowsApp
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectForm));
             this.ChooseDirectoryToBackup = new System.Windows.Forms.FolderBrowserDialog();
             this.button1 = new System.Windows.Forms.Button();
-            this.RememberMe = new System.Windows.Forms.CheckBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.ServerName = new System.Windows.Forms.ComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -52,17 +51,6 @@ namespace DatabaseBackupperWindowsApp
             this.button1.Text = "Подключиться";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.ConnectButton);
-            // 
-            // RememberMe
-            // 
-            this.RememberMe.AutoSize = true;
-            this.RememberMe.Location = new System.Drawing.Point(5, 125);
-            this.RememberMe.Name = "RememberMe";
-            this.RememberMe.Size = new System.Drawing.Size(82, 17);
-            this.RememberMe.TabIndex = 18;
-            this.RememberMe.Text = "Запомнить";
-            this.RememberMe.UseVisualStyleBackColor = true;
-            this.RememberMe.CheckedChanged += new System.EventHandler(this.RememberMe_CheckedChanged);
             // 
             // ServerName
             // 
@@ -95,7 +83,7 @@ namespace DatabaseBackupperWindowsApp
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(267, 20);
             this.Username.TabIndex = 21;
-            this.Username.TextChanged += new System.EventHandler(this.Username_TextChanged);
+            
             // 
             // Password
             // 
@@ -103,7 +91,7 @@ namespace DatabaseBackupperWindowsApp
             this.Password.Name = "Password";
             this.Password.Size = new System.Drawing.Size(267, 20);
             this.Password.TabIndex = 22;
-            this.Password.TextChanged += new System.EventHandler(this.Password_TextChanged);
+            
             // 
             // Authentication
             // 
@@ -125,7 +113,6 @@ namespace DatabaseBackupperWindowsApp
             this.Controls.Add(this.Username);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ServerName);
-            this.Controls.Add(this.RememberMe);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -142,7 +129,6 @@ namespace DatabaseBackupperWindowsApp
         #endregion
         private System.Windows.Forms.FolderBrowserDialog ChooseDirectoryToBackup;
         private Button button1;
-        private CheckBox RememberMe;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private ComboBox ServerName;
         private StatusStrip statusStrip1;

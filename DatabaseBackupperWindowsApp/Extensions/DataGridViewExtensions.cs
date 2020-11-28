@@ -12,13 +12,14 @@ namespace DatabaseBackupperWindowsApp.Extensions
     {
         public static void Refill(this DataGridView view, TasksManager tasksManager)
         {
-            tasksManager.BuildTasksQueue();
+            var manager = new TasksManager();
+            var tasks = manager.GetAllOfThem();
             view.Rows.Clear();
-            for (int i = 0; i < tasksManager.Count(); i++)
+            foreach (var task in tasks)
             {
-                var currentTask = tasksManager[i];
-                view.Rows.Add(currentTask.Name, currentTask.ID, currentTask.LoginData.ServerName, currentTask.BackupData.Path, currentTask.CronJob);
+                view.Rows.Add(task.Name, task.ID, task.LoginData.ServerName, task.BackupData.Path, task.Schedule.Description);
             }
+            
         }
     }
 }

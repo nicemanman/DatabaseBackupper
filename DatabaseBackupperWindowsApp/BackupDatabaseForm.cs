@@ -1,5 +1,5 @@
 ﻿using DatabaseBackupper;
-using DatabaseBackupperWindowsLibrary.Models;
+using DatabaseBackupperWindowsLibrary.ViewModels;
 using Newtonsoft.Json;
 using NLog;
 using System;
@@ -138,7 +138,7 @@ namespace DatabaseBackupperWindowsApp
                 DatabasesToBackup = GetSelectedDatabases(),
                 Path = Path.Text
             };
-            TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData, ID = Guid.NewGuid() }, this);
+            TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData }, this);
             details.Show();
         }
         public List<string> GetSelectedDatabases() 
@@ -157,24 +157,13 @@ namespace DatabaseBackupperWindowsApp
             tasksForm.Show();
         }
 
-        private void SelectAll_Click(object sender, EventArgs e)
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             for (var i = 0; i < DatabasesList.Items.Count; i++)
             {
-                DatabasesList.SetItemChecked(i, !allSelected);
+                DatabasesList.SetItemChecked(i, checkBox1.Checked);
             }
-            allSelected = !allSelected;
-            ChangeSelectAllButtonText();
-        }
-
-        public void ChangeSelectAllButtonText() 
-        {
-            string buttontext = "Select all";
-            if (allSelected)
-            {
-                buttontext = "Undo selection";
-            }
-            SelectAll.Text = buttontext;
         }
     }
 }

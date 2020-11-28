@@ -1,4 +1,4 @@
-﻿using DatabaseBackupperWindowsLibrary.Models;
+﻿using DatabaseBackupperWindowsLibrary.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,17 +10,51 @@ using System.Threading.Tasks;
 namespace DatabaseBackupperWindowsLibrary
 {
     public class ScheduleManager
-    {
+    {   
+        private AppDbContext context;
+        public ScheduleManager()
+        {
+            context = new AppDbContext();
+        }
         public List<ScheduleData> GetAllOfThem() 
         {
-            List<ScheduleData> schedules = new List<ScheduleData>();
-            if (File.Exists(@"ScheduleData.json"))
-                using (StreamReader file = File.OpenText(@"ScheduleData.json"))
+            var schedules = context.Schedules.Include("tasks");
+            var scheduleDataList = new List<ScheduleData>();
+            foreach (var item in schedules)
+            {
+                var tasks = new List<int>();
+                foreach (var task in item.tasks)
                 {
-                    JsonSerializer serializer = new JsonSerializer();
-                    schedules = (List<ScheduleData>)serializer.Deserialize(file, typeof(List<ScheduleData>));
+                    tasks.Add(task.TaskModelID);
                 }
-            return schedules;
+                var schedule = new ScheduleData()
+                {
+                    ID = item.ScheduleModelID,
+                    Cron = item.Cron,
+                    Description = item.Name,
+                    tasks = tasks
+                };
+                scheduleDataList.Add(schedule);
+            }
+            return scheduleDataList;
+        }
+
+        public ScheduleData GetSchedule(int id) 
+        {
+            var item = context.Schedules.Include("tasks").Where(x=>x.ScheduleModelID == id).FirstOrDefault();
+            var tasks = new List<int>();
+            foreach (var task in item.tasks)
+            {
+                tasks.Add(task.TaskModelID);
+            }
+            var schedule = new ScheduleData()
+            {
+                ID = item.ScheduleModelID,
+                Cron = item.Cron,
+                Description = item.Name,
+                tasks = tasks
+            };
+            return schedule;
         }
     }
 }
