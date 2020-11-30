@@ -27,8 +27,6 @@ namespace DatabaseBackupper
             ServerName = serverName;
             UserName = userName;
             Password = password;
-            
-            DatabasesList = GetAllOfThem();
         }
 
         public string this[int index]
@@ -36,7 +34,7 @@ namespace DatabaseBackupper
             get => DatabasesList[index];
         }
 
-        private List<string> GetAllOfThem()
+        public async Task<List<string>> GetAllOfThem()
         {
             string auth = (Password == "" || Password == null ? "True" : "False");
             var list = new List<String>();
@@ -45,7 +43,7 @@ namespace DatabaseBackupper
             logger.Info($"Connection string: \"{ConnectionString}\"");
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
-                con.Open();
+                await con.OpenAsync();
                 logger.Info("Подключение открыто.");
                 using (SqlCommand cmd = new SqlCommand("SELECT name from sys.databases", con))
                 {

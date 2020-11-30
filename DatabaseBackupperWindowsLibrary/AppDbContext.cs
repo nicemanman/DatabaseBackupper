@@ -10,11 +10,11 @@ namespace DatabaseBackupperWindowsLibrary
 {
     public class AppDbContext: DbContext
     {
-        public AppDbContext() : base("name=dbcon")
+        public AppDbContext() : base("dbfile")
         {
             
         }
-
+        
         public DbSet<TaskModel> Tasks { get; set; }
         public DbSet<ScheduleModel> Schedules { get; set; }
     }

@@ -19,8 +19,8 @@ namespace DatabaseBackupperWindowsApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ConnectForm connectForm = new ConnectForm();
-            connectForm.Show();
-            Application.Run();
+            
+            Application.Run(connectForm);
         }
     }
 }

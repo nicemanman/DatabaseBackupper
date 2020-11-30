@@ -7,12 +7,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq;
+using System.IO;
+using System.Threading;
+
 namespace DatabaseBackupperWindowsApp
 {
     public partial class BackupDatabaseForm : Form
@@ -27,14 +30,12 @@ namespace DatabaseBackupperWindowsApp
             InitializeComponent();
             this.databases = databases;
             this.loginData = loginData;
-            Closed += (s, args) => {
-                ConnectForm form = new ConnectForm();
-                form.Show();
-            };
+            
         }
 
         private void BackupDatabaseForm_Load(object sender, EventArgs e)
         {
+            
             for (int i = 0; i < databases.Length; i++)
             {
                 DatabasesList.Items.Add(databases[i]);
@@ -70,33 +71,40 @@ namespace DatabaseBackupperWindowsApp
             //}
         }
 
-        private void DisconnectButton_Click(object sender, EventArgs e)
+
+        public List<string> GetSelectedDatabases() 
         {
-            Close();
+            List<string> selectedDatabases = new List<string>();
+            foreach (var item in DatabasesList.CheckedItems)
+            {
+                selectedDatabases.Add(item as string);
+            }
+            return selectedDatabases;
         }
 
-        private async void BackupButton_Click(object sender, EventArgs e)
+
+        private async void BackupNow_Click(object sender, EventArgs e)
         {
-            BackupButton.Enabled = false;
-            DisconnectButton.Enabled = false;
+            BackupNow.Enabled = false;
+            Disconnect.Enabled = false;
             List<string> selectedDatabases = GetSelectedDatabases();
             try
             {
                 logger.Info($"Начат бэкап баз данных");
                 var tasks = new List<Task>();
-                ProgressList.Clear();
+                Progress.Clear();
                 var progress = new Progress<string>(status =>
                 {
-                    ProgressList.Items.Add(String.Join(Environment.NewLine, status));
+                    Progress.Items.Add(String.Join(Environment.NewLine, status));
                     logger.Info(status);
                 });
-                foreach (var database in selectedDatabases) 
+                foreach (var database in selectedDatabases)
                 {
                     Func<Task> action = async () => await databases.Backup(database, Path.Text, progress);
                     tasks.Add(await Task.Factory.StartNew(action));
                 }
                 await Task.WhenAll(tasks.ToArray());
-                ProgressList.Items.Add(new ListViewItem("Финиш"));
+                Progress.Items.Add(new ListViewItem("Финиш"));
                 logger.Info($"Бэкап баз данных завершен");
             }
             catch (Exception ex)
@@ -104,8 +112,8 @@ namespace DatabaseBackupperWindowsApp
                 MessageBox.Show(this, "Ошибка", "Бэкап баз данных");
                 logger.Error(ex);
             }
-            BackupButton.Enabled = true;
-            DisconnectButton.Enabled = true;
+            BackupNow.Enabled = true;
+            Disconnect.Enabled = true;
             //save data
             var backupData = new BackupData() { Path = Path.Text };
             using (StreamWriter file = File.CreateText(@"BackupData.json"))
@@ -116,7 +124,52 @@ namespace DatabaseBackupperWindowsApp
             }
         }
 
-        private void ChoosePath_Click(object sender, EventArgs e)
+        private void Disconnect_Click(object sender, EventArgs e)
+        {
+            Close();
+            ConnectForm form = new ConnectForm();
+            Thread thread = new Thread(x =>
+            {
+                Application.Run(form);
+            });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+        }
+
+        private void Schedule_Click(object sender, EventArgs e)
+        {
+            Hide();
+            backupData = new BackupData()
+            {
+                AllDatabases = databases.DatabasesList,
+                DatabasesToBackup = GetSelectedDatabases(),
+                Path = Path.Text
+            };
+            TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData });
+            details.Show();
+        }
+
+        private void AllTasks_Click_1(object sender, EventArgs e)
+        {
+            Close();
+            Tasks tasksForm = new Tasks(loginData, backupData, databases);
+            Thread thread = new Thread(x =>
+            {
+                Application.Run(tasksForm);
+            });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+        }
+
+        private void SelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            for (var i = 0; i < DatabasesList.Items.Count; i++)
+            {
+                DatabasesList.SetItemChecked(i, SelectAll.Checked);
+            }
+        }
+
+        private void ChoosePath_Click_1(object sender, EventArgs e)
         {
             using (var fbd = new FolderBrowserDialog())
             {
@@ -127,53 +180,6 @@ namespace DatabaseBackupperWindowsApp
                     Path.Text = fbd.SelectedPath;
                 }
             }
-        }
-
-        private void ScheduleButtonClick(object sender, EventArgs e)
-        {
-            Hide();
-            backupData = new BackupData()
-            {
-                AllDatabases = databases.DatabasesList,
-                DatabasesToBackup = GetSelectedDatabases(),
-                Path = Path.Text
-            };
-            TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData }, this);
-            details.Show();
-        }
-        public List<string> GetSelectedDatabases() 
-        {
-            List<string> selectedDatabases = new List<string>();
-            foreach (var item in DatabasesList.CheckedItems)
-            {
-                selectedDatabases.Add(item as string);
-            }
-            return selectedDatabases;
-        }
-        private void AllTasks_Click(object sender, EventArgs e)
-        {
-            Hide();
-            Tasks tasksForm = new Tasks(this, loginData, databases);
-            tasksForm.Show();
-        }
-
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            for (var i = 0; i < DatabasesList.Items.Count; i++)
-            {
-                DatabasesList.SetItemChecked(i, checkBox1.Checked);
-            }
-        }
-
-        private void создатьЗадачуToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

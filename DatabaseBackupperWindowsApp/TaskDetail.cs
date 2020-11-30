@@ -15,16 +15,14 @@ namespace DatabaseBackupperWindowsApp
     public partial class TaskDetail : Form
     {
         private readonly TaskData task;
-        private readonly Form parentForm;
+        
 
-        public TaskDetail(TaskData task, Form parentForm)
+        public TaskDetail(TaskData task)
         {
             InitializeComponent();
             this.task = task;
-            this.parentForm = parentForm;
-            Closed += (s, args) => {
-                parentForm.Show();
-            };
+            
+            
         }
 
         private void TaskDetail_Load(object sender, EventArgs e)
@@ -40,7 +38,9 @@ namespace DatabaseBackupperWindowsApp
             ScheduleDropDownList.ValueMember = "Key";
             ScheduleDropDownList.DisplayMember = "Value";
             var index = task.ScheduleID == 0 ? 1 : task.ScheduleID;
+            if (schedules.Count > 0)
             ScheduleDropDownList.SelectedItem = new KeyValuePair<int, string>(index, schedules[index])/*schedules[(task.ScheduleID == 0 ? 1 : task.ScheduleID)]*/;
+               
             TaskName.Text = task.Name;
             ServerName.Text = task.LoginData.ServerName;
             foreach (var database in task.BackupData.AllDatabases)
@@ -55,7 +55,6 @@ namespace DatabaseBackupperWindowsApp
         private void ReturnButtonClick(object sender, EventArgs e)
         {
             Close();
-            parentForm?.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)

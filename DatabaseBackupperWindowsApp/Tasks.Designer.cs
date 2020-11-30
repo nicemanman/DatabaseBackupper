@@ -36,13 +36,15 @@
             this.ServerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Schedule = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.TasksTable)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(13, 328);
+            this.button1.Location = new System.Drawing.Point(18, 369);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(243, 21);
             this.button1.TabIndex = 1;
@@ -54,9 +56,9 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(262, 328);
+            this.button2.Location = new System.Drawing.Point(267, 368);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(324, 22);
+            this.button2.Size = new System.Drawing.Size(422, 22);
             this.button2.TabIndex = 2;
             this.button2.Text = "Вернуться";
             this.button2.UseVisualStyleBackColor = true;
@@ -68,7 +70,7 @@
             this.TasksTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TasksTable.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.TasksTable.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.TasksTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TasksTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TaskName,
@@ -77,16 +79,16 @@
             this.Path,
             this.Schedule});
             this.TasksTable.GridColor = System.Drawing.SystemColors.ControlLightLight;
-            this.TasksTable.Location = new System.Drawing.Point(13, 13);
+            this.TasksTable.Location = new System.Drawing.Point(18, 17);
             this.TasksTable.Name = "TasksTable";
             this.TasksTable.ReadOnly = true;
-            this.TasksTable.Size = new System.Drawing.Size(572, 310);
+            this.TasksTable.Size = new System.Drawing.Size(671, 345);
             this.TasksTable.TabIndex = 0;
             // 
             // TaskName
             // 
             this.TaskName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TaskName.HeaderText = "Name";
+            this.TaskName.HeaderText = "Название";
             this.TaskName.Name = "TaskName";
             this.TaskName.ReadOnly = true;
             // 
@@ -100,37 +102,49 @@
             // ServerName
             // 
             this.ServerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ServerName.HeaderText = "Server";
+            this.ServerName.HeaderText = "Имя сервера";
             this.ServerName.Name = "ServerName";
             this.ServerName.ReadOnly = true;
             // 
             // Path
             // 
             this.Path.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Path.HeaderText = "Path";
+            this.Path.HeaderText = "Путь на диске";
             this.Path.Name = "Path";
             this.Path.ReadOnly = true;
             // 
             // Schedule
             // 
             this.Schedule.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Schedule.HeaderText = "Schedule";
+            this.Schedule.HeaderText = "Периодичность";
             this.Schedule.Name = "Schedule";
             this.Schedule.ReadOnly = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Controls.Add(this.TasksTable);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Location = new System.Drawing.Point(0, 1);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(705, 407);
+            this.panel1.TabIndex = 3;
             // 
             // Tasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 359);
-            this.Controls.Add(this.TasksTable);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(705, 407);
+            this.Controls.Add(this.panel1);
             this.Name = "Tasks";
             this.Text = "Задачи";
             this.Load += new System.EventHandler(this.Tasks_Load);
-
             ((System.ComponentModel.ISupportInitialize)(this.TasksTable)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -139,6 +153,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView TasksTable;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn TaskName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ServerName;

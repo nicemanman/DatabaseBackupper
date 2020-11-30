@@ -38,7 +38,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.TaskName = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.button1 = new System.Windows.Forms.Button();
             this.ServerName = new System.Windows.Forms.Label();
             this.ScheduleDropDownList = new System.Windows.Forms.ComboBox();
             this.PathToBackup = new System.Windows.Forms.Label();
@@ -111,16 +110,6 @@
             this.TaskName.Size = new System.Drawing.Size(346, 20);
             this.TaskName.TabIndex = 10;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(241, 367);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Return";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ReturnButtonClick);
-            // 
             // ServerName
             // 
             this.ServerName.AutoSize = true;
@@ -165,7 +154,6 @@
             this.Controls.Add(this.PathToBackup);
             this.Controls.Add(this.ScheduleDropDownList);
             this.Controls.Add(this.ServerName);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.TaskName);
             this.Controls.Add(this.button2);
@@ -191,7 +179,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TaskName;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label ServerName;
         private System.Windows.Forms.ComboBox ScheduleDropDownList;
         private System.Windows.Forms.Label PathToBackup;

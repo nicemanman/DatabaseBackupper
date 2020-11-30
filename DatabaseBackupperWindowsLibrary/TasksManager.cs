@@ -33,10 +33,11 @@ namespace DatabaseBackupperWindowsLibrary
                 return result;
             }
         }
-        public List<TaskData> GetAllOfThem() 
+        public Task<List<TaskData>> GetAllOfThem() 
         {
             using (context = new AppDbContext()) 
             {
+                
                 var taskModels = context.Tasks.Include("Schedule").ToList();
                 List<TaskData> tasks = new List<TaskData>();
                 foreach (var item in taskModels)
@@ -62,9 +63,9 @@ namespace DatabaseBackupperWindowsLibrary
                             Cron = item.schedule.Cron
                         }
                     };
-                    tasks.Add(task);
+                    //tasks.Add(task);
                 }
-                return tasks;
+                return Task.FromResult(tasks);
             }
         }
         public void BuildTasksQueue() 

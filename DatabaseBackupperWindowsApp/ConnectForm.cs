@@ -2,6 +2,7 @@
 using DatabaseBackupperWindowsApp;
 using DatabaseBackupperWindowsLibrary;
 using DatabaseBackupperWindowsLibrary.ViewModels;
+using LoadingIndicator.WinForms;
 using Newtonsoft.Json;
 using NLog;
 using System;
@@ -12,6 +13,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,22 +21,35 @@ namespace DatabaseBackupperWindowsApp
 {
     public partial class ConnectForm : Form
     {
-        
+        private Panel wait;
+        private Thread thread;
         private Logger logger = LogManager.GetCurrentClassLogger();
-       
+        private LongOperation longOperation;
         public ConnectForm()
         {
             InitializeComponent();
-            Closed += (s, args) => { Application.Exit(); };
+            
+            wait = new Panel();
+            wait.Dock = DockStyle.Fill;
+            wait.BackColor = Color.White;
+            Controls.Add(wait);
+            longOperation = new LongOperation(wait, LongOperationSettings.Default);
         }
 
-        private void ConnectButton(object sender, EventArgs e)
+        private async void ConnectButton(object sender, EventArgs e)
         {
             try
             {
+                var databases = new DatabasesManager(ServerName.Text, Username.Text, Password.Text);
+                wait.BringToFront();
+               
+                using (longOperation.Start())
+                {
+                    databases.DatabasesList = await databases.GetAllOfThem();
+                }
+                panel.BringToFront();
                 logger.Info($"Подключение к базе данных");
                 Status.Text = "Ожидайте...";
-                var databases = new DatabasesManager(ServerName.Text, Username.Text, Password.Text);
                 logger.Info($"Успешно подключились к базе данных, получили список базы данных");
                 var loginData = new LoginData()
                 {
@@ -44,11 +59,17 @@ namespace DatabaseBackupperWindowsApp
                 };
                 
                 BackupDatabaseForm form = new BackupDatabaseForm(databases, loginData);
-                form.Show();
-                Hide();
+                Close();
+                thread = new Thread(x => 
+                {
+                    Application.Run(form);
+                });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
             }
             catch (Exception ex) 
             {
+                panel.BringToFront();
                 Status.Text = "Ошибка подключения к базе данных";
                 logger.Error(ex);
             }
@@ -82,8 +103,5 @@ namespace DatabaseBackupperWindowsApp
                 Password.Enabled = true;
             }
         }
-
-
-        
     }
 }
