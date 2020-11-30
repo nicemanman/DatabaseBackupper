@@ -44,8 +44,7 @@ namespace DatabaseBackupperWindowsApp
             wait.BringToFront();
             using (longOperation.Start()) 
             {
-                await TasksTable.Refill(tasksManager);
-                
+                await TasksTable.Refill(tasksManager).ConfigureAwait(true);
             }
             panel1.BringToFront();
         }
