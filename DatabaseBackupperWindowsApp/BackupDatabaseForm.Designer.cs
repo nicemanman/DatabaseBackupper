@@ -44,7 +44,7 @@
             this.panel = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.базыДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.бэкапToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BackupMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьЗадачуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.задачиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.всеЗадачиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -192,17 +192,17 @@
             // базыДанныхToolStripMenuItem
             // 
             this.базыДанныхToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.бэкапToolStripMenuItem,
+            this.BackupMenuButton,
             this.создатьЗадачуToolStripMenuItem});
             this.базыДанныхToolStripMenuItem.Name = "базыДанныхToolStripMenuItem";
             this.базыДанныхToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.базыДанныхToolStripMenuItem.Text = "Базы данных";
             // 
-            // бэкапToolStripMenuItem
+            // BackupMenuButton
             // 
-            this.бэкапToolStripMenuItem.Name = "бэкапToolStripMenuItem";
-            this.бэкапToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.бэкапToolStripMenuItem.Text = "Бэкап";
+            this.BackupMenuButton.Name = "BackupMenuButton";
+            this.BackupMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.BackupMenuButton.Text = "Бэкап";
             // 
             // создатьЗадачуToolStripMenuItem
             // 
@@ -310,7 +310,7 @@
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem базыДанныхToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem бэкапToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BackupMenuButton;
         private System.Windows.Forms.ToolStripMenuItem создатьЗадачуToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem задачиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem всеЗадачиToolStripMenuItem;

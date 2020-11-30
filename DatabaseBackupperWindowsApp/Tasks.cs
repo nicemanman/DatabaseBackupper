@@ -42,10 +42,16 @@ namespace DatabaseBackupperWindowsApp
         private async void Tasks_OnShown(object sender, EventArgs e)
         {
             wait.BringToFront();
-            using (longOperation.Start()) 
+            
+            Thread thread = new Thread(async x=>
             {
-                await TasksTable.Refill(tasksManager).ConfigureAwait(true);
-            }
+                using (longOperation.Start(true))
+                {
+                    await TasksTable.Refill(tasksManager);
+                }
+            });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
             panel1.BringToFront();
         }
         private void Tasks_Load(object sender, EventArgs e)
@@ -67,10 +73,15 @@ namespace DatabaseBackupperWindowsApp
             {
                 var active = TasksTable.CurrentRow;
                 var taskData = tasksManager.GetTask((int)active.Cells["ID"].Value);
-                
-                
+                               
                 TaskDetail details = new TaskDetail(taskData);
-                details.ShowDialog();
+                Thread thread = new Thread(x => 
+                {
+                    details.ShowDialog();
+                });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+                
             }
         }
 

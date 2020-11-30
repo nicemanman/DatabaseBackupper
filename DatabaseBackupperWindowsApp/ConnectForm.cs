@@ -43,7 +43,7 @@ namespace DatabaseBackupperWindowsApp
                 var databases = new DatabasesManager(ServerName.Text, Username.Text, Password.Text);
                 wait.BringToFront();
                
-                using (longOperation.Start())
+                using (longOperation.Start(true))
                 {
                     databases.DatabasesList = await databases.GetAllOfThem();
                 }

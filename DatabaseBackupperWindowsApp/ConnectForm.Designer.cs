@@ -47,6 +47,7 @@ namespace DatabaseBackupperWindowsApp
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Status});
             this.statusStrip1.Location = new System.Drawing.Point(0, 357);
@@ -73,6 +74,7 @@ namespace DatabaseBackupperWindowsApp
             // 
             // Authentication
             // 
+            this.Authentication.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Authentication.FormattingEnabled = true;
             this.Authentication.Location = new System.Drawing.Point(117, 162);
             this.Authentication.Name = "Authentication";
@@ -95,6 +97,7 @@ namespace DatabaseBackupperWindowsApp
             // 
             // ServerName
             // 
+            this.ServerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServerName.FormattingEnabled = true;
             this.ServerName.Location = new System.Drawing.Point(117, 137);
             this.ServerName.Name = "ServerName";
