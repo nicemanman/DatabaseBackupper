@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ToolStripMenuItem AllSchedulesMenuButton;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackupDatabaseForm));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
@@ -45,16 +46,16 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.базыДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BackupMenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.создатьЗадачуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScheduleTaskMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.задачиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.всеЗадачиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.создатьНовуюЗадачуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AllTasksMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateNewTask = new System.Windows.Forms.ToolStripMenuItem();
             this.расписанияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.всеРасписанияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.создатьНовоеРасписаниеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateNewScheduleMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.обАвтореToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutProgramm = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutAuthor = new System.Windows.Forms.ToolStripMenuItem();
+            AllSchedulesMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -193,7 +194,7 @@
             // 
             this.базыДанныхToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BackupMenuButton,
-            this.создатьЗадачуToolStripMenuItem});
+            this.ScheduleTaskMenuButton});
             this.базыДанныхToolStripMenuItem.Name = "базыДанныхToolStripMenuItem";
             this.базыДанныхToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.базыДанныхToolStripMenuItem.Text = "Базы данных";
@@ -203,75 +204,83 @@
             this.BackupMenuButton.Name = "BackupMenuButton";
             this.BackupMenuButton.Size = new System.Drawing.Size(180, 22);
             this.BackupMenuButton.Text = "Бэкап";
+            this.BackupMenuButton.Click += new System.EventHandler(this.BackupMenuButton_Click);
             // 
-            // создатьЗадачуToolStripMenuItem
+            // ScheduleTaskMenuButton
             // 
-            this.создатьЗадачуToolStripMenuItem.Name = "создатьЗадачуToolStripMenuItem";
-            this.создатьЗадачуToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.создатьЗадачуToolStripMenuItem.Text = "Создать задачу";
+            this.ScheduleTaskMenuButton.Name = "ScheduleTaskMenuButton";
+            this.ScheduleTaskMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.ScheduleTaskMenuButton.Text = "Создать задачу";
+            this.ScheduleTaskMenuButton.Click += new System.EventHandler(this.ScheduleTaskMenuButton_Click);
             // 
             // задачиToolStripMenuItem
             // 
             this.задачиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.всеЗадачиToolStripMenuItem,
-            this.создатьНовуюЗадачуToolStripMenuItem});
+            this.AllTasksMenuButton,
+            this.CreateNewTask});
             this.задачиToolStripMenuItem.Name = "задачиToolStripMenuItem";
             this.задачиToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.задачиToolStripMenuItem.Text = "Задачи";
             // 
-            // всеЗадачиToolStripMenuItem
+            // AllTasksMenuButton
             // 
-            this.всеЗадачиToolStripMenuItem.Name = "всеЗадачиToolStripMenuItem";
-            this.всеЗадачиToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.всеЗадачиToolStripMenuItem.Text = "Все задачи";
+            this.AllTasksMenuButton.Name = "AllTasksMenuButton";
+            this.AllTasksMenuButton.Size = new System.Drawing.Size(195, 22);
+            this.AllTasksMenuButton.Text = "Все задачи";
+            this.AllTasksMenuButton.Click += new System.EventHandler(this.AllTasksMenuButton_Click);
             // 
-            // создатьНовуюЗадачуToolStripMenuItem
+            // CreateNewTask
             // 
-            this.создатьНовуюЗадачуToolStripMenuItem.Name = "создатьНовуюЗадачуToolStripMenuItem";
-            this.создатьНовуюЗадачуToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.создатьНовуюЗадачуToolStripMenuItem.Text = "Создать новую задачу";
+            this.CreateNewTask.Name = "CreateNewTask";
+            this.CreateNewTask.Size = new System.Drawing.Size(195, 22);
+            this.CreateNewTask.Text = "Создать новую задачу";
+            this.CreateNewTask.Click += new System.EventHandler(this.CreateNewTask_Click);
             // 
             // расписанияToolStripMenuItem
             // 
             this.расписанияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.всеРасписанияToolStripMenuItem,
-            this.создатьНовоеРасписаниеToolStripMenuItem});
+            AllSchedulesMenuButton,
+            this.CreateNewScheduleMenuButton});
             this.расписанияToolStripMenuItem.Name = "расписанияToolStripMenuItem";
             this.расписанияToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
             this.расписанияToolStripMenuItem.Text = "Расписания";
             // 
-            // всеРасписанияToolStripMenuItem
+            // AllSchedulesMenuButton
             // 
-            this.всеРасписанияToolStripMenuItem.Name = "всеРасписанияToolStripMenuItem";
-            this.всеРасписанияToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.всеРасписанияToolStripMenuItem.Text = "Все расписания";
+            AllSchedulesMenuButton.Name = "AllSchedulesMenuButton";
+            AllSchedulesMenuButton.Size = new System.Drawing.Size(221, 22);
+            AllSchedulesMenuButton.Text = "Все расписания";
+            AllSchedulesMenuButton.Click += new System.EventHandler(this.AllSchedulesMenuButton_Click);
             // 
-            // создатьНовоеРасписаниеToolStripMenuItem
+            // CreateNewScheduleMenuButton
             // 
-            this.создатьНовоеРасписаниеToolStripMenuItem.Name = "создатьНовоеРасписаниеToolStripMenuItem";
-            this.создатьНовоеРасписаниеToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.создатьНовоеРасписаниеToolStripMenuItem.Text = "Создать новое расписание";
+            this.CreateNewScheduleMenuButton.Name = "CreateNewScheduleMenuButton";
+            this.CreateNewScheduleMenuButton.Size = new System.Drawing.Size(221, 22);
+            this.CreateNewScheduleMenuButton.Text = "Создать новое расписание";
+            this.CreateNewScheduleMenuButton.Click += new System.EventHandler(this.CreateNewScheduleMenuButton_Click);
             // 
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.оПрограммеToolStripMenuItem,
-            this.обАвтореToolStripMenuItem});
+            this.AboutProgramm,
+            this.AboutAuthor});
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
-            // оПрограммеToolStripMenuItem
+            // AboutProgramm
             // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.AboutProgramm.Name = "AboutProgramm";
+            this.AboutProgramm.Size = new System.Drawing.Size(180, 22);
+            this.AboutProgramm.Text = "О программе";
+            this.AboutProgramm.Click += new System.EventHandler(this.AboutProgramm_Click);
             // 
-            // обАвтореToolStripMenuItem
+            // AboutAuthor
             // 
-            this.обАвтореToolStripMenuItem.Name = "обАвтореToolStripMenuItem";
-            this.обАвтореToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.обАвтореToolStripMenuItem.Text = "Об авторе";
+            this.AboutAuthor.Name = "AboutAuthor";
+            this.AboutAuthor.Size = new System.Drawing.Size(180, 22);
+            this.AboutAuthor.Text = "Об авторе";
+            this.AboutAuthor.Click += new System.EventHandler(this.AboutAuthor_Click);
             // 
             // BackupDatabaseForm
             // 
@@ -311,15 +320,14 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem базыДанныхToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BackupMenuButton;
-        private System.Windows.Forms.ToolStripMenuItem создатьЗадачуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ScheduleTaskMenuButton;
         private System.Windows.Forms.ToolStripMenuItem задачиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem всеЗадачиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem создатьНовуюЗадачуToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AllTasksMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem CreateNewTask;
         private System.Windows.Forms.ToolStripMenuItem расписанияToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem всеРасписанияToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem создатьНовоеРасписаниеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem обАвтореToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutProgramm;
+        private System.Windows.Forms.ToolStripMenuItem AboutAuthor;
+        private System.Windows.Forms.ToolStripMenuItem CreateNewScheduleMenuButton;
     }
 }

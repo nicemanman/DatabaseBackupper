@@ -39,7 +39,7 @@ namespace DatabaseBackupperWindowsApp
             longOperation = new LongOperation(wait, LongOperationSettings.Default);
         }
 
-        private async void Tasks_OnShown(object sender, EventArgs e)
+        private void Tasks_OnShown(object sender, EventArgs e)
         {
             wait.BringToFront();
             

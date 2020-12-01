@@ -85,8 +85,12 @@ namespace DatabaseBackupperWindowsApp
 
         private async void BackupNow_Click(object sender, EventArgs e)
         {
-            BackupNow.Enabled = false;
-            Disconnect.Enabled = false;
+            await BackupNowAction();
+        }
+
+        private async Task BackupNowAction()
+        {
+            panel.Enabled = false;
             List<string> selectedDatabases = GetSelectedDatabases();
             try
             {
@@ -112,8 +116,7 @@ namespace DatabaseBackupperWindowsApp
                 MessageBox.Show(this, "Ошибка", "Бэкап баз данных");
                 logger.Error(ex);
             }
-            BackupNow.Enabled = true;
-            Disconnect.Enabled = true;
+            panel.Enabled = true;
             //save data
             var backupData = new BackupData() { Path = Path.Text };
             using (StreamWriter file = File.CreateText(@"BackupData.json"))
@@ -138,7 +141,11 @@ namespace DatabaseBackupperWindowsApp
 
         private void Schedule_Click(object sender, EventArgs e)
         {
-            Hide();
+            ScheduleThisTask();
+        }
+
+        private void ScheduleThisTask()
+        {
             backupData = new BackupData()
             {
                 AllDatabases = databases.DatabasesList,
@@ -146,10 +153,15 @@ namespace DatabaseBackupperWindowsApp
                 Path = Path.Text
             };
             TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData });
-            details.Show();
+            details.ShowDialog();
         }
 
         private void AllTasks_Click_1(object sender, EventArgs e)
+        {
+            OpenAllTasksForm();
+        }
+
+        private void OpenAllTasksForm()
         {
             Close();
             Tasks tasksForm = new Tasks(loginData, backupData, databases);
@@ -180,6 +192,53 @@ namespace DatabaseBackupperWindowsApp
                     Path.Text = fbd.SelectedPath;
                 }
             }
+        }
+
+        private async void BackupMenuButton_Click(object sender, EventArgs e)
+        {
+            await BackupNowAction();
+        }
+
+        private void ScheduleTaskMenuButton_Click(object sender, EventArgs e)
+        {
+            ScheduleThisTask();
+        }
+
+        private void AllTasksMenuButton_Click(object sender, EventArgs e)
+        {
+            OpenAllTasksForm();
+        }
+
+        private void CreateNewTask_Click(object sender, EventArgs e)
+        {
+            var backupData = new BackupData()
+            {
+                AllDatabases = databases.DatabasesList,
+                DatabasesToBackup = new List<string>()
+            };
+            TaskDetail details = new TaskDetail(new TaskData() { LoginData = loginData, BackupData = backupData });
+            details.ShowDialog();
+        }
+
+        private void AllSchedulesMenuButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateNewScheduleMenuButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AboutProgramm_Click(object sender, EventArgs e)
+        {
+            AboutProgram form = new AboutProgram();
+            form.ShowDialog();
+        }
+
+        private void AboutAuthor_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

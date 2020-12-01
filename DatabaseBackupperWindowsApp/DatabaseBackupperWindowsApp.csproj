@@ -73,6 +73,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutAuthor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutAuthor.Designer.cs">
+      <DependentUpon>AboutAuthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutProgram.Designer.cs">
+      <DependentUpon>AboutProgram.cs</DependentUpon>
+    </Compile>
     <Compile Include="BackupDatabaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +124,13 @@
     <Compile Include="Tasks.Designer.cs">
       <DependentUpon>Tasks.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\29918342.png" />
+    <EmbeddedResource Include="AboutAuthor.resx">
+      <DependentUpon>AboutAuthor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutProgram.resx">
+      <DependentUpon>AboutProgram.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BackupDatabaseForm.resx">
       <DependentUpon>BackupDatabaseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +145,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Content Include="Iconleak-Cerulean-Database.ico" />
     <Content Include="NLog.config">
