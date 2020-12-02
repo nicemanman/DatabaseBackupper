@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -33,7 +35,7 @@ namespace DatabaseBackupperWindowsLibrary
                 return result;
             }
         }
-        public Task<List<TaskData>> GetAllOfThem() 
+        public List<TaskData> GetAllOfThem() 
         {
             using (context = new AppDbContext()) 
             {
@@ -44,10 +46,11 @@ namespace DatabaseBackupperWindowsLibrary
                 {
                     var task = new TaskData()
                     {
-                        ID = item.TaskModelID,
+                        ID = item.Id,
                         Name = item.Name,
                         BackupData = new BackupData()
                         {
+                            
                             DatabasesToBackup = item.Databases.Split(';').ToList<string>(),
                             Path = item.Path
                         },
@@ -55,17 +58,17 @@ namespace DatabaseBackupperWindowsLibrary
                         {
                             ServerName = item.ServerName
                         },
-                        ScheduleID = item.schedule.ScheduleModelID,
+                        ScheduleID = item.schedule.Id,
                         Schedule = new ScheduleData() 
                         {
-                            ID = item.schedule.ScheduleModelID,
+                            ID = item.schedule.Id,
                             Description = item.schedule.Name,
                             Cron = item.schedule.Cron
                         }
                     };
-                    //tasks.Add(task);
+                    tasks.Add(task);
                 }
-                return Task.FromResult(tasks);
+                return tasks;
             }
         }
         public void BuildTasksQueue() 
@@ -86,7 +89,7 @@ namespace DatabaseBackupperWindowsLibrary
             {
                 var find = context.Tasks.Find(task.ID);
                 var scheduleRow = context.Schedules.Find(task.ScheduleID);
-                var taskModel = new TaskModel()
+                var taskModel = new Job()
                 {
                     Name = task.Name,
                     Databases = string.Join(";", task.BackupData.DatabasesToBackup),
@@ -106,7 +109,14 @@ namespace DatabaseBackupperWindowsLibrary
                     find.schedule = taskModel.schedule;
                     find.ServerName = taskModel.ServerName;
                 }
-                context.SaveChanges();
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (DbEntityValidationException ex) 
+                {
+                    throw ex;
+                }
             }
             
         }
@@ -114,11 +124,11 @@ namespace DatabaseBackupperWindowsLibrary
         {
             using (context = new AppDbContext()) 
             { 
-                var item = context.Tasks.Include("Schedule").Where(x => x.TaskModelID == id).FirstOrDefault();
+                var item = context.Tasks.Include("Schedule").Where(x => x.Id == id).FirstOrDefault();
                 DatabasesManager manager = new DatabasesManager(item.ServerName,"","");
                 var task = new TaskData()
                 {
-                    ID = item.TaskModelID,
+                    ID = item.Id,
                     Name = item.Name,
                     BackupData = new BackupData()
                     {
@@ -130,10 +140,10 @@ namespace DatabaseBackupperWindowsLibrary
                     {
                         ServerName = item.ServerName
                     },
-                    ScheduleID = item.schedule.ScheduleModelID,
+                    ScheduleID = item.schedule.Id,
                     Schedule = new ScheduleData()
                     {
-                        ID = item.schedule.ScheduleModelID,
+                        ID = item.schedule.Id,
                         Description = item.schedule.Name,
                         Cron = item.schedule.Cron
                     }

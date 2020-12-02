@@ -40,6 +40,7 @@ namespace DatabaseBackupperWindowsApp
         {
             try
             {
+                
                 var databases = new DatabasesManager(ServerName.Text, Username.Text, Password.Text);
                 wait.BringToFront();
                

@@ -41,47 +41,62 @@ namespace DatabaseBackupperWindowsApp
 
         private void Tasks_OnShown(object sender, EventArgs e)
         {
-            wait.BringToFront();
-            
-            Thread thread = new Thread(async x=>
+            TasksTable.RefillTasks(tasksManager);
+            foreach (DataGridViewRow item in TasksTable.Rows)
             {
-                using (longOperation.Start(true))
-                {
-                    await TasksTable.Refill(tasksManager);
-                }
-            });
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
-            panel1.BringToFront();
+                item.ContextMenuStrip = contextMenu;
+            }
         }
         private void Tasks_Load(object sender, EventArgs e)
         {
+            //var deleteTask = ((DataGridViewButtonColumn)TasksTable.Columns["Delete"]);
+
+            //var openTask = ((DataGridViewButtonColumn)TasksTable.Columns["OpenTask"]);
+            TasksTable.CellClick += new DataGridViewCellEventHandler(TasksTable_CellClick);
             TasksTable.KeyDown += TasksTable_KeyDown;
             TasksTable.Focus();
+        }
+
+        private void TasksTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (e.ColumnIndex != TasksTable.Columns["Delete"].Index 
+                && e.ColumnIndex != TasksTable.Columns["OpenTaskButton"].Index) return;
+
+            if (e.ColumnIndex == TasksTable.Columns["Delete"].Index)
+            {
+                DeleteTask(TasksTable.CurrentRow);
+            }
+            else 
+            {
+                OpenTask(TasksTable.CurrentRow);
+            }
+        }
+
+        private void OpenTask(DataGridViewRow currentRow)
+        {
+            var taskData = tasksManager.GetTask((int)currentRow.Cells["ID"].Value);
+            taskData.BackupData.AllDatabases = databases.DatabasesList;
+            TaskDetail details = new TaskDetail(taskData);
+            details.ShowDialog();
+        }
+
+        private void DeleteTask(DataGridViewRow currentRow)
+        {
+            tasksManager.DeleteTask((int)currentRow.Cells["ID"].Value);
+            TasksTable.Rows.Remove(currentRow);
         }
 
         private void TasksTable_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete) { 
                 var active = TasksTable.CurrentRow;
-                
-                tasksManager.DeleteTask((int)active.Cells["ID"].Value);
-                TasksTable.Rows.Remove(active);
-                
+                DeleteTask(active);
             }
             if (e.KeyCode == Keys.Enter)
             {
                 var active = TasksTable.CurrentRow;
-                var taskData = tasksManager.GetTask((int)active.Cells["ID"].Value);
-                               
-                TaskDetail details = new TaskDetail(taskData);
-                Thread thread = new Thread(x => 
-                {
-                    details.ShowDialog();
-                });
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
-                
+                OpenTask(active);
             }
         }
 
@@ -108,6 +123,19 @@ namespace DatabaseBackupperWindowsApp
             details.ShowDialog();
         }
 
- 
+        private void TasksTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void OpenTaskMenuButton_Click(object sender, EventArgs e)
+        {
+            OpenTask(TasksTable.CurrentRow);
+        }
+
+        private void DeleteTaskMenuButton_Click(object sender, EventArgs e)
+        {
+            DeleteTask(TasksTable.CurrentRow);
+        }
     }
 }

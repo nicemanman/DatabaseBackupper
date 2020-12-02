@@ -29,35 +29,76 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Schedules));
-            this.TasksTable = new System.Windows.Forms.DataGridView();
+            this.SchedulesTable = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ScheduleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cron = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Open = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ScheduleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cron = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.TasksTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SchedulesTable)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // TasksTable
+            // SchedulesTable
             // 
-            this.TasksTable.AllowUserToAddRows = false;
-            this.TasksTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SchedulesTable.AllowUserToAddRows = false;
+            this.SchedulesTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TasksTable.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.TasksTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TasksTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ScheduleName,
+            this.SchedulesTable.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SchedulesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.SchedulesTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
-            this.Cron});
-            this.TasksTable.GridColor = System.Drawing.SystemColors.ControlLightLight;
-            this.TasksTable.Location = new System.Drawing.Point(3, 3);
-            this.TasksTable.Name = "TasksTable";
-            this.TasksTable.ReadOnly = true;
-            this.TasksTable.Size = new System.Drawing.Size(443, 263);
-            this.TasksTable.TabIndex = 3;
+            this.ScheduleName,
+            this.Cron,
+            this.Open,
+            this.Delete});
+            this.SchedulesTable.GridColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SchedulesTable.Location = new System.Drawing.Point(3, 3);
+            this.SchedulesTable.Name = "SchedulesTable";
+            this.SchedulesTable.ReadOnly = true;
+            this.SchedulesTable.Size = new System.Drawing.Size(443, 263);
+            this.SchedulesTable.TabIndex = 3;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // ScheduleName
+            // 
+            this.ScheduleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ScheduleName.HeaderText = "Название";
+            this.ScheduleName.Name = "ScheduleName";
+            this.ScheduleName.ReadOnly = true;
+            // 
+            // Cron
+            // 
+            this.Cron.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Cron.HeaderText = "Cron выражение";
+            this.Cron.Name = "Cron";
+            this.Cron.ReadOnly = true;
+            // 
+            // Open
+            // 
+            this.Open.HeaderText = "";
+            this.Open.Name = "Open";
+            this.Open.ReadOnly = true;
+            this.Open.Text = "Открыть";
+            this.Open.ToolTipText = "Открыть";
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "";
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Text = "Удалить";
+            this.Delete.ToolTipText = "Удалить";
             // 
             // button2
             // 
@@ -69,7 +110,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Вернуться";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.ReturnButtonClick);
             // 
             // button1
             // 
@@ -80,39 +121,18 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Создать новое расписание";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.CreateButtonClick);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.TasksTable);
+            this.panel1.Controls.Add(this.SchedulesTable);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(449, 305);
             this.panel1.TabIndex = 6;
-            // 
-            // ScheduleName
-            // 
-            this.ScheduleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ScheduleName.HeaderText = "Название";
-            this.ScheduleName.Name = "ScheduleName";
-            this.ScheduleName.ReadOnly = true;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // Cron
-            // 
-            this.Cron.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Cron.HeaderText = "Cron выражение";
-            this.Cron.Name = "Cron";
-            this.Cron.ReadOnly = true;
             // 
             // Schedules
             // 
@@ -123,7 +143,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Schedules";
             this.Text = "Расписания";
-            ((System.ComponentModel.ISupportInitialize)(this.TasksTable)).EndInit();
+            this.Load += new System.EventHandler(this.Schedules_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.SchedulesTable)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -131,12 +152,14 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView TasksTable;
+        private System.Windows.Forms.DataGridView SchedulesTable;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ScheduleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ScheduleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cron;
+        private System.Windows.Forms.DataGridViewButtonColumn Open;
+        private System.Windows.Forms.DataGridViewButtonColumn Delete;
     }
 }

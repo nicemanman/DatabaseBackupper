@@ -222,12 +222,15 @@ namespace DatabaseBackupperWindowsApp
 
         private void AllSchedulesMenuButton_Click(object sender, EventArgs e)
         {
-
+            
+            Schedules form = new Schedules();
+            form.ShowDialog();
         }
 
         private void CreateNewScheduleMenuButton_Click(object sender, EventArgs e)
         {
-
+            ScheduleDetails form = new ScheduleDetails();
+            form.ShowDialog();
         }
 
         private void AboutProgramm_Click(object sender, EventArgs e)

@@ -1,9 +1,11 @@
 ﻿using DatabaseBackupperWindowsLibrary;
 using DatabaseBackupperWindowsLibrary.ViewModels;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,14 +17,13 @@ namespace DatabaseBackupperWindowsApp
     public partial class TaskDetail : Form
     {
         private readonly TaskData task;
-        
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public TaskDetail(TaskData task)
         {
             InitializeComponent();
             this.task = task;
-            
-            
+            StatusLabel.Text = "";
         }
 
         private void TaskDetail_Load(object sender, EventArgs e)
@@ -43,6 +44,7 @@ namespace DatabaseBackupperWindowsApp
                
             TaskName.Text = task.Name;
             ServerName.Text = task.LoginData.ServerName;
+
             foreach (var database in task.BackupData.AllDatabases)
             {
                 var selected = task.BackupData.DatabasesToBackup.Contains(database);
@@ -57,23 +59,30 @@ namespace DatabaseBackupperWindowsApp
             Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void SaveTask(object sender, EventArgs e)
         {
-
-            TasksManager tasksManager = new TasksManager();
-            task.BackupData.DatabasesToBackup.Clear();
-            foreach (var database in DatabasesList.CheckedItems)
+            try
             {
-                task.BackupData.DatabasesToBackup.Add(database as string);
+                TasksManager tasksManager = new TasksManager();
+                task.BackupData.DatabasesToBackup.Clear();
+                foreach (var database in DatabasesList.CheckedItems)
+                {
+                    task.BackupData.DatabasesToBackup.Add(database as string);
+                }
+                KeyValuePair<int, string> selectedValue = (KeyValuePair<int, string>)ScheduleDropDownList.SelectedItem;
+                task.ScheduleID = selectedValue.Key;
+                task.BackupData.Path = PathToBackup.Text;
+                task.Name = TaskName.Text;
+                tasksManager.AddTask(task);
+                Close();
             }
-            KeyValuePair<int, string> selectedValue = (KeyValuePair<int, string>)ScheduleDropDownList.SelectedItem;
-            task.ScheduleID = selectedValue.Key;
-            task.BackupData.Path = PathToBackup.Text;
-            task.Name = TaskName.Text;
-            tasksManager.AddTask(task);
-            Close();
-            
-            
+            catch (DbEntityValidationException ex) 
+            {
+                StatusLabel.Text = "Не удалось сохранить задачу";
+                logger.Error(ex);
+            }
+
+
         }
 
         private void ChoosePath_Click(object sender, EventArgs e)
@@ -87,6 +96,11 @@ namespace DatabaseBackupperWindowsApp
                     PathToBackup.Text = fbd.SelectedPath;
                 }
             }
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace DatabaseBackupperWindowsLibrary.DatabaseModels
 {
-    public class ScheduleModel
+    public class Schedule
     {
-        public int ScheduleModelID { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
         public string Cron { get; set; }
-        public List<TaskModel> tasks { get; set; }
+        public List<Job> tasks { get; set; }
     }
 }

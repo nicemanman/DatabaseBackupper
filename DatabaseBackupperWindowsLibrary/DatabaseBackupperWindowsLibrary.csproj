@@ -180,6 +180,9 @@
     <Reference Include="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.2\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
@@ -207,14 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
-    <Compile Include="DatabaseModels\ScheduleModel.cs" />
-    <Compile Include="DatabaseModels\TaskModel.cs" />
+    <Compile Include="DatabaseModels\Schedule.cs" />
+    <Compile Include="DatabaseModels\Job.cs" />
     <Compile Include="DatabasesManager.cs" />
-    <Compile Include="Migrations\202011280513320_Init.cs" />
-    <Compile Include="Migrations\202011280513320_Init.designer.cs">
-      <DependentUpon>202011280513320_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\BackupData.cs" />
     <Compile Include="ViewModels\LoginData.cs" />
     <Compile Include="ViewModels\ScheduleData.cs" />
@@ -227,24 +225,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <Content Include="Data\DatabaseBackupper.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\DatabaseBackupper_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>DatabaseBackupper.mdf</DependentUpon>
-    </Content>
     <Content Include="ScheduleData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TaskData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011280513320_Init.resx">
-      <DependentUpon>202011280513320_Init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

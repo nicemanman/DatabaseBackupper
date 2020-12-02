@@ -43,6 +43,10 @@
             this.PathToBackup = new System.Windows.Forms.Label();
             this.ChoosePath = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.status = new System.Windows.Forms.StatusStrip();
+            this.StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel1.SuspendLayout();
+            this.status.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -99,7 +103,7 @@
             this.button2.TabIndex = 9;
             this.button2.Text = "Сохранить";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.SaveTask);
             // 
             // label4
             // 
@@ -134,6 +138,7 @@
             // 
             this.ScheduleDropDownList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ScheduleDropDownList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ScheduleDropDownList.FormattingEnabled = true;
             this.ScheduleDropDownList.Location = new System.Drawing.Point(87, 284);
             this.ScheduleDropDownList.Name = "ScheduleDropDownList";
@@ -162,17 +167,35 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Controls.Add(this.status);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(277, 373);
+            this.panel1.Size = new System.Drawing.Size(277, 394);
             this.panel1.TabIndex = 17;
+            // 
+            // status
+            // 
+            this.status.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusLabel});
+            this.status.Location = new System.Drawing.Point(0, 372);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(277, 22);
+            this.status.TabIndex = 0;
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(118, 17);
+            this.StatusLabel.Text = "toolStripStatusLabel1";
+            this.StatusLabel.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
             // TaskDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(277, 373);
+            this.ClientSize = new System.Drawing.Size(277, 394);
             this.Controls.Add(this.ChoosePath);
             this.Controls.Add(this.PathToBackup);
             this.Controls.Add(this.ScheduleDropDownList);
@@ -188,6 +211,10 @@
             this.Name = "TaskDetail";
             this.Text = "Детали задачи";
             this.Load += new System.EventHandler(this.TaskDetail_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.status.ResumeLayout(false);
+            this.status.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +235,7 @@
         private System.Windows.Forms.Label PathToBackup;
         private System.Windows.Forms.Button ChoosePath;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.StatusStrip status;
+        private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
     }
 }

@@ -10,12 +10,12 @@ namespace DatabaseBackupperWindowsLibrary
 {
     public class AppDbContext: DbContext
     {
-        public AppDbContext() : base("dbfile")
+        public AppDbContext() : base("name=sqlite")
         {
             
         }
         
-        public DbSet<TaskModel> Tasks { get; set; }
-        public DbSet<ScheduleModel> Schedules { get; set; }
+        public DbSet<Job> Tasks { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
     }
 }

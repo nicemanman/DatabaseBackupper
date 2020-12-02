@@ -7,19 +7,18 @@ using System.Threading.Tasks;
 
 namespace DatabaseBackupperWindowsLibrary.DatabaseModels
 {
-    public class TaskModel
+    public class Job
     {   
-        public int TaskModelID { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
         public string ServerName { get; set; }
         [Required]
         public string Path { get; set; }
-        
         [Required]
         public string Databases { get; set; }
         [Required]
-        public ScheduleModel schedule { get; set; }
+        public Schedule schedule { get; set; }
     }
 }
