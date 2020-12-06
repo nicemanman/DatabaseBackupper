@@ -15,7 +15,23 @@ namespace DatabaseBackupperWindowsApp
         public ScheduleDetails()
         {
             InitializeComponent();
+            DayOfMonth.TextChanged += DayOfMonth_TextChanged;
+            DayOfWeek.TextChanged += DayOfWeek_TextChanged;
         }
 
+        private void DayOfWeek_TextChanged(object sender, EventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            if (textbox.Text != "?")
+                DayOfMonth.Text = "?";
+            
+        }
+
+        private void DayOfMonth_TextChanged(object sender, EventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            if (textbox.Text != "?")
+                DayOfWeek.Text = "?";
+        }
     }
 }

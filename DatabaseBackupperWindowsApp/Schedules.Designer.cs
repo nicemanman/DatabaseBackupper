@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Schedules));
             this.SchedulesTable = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ScheduleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cron = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Open = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.SchedulesTable)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,43 +62,6 @@
             this.SchedulesTable.ReadOnly = true;
             this.SchedulesTable.Size = new System.Drawing.Size(443, 263);
             this.SchedulesTable.TabIndex = 3;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // ScheduleName
-            // 
-            this.ScheduleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ScheduleName.HeaderText = "Название";
-            this.ScheduleName.Name = "ScheduleName";
-            this.ScheduleName.ReadOnly = true;
-            // 
-            // Cron
-            // 
-            this.Cron.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Cron.HeaderText = "Cron выражение";
-            this.Cron.Name = "Cron";
-            this.Cron.ReadOnly = true;
-            // 
-            // Open
-            // 
-            this.Open.HeaderText = "";
-            this.Open.Name = "Open";
-            this.Open.ReadOnly = true;
-            this.Open.Text = "Открыть";
-            this.Open.ToolTipText = "Открыть";
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "";
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Text = "Удалить";
-            this.Delete.ToolTipText = "Удалить";
             // 
             // button2
             // 
@@ -133,6 +96,45 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(449, 305);
             this.panel1.TabIndex = 6;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // ScheduleName
+            // 
+            this.ScheduleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ScheduleName.HeaderText = "Название";
+            this.ScheduleName.Name = "ScheduleName";
+            this.ScheduleName.ReadOnly = true;
+            // 
+            // Cron
+            // 
+            this.Cron.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Cron.HeaderText = "Cron выражение";
+            this.Cron.Name = "Cron";
+            this.Cron.ReadOnly = true;
+            // 
+            // Open
+            // 
+            this.Open.HeaderText = "";
+            this.Open.Name = "Open";
+            this.Open.ReadOnly = true;
+            this.Open.Text = "Открыть";
+            this.Open.ToolTipText = "Открыть";
+            this.Open.UseColumnTextForButtonValue = true;
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "";
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Text = "Удалить";
+            this.Delete.ToolTipText = "Удалить";
+            this.Delete.UseColumnTextForButtonValue = true;
             // 
             // Schedules
             // 
