@@ -31,21 +31,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScheduleDetails));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.DayOfWeek = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.DayOfMonth = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Month = new System.Windows.Forms.TextBox();
+            this.Hours = new System.Windows.Forms.TextBox();
+            this.Minutes = new System.Windows.Forms.TextBox();
+            this.Seconds = new System.Windows.Forms.TextBox();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ScheduleName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.DayOfWeek = new System.Windows.Forms.TextBox();
+            this.DayOfMonth = new System.Windows.Forms.TextBox();
+            this.HowTo = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -53,14 +54,15 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Controls.Add(this.HowTo);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.ScheduleName);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(654, 184);
+            this.panel1.Size = new System.Drawing.Size(654, 198);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -77,11 +79,11 @@
             this.tableLayoutPanel1.Controls.Add(this.label5, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox6, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.Month, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.DayOfMonth, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox4, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.Hours, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.Minutes, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.Seconds, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.DayOfWeek, 5, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 57);
@@ -92,75 +94,56 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(634, 74);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
-            // DayOfWeek
+            // Month
             // 
-            this.DayOfWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DayOfWeek.Location = new System.Drawing.Point(528, 3);
-            this.DayOfWeek.Name = "DayOfWeek";
-            this.DayOfWeek.Size = new System.Drawing.Size(99, 38);
-            this.DayOfWeek.TabIndex = 5;
-            this.DayOfWeek.Text = "*";
-            this.DayOfWeek.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Month.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Month.Location = new System.Drawing.Point(423, 3);
+            this.Month.Name = "Month";
+            this.Month.Size = new System.Drawing.Size(99, 38);
+            this.Month.TabIndex = 4;
+            this.Month.Text = "*";
+            this.Month.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox6
+            // Hours
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox6.Location = new System.Drawing.Point(423, 3);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(99, 38);
-            this.textBox6.TabIndex = 4;
-            this.textBox6.Text = "*";
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Hours.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Hours.Location = new System.Drawing.Point(213, 3);
+            this.Hours.Name = "Hours";
+            this.Hours.Size = new System.Drawing.Size(99, 38);
+            this.Hours.TabIndex = 2;
+            this.Hours.Text = "*";
+            this.Hours.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // DayOfMonth
+            // Minutes
             // 
-            this.DayOfMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DayOfMonth.Location = new System.Drawing.Point(318, 3);
-            this.DayOfMonth.Name = "DayOfMonth";
-            this.DayOfMonth.Size = new System.Drawing.Size(99, 38);
-            this.DayOfMonth.TabIndex = 3;
-            this.DayOfMonth.Text = "*";
-            this.DayOfMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Minutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Minutes.Location = new System.Drawing.Point(108, 3);
+            this.Minutes.Name = "Minutes";
+            this.Minutes.Size = new System.Drawing.Size(99, 38);
+            this.Minutes.TabIndex = 1;
+            this.Minutes.Text = "*";
+            this.Minutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox4
+            // Seconds
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(213, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(99, 38);
-            this.textBox4.TabIndex = 2;
-            this.textBox4.Text = "*";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Seconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Seconds.Location = new System.Drawing.Point(3, 3);
+            this.Seconds.Name = "Seconds";
+            this.Seconds.Size = new System.Drawing.Size(99, 38);
+            this.Seconds.TabIndex = 0;
+            this.Seconds.Text = "*";
+            this.Seconds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox3
+            // SaveButton
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox3.Location = new System.Drawing.Point(108, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(99, 38);
-            this.textBox3.TabIndex = 1;
-            this.textBox3.Text = "*";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox2.Location = new System.Drawing.Point(3, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(99, 38);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.Text = "*";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(438, 137);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(211, 35);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Сохранить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SaveButton.Location = new System.Drawing.Point(438, 137);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(211, 35);
+            this.SaveButton.TabIndex = 4;
+            this.SaveButton.Text = "Сохранить";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // label1
             // 
@@ -172,15 +155,16 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Название";
             // 
-            // textBox1
+            // ScheduleName
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ScheduleName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(123, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(526, 30);
-            this.textBox1.TabIndex = 0;
+            this.ScheduleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ScheduleName.Location = new System.Drawing.Point(123, 13);
+            this.ScheduleName.Name = "ScheduleName";
+            this.ScheduleName.Size = new System.Drawing.Size(526, 30);
+            this.ScheduleName.TabIndex = 0;
+            this.ScheduleName.Text = "Расписание";
             // 
             // label2
             // 
@@ -242,11 +226,42 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "День недели";
             // 
+            // DayOfWeek
+            // 
+            this.DayOfWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DayOfWeek.Location = new System.Drawing.Point(528, 3);
+            this.DayOfWeek.Name = "DayOfWeek";
+            this.DayOfWeek.Size = new System.Drawing.Size(99, 38);
+            this.DayOfWeek.TabIndex = 5;
+            this.DayOfWeek.Text = "*";
+            this.DayOfWeek.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // DayOfMonth
+            // 
+            this.DayOfMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DayOfMonth.Location = new System.Drawing.Point(318, 3);
+            this.DayOfMonth.Name = "DayOfMonth";
+            this.DayOfMonth.Size = new System.Drawing.Size(99, 38);
+            this.DayOfMonth.TabIndex = 3;
+            this.DayOfMonth.Text = "*";
+            this.DayOfMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // HowTo
+            // 
+            this.HowTo.AutoSize = true;
+            this.HowTo.Location = new System.Drawing.Point(501, 175);
+            this.HowTo.Name = "HowTo";
+            this.HowTo.Size = new System.Drawing.Size(148, 13);
+            this.HowTo.TabIndex = 6;
+            this.HowTo.TabStop = true;
+            this.HowTo.Text = "Как составить выражение?";
+            this.HowTo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HowTo_LinkClicked);
+            // 
             // ScheduleDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 184);
+            this.ClientSize = new System.Drawing.Size(654, 198);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScheduleDetails";
@@ -263,20 +278,21 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox ScheduleName;
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TextBox DayOfWeek;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox DayOfMonth;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox Month;
+        private System.Windows.Forms.TextBox Hours;
+        private System.Windows.Forms.TextBox Minutes;
+        private System.Windows.Forms.TextBox Seconds;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox DayOfMonth;
+        private System.Windows.Forms.TextBox DayOfWeek;
+        private System.Windows.Forms.LinkLabel HowTo;
     }
 }

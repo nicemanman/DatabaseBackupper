@@ -1,5 +1,6 @@
 ﻿using DatabaseBackupperWindowsLibrary.ViewModels;
 using Newtonsoft.Json;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,13 +8,15 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
+using DatabaseBackupperWindowsLibrary.DatabaseModels;
 
 namespace DatabaseBackupperWindowsLibrary
 {
     public class ScheduleManager
     {   
         private AppDbContext context;
-        
+        private Logger logger = LogManager.GetCurrentClassLogger();
         public List<ScheduleData> GetAllOfThem() 
         {
             using (context = new AppDbContext()) 
@@ -62,6 +65,33 @@ namespace DatabaseBackupperWindowsLibrary
                 return schedule;
             }
             
+        }
+        public async Task AddSchedule(ScheduleData schedule) 
+        {
+            using (context = new AppDbContext()) 
+            {
+                var scheduleModel = new Schedule()
+                {
+                    Name = schedule.Description,
+                    Cron = schedule.Cron
+                };
+                context.Schedules.Add(scheduleModel);
+                await context.SaveChangesAsync();
+            }    
+        }
+        public bool ValidateCronExpression(string cron) 
+        {
+            try
+            {
+                CronExpression.ValidateExpression(cron);
+            }
+            catch (Exception ex) 
+            {
+                logger.Error(ex);
+                return false;
+            }
+
+            return true;
         }
     }
 }

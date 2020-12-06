@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -18,7 +19,7 @@ namespace DatabaseBackupperWindowsService
 {
     public partial class DatabaseBackupperService : ServiceBase
     {
-        Timer timer = new Timer();
+        
         Logger logger = LogManager.GetCurrentClassLogger();
         public DatabaseBackupperService()
         {
@@ -43,9 +44,9 @@ namespace DatabaseBackupperWindowsService
                 IJobDetail job = JobBuilder.Create<BackupJob>()
                     .WithIdentity(schedule.ID.ToString(), "group1")
                     .Build();
-
+                logger.Trace($"По расписанию {schedule.Cron} есть следующее количество задач - {schedule.tasks.Count}");
                 job.JobDataMap["tasks"] = schedule.tasks;
-                // Trigger the job to run now, and then repeat every 10 seconds
+                
                 ITrigger trigger = TriggerBuilder.Create()
                     .WithIdentity(schedule.ID.ToString(), "group1")
                     .StartNow()
@@ -55,7 +56,9 @@ namespace DatabaseBackupperWindowsService
             }
             foreach (var job in jobs)
             {
-                Task.Run(async () => await scheduler.ScheduleJob(job.Key, job.Value)).Wait();
+                Thread thread = new Thread(async (x) => { await scheduler.ScheduleJob(job.Key, job.Value); });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
             }
             
         }

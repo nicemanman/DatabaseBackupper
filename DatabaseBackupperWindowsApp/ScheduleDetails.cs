@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DatabaseBackupperWindowsLibrary;
+using DatabaseBackupperWindowsLibrary.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,26 +14,35 @@ namespace DatabaseBackupperWindowsApp
 {
     public partial class ScheduleDetails : Form
     {
+        ScheduleManager manager;
         public ScheduleDetails()
         {
             InitializeComponent();
-            DayOfMonth.TextChanged += DayOfMonth_TextChanged;
-            DayOfWeek.TextChanged += DayOfWeek_TextChanged;
+            manager = new ScheduleManager();
+            DayOfWeek.Text = "?";
         }
 
-        private void DayOfWeek_TextChanged(object sender, EventArgs e)
+        private async void SaveButton_Click(object sender, EventArgs e)
         {
-            var textbox = (TextBox)sender;
-            if (textbox.Text != "?")
-                DayOfMonth.Text = "?";
-            
+            var cronExpression = Seconds.Text + " " + Minutes.Text +" "+ Hours.Text +" "+ DayOfMonth.Text +" "+ Month.Text +" "+ DayOfWeek.Text;
+
+            var validation = manager.ValidateCronExpression(cronExpression);
+            if (!validation) 
+            {
+                MessageBox.Show("Выражение не верное!");
+                return;
+            }
+            await manager.AddSchedule(new ScheduleData() 
+            {
+                Description = ScheduleName.Text,
+                Cron = cronExpression
+            });
+            Close();
         }
 
-        private void DayOfMonth_TextChanged(object sender, EventArgs e)
+        private void HowTo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var textbox = (TextBox)sender;
-            if (textbox.Text != "?")
-                DayOfWeek.Text = "?";
+            System.Diagnostics.Process.Start("https://www.quartz-scheduler.net/documentation/quartz-2.x/tutorial/crontriggers.html#example-cron-expressions");
         }
     }
 }
