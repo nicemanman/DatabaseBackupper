@@ -34,6 +34,7 @@ namespace DatabaseBackupper
 
         public Task InitStorage() 
         {
+            Directory.CreateDirectory("C:\\Data");
             context = new AppDbContext();
             return Task.CompletedTask;
         }
