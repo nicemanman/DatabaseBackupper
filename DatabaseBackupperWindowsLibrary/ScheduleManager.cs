@@ -66,6 +66,17 @@ namespace DatabaseBackupperWindowsLibrary
             }
             
         }
+
+        public void DeleteSchedule(int id)
+        {
+            using (context = new AppDbContext()) 
+            {
+                var item = context.Schedules.Find(id);
+                if (item != null)
+                    context.Schedules.Remove(item);
+                context.SaveChanges();
+            }
+        }
         public async Task AddSchedule(ScheduleData schedule) 
         {
             using (context = new AppDbContext()) 
@@ -75,7 +86,14 @@ namespace DatabaseBackupperWindowsLibrary
                     Name = schedule.Description,
                     Cron = schedule.Cron
                 };
-                context.Schedules.Add(scheduleModel);
+                var item = context.Schedules.Find(schedule.ID);
+                if (item == null)
+                    context.Schedules.Add(scheduleModel);
+                else
+                {
+                    item.Name = scheduleModel.Name;
+                    item.Cron = scheduleModel.Cron;
+                }
                 await context.SaveChangesAsync();
             }    
         }

@@ -94,7 +94,7 @@
             this.TasksTable.ReadOnly = true;
             this.TasksTable.Size = new System.Drawing.Size(671, 345);
             this.TasksTable.TabIndex = 0;
-            this.TasksTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TasksTable_CellContentClick);
+            
             // 
             // panel1
             // 

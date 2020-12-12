@@ -38,9 +38,12 @@ namespace DatabaseBackupperWindowsApp
             ScheduleDropDownList.DataSource = schedules.ToArray();
             ScheduleDropDownList.ValueMember = "Key";
             ScheduleDropDownList.DisplayMember = "Value";
-            var index = task.ScheduleID == 0 ? 1 : task.ScheduleID;
             if (schedules.Count > 0)
-            ScheduleDropDownList.SelectedItem = new KeyValuePair<int, string>(index, schedules[index])/*schedules[(task.ScheduleID == 0 ? 1 : task.ScheduleID)]*/;
+            {
+                var index = task.ScheduleID == 0 ? schedules.First().Key : task.ScheduleID;
+                ScheduleDropDownList.SelectedItem = new KeyValuePair<int, string>(index, schedules[index]);
+            
+            }
                
             TaskName.Text = task.Name;
             ServerName.Text = task.LoginData.ServerName;

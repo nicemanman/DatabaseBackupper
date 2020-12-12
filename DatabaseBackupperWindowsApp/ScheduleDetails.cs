@@ -15,11 +15,13 @@ namespace DatabaseBackupperWindowsApp
     public partial class ScheduleDetails : Form
     {
         ScheduleManager manager;
-        public ScheduleDetails()
+        ScheduleData schedule;
+        public ScheduleDetails(ScheduleData schedule = null)
         {
             InitializeComponent();
             manager = new ScheduleManager();
             DayOfWeek.Text = "?";
+            this.schedule = schedule;
         }
 
         private async void SaveButton_Click(object sender, EventArgs e)
@@ -34,6 +36,7 @@ namespace DatabaseBackupperWindowsApp
             }
             await manager.AddSchedule(new ScheduleData() 
             {
+                ID = schedule?.ID ?? 0,
                 Description = ScheduleName.Text,
                 Cron = cronExpression
             });
@@ -43,6 +46,20 @@ namespace DatabaseBackupperWindowsApp
         private void HowTo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.quartz-scheduler.net/documentation/quartz-2.x/tutorial/crontriggers.html#example-cron-expressions");
+        }
+
+        private void ScheduleDetails_Load(object sender, EventArgs e)
+        {
+            if (schedule == null) return;
+            ScheduleName.Text = schedule.Description;
+            var cron_parts = schedule.Cron.Split(' ');
+            Seconds.Text = cron_parts[0];
+            Minutes.Text = cron_parts[1];
+            Hours.Text = cron_parts[2];
+            DayOfMonth.Text = cron_parts[3];
+            Month.Text = cron_parts[4];
+            DayOfWeek.Text = cron_parts[5];
+
         }
     }
 }

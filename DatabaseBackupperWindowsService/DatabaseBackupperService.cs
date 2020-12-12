@@ -27,6 +27,7 @@ namespace DatabaseBackupperWindowsService
         }
         protected override void OnStart(string[] args)
         {
+            Debugger.Launch();
             logger.Info("Service is started at " + DateTime.Now);
             StdSchedulerFactory factory = new StdSchedulerFactory();
             IScheduler scheduler = Task.Run(async () => await factory.GetScheduler()).Result;
@@ -38,8 +39,7 @@ namespace DatabaseBackupperWindowsService
             var schedules = manager.GetAllOfThem();
             foreach (var schedule in schedules)
             {
-                var data = new Dictionary<string, object>();
-                data.Add("tasks", schedule.tasks);
+                if (schedule.tasks.Count == 0) continue;
                 // define the job and tie it to our HelloJob class
                 IJobDetail job = JobBuilder.Create<BackupJob>()
                     .WithIdentity(schedule.ID.ToString(), "group1")

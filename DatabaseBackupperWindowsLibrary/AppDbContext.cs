@@ -12,7 +12,7 @@ namespace DatabaseBackupperWindowsLibrary
     {
         public AppDbContext() : base("name=sqlite")
         {
-            
+            Database.SetInitializer<AppDbContext>(null);
         }
         
         public DbSet<Job> Tasks { get; set; }

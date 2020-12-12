@@ -123,10 +123,7 @@ namespace DatabaseBackupperWindowsApp
             details.ShowDialog();
         }
 
-        private void TasksTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
 
         private void OpenTaskMenuButton_Click(object sender, EventArgs e)
         {

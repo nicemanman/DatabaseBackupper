@@ -27,6 +27,7 @@ namespace DatabaseBackupper
             ServerName = serverName;
             UserName = userName;
             Password = password;
+            ConnectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
         }
 
         public string this[int index]
@@ -36,10 +37,7 @@ namespace DatabaseBackupper
 
         public async Task<List<string>> GetAllOfThem()
         {
-            string auth = (Password == "" || Password == null ? "True" : "False");
             var list = new List<String>();
-            ConnectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security={auth};";
-            
             logger.Info($"Connection string: \"{ConnectionString}\"");
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
