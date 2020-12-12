@@ -10,9 +10,10 @@ namespace DatabaseBackupperWindowsLibrary
 {
     public class AppDbContext: DbContext
     {
-        public AppDbContext() : base("name=sqlite")
+        public AppDbContext() : base("name=dbfile")
         {
-            Database.SetInitializer<AppDbContext>(null);
+            Database.CreateIfNotExists();
+            Database.Initialize(false);
         }
         
         public DbSet<Job> Tasks { get; set; }

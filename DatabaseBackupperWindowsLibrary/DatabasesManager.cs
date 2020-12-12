@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using DatabaseBackupperWindowsLibrary;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -10,6 +11,7 @@ namespace DatabaseBackupper
 {
     public class DatabasesManager
     {
+        public AppDbContext context;
         public List<string> DatabasesList = new List<string>();
         public List<string> DatabasesToBackup = new List<string>();
         private List<string> SystemDatabases = new List<string>(){"master","msdb","model","resource","tempdb" };
@@ -30,6 +32,11 @@ namespace DatabaseBackupper
             ConnectionString = $"Data Source={ServerName}; User ID={UserName}; Password={Password}; Integrated Security=True;";
         }
 
+        public Task InitStorage() 
+        {
+            context = new AppDbContext();
+            return Task.CompletedTask;
+        }
         public string this[int index]
         {
             get => DatabasesList[index];

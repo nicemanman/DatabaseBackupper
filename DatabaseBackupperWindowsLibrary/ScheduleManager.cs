@@ -17,11 +17,11 @@ namespace DatabaseBackupperWindowsLibrary
     {   
         private AppDbContext context;
         private Logger logger = LogManager.GetCurrentClassLogger();
+        
         public List<ScheduleData> GetAllOfThem() 
         {
             using (context = new AppDbContext()) 
             {
-                context.Schedules.Load();
                 var schedules = context.Schedules.Include("tasks");
                 var scheduleDataList = new List<ScheduleData>();
                 foreach (var item in schedules)

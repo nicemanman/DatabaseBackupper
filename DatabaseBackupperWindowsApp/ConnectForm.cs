@@ -40,13 +40,13 @@ namespace DatabaseBackupperWindowsApp
         {
             try
             {
-                
                 var databases = new DatabasesManager(ServerName.Text, Username.Text, Password.Text);
                 wait.BringToFront();
                
                 using (longOperation.Start(true))
                 {
                     databases.DatabasesList = await databases.GetAllOfThem();
+                    await Task.Run(async () => await databases.InitStorage());
                 }
                 panel.BringToFront();
                 logger.Info($"Подключение к базе данных");

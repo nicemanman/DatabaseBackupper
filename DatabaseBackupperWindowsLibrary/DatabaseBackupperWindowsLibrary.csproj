@@ -236,6 +236,11 @@
     <Compile Include="DatabaseModels\Schedule.cs" />
     <Compile Include="DatabaseModels\Job.cs" />
     <Compile Include="DatabasesManager.cs" />
+    <Compile Include="Migrations\202012120917487_Init.cs" />
+    <Compile Include="Migrations\202012120917487_Init.designer.cs">
+      <DependentUpon>202012120917487_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\BackupData.cs" />
     <Compile Include="ViewModels\LoginData.cs" />
     <Compile Include="ViewModels\ScheduleData.cs" />
@@ -248,12 +253,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <Content Include="ScheduleData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TaskData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -266,6 +265,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202012120917487_Init.resx">
+      <DependentUpon>202012120917487_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
