@@ -1,6 +1,7 @@
-﻿using DatabaseBackupper;
+﻿
 using DatabaseBackupperWindowsApp;
 using DatabaseBackupperWindowsLibrary;
+using DatabaseBackupperWindowsLibrary.Managers;
 using DatabaseBackupperWindowsLibrary.ViewModels;
 using LoadingIndicator.WinForms;
 using Newtonsoft.Json;
@@ -25,16 +26,30 @@ namespace DatabaseBackupperWindowsApp
         private Thread thread;
         private Logger logger = LogManager.GetCurrentClassLogger();
         private LongOperation longOperation;
+        
         public ConnectForm()
         {
             InitializeComponent();
-            
+            HeaderPanel.MouseMove += HeaderPanel_MouseMove;
             wait = new Panel();
             wait.Dock = DockStyle.Fill;
             wait.BackColor = Color.White;
             Controls.Add(wait);
             longOperation = new LongOperation(wait, LongOperationSettings.Default);
         }
+        private Point MouseHook;
+        private void HeaderPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button != MouseButtons.Left) { Cursor = Cursors.Default; MouseHook = e.Location; }
+            else
+            {
+                Location = new Point((Size)Location - (Size)MouseHook + (Size)e.Location);
+                Cursor = Cursors.Hand;
+            }
+        }
+
+       
 
         private async void ConnectButton(object sender, EventArgs e)
         {
@@ -103,6 +118,11 @@ namespace DatabaseBackupperWindowsApp
                 Username.Enabled = true;
                 Password.Enabled = true;
             }
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

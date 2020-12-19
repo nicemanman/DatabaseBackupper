@@ -1,4 +1,5 @@
 ﻿using DatabaseBackupperWindowsLibrary;
+using DatabaseBackupperWindowsLibrary.Managers;
 using NLog;
 using Quartz;
 using Quartz.Impl;

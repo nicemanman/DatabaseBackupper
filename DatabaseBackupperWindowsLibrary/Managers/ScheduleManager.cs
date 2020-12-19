@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using NLog;
 using DatabaseBackupperWindowsLibrary.DatabaseModels;
 
-namespace DatabaseBackupperWindowsLibrary
+namespace DatabaseBackupperWindowsLibrary.Managers
 {
     public class ScheduleManager
     {   

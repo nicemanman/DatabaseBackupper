@@ -1,6 +1,6 @@
-﻿using DatabaseBackupper;
-using DatabaseBackupperWindowsApp.Extensions;
+﻿using DatabaseBackupperWindowsApp.Extensions;
 using DatabaseBackupperWindowsLibrary;
+using DatabaseBackupperWindowsLibrary.Managers;
 using DatabaseBackupperWindowsLibrary.ViewModels;
 using LoadingIndicator.WinForms;
 using System;

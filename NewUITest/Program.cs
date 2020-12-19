@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DatabaseBackupperWindowsApp
+namespace NewUITest
 {
     static class Program
     {
@@ -13,9 +16,7 @@ namespace DatabaseBackupperWindowsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ConnectForm connectForm = new ConnectForm();
-            
-            Application.Run(connectForm);
+            Application.Run(new Form1());
         }
     }
 }

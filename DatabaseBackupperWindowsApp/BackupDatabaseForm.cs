@@ -1,5 +1,4 @@
-﻿using DatabaseBackupper;
-using DatabaseBackupperWindowsLibrary.ViewModels;
+﻿using DatabaseBackupperWindowsLibrary.ViewModels;
 using Newtonsoft.Json;
 using NLog;
 using System;
@@ -7,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +13,7 @@ using System.Windows.Forms;
 using System.Linq;
 using System.IO;
 using System.Threading;
+using DatabaseBackupperWindowsLibrary.Managers;
 
 namespace DatabaseBackupperWindowsApp
 {

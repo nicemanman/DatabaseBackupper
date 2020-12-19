@@ -1,4 +1,5 @@
 ﻿using DatabaseBackupperWindowsLibrary;
+using DatabaseBackupperWindowsLibrary.DatabaseModels;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseBackupper
+namespace DatabaseBackupperWindowsLibrary.Managers
 {
     public class DatabasesManager
     {
@@ -34,7 +35,7 @@ namespace DatabaseBackupper
 
         public Task InitStorage() 
         {
-            Directory.CreateDirectory("C:\\Data");
+            Directory.CreateDirectory(Constants.DatabaseCreationPath);
             context = new AppDbContext();
             return Task.CompletedTask;
         }

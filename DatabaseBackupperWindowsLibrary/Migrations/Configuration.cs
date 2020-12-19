@@ -1,18 +1,19 @@
 ﻿namespace DatabaseBackupperWindowsLibrary.Migrations
 {
+    using DatabaseBackupperWindowsLibrary.DatabaseModels;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DatabaseBackupperWindowsLibrary.AppDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AppDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DatabaseBackupperWindowsLibrary.AppDbContext context)
+        protected override void Seed(AppDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

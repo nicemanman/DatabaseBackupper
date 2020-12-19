@@ -1,5 +1,4 @@
-﻿using DatabaseBackupper;
-using DatabaseBackupperWindowsLibrary.DatabaseModels;
+﻿using DatabaseBackupperWindowsLibrary.DatabaseModels;
 using DatabaseBackupperWindowsLibrary.ViewModels;
 using Newtonsoft.Json;
 using NLog;
@@ -12,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseBackupperWindowsLibrary
+namespace DatabaseBackupperWindowsLibrary.Managers
 {
     public class TasksManager
     {

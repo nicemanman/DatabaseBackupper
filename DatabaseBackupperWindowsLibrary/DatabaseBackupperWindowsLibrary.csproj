@@ -232,10 +232,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppDbContext.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DatabaseModels\AppDbContext.cs" />
     <Compile Include="DatabaseModels\Schedule.cs" />
     <Compile Include="DatabaseModels\Job.cs" />
-    <Compile Include="DatabasesManager.cs" />
+    <Compile Include="Managers\DatabasesManager.cs" />
     <Compile Include="Migrations\202012120917487_Init.cs" />
     <Compile Include="Migrations\202012120917487_Init.designer.cs">
       <DependentUpon>202012120917487_Init.cs</DependentUpon>
@@ -246,9 +247,9 @@
     <Compile Include="ViewModels\ScheduleData.cs" />
     <Compile Include="ViewModels\TaskData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScheduleManager.cs" />
-    <Compile Include="SqlServersManager.cs" />
-    <Compile Include="TasksManager.cs" />
+    <Compile Include="Managers\ScheduleManager.cs" />
+    <Compile Include="Managers\SqlServersManager.cs" />
+    <Compile Include="Managers\TasksManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
