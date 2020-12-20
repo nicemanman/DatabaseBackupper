@@ -24,7 +24,9 @@ namespace Presentation.Presenters
 
         public async Task Login(string serverName, LoginTypesEnumeration loginType, string userName, string password) 
         {
-            
+            View.Wait();
+            await Task.Delay(10000);
+            View.StopWaiting();
         }
     }
 }

@@ -32,41 +32,24 @@ namespace UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectForm));
             this.ChooseDirectoryToBackup = new System.Windows.Forms.FolderBrowserDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.LoginTypesList = new System.Windows.Forms.ComboBox();
             this.PasswordTextbox = new System.Windows.Forms.TextBox();
             this.UsernameTextbox = new System.Windows.Forms.TextBox();
             this.ServersList = new System.Windows.Forms.ComboBox();
             this.ConnectButton = new System.Windows.Forms.Button();
-            this.panel = new System.Windows.Forms.Panel();
-            this.statusStrip1.SuspendLayout();
-            this.panel.SuspendLayout();
+            this.ChildPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ChildPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 357);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(523, 22);
-            this.statusStrip1.TabIndex = 20;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // Status
-            // 
-            this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(115, 17);
-            this.Status.Text = "Добро пожаловать!";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(134, 79);
+            this.label1.Location = new System.Drawing.Point(134, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(236, 39);
             this.label1.TabIndex = 35;
@@ -76,7 +59,7 @@ namespace UI
             // 
             this.LoginTypesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoginTypesList.FormattingEnabled = true;
-            this.LoginTypesList.Location = new System.Drawing.Point(117, 181);
+            this.LoginTypesList.Location = new System.Drawing.Point(117, 180);
             this.LoginTypesList.Name = "LoginTypesList";
             this.LoginTypesList.Size = new System.Drawing.Size(268, 21);
             this.LoginTypesList.TabIndex = 34;
@@ -90,7 +73,7 @@ namespace UI
             // 
             // UsernameTextbox
             // 
-            this.UsernameTextbox.Location = new System.Drawing.Point(117, 207);
+            this.UsernameTextbox.Location = new System.Drawing.Point(117, 206);
             this.UsernameTextbox.Name = "UsernameTextbox";
             this.UsernameTextbox.Size = new System.Drawing.Size(267, 20);
             this.UsernameTextbox.TabIndex = 32;
@@ -99,33 +82,54 @@ namespace UI
             // 
             this.ServersList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServersList.FormattingEnabled = true;
-            this.ServersList.Location = new System.Drawing.Point(117, 156);
+            this.ServersList.Location = new System.Drawing.Point(117, 154);
             this.ServersList.Name = "ServersList";
             this.ServersList.Size = new System.Drawing.Size(268, 21);
             this.ServersList.TabIndex = 31;
             // 
             // ConnectButton
             // 
-            this.ConnectButton.Location = new System.Drawing.Point(235, 262);
+            this.ConnectButton.Location = new System.Drawing.Point(235, 258);
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Size = new System.Drawing.Size(150, 29);
             this.ConnectButton.TabIndex = 30;
             this.ConnectButton.Text = "Подключиться";
             this.ConnectButton.UseVisualStyleBackColor = true;
             // 
-            // panel
+            // ChildPanel
             // 
-            this.panel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel.Controls.Add(this.label1);
-            this.panel.Controls.Add(this.ConnectButton);
-            this.panel.Controls.Add(this.LoginTypesList);
-            this.panel.Controls.Add(this.ServersList);
-            this.panel.Controls.Add(this.PasswordTextbox);
-            this.panel.Controls.Add(this.UsernameTextbox);
-            this.panel.Location = new System.Drawing.Point(0, 0);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(524, 358);
-            this.panel.TabIndex = 36;
+            this.ChildPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ChildPanel.Controls.Add(this.panel1);
+            this.ChildPanel.Controls.Add(this.label1);
+            this.ChildPanel.Controls.Add(this.ConnectButton);
+            this.ChildPanel.Controls.Add(this.LoginTypesList);
+            this.ChildPanel.Controls.Add(this.ServersList);
+            this.ChildPanel.Controls.Add(this.PasswordTextbox);
+            this.ChildPanel.Controls.Add(this.UsernameTextbox);
+            this.ChildPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChildPanel.Location = new System.Drawing.Point(0, 0);
+            this.ChildPanel.Name = "ChildPanel";
+            this.ChildPanel.Size = new System.Drawing.Size(523, 379);
+            this.ChildPanel.TabIndex = 36;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.PaleGreen;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(0, 350);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(523, 29);
+            this.panel1.TabIndex = 36;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(523, 29);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Добро пожаловать!";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ConnectForm
             // 
@@ -133,33 +137,30 @@ namespace UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(523, 379);
-            this.Controls.Add(this.panel);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.ChildPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConnectForm";
             this.Text = "Бэкап баз данных";
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.panel.ResumeLayout(false);
-            this.panel.PerformLayout();
+            this.ChildPanel.ResumeLayout(false);
+            this.ChildPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.FolderBrowserDialog ChooseDirectoryToBackup;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private StatusStrip statusStrip1;
-        private ToolStripStatusLabel Status;
         private Label label1;
         private ComboBox LoginTypesList;
         private TextBox PasswordTextbox;
         private TextBox UsernameTextbox;
         private ComboBox ServersList;
         private Button ConnectButton;
-        private Panel panel;
+        private Panel ChildPanel;
+        private Panel panel1;
+        private Label label2;
     }
 }
 

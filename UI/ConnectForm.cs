@@ -13,8 +13,8 @@ namespace UI
     {
         private readonly ApplicationContext _context;
         public List<string> SqlServers { get; set; }
-        public string ServerName { get => ServersList.SelectedItem as string; }
         public List<Enum> LoginTypes { get; set; }
+        public string ServerName { get => ServersList.SelectedItem as string; }
         public LoginTypesEnumeration LoginType { get => (LoginTypesEnumeration)LoginTypesList.SelectedItem; }
         public string Username { get => UsernameTextbox.Text; }
         public string Password { get => PasswordTextbox.Text; }
@@ -60,6 +60,32 @@ namespace UI
         {
             _context.MainForm = this;
             Application.Run(_context);
+        }
+
+        public void Wait()
+        {
+            OpenChildPanel(new WaitForm("Подключаемся к SQL серверу..."));
+        }
+
+        public void StopWaiting()
+        {
+            if (activeForm != null)
+                activeForm.Close();
+        }
+
+        private Form activeForm = null;
+        private void OpenChildPanel(Form childForm)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            ChildPanel.Controls.Add(childForm);
+            ChildPanel.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
     }
 }
