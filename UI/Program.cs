@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using UI;
+using DomainModel.Services;
+using Presentation.Common;
+using Presentation.Presenters;
+using Presentation.Views;
+using System;
 using System.Windows.Forms;
 
 namespace UI
@@ -16,7 +18,12 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BaseForm());
+            var controller = new ApplicationController(new LightInjectAdapder())
+                .RegisterView<ILoginView, ConnectForm>()
+                .RegisterService<ILoginService, LoginService>()
+                .RegisterInstance(new ApplicationContext());
+
+            controller.Run<LoginPresenter>();
         }
     }
 }

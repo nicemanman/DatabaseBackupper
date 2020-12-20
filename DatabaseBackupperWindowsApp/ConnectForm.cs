@@ -113,7 +113,6 @@ namespace DatabaseBackupperWindowsApp
             }
             else 
             {
-                
                 Username.Text = "sa";
                 Username.Enabled = true;
                 Password.Enabled = true;

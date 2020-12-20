@@ -1,19 +1,24 @@
-﻿using Microsoft.SqlServer.Management.Smo;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Sql;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseBackupperWindowsLibrary.Managers
+namespace DomainModel.Services
 {
-    public class SqlServersManager
+    public enum LoginTypesEnumeration { Windows, SQL };
+    public class LoginService : ILoginService
     {
-        public List<string> GetAllOfThem() 
+        public List<Enum> GetLoginTypes()
         {
-            
+            return SelectList.Of<LoginTypesEnumeration>();
+        }
+
+        public List<string> GetSqlServers(bool localOnly)
+        {
             string ServerName = Environment.MachineName;
             List<string> list = new List<string>();
             RegistryView registryView = Environment.Is64BitOperatingSystem ? RegistryView.Registry64 : RegistryView.Registry32;
