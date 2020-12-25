@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace DomainModel.Models
 {
+    /// <summary>
+    /// Модель, отражающая, какие данные ввел пользователь в окне подключения
+    /// </summary>
     public class LoginModel
     {
-        public string Servername { get; }
-        public string Username   { get; }
-        public string Password   { get; }
-        public string LoginType  { get; }
+        public string Servername { get; set; }
+        public string Username   { get; set; }
+        public string Password   { get; set; }
+        public Enums.LoginTypesEnumeration LoginType  { get; set; }
     }
     
 }

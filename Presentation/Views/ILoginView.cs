@@ -1,4 +1,5 @@
-﻿using DomainModel.Services;
+﻿using DomainModel;
+using DomainModel.Services;
 using Presentation.Common;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,10 @@ namespace Presentation.Views
         List<string> SqlServers{ get; set; }
         string ServerName { get; }
         List<Enum> LoginTypes { get; set; }
-        LoginTypesEnumeration LoginType { get; }
+        Enums.LoginTypesEnumeration LoginType { get; }
         string Username { get; }
         string Password { get; }
         event Action Login;
-        
+        void ShowError(string text);
     }
 }

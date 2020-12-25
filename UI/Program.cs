@@ -21,6 +21,8 @@ namespace UI
             var controller = new ApplicationController(new LightInjectAdapder())
                 .RegisterView<ILoginView, ConnectForm>()
                 .RegisterService<ILoginService, LoginService>()
+                .RegisterView<IBackupView, BackupDatabaseForm>()
+                
                 .RegisterInstance(new ApplicationContext());
 
             controller.Run<LoginPresenter>();

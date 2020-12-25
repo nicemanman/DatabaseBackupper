@@ -1,4 +1,5 @@
-﻿using DomainModel.Services;
+﻿using DomainModel;
+using DomainModel.Services;
 using Presentation.Views;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace UI
         public List<string> SqlServers { get; set; }
         public List<Enum> LoginTypes { get; set; }
         public string ServerName { get => ServersList.SelectedItem as string; }
-        public LoginTypesEnumeration LoginType { get => (LoginTypesEnumeration)LoginTypesList.SelectedItem; }
+        public Enums.LoginTypesEnumeration LoginType { get => (Enums.LoginTypesEnumeration)LoginTypesList.SelectedItem; }
         public string Username { get => UsernameTextbox.Text; }
         public string Password { get => PasswordTextbox.Text; }
         public event Action Login;
@@ -32,7 +33,7 @@ namespace UI
 
         private void LoginTypesList_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (LoginType == LoginTypesEnumeration.Windows)
+            if (LoginType == Enums.LoginTypesEnumeration.Windows)
             {
                 UsernameTextbox.Enabled = false;
                 PasswordTextbox.Enabled = false;
@@ -86,6 +87,12 @@ namespace UI
             ChildPanel.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+
+        public void ShowError(string text)
+        {
+            StatusBar.Text = text;
+            StatusBar.BackColor = Color.Red;
         }
     }
 }

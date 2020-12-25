@@ -40,7 +40,7 @@ namespace UI
             this.ConnectButton = new System.Windows.Forms.Button();
             this.ChildPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.StatusBar = new System.Windows.Forms.Label();
             this.ChildPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -115,21 +115,21 @@ namespace UI
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.PaleGreen;
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.StatusBar);
             this.panel1.Location = new System.Drawing.Point(0, 350);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(523, 29);
             this.panel1.TabIndex = 36;
             // 
-            // label2
+            // StatusBar
             // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(523, 29);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Добро пожаловать!";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.StatusBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StatusBar.Location = new System.Drawing.Point(0, 0);
+            this.StatusBar.Name = "StatusBar";
+            this.StatusBar.Size = new System.Drawing.Size(523, 29);
+            this.StatusBar.TabIndex = 0;
+            this.StatusBar.Text = "Добро пожаловать!";
+            this.StatusBar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ConnectForm
             // 
@@ -160,7 +160,7 @@ namespace UI
         private Button ConnectButton;
         private Panel ChildPanel;
         private Panel panel1;
-        private Label label2;
+        private Label StatusBar;
     }
 }
 

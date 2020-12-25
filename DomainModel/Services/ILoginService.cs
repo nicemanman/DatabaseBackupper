@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainModel.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,10 @@ namespace DomainModel.Services
 {
     public interface ILoginService
     {
-        List<string> GetSqlServers(bool localOnly);
+        List<string> GetSqlServers();
         List<Enum> GetLoginTypes();
+
+        Task<BackupModel> ConnectToDatabase(LoginModel model);
         
     }
 }

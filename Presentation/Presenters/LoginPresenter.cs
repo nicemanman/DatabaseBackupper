@@ -1,4 +1,6 @@
-﻿using DomainModel.Services;
+﻿using DomainModel;
+using DomainModel.Models;
+using DomainModel.Services;
 using Presentation.Common;
 using Presentation.Views;
 using System;
@@ -16,17 +18,26 @@ namespace Presentation.Presenters
         {
             _service = service;
             var loginTypes = service.GetLoginTypes();
-            var sqlServers = service.GetSqlServers(true);
+            var sqlServers = service.GetSqlServers();
             View.LoginTypes = loginTypes;
             View.SqlServers = sqlServers;
             View.Login += async () => await Login(View.ServerName, View.LoginType, View.Username, View.Password);
         }
 
-        public async Task Login(string serverName, LoginTypesEnumeration loginType, string userName, string password) 
+        public async Task Login(string serverName, Enums.LoginTypesEnumeration loginType, string userName, string password) 
         {
             View.Wait();
-            await Task.Delay(10000);
+            await Task.Delay(500);
+            var loginModel = new LoginModel() {Servername = serverName, Username = userName, Password = password, LoginType = loginType};
+            var backupModel = await _service.ConnectToDatabase(loginModel);
             View.StopWaiting();
+            if (backupModel == null) 
+            {
+                View.ShowError("Ошибка подключения:(");
+                return;
+            }
+            Controller.Run<BackupPresenter, BackupModel>(backupModel);
+            View.Close();
         }
     }
 }
