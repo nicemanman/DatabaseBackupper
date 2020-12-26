@@ -19,8 +19,11 @@ namespace DomainModel.Services
         {
             var SystemDatabases = new List<string>() { "master", "msdb", "model", "resource", "tempdb" };
             var list = new List<String>();
-            
-            using (SqlConnection con = new SqlConnection($"Data Source={model.Servername}; User ID={model.Username}; Password={model.Password}; Integrated Security=True;"))
+            var IntegratedSecurity = "False";
+            if (model.LoginType == Enums.LoginTypesEnumeration.Windows)
+                IntegratedSecurity = "True";
+            var connectionString = $"Data Source={model.Servername}; User ID={model.Username}; Password={model.Password}; Integrated Security={IntegratedSecurity};";
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
                 try
                 {

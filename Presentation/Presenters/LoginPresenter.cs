@@ -26,18 +26,19 @@ namespace Presentation.Presenters
 
         public async Task Login(string serverName, Enums.LoginTypesEnumeration loginType, string userName, string password) 
         {
-            View.Wait();
-            await Task.Delay(500);
-            var loginModel = new LoginModel() {Servername = serverName, Username = userName, Password = password, LoginType = loginType};
-            var backupModel = await _service.ConnectToDatabase(loginModel);
-            View.StopWaiting();
-            if (backupModel == null) 
+            using (new LongOperation(View))
             {
-                View.ShowError("Ошибка подключения:(");
-                return;
+                await Task.Delay(500);
+                var loginModel = new LoginModel() { Servername = serverName, Username = userName, Password = password, LoginType = loginType };
+                var backupModel = await _service.ConnectToDatabase(loginModel);
+                if (backupModel == null)
+                {
+                    View.ShowError("Ошибка подключения:(");
+                    return;
+                }
+                Controller.Run<BackupPresenter, BackupModel>(backupModel);
+                View.Close();
             }
-            Controller.Run<BackupPresenter, BackupModel>(backupModel);
-            View.Close();
         }
     }
 }
