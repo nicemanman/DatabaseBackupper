@@ -59,8 +59,14 @@ namespace UI
 
         public new void Show() 
         {
+            if (_context.MainForm == null) 
+            {
+                _context.MainForm = this;
+                Application.Run(_context);
+                return;
+            }
             _context.MainForm = this;
-            Application.Run(_context);
+            base.Show();
         }
 
         public void Wait()

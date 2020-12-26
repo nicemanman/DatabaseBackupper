@@ -14,6 +14,12 @@ namespace UI
             context = _context;
             InitializeComponent();
             Load += BackupDatabaseForm_Load;
+            LogoutButton.Click += LogoutButton_Click;
+        }
+
+        private void LogoutButton_Click(object sender, System.EventArgs e)
+        {
+            Logout();
         }
 
         private void BackupDatabaseForm_Load(object sender, System.EventArgs e)
@@ -39,6 +45,9 @@ namespace UI
             set => allDatabases = value;
         }
         private List<string> databasesToBackup;
+
+        public event System.Action Logout;
+
         public List<string> DatabasesToBackup
         {
             get

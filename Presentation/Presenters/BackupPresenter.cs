@@ -21,6 +21,13 @@ namespace Presentation.Presenters
             model = argument;
             View.AllDatabases = model.AllDatabases;
             View.Show();
+            View.Logout += View_Logout;
+        }
+
+        private void View_Logout()
+        {
+            Controller.Run<LoginPresenter>();
+            View.Close();
         }
     }
 }

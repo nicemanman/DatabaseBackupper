@@ -12,5 +12,6 @@ namespace Presentation.Views
         string PathToBackup { get; set; }
         List<string> AllDatabases { get; set; }
         List<string> DatabasesToBackup { get; set; }
+        event Action Logout;
     }
 }

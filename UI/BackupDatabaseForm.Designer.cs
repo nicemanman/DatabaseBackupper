@@ -37,7 +37,7 @@
             this.AllTasks = new System.Windows.Forms.Button();
             this.Schedule = new System.Windows.Forms.Button();
             this.SelectAll = new System.Windows.Forms.CheckBox();
-            this.Disconnect = new System.Windows.Forms.Button();
+            this.LogoutButton = new System.Windows.Forms.Button();
             this.Path = new System.Windows.Forms.TextBox();
             this.BackupNow = new System.Windows.Forms.Button();
             this.Progress = new System.Windows.Forms.ListView();
@@ -60,6 +60,12 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // AllSchedulesMenuButton
+            // 
+            AllSchedulesMenuButton.Name = "AllSchedulesMenuButton";
+            AllSchedulesMenuButton.Size = new System.Drawing.Size(221, 22);
+            AllSchedulesMenuButton.Text = "Все расписания";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -78,7 +84,6 @@
             this.ChoosePath.TabIndex = 19;
             this.ChoosePath.Text = "Путь";
             this.ChoosePath.UseVisualStyleBackColor = true;
-            
             // 
             // AllTasks
             // 
@@ -88,7 +93,6 @@
             this.AllTasks.TabIndex = 23;
             this.AllTasks.Text = "Все задачи";
             this.AllTasks.UseVisualStyleBackColor = true;
-            
             // 
             // Schedule
             // 
@@ -98,7 +102,6 @@
             this.Schedule.TabIndex = 22;
             this.Schedule.Text = "Создать задачу";
             this.Schedule.UseVisualStyleBackColor = true;
-            
             // 
             // SelectAll
             // 
@@ -109,17 +112,15 @@
             this.SelectAll.TabIndex = 24;
             this.SelectAll.Text = "Выбрать все";
             this.SelectAll.UseVisualStyleBackColor = true;
-            
             // 
-            // Disconnect
+            // LogoutButton
             // 
-            this.Disconnect.Location = new System.Drawing.Point(19, 343);
-            this.Disconnect.Name = "Disconnect";
-            this.Disconnect.Size = new System.Drawing.Size(229, 23);
-            this.Disconnect.TabIndex = 17;
-            this.Disconnect.Text = "Отключиться";
-            this.Disconnect.UseVisualStyleBackColor = true;
-            
+            this.LogoutButton.Location = new System.Drawing.Point(19, 343);
+            this.LogoutButton.Name = "LogoutButton";
+            this.LogoutButton.Size = new System.Drawing.Size(229, 23);
+            this.LogoutButton.TabIndex = 17;
+            this.LogoutButton.Text = "Отключиться";
+            this.LogoutButton.UseVisualStyleBackColor = true;
             // 
             // Path
             // 
@@ -137,7 +138,6 @@
             this.BackupNow.TabIndex = 16;
             this.BackupNow.Text = "Бэкап";
             this.BackupNow.UseVisualStyleBackColor = true;
-            
             // 
             // Progress
             // 
@@ -167,7 +167,7 @@
             this.panel.Controls.Add(this.ChoosePath);
             this.panel.Controls.Add(this.Path);
             this.panel.Controls.Add(this.AllTasks);
-            this.panel.Controls.Add(this.Disconnect);
+            this.panel.Controls.Add(this.LogoutButton);
             this.panel.Controls.Add(this.Schedule);
             this.panel.Controls.Add(this.SelectAll);
             this.panel.Controls.Add(this.menuStrip1);
@@ -202,16 +202,14 @@
             // BackupMenuButton
             // 
             this.BackupMenuButton.Name = "BackupMenuButton";
-            this.BackupMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.BackupMenuButton.Size = new System.Drawing.Size(156, 22);
             this.BackupMenuButton.Text = "Бэкап";
-            
             // 
             // ScheduleTaskMenuButton
             // 
             this.ScheduleTaskMenuButton.Name = "ScheduleTaskMenuButton";
-            this.ScheduleTaskMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.ScheduleTaskMenuButton.Size = new System.Drawing.Size(156, 22);
             this.ScheduleTaskMenuButton.Text = "Создать задачу";
-            
             // 
             // задачиToolStripMenuItem
             // 
@@ -227,14 +225,12 @@
             this.AllTasksMenuButton.Name = "AllTasksMenuButton";
             this.AllTasksMenuButton.Size = new System.Drawing.Size(195, 22);
             this.AllTasksMenuButton.Text = "Все задачи";
-            
             // 
             // CreateNewTask
             // 
             this.CreateNewTask.Name = "CreateNewTask";
             this.CreateNewTask.Size = new System.Drawing.Size(195, 22);
             this.CreateNewTask.Text = "Создать новую задачу";
-            
             // 
             // расписанияToolStripMenuItem
             // 
@@ -244,12 +240,6 @@
             this.расписанияToolStripMenuItem.Name = "расписанияToolStripMenuItem";
             this.расписанияToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
             this.расписанияToolStripMenuItem.Text = "Расписания";
-            // 
-            // AllSchedulesMenuButton
-            // 
-            AllSchedulesMenuButton.Name = "AllSchedulesMenuButton";
-            AllSchedulesMenuButton.Size = new System.Drawing.Size(221, 22);
-            AllSchedulesMenuButton.Text = "Все расписания";
             // 
             // CreateNewScheduleMenuButton
             // 
@@ -269,13 +259,13 @@
             // AboutProgramm
             // 
             this.AboutProgramm.Name = "AboutProgramm";
-            this.AboutProgramm.Size = new System.Drawing.Size(180, 22);
+            this.AboutProgramm.Size = new System.Drawing.Size(149, 22);
             this.AboutProgramm.Text = "О программе";
             // 
             // AboutAuthor
             // 
             this.AboutAuthor.Name = "AboutAuthor";
-            this.AboutAuthor.Size = new System.Drawing.Size(180, 22);
+            this.AboutAuthor.Size = new System.Drawing.Size(149, 22);
             this.AboutAuthor.Text = "Об авторе";
             // 
             // BackupDatabaseForm
@@ -306,7 +296,7 @@
         private System.Windows.Forms.Button AllTasks;
         private System.Windows.Forms.Button Schedule;
         private System.Windows.Forms.CheckBox SelectAll;
-        private System.Windows.Forms.Button Disconnect;
+        private System.Windows.Forms.Button LogoutButton;
         private System.Windows.Forms.TextBox Path;
         private System.Windows.Forms.Button BackupNow;
         private System.Windows.Forms.ListView Progress;
