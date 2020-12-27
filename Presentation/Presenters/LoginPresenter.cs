@@ -28,17 +28,17 @@ namespace Presentation.Presenters
         {
             using (new LongOperation(View))
             {
-                await Task.Delay(500);
+                
                 var loginModel = new LoginModel() { Servername = serverName, Username = userName, Password = password, LoginType = loginType };
-                var backupModel = await _service.ConnectToDatabase(loginModel);
+                var backupModel = await _service.ConnectToSqlServer(loginModel);
                 if (backupModel == null)
                 {
                     View.ShowError("Ошибка подключения:(");
                     return;
                 }
                 Controller.Run<BackupPresenter, BackupModel>(backupModel);
-                View.Close();
             }
+                View.Close();
         }
     }
 }

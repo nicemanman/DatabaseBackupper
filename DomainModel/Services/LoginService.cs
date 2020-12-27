@@ -1,4 +1,5 @@
-﻿using DomainModel.Models;
+﻿using DomainModel.Components.DatabaseRepository;
+using DomainModel.Models;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.Win32;
 using System;
@@ -15,7 +16,14 @@ namespace DomainModel.Services
     
     public class LoginService : ILoginService
     {
-        public async Task<BackupModel> ConnectToDatabase(LoginModel model)
+        private IDatabaseController databaseController;
+
+        public LoginService(IDatabaseController databaseController)
+        {
+            this.databaseController = databaseController;
+        }
+
+        public async Task<BackupModel> ConnectToSqlServer(LoginModel model)
         {
             var SystemDatabases = new List<string>() { "master", "msdb", "model", "resource", "tempdb" };
             var list = new List<String>();
@@ -28,6 +36,8 @@ namespace DomainModel.Services
                 try
                 {
                     await con.OpenAsync();
+                    SetSqlServerConnection(connectionString);
+                    await Task.Run(() => databaseController.Initialize());
                 }
                 catch (Exception ex) 
                 {
@@ -54,6 +64,10 @@ namespace DomainModel.Services
             }
         }
 
+        private void SetSqlServerConnection(string connectionString) 
+        {
+            Context.SetDBConnectionString(connectionString);
+        }
         public List<Enum> GetLoginTypes()
         {
             return SelectList.Of<Enums.LoginTypesEnumeration>();
@@ -78,5 +92,7 @@ namespace DomainModel.Services
             }
             return list;
         }
+
+        
     }
 }

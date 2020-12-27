@@ -7,13 +7,9 @@ using System.Threading.Tasks;
 
 namespace DomainModel.Services
 {
-    public interface ILoginService
+    public interface IBackupService
     {
-        List<string> GetSqlServers();
-        List<Enum> GetLoginTypes();
-
-        Task<BackupModel> ConnectToSqlServer(LoginModel model);
-        
-
+        bool BackupDatabases(BackupModel backupModel);
+        void DisconnectFromCurrentSqlServer();
     }
 }

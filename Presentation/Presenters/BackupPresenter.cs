@@ -1,4 +1,5 @@
 ﻿using DomainModel.Models;
+using DomainModel.Services;
 using Presentation.Common;
 using Presentation.Views;
 using System;
@@ -12,8 +13,10 @@ namespace Presentation.Presenters
     public class BackupPresenter : BasePresenter<IBackupView, BackupModel>
     {
         private BackupModel model;
-        public BackupPresenter(IApplicationController controller, IBackupView view) : base(controller, view)
+        private readonly IBackupService backupService;
+        public BackupPresenter(IApplicationController controller, IBackupView view, IBackupService backupService) : base(controller, view)
         {
+            this.backupService = backupService;
         }
 
         public override void Run(BackupModel argument)
@@ -26,6 +29,7 @@ namespace Presentation.Presenters
 
         private void View_Logout()
         {
+            backupService.BackupDatabases(null);
             Controller.Run<LoginPresenter>();
             View.Close();
         }

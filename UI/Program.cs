@@ -5,6 +5,7 @@ using Presentation.Presenters;
 using Presentation.Views;
 using System;
 using System.Windows.Forms;
+using DomainModel.Components.DatabaseRepository;
 
 namespace UI
 {
@@ -22,9 +23,11 @@ namespace UI
                 .RegisterView<ILoginView, ConnectForm>()
                 .RegisterService<ILoginService, LoginService>()
                 .RegisterView<IBackupView, BackupDatabaseForm>()
+                .RegisterService<IBackupService, BackupService>()
+                .RegisterInstance(new ApplicationContext())
+                .RegisterInstance<IDatabaseController>(new DatabaseController("name=dbfile"));
                 
-                .RegisterInstance(new ApplicationContext());
-
+                
             controller.Run<LoginPresenter>();
         }
     }
