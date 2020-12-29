@@ -13,5 +13,9 @@ namespace Presentation.Views
         List<string> AllDatabases { get; set; }
         List<string> DatabasesToBackup { get; set; }
         event Action Logout;
+        event Action Backup;
+        event Action CreateTaskNew;
+        event Action CreateTaskByTemplate;
+        event Action OpenAllTasks;
     }
 }
