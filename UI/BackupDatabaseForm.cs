@@ -47,6 +47,10 @@ namespace UI
         private List<string> databasesToBackup;
 
         public event System.Action Logout;
+        public event System.Action Backup;
+        public event System.Action CreateTaskNew;
+        public event System.Action CreateTaskByTemplate;
+        public event System.Action OpenAllTasks;
 
         public List<string> DatabasesToBackup
         {
