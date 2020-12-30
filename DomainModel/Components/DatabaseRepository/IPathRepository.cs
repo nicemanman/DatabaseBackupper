@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace DomainModel.Components.DatabaseRepository
 {
-    /// <summary>
-    /// Определяет методы, специфичные для работы с расписаниями
-    /// </summary>
-    public interface IScheduleRepository : IGenericRepository<Schedule> { 
+    public interface IPathRepository : IGenericRepository<BackupPath>
+    {
     }
 }

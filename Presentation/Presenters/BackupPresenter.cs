@@ -23,6 +23,7 @@ namespace Presentation.Presenters
         {
             model = argument;
             View.AllDatabases = model.AllDatabases;
+            View.PathsToBackup = backupService.GetDatabaseBackupPaths();
             View.Show();
             View.Logout += View_Logout;
             View.Backup += View_Backup;
@@ -59,19 +60,30 @@ namespace Presentation.Presenters
             throw new NotImplementedException();
         }
 
-        private void View_Backup()
+        private async void View_Backup()
         {
+            string messages = "";
+            if (string.IsNullOrWhiteSpace(View.PathToBackup)) messages += "Не заполнен путь для бэкапа!\n";
+            if (View.DatabasesToBackup.Count == 0) messages+="Должна быть выбрана хотя бы одна база данных!\n";
+            if (!string.IsNullOrWhiteSpace(messages)) 
+            {
+                View.ShowError(messages);
+                return;
+            }
             var backupModel = new BackupModel()
             {
                 PathToBackup = View.PathToBackup,
                 AllDatabases = View.AllDatabases,
                 DatabasesToBackup = View.DatabasesToBackup
             };
+            var progress = new Progress<string>();
+            View.StartBackupProcess(progress);
+            await backupService.BackupDatabases(backupModel, progress);
+            View.EndBackupProcess();
         }
 
         private void View_Logout()
         {
-            backupService.BackupDatabases(null);
             Controller.Run<LoginPresenter>();
             View.Close();
         }

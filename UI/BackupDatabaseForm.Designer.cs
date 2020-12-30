@@ -30,20 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackupDatabaseForm));
             this.OpenSchedulesMenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.label3 = new System.Windows.Forms.Label();
             this.ChoosePathButton = new System.Windows.Forms.Button();
             this.OpenTasksButton = new System.Windows.Forms.Button();
             this.CreateTaskByTemplateButton = new System.Windows.Forms.Button();
-            this.SelectAll = new System.Windows.Forms.CheckBox();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.PathTextbox = new System.Windows.Forms.TextBox();
             this.BackupButton = new System.Windows.Forms.Button();
-            this.ProgressListView = new System.Windows.Forms.ListView();
             this.DatabasesList = new System.Windows.Forms.CheckedListBox();
             this.panel = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ProgressListBox = new System.Windows.Forms.ListBox();
+            this.SelectAllCheckbox = new System.Windows.Forms.CheckBox();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.базыДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BackupMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateTaskByTemplateMenuButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,8 +52,11 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramm = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutAuthor = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolButtonsPanel = new System.Windows.Forms.Panel();
+            this.PathsToBackupCombobox = new System.Windows.Forms.ComboBox();
             this.panel.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.MenuStrip.SuspendLayout();
+            this.ToolButtonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenSchedulesMenuButton
@@ -77,16 +77,16 @@
             // 
             // ChoosePathButton
             // 
-            this.ChoosePathButton.Location = new System.Drawing.Point(421, 47);
+            this.ChoosePathButton.Location = new System.Drawing.Point(465, 46);
             this.ChoosePathButton.Name = "ChoosePathButton";
-            this.ChoosePathButton.Size = new System.Drawing.Size(70, 20);
+            this.ChoosePathButton.Size = new System.Drawing.Size(26, 21);
             this.ChoosePathButton.TabIndex = 19;
-            this.ChoosePathButton.Text = "Путь";
+            this.ChoosePathButton.Text = "...";
             this.ChoosePathButton.UseVisualStyleBackColor = true;
             // 
             // OpenTasksButton
             // 
-            this.OpenTasksButton.Location = new System.Drawing.Point(255, 344);
+            this.OpenTasksButton.Location = new System.Drawing.Point(256, 33);
             this.OpenTasksButton.Name = "OpenTasksButton";
             this.OpenTasksButton.Size = new System.Drawing.Size(235, 23);
             this.OpenTasksButton.TabIndex = 23;
@@ -95,58 +95,30 @@
             // 
             // CreateTaskByTemplateButton
             // 
-            this.CreateTaskByTemplateButton.Location = new System.Drawing.Point(255, 315);
+            this.CreateTaskByTemplateButton.Location = new System.Drawing.Point(255, 4);
             this.CreateTaskByTemplateButton.Name = "CreateTaskByTemplateButton";
             this.CreateTaskByTemplateButton.Size = new System.Drawing.Size(235, 23);
             this.CreateTaskByTemplateButton.TabIndex = 22;
             this.CreateTaskByTemplateButton.Text = "Создать задачу";
             this.CreateTaskByTemplateButton.UseVisualStyleBackColor = true;
             // 
-            // SelectAll
-            // 
-            this.SelectAll.AutoSize = true;
-            this.SelectAll.Location = new System.Drawing.Point(20, 76);
-            this.SelectAll.Name = "SelectAll";
-            this.SelectAll.Size = new System.Drawing.Size(91, 17);
-            this.SelectAll.TabIndex = 24;
-            this.SelectAll.Text = "Выбрать все";
-            this.SelectAll.UseVisualStyleBackColor = true;
-            // 
             // LogoutButton
             // 
-            this.LogoutButton.Location = new System.Drawing.Point(19, 343);
+            this.LogoutButton.Location = new System.Drawing.Point(20, 33);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(229, 23);
             this.LogoutButton.TabIndex = 17;
             this.LogoutButton.Text = "Отключиться";
             this.LogoutButton.UseVisualStyleBackColor = true;
             // 
-            // PathTextbox
-            // 
-            this.PathTextbox.Location = new System.Drawing.Point(20, 46);
-            this.PathTextbox.Name = "PathTextbox";
-            this.PathTextbox.ReadOnly = true;
-            this.PathTextbox.Size = new System.Drawing.Size(395, 20);
-            this.PathTextbox.TabIndex = 18;
-            // 
             // BackupButton
             // 
-            this.BackupButton.Location = new System.Drawing.Point(18, 315);
+            this.BackupButton.Location = new System.Drawing.Point(19, 4);
             this.BackupButton.Name = "BackupButton";
             this.BackupButton.Size = new System.Drawing.Size(230, 23);
             this.BackupButton.TabIndex = 16;
             this.BackupButton.Text = "Бэкап";
             this.BackupButton.UseVisualStyleBackColor = true;
-            // 
-            // ProgressListView
-            // 
-            this.ProgressListView.HideSelection = false;
-            this.ProgressListView.Location = new System.Drawing.Point(255, 106);
-            this.ProgressListView.Name = "ProgressListView";
-            this.ProgressListView.Size = new System.Drawing.Size(236, 199);
-            this.ProgressListView.TabIndex = 21;
-            this.ProgressListView.UseCompatibleStateImageBehavior = false;
-            this.ProgressListView.View = System.Windows.Forms.View.List;
             // 
             // DatabasesList
             // 
@@ -159,35 +131,50 @@
             // panel
             // 
             this.panel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel.Controls.Add(this.ProgressListView);
+            this.panel.Controls.Add(this.PathsToBackupCombobox);
+            this.panel.Controls.Add(this.ProgressListBox);
             this.panel.Controls.Add(this.DatabasesList);
             this.panel.Controls.Add(this.label3);
-            this.panel.Controls.Add(this.BackupButton);
             this.panel.Controls.Add(this.ChoosePathButton);
-            this.panel.Controls.Add(this.PathTextbox);
-            this.panel.Controls.Add(this.OpenTasksButton);
-            this.panel.Controls.Add(this.LogoutButton);
-            this.panel.Controls.Add(this.CreateTaskByTemplateButton);
-            this.panel.Controls.Add(this.SelectAll);
-            this.panel.Controls.Add(this.menuStrip1);
+            this.panel.Controls.Add(this.SelectAllCheckbox);
+            this.panel.Controls.Add(this.MenuStrip);
+            this.panel.Controls.Add(this.ToolButtonsPanel);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(523, 379);
             this.panel.TabIndex = 27;
             // 
-            // menuStrip1
+            // ProgressListBox
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ProgressListBox.FormattingEnabled = true;
+            this.ProgressListBox.Location = new System.Drawing.Point(257, 106);
+            this.ProgressListBox.Name = "ProgressListBox";
+            this.ProgressListBox.Size = new System.Drawing.Size(234, 199);
+            this.ProgressListBox.TabIndex = 28;
+            // 
+            // SelectAllCheckbox
+            // 
+            this.SelectAllCheckbox.AutoSize = true;
+            this.SelectAllCheckbox.Location = new System.Drawing.Point(20, 84);
+            this.SelectAllCheckbox.Name = "SelectAllCheckbox";
+            this.SelectAllCheckbox.Size = new System.Drawing.Size(91, 17);
+            this.SelectAllCheckbox.TabIndex = 24;
+            this.SelectAllCheckbox.Text = "Выбрать все";
+            this.SelectAllCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.базыДанныхToolStripMenuItem,
             this.задачиToolStripMenuItem,
             this.расписанияToolStripMenuItem,
             this.справкаToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(523, 24);
-            this.menuStrip1.TabIndex = 26;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(523, 24);
+            this.MenuStrip.TabIndex = 26;
+            this.MenuStrip.Text = "menuStrip1";
             // 
             // базыДанныхToolStripMenuItem
             // 
@@ -201,13 +188,13 @@
             // BackupMenuButton
             // 
             this.BackupMenuButton.Name = "BackupMenuButton";
-            this.BackupMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.BackupMenuButton.Size = new System.Drawing.Size(156, 22);
             this.BackupMenuButton.Text = "Бэкап";
             // 
             // CreateTaskByTemplateMenuButton
             // 
             this.CreateTaskByTemplateMenuButton.Name = "CreateTaskByTemplateMenuButton";
-            this.CreateTaskByTemplateMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.CreateTaskByTemplateMenuButton.Size = new System.Drawing.Size(156, 22);
             this.CreateTaskByTemplateMenuButton.Text = "Создать задачу";
             // 
             // задачиToolStripMenuItem
@@ -258,14 +245,34 @@
             // AboutProgramm
             // 
             this.AboutProgramm.Name = "AboutProgramm";
-            this.AboutProgramm.Size = new System.Drawing.Size(180, 22);
+            this.AboutProgramm.Size = new System.Drawing.Size(149, 22);
             this.AboutProgramm.Text = "О программе";
             // 
             // AboutAuthor
             // 
             this.AboutAuthor.Name = "AboutAuthor";
-            this.AboutAuthor.Size = new System.Drawing.Size(180, 22);
+            this.AboutAuthor.Size = new System.Drawing.Size(149, 22);
             this.AboutAuthor.Text = "Об авторе";
+            // 
+            // ToolButtonsPanel
+            // 
+            this.ToolButtonsPanel.Controls.Add(this.LogoutButton);
+            this.ToolButtonsPanel.Controls.Add(this.CreateTaskByTemplateButton);
+            this.ToolButtonsPanel.Controls.Add(this.OpenTasksButton);
+            this.ToolButtonsPanel.Controls.Add(this.BackupButton);
+            this.ToolButtonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ToolButtonsPanel.Location = new System.Drawing.Point(0, 311);
+            this.ToolButtonsPanel.Name = "ToolButtonsPanel";
+            this.ToolButtonsPanel.Size = new System.Drawing.Size(523, 68);
+            this.ToolButtonsPanel.TabIndex = 27;
+            // 
+            // PathsToBackupCombobox
+            // 
+            this.PathsToBackupCombobox.FormattingEnabled = true;
+            this.PathsToBackupCombobox.Location = new System.Drawing.Point(20, 45);
+            this.PathsToBackupCombobox.Name = "PathsToBackupCombobox";
+            this.PathsToBackupCombobox.Size = new System.Drawing.Size(439, 21);
+            this.PathsToBackupCombobox.TabIndex = 29;
             // 
             // BackupDatabaseForm
             // 
@@ -276,32 +283,28 @@
             this.Controls.Add(this.panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.MenuStrip;
             this.Name = "BackupDatabaseForm";
             this.Text = " ";
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
+            this.ToolButtonsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button ChoosePathButton;
         private System.Windows.Forms.Button OpenTasksButton;
         private System.Windows.Forms.Button CreateTaskByTemplateButton;
-        private System.Windows.Forms.CheckBox SelectAll;
         private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.TextBox PathTextbox;
         private System.Windows.Forms.Button BackupButton;
-        private System.Windows.Forms.ListView ProgressListView;
         private System.Windows.Forms.CheckedListBox DatabasesList;
         private System.Windows.Forms.Panel panel;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem базыДанныхToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BackupMenuButton;
         private System.Windows.Forms.ToolStripMenuItem CreateTaskByTemplateMenuButton;
@@ -314,5 +317,9 @@
         private System.Windows.Forms.ToolStripMenuItem AboutAuthor;
         private System.Windows.Forms.ToolStripMenuItem CreateNewScheduleMenuButton;
         private System.Windows.Forms.ToolStripMenuItem OpenSchedulesMenuButton;
+        private System.Windows.Forms.CheckBox SelectAllCheckbox;
+        private System.Windows.Forms.Panel ToolButtonsPanel;
+        private System.Windows.Forms.ListBox ProgressListBox;
+        private System.Windows.Forms.ComboBox PathsToBackupCombobox;
     }
 }

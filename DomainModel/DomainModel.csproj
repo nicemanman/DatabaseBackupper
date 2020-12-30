@@ -185,13 +185,16 @@
     <Compile Include="Components\DatabaseRepository\AppDbContext.cs" />
     <Compile Include="Components\DatabaseRepository\DatabaseController.cs" />
     <Compile Include="Components\DatabaseRepository\DatabaseModels\Job.cs" />
+    <Compile Include="Components\DatabaseRepository\DatabaseModels\Path.cs" />
     <Compile Include="Components\DatabaseRepository\DatabaseModels\Schedule.cs" />
     <Compile Include="Components\DatabaseRepository\GenericRepository.cs" />
     <Compile Include="Components\DatabaseRepository\IDatabaseController.cs" />
     <Compile Include="Components\DatabaseRepository\IGenericRepository.cs" />
     <Compile Include="Components\DatabaseRepository\IJobRepository.cs" />
+    <Compile Include="Components\DatabaseRepository\IPathRepository.cs" />
     <Compile Include="Components\DatabaseRepository\IScheduleRepository.cs" />
     <Compile Include="Components\DatabaseRepository\JobRepository.cs" />
+    <Compile Include="Components\DatabaseRepository\PathRepository.cs" />
     <Compile Include="Components\DatabaseRepository\ScheduleRepository.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Enums.cs" />

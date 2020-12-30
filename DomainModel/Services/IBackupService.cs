@@ -9,7 +9,8 @@ namespace DomainModel.Services
 {
     public interface IBackupService
     {
-        bool BackupDatabases(BackupModel backupModel);
+        Task<bool> BackupDatabases(BackupModel backupModel, IProgress<string> progress);
+        List<string> GetDatabaseBackupPaths();
         void DisconnectFromCurrentSqlServer();
     }
 }

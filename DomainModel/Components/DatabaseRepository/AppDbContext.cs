@@ -21,5 +21,6 @@ namespace DomainModel.Components.DatabaseRepository
 
         public DbSet<Job> Tasks { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<BackupPath> Paths { get; set; }
     }
 }
