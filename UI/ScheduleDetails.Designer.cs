@@ -62,11 +62,11 @@
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.MinutesIntervalanel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ScheduleName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.WeekIntervalPanel.SuspendLayout();
             this.DaysIntervalPanel.SuspendLayout();
@@ -409,6 +409,15 @@
             this.MinutesIntervalanel.Size = new System.Drawing.Size(398, 39);
             this.MinutesIntervalanel.TabIndex = 6;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(36, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(92, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Каждые N минут";
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -444,18 +453,9 @@
             this.ScheduleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ScheduleName.Location = new System.Drawing.Point(123, 13);
             this.ScheduleName.Name = "ScheduleName";
-            this.ScheduleName.Size = new System.Drawing.Size(278, 30);
+            this.ScheduleName.Size = new System.Drawing.Size(293, 30);
             this.ScheduleName.TabIndex = 0;
             this.ScheduleName.Text = "Расписание";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Каждые N минут";
             // 
             // ScheduleDetails
             // 

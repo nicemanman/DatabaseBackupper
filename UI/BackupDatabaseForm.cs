@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Presentation.Views;
 using System.Linq;
+using System;
 
 namespace UI
 {
@@ -14,12 +15,22 @@ namespace UI
             context = _context;
             InitializeComponent();
             Load += BackupDatabaseForm_Load;
-            LogoutButton.Click += LogoutButton_Click;
-        }
+            //нижняя панель с кнопками
+            LogoutButton.Click += (s,e) => Logout();
+            BackupButton.Click += (s,e) => Backup();
+            OpenTasksButton.Click += (s, e) => OpenAllTasks();
+            CreateTaskByTemplateButton.Click += (s, e) => CreateTaskByTemplate();
+            //меню
+            //бэкап
+            BackupMenuButton.Click += (s, e) => Backup();
+            CreateTaskByTemplateMenuButton.Click += (s,e) => CreateTaskByTemplate();
+            //задачи
+            OpenTasksMenuButton.Click += (s, e) => OpenAllTasks();
+            CreateNewTaskMenuButton.Click += (s, e) => CreateNewTask();
+            //расписания
+            OpenSchedulesMenuButton.Click += (s, e) => OpenAllSchedules();
+            CreateNewScheduleMenuButton.Click += (s, e) => CreateNewSchedule();
 
-        private void LogoutButton_Click(object sender, System.EventArgs e)
-        {
-            Logout();
         }
 
         private void BackupDatabaseForm_Load(object sender, System.EventArgs e)
@@ -29,8 +40,10 @@ namespace UI
                 DatabasesList.Items.Add(item);
             }
         }
+
         private string path;
-        public string PathToBackup { get => Path.Text; set => path = value; }
+        public string PathToBackup { get => PathTextbox.Text; set => path = value; }
+
         private List<string> allDatabases;
         public List<string> AllDatabases {
             get
@@ -44,14 +57,16 @@ namespace UI
             }
             set => allDatabases = value;
         }
+
+        public event Action Logout;
+        public event Action Backup;
+        public event Action CreateNewTask;
+        public event Action CreateTaskByTemplate;
+        public event Action OpenAllTasks;
+        public event Action CreateNewSchedule;
+        public event Action OpenAllSchedules;
+
         private List<string> databasesToBackup;
-
-        public event System.Action Logout;
-        public event System.Action Backup;
-        public event System.Action CreateTaskNew;
-        public event System.Action CreateTaskByTemplate;
-        public event System.Action OpenAllTasks;
-
         public List<string> DatabasesToBackup
         {
             get

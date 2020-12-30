@@ -28,43 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ToolStripMenuItem AllSchedulesMenuButton;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackupDatabaseForm));
+            this.OpenSchedulesMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.label3 = new System.Windows.Forms.Label();
-            this.ChoosePath = new System.Windows.Forms.Button();
-            this.AllTasks = new System.Windows.Forms.Button();
-            this.Schedule = new System.Windows.Forms.Button();
+            this.ChoosePathButton = new System.Windows.Forms.Button();
+            this.OpenTasksButton = new System.Windows.Forms.Button();
+            this.CreateTaskByTemplateButton = new System.Windows.Forms.Button();
             this.SelectAll = new System.Windows.Forms.CheckBox();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.Path = new System.Windows.Forms.TextBox();
-            this.BackupNow = new System.Windows.Forms.Button();
-            this.Progress = new System.Windows.Forms.ListView();
+            this.PathTextbox = new System.Windows.Forms.TextBox();
+            this.BackupButton = new System.Windows.Forms.Button();
+            this.ProgressListView = new System.Windows.Forms.ListView();
             this.DatabasesList = new System.Windows.Forms.CheckedListBox();
             this.panel = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.базыДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BackupMenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScheduleTaskMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateTaskByTemplateMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.задачиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AllTasksMenuButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.CreateNewTask = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenTasksMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateNewTaskMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.расписанияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateNewScheduleMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutProgramm = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutAuthor = new System.Windows.Forms.ToolStripMenuItem();
-            AllSchedulesMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.panel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // AllSchedulesMenuButton
+            // OpenSchedulesMenuButton
             // 
-            AllSchedulesMenuButton.Name = "AllSchedulesMenuButton";
-            AllSchedulesMenuButton.Size = new System.Drawing.Size(221, 22);
-            AllSchedulesMenuButton.Text = "Все расписания";
+            this.OpenSchedulesMenuButton.Name = "OpenSchedulesMenuButton";
+            this.OpenSchedulesMenuButton.Size = new System.Drawing.Size(221, 22);
+            this.OpenSchedulesMenuButton.Text = "Все расписания";
             // 
             // label3
             // 
@@ -76,32 +75,32 @@
             this.label3.TabIndex = 25;
             this.label3.Text = "Лог выполнения";
             // 
-            // ChoosePath
+            // ChoosePathButton
             // 
-            this.ChoosePath.Location = new System.Drawing.Point(421, 47);
-            this.ChoosePath.Name = "ChoosePath";
-            this.ChoosePath.Size = new System.Drawing.Size(70, 20);
-            this.ChoosePath.TabIndex = 19;
-            this.ChoosePath.Text = "Путь";
-            this.ChoosePath.UseVisualStyleBackColor = true;
+            this.ChoosePathButton.Location = new System.Drawing.Point(421, 47);
+            this.ChoosePathButton.Name = "ChoosePathButton";
+            this.ChoosePathButton.Size = new System.Drawing.Size(70, 20);
+            this.ChoosePathButton.TabIndex = 19;
+            this.ChoosePathButton.Text = "Путь";
+            this.ChoosePathButton.UseVisualStyleBackColor = true;
             // 
-            // AllTasks
+            // OpenTasksButton
             // 
-            this.AllTasks.Location = new System.Drawing.Point(255, 344);
-            this.AllTasks.Name = "AllTasks";
-            this.AllTasks.Size = new System.Drawing.Size(235, 23);
-            this.AllTasks.TabIndex = 23;
-            this.AllTasks.Text = "Все задачи";
-            this.AllTasks.UseVisualStyleBackColor = true;
+            this.OpenTasksButton.Location = new System.Drawing.Point(255, 344);
+            this.OpenTasksButton.Name = "OpenTasksButton";
+            this.OpenTasksButton.Size = new System.Drawing.Size(235, 23);
+            this.OpenTasksButton.TabIndex = 23;
+            this.OpenTasksButton.Text = "Все задачи";
+            this.OpenTasksButton.UseVisualStyleBackColor = true;
             // 
-            // Schedule
+            // CreateTaskByTemplateButton
             // 
-            this.Schedule.Location = new System.Drawing.Point(255, 315);
-            this.Schedule.Name = "Schedule";
-            this.Schedule.Size = new System.Drawing.Size(235, 23);
-            this.Schedule.TabIndex = 22;
-            this.Schedule.Text = "Создать задачу";
-            this.Schedule.UseVisualStyleBackColor = true;
+            this.CreateTaskByTemplateButton.Location = new System.Drawing.Point(255, 315);
+            this.CreateTaskByTemplateButton.Name = "CreateTaskByTemplateButton";
+            this.CreateTaskByTemplateButton.Size = new System.Drawing.Size(235, 23);
+            this.CreateTaskByTemplateButton.TabIndex = 22;
+            this.CreateTaskByTemplateButton.Text = "Создать задачу";
+            this.CreateTaskByTemplateButton.UseVisualStyleBackColor = true;
             // 
             // SelectAll
             // 
@@ -122,32 +121,32 @@
             this.LogoutButton.Text = "Отключиться";
             this.LogoutButton.UseVisualStyleBackColor = true;
             // 
-            // Path
+            // PathTextbox
             // 
-            this.Path.Location = new System.Drawing.Point(20, 46);
-            this.Path.Name = "Path";
-            this.Path.ReadOnly = true;
-            this.Path.Size = new System.Drawing.Size(395, 20);
-            this.Path.TabIndex = 18;
+            this.PathTextbox.Location = new System.Drawing.Point(20, 46);
+            this.PathTextbox.Name = "PathTextbox";
+            this.PathTextbox.ReadOnly = true;
+            this.PathTextbox.Size = new System.Drawing.Size(395, 20);
+            this.PathTextbox.TabIndex = 18;
             // 
-            // BackupNow
+            // BackupButton
             // 
-            this.BackupNow.Location = new System.Drawing.Point(18, 315);
-            this.BackupNow.Name = "BackupNow";
-            this.BackupNow.Size = new System.Drawing.Size(230, 23);
-            this.BackupNow.TabIndex = 16;
-            this.BackupNow.Text = "Бэкап";
-            this.BackupNow.UseVisualStyleBackColor = true;
+            this.BackupButton.Location = new System.Drawing.Point(18, 315);
+            this.BackupButton.Name = "BackupButton";
+            this.BackupButton.Size = new System.Drawing.Size(230, 23);
+            this.BackupButton.TabIndex = 16;
+            this.BackupButton.Text = "Бэкап";
+            this.BackupButton.UseVisualStyleBackColor = true;
             // 
-            // Progress
+            // ProgressListView
             // 
-            this.Progress.HideSelection = false;
-            this.Progress.Location = new System.Drawing.Point(255, 106);
-            this.Progress.Name = "Progress";
-            this.Progress.Size = new System.Drawing.Size(236, 199);
-            this.Progress.TabIndex = 21;
-            this.Progress.UseCompatibleStateImageBehavior = false;
-            this.Progress.View = System.Windows.Forms.View.List;
+            this.ProgressListView.HideSelection = false;
+            this.ProgressListView.Location = new System.Drawing.Point(255, 106);
+            this.ProgressListView.Name = "ProgressListView";
+            this.ProgressListView.Size = new System.Drawing.Size(236, 199);
+            this.ProgressListView.TabIndex = 21;
+            this.ProgressListView.UseCompatibleStateImageBehavior = false;
+            this.ProgressListView.View = System.Windows.Forms.View.List;
             // 
             // DatabasesList
             // 
@@ -160,15 +159,15 @@
             // panel
             // 
             this.panel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel.Controls.Add(this.Progress);
+            this.panel.Controls.Add(this.ProgressListView);
             this.panel.Controls.Add(this.DatabasesList);
             this.panel.Controls.Add(this.label3);
-            this.panel.Controls.Add(this.BackupNow);
-            this.panel.Controls.Add(this.ChoosePath);
-            this.panel.Controls.Add(this.Path);
-            this.panel.Controls.Add(this.AllTasks);
+            this.panel.Controls.Add(this.BackupButton);
+            this.panel.Controls.Add(this.ChoosePathButton);
+            this.panel.Controls.Add(this.PathTextbox);
+            this.panel.Controls.Add(this.OpenTasksButton);
             this.panel.Controls.Add(this.LogoutButton);
-            this.panel.Controls.Add(this.Schedule);
+            this.panel.Controls.Add(this.CreateTaskByTemplateButton);
             this.panel.Controls.Add(this.SelectAll);
             this.panel.Controls.Add(this.menuStrip1);
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -194,7 +193,7 @@
             // 
             this.базыДанныхToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BackupMenuButton,
-            this.ScheduleTaskMenuButton});
+            this.CreateTaskByTemplateMenuButton});
             this.базыДанныхToolStripMenuItem.Name = "базыДанныхToolStripMenuItem";
             this.базыДанныхToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.базыДанныхToolStripMenuItem.Text = "Базы данных";
@@ -202,40 +201,40 @@
             // BackupMenuButton
             // 
             this.BackupMenuButton.Name = "BackupMenuButton";
-            this.BackupMenuButton.Size = new System.Drawing.Size(156, 22);
+            this.BackupMenuButton.Size = new System.Drawing.Size(180, 22);
             this.BackupMenuButton.Text = "Бэкап";
             // 
-            // ScheduleTaskMenuButton
+            // CreateTaskByTemplateMenuButton
             // 
-            this.ScheduleTaskMenuButton.Name = "ScheduleTaskMenuButton";
-            this.ScheduleTaskMenuButton.Size = new System.Drawing.Size(156, 22);
-            this.ScheduleTaskMenuButton.Text = "Создать задачу";
+            this.CreateTaskByTemplateMenuButton.Name = "CreateTaskByTemplateMenuButton";
+            this.CreateTaskByTemplateMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.CreateTaskByTemplateMenuButton.Text = "Создать задачу";
             // 
             // задачиToolStripMenuItem
             // 
             this.задачиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AllTasksMenuButton,
-            this.CreateNewTask});
+            this.OpenTasksMenuButton,
+            this.CreateNewTaskMenuButton});
             this.задачиToolStripMenuItem.Name = "задачиToolStripMenuItem";
             this.задачиToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.задачиToolStripMenuItem.Text = "Задачи";
             // 
-            // AllTasksMenuButton
+            // OpenTasksMenuButton
             // 
-            this.AllTasksMenuButton.Name = "AllTasksMenuButton";
-            this.AllTasksMenuButton.Size = new System.Drawing.Size(195, 22);
-            this.AllTasksMenuButton.Text = "Все задачи";
+            this.OpenTasksMenuButton.Name = "OpenTasksMenuButton";
+            this.OpenTasksMenuButton.Size = new System.Drawing.Size(195, 22);
+            this.OpenTasksMenuButton.Text = "Все задачи";
             // 
-            // CreateNewTask
+            // CreateNewTaskMenuButton
             // 
-            this.CreateNewTask.Name = "CreateNewTask";
-            this.CreateNewTask.Size = new System.Drawing.Size(195, 22);
-            this.CreateNewTask.Text = "Создать новую задачу";
+            this.CreateNewTaskMenuButton.Name = "CreateNewTaskMenuButton";
+            this.CreateNewTaskMenuButton.Size = new System.Drawing.Size(195, 22);
+            this.CreateNewTaskMenuButton.Text = "Создать новую задачу";
             // 
             // расписанияToolStripMenuItem
             // 
             this.расписанияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            AllSchedulesMenuButton,
+            this.OpenSchedulesMenuButton,
             this.CreateNewScheduleMenuButton});
             this.расписанияToolStripMenuItem.Name = "расписанияToolStripMenuItem";
             this.расписанияToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
@@ -259,13 +258,13 @@
             // AboutProgramm
             // 
             this.AboutProgramm.Name = "AboutProgramm";
-            this.AboutProgramm.Size = new System.Drawing.Size(149, 22);
+            this.AboutProgramm.Size = new System.Drawing.Size(180, 22);
             this.AboutProgramm.Text = "О программе";
             // 
             // AboutAuthor
             // 
             this.AboutAuthor.Name = "AboutAuthor";
-            this.AboutAuthor.Size = new System.Drawing.Size(149, 22);
+            this.AboutAuthor.Size = new System.Drawing.Size(180, 22);
             this.AboutAuthor.Text = "Об авторе";
             // 
             // BackupDatabaseForm
@@ -292,27 +291,28 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button ChoosePath;
-        private System.Windows.Forms.Button AllTasks;
-        private System.Windows.Forms.Button Schedule;
+        private System.Windows.Forms.Button ChoosePathButton;
+        private System.Windows.Forms.Button OpenTasksButton;
+        private System.Windows.Forms.Button CreateTaskByTemplateButton;
         private System.Windows.Forms.CheckBox SelectAll;
         private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.TextBox Path;
-        private System.Windows.Forms.Button BackupNow;
-        private System.Windows.Forms.ListView Progress;
+        private System.Windows.Forms.TextBox PathTextbox;
+        private System.Windows.Forms.Button BackupButton;
+        private System.Windows.Forms.ListView ProgressListView;
         private System.Windows.Forms.CheckedListBox DatabasesList;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem базыДанныхToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BackupMenuButton;
-        private System.Windows.Forms.ToolStripMenuItem ScheduleTaskMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem CreateTaskByTemplateMenuButton;
         private System.Windows.Forms.ToolStripMenuItem задачиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AllTasksMenuButton;
-        private System.Windows.Forms.ToolStripMenuItem CreateNewTask;
+        private System.Windows.Forms.ToolStripMenuItem OpenTasksMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem CreateNewTaskMenuButton;
         private System.Windows.Forms.ToolStripMenuItem расписанияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutProgramm;
         private System.Windows.Forms.ToolStripMenuItem AboutAuthor;
         private System.Windows.Forms.ToolStripMenuItem CreateNewScheduleMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem OpenSchedulesMenuButton;
     }
 }

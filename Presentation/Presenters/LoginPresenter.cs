@@ -28,7 +28,6 @@ namespace Presentation.Presenters
         {
             using (new LongOperation(View))
             {
-                
                 var loginModel = new LoginModel() { Servername = serverName, Username = userName, Password = password, LoginType = loginType };
                 var backupModel = await _service.ConnectToSqlServer(loginModel);
                 if (backupModel == null)

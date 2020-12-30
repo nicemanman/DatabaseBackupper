@@ -14,8 +14,10 @@ namespace Presentation.Views
         List<string> DatabasesToBackup { get; set; }
         event Action Logout;
         event Action Backup;
-        event Action CreateTaskNew;
+        event Action CreateNewTask;
         event Action CreateTaskByTemplate;
         event Action OpenAllTasks;
+        event Action CreateNewSchedule;
+        event Action OpenAllSchedules;
     }
 }

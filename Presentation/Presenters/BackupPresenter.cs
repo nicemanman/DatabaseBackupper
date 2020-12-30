@@ -25,6 +25,48 @@ namespace Presentation.Presenters
             View.AllDatabases = model.AllDatabases;
             View.Show();
             View.Logout += View_Logout;
+            View.Backup += View_Backup;
+            View.CreateNewSchedule += View_CreateNewSchedule;
+            View.CreateNewTask += View_CreateNewTask;
+            View.CreateTaskByTemplate += View_CreateTaskByTemplate;
+            View.OpenAllSchedules += View_OpenAllSchedules;
+            View.OpenAllTasks += View_OpenAllTasks;
+            
+        }
+
+        private void View_OpenAllTasks()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void View_OpenAllSchedules()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void View_CreateTaskByTemplate()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void View_CreateNewTask()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void View_CreateNewSchedule()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void View_Backup()
+        {
+            var backupModel = new BackupModel()
+            {
+                PathToBackup = View.PathToBackup,
+                AllDatabases = View.AllDatabases,
+                DatabasesToBackup = View.DatabasesToBackup
+            };
         }
 
         private void View_Logout()
