@@ -4,6 +4,7 @@ using Presentation.Common;
 using Presentation.Views;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,11 @@ namespace Presentation.Presenters
         {
             model = argument;
             View.AllDatabases = model.AllDatabases;
-            View.PathsToBackup = backupService.GetDatabaseBackupPaths();
+            View.PathsToBackup = Task.Run(async () => await backupService.GetDatabaseBackupPaths()).Result;
             View.Show();
+            
             View.Logout += View_Logout;
-            View.Backup += View_Backup;
+            View.Backup += async () => await View_Backup();
             View.CreateNewSchedule += View_CreateNewSchedule;
             View.CreateNewTask += View_CreateNewTask;
             View.CreateTaskByTemplate += View_CreateTaskByTemplate;
@@ -37,48 +39,95 @@ namespace Presentation.Presenters
 
         private void View_OpenAllTasks()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                View.ShowError(ex.Message);
+            }
         }
 
         private void View_OpenAllSchedules()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                View.ShowError(ex.Message);
+            }
         }
 
         private void View_CreateTaskByTemplate()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex) 
+            {
+                View.ShowError(ex.Message);
+            }
+
         }
 
         private void View_CreateNewTask()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                View.ShowError(ex.Message);
+            }
         }
 
         private void View_CreateNewSchedule()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                View.ShowError(ex.Message);
+            }
         }
 
-        private async void View_Backup()
+        private async Task View_Backup()
         {
-            string messages = "";
-            if (string.IsNullOrWhiteSpace(View.PathToBackup)) messages += "Не заполнен путь для бэкапа!\n";
-            if (View.DatabasesToBackup.Count == 0) messages+="Должна быть выбрана хотя бы одна база данных!\n";
-            if (!string.IsNullOrWhiteSpace(messages)) 
+            try
             {
-                View.ShowError(messages);
-                return;
+                string messages = "";
+                bool pathIsNull;
+                if ((pathIsNull = string.IsNullOrWhiteSpace(View.PathToBackup))) messages += "Не заполнен путь для бэкапа!\n";
+                if (View.DatabasesToBackup.Count == 0) messages+="Должна быть выбрана хотя бы одна база данных!\n";
+                var backupModel = new BackupModel()
+                {
+                    PathToBackup = View.PathToBackup,
+                    AllDatabases = View.AllDatabases,
+                    DatabasesToBackup = View.DatabasesToBackup
+                };
+                if (!pathIsNull && !Directory.Exists(backupModel.PathToBackup)) messages += "Такого путь не найден в системе!";
+                if (!string.IsNullOrWhiteSpace(messages)) 
+                {
+                    View.ShowError(messages);
+                    return;
+                }
+            
+                var progress = new Progress<string>();
+                View.StartBackupProcess(progress);
+                var result = await backupService.BackupDatabases(backupModel, progress);
+                View.ShowSuccess(result);
             }
-            var backupModel = new BackupModel()
+            catch (Exception ex) 
             {
-                PathToBackup = View.PathToBackup,
-                AllDatabases = View.AllDatabases,
-                DatabasesToBackup = View.DatabasesToBackup
-            };
-            var progress = new Progress<string>();
-            View.StartBackupProcess(progress);
-            await backupService.BackupDatabases(backupModel, progress);
+                View.ShowError("Произошла ошибка при бэкапе: "+ex.Message);
+            }
             View.EndBackupProcess();
         }
 

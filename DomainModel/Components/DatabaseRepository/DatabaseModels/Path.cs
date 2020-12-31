@@ -12,5 +12,7 @@ namespace DomainModel.Components.DatabaseRepository.DatabaseModels
         public int Id { get; set; }
         [Required]
         public string PathString { get; set; }
+        [Required]
+        public DateTime dateTime { get; set; }
     }
 }

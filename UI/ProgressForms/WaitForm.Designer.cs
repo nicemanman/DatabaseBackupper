@@ -48,7 +48,7 @@
             // 
             // StatusLabel
             // 
-            this.StatusLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.StatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.StatusLabel.Location = new System.Drawing.Point(0, 255);
             this.StatusLabel.Name = "StatusLabel";
             this.StatusLabel.Size = new System.Drawing.Size(800, 157);

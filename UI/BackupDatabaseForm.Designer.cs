@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackupDatabaseForm));
             this.OpenSchedulesMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,7 +38,7 @@
             this.LogoutButton = new System.Windows.Forms.Button();
             this.BackupButton = new System.Windows.Forms.Button();
             this.DatabasesList = new System.Windows.Forms.CheckedListBox();
-            this.panel = new System.Windows.Forms.Panel();
+            this.ChildPanel = new System.Windows.Forms.Panel();
             this.ProgressListBox = new System.Windows.Forms.ListBox();
             this.SelectAllCheckbox = new System.Windows.Forms.CheckBox();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
@@ -54,7 +55,8 @@
             this.AboutAuthor = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolButtonsPanel = new System.Windows.Forms.Panel();
             this.PathsToBackupCombobox = new System.Windows.Forms.ComboBox();
-            this.panel.SuspendLayout();
+            this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.ChildPanel.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.ToolButtonsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -128,22 +130,22 @@
             this.DatabasesList.Size = new System.Drawing.Size(230, 199);
             this.DatabasesList.TabIndex = 20;
             // 
-            // panel
+            // ChildPanel
             // 
-            this.panel.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel.Controls.Add(this.PathsToBackupCombobox);
-            this.panel.Controls.Add(this.ProgressListBox);
-            this.panel.Controls.Add(this.DatabasesList);
-            this.panel.Controls.Add(this.label3);
-            this.panel.Controls.Add(this.ChoosePathButton);
-            this.panel.Controls.Add(this.SelectAllCheckbox);
-            this.panel.Controls.Add(this.MenuStrip);
-            this.panel.Controls.Add(this.ToolButtonsPanel);
-            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel.Location = new System.Drawing.Point(0, 0);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(523, 379);
-            this.panel.TabIndex = 27;
+            this.ChildPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ChildPanel.Controls.Add(this.PathsToBackupCombobox);
+            this.ChildPanel.Controls.Add(this.ProgressListBox);
+            this.ChildPanel.Controls.Add(this.DatabasesList);
+            this.ChildPanel.Controls.Add(this.label3);
+            this.ChildPanel.Controls.Add(this.ChoosePathButton);
+            this.ChildPanel.Controls.Add(this.SelectAllCheckbox);
+            this.ChildPanel.Controls.Add(this.MenuStrip);
+            this.ChildPanel.Controls.Add(this.ToolButtonsPanel);
+            this.ChildPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChildPanel.Location = new System.Drawing.Point(0, 0);
+            this.ChildPanel.Name = "ChildPanel";
+            this.ChildPanel.Size = new System.Drawing.Size(523, 382);
+            this.ChildPanel.TabIndex = 27;
             // 
             // ProgressListBox
             // 
@@ -172,6 +174,7 @@
             this.справкаToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.MenuStrip.Size = new System.Drawing.Size(523, 24);
             this.MenuStrip.TabIndex = 26;
             this.MenuStrip.Text = "menuStrip1";
@@ -188,13 +191,15 @@
             // BackupMenuButton
             // 
             this.BackupMenuButton.Name = "BackupMenuButton";
-            this.BackupMenuButton.Size = new System.Drawing.Size(156, 22);
+            this.BackupMenuButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
+            this.BackupMenuButton.Size = new System.Drawing.Size(197, 22);
             this.BackupMenuButton.Text = "Бэкап";
             // 
             // CreateTaskByTemplateMenuButton
             // 
             this.CreateTaskByTemplateMenuButton.Name = "CreateTaskByTemplateMenuButton";
-            this.CreateTaskByTemplateMenuButton.Size = new System.Drawing.Size(156, 22);
+            this.CreateTaskByTemplateMenuButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
+            this.CreateTaskByTemplateMenuButton.Size = new System.Drawing.Size(197, 22);
             this.CreateTaskByTemplateMenuButton.Text = "Создать задачу";
             // 
             // задачиToolStripMenuItem
@@ -260,7 +265,6 @@
             this.ToolButtonsPanel.Controls.Add(this.CreateTaskByTemplateButton);
             this.ToolButtonsPanel.Controls.Add(this.OpenTasksButton);
             this.ToolButtonsPanel.Controls.Add(this.BackupButton);
-            this.ToolButtonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ToolButtonsPanel.Location = new System.Drawing.Point(0, 311);
             this.ToolButtonsPanel.Name = "ToolButtonsPanel";
             this.ToolButtonsPanel.Size = new System.Drawing.Size(523, 68);
@@ -279,15 +283,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(523, 379);
-            this.Controls.Add(this.panel);
+            this.ClientSize = new System.Drawing.Size(523, 382);
+            this.Controls.Add(this.ChildPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "BackupDatabaseForm";
             this.Text = " ";
-            this.panel.ResumeLayout(false);
-            this.panel.PerformLayout();
+            this.ChildPanel.ResumeLayout(false);
+            this.ChildPanel.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             this.ToolButtonsPanel.ResumeLayout(false);
@@ -303,7 +307,7 @@
         private System.Windows.Forms.Button LogoutButton;
         private System.Windows.Forms.Button BackupButton;
         private System.Windows.Forms.CheckedListBox DatabasesList;
-        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Panel ChildPanel;
         private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem базыДанныхToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BackupMenuButton;
@@ -321,5 +325,6 @@
         private System.Windows.Forms.Panel ToolButtonsPanel;
         private System.Windows.Forms.ListBox ProgressListBox;
         private System.Windows.Forms.ComboBox PathsToBackupCombobox;
+        private System.Windows.Forms.ToolTip tooltip;
     }
 }

@@ -16,8 +16,10 @@ namespace Presentation.Views
         void StartBackupProcess(Progress<string> progress);
         void EndBackupProcess();
         void ShowError(string message);
+        void ShowSuccess(string message);
+
         event Action Logout;
-        event Action Backup;
+        event Func<Task> Backup;
         event Action CreateNewTask;
         event Action CreateTaskByTemplate;
         event Action OpenAllTasks;

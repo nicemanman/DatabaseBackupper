@@ -4,13 +4,14 @@ using Presentation.Views;
 using System.Linq;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace UI
 {
     public partial class BackupDatabaseForm : Form, IBackupView
     {
         private readonly ApplicationContext context;
-        
+        private int toolTipIndex = -1;
         public BackupDatabaseForm(ApplicationContext _context)
         {
             context = _context;
@@ -18,7 +19,7 @@ namespace UI
             Load += BackupDatabaseForm_Load;
             //нижняя панель с кнопками
             LogoutButton.Click += (s,e) => Logout();
-            BackupButton.Click += (s,e) => Backup();
+            BackupButton.Click += async (s,e) => await Backup();
             OpenTasksButton.Click += (s, e) => OpenAllTasks();
             CreateTaskByTemplateButton.Click += (s, e) => CreateTaskByTemplate();
             //меню
@@ -34,10 +35,32 @@ namespace UI
 
             SelectAllCheckbox.CheckedChanged += SelectAllCheckbox_CheckedChanged;
             ChoosePathButton.Click += ChoosePathButton_Click;
-            
+            ProgressListBox.MouseDoubleClick += ProgressListBox_MouseDoubleClick;
+            DatabasesList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.showCheckBoxToolTip);
         }
 
-       
+        private void showCheckBoxToolTip(object sender, MouseEventArgs e)
+        {
+            var checkedListBox = (CheckedListBox)sender;
+            if (toolTipIndex != checkedListBox.IndexFromPoint(e.Location))
+            {
+                toolTipIndex = checkedListBox.IndexFromPoint(checkedListBox.PointToClient(MousePosition));
+                if (toolTipIndex > -1)
+                {
+                    tooltip.SetToolTip(checkedListBox, checkedListBox.Items[toolTipIndex].ToString());
+                }
+            }
+        }
+
+        private void ProgressListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var listbox = (ListBox)sender;
+            int index = listbox.IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
+            {
+                MessageBox.Show(listbox.Items[index].ToString());
+            }
+        }
 
         private void ChoosePathButton_Click(object sender, EventArgs e)
         {
@@ -66,6 +89,7 @@ namespace UI
             foreach (var item in allDatabases)
             {
                 DatabasesList.Items.Add(item);
+                
             }
         }
 
@@ -87,7 +111,7 @@ namespace UI
         }
 
         public event Action Logout;
-        public event Action Backup;
+        public event Func<Task> Backup;
         public event Action CreateNewTask;
         public event Action CreateTaskByTemplate;
         public event Action OpenAllTasks;
@@ -118,20 +142,36 @@ namespace UI
         }
         public void StopWaiting()
         {
-            throw new System.NotImplementedException();
+            if (activeForm != null)
+                activeForm.Close();
         }
 
         public void Wait()
         {
-            throw new System.NotImplementedException();
+            OpenChildPanel(new WaitForm("Бэкапим базы данных..."));
+        }
+
+        private Form activeForm = null;
+        private void OpenChildPanel(Form childForm)
+        {
+            if (activeForm != null)
+                activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            ChildPanel.Controls.Add(childForm);
+            ChildPanel.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
 
         public void StartBackupProcess(Progress<string> backupProgress)
         {
             ProgressListBox.Items.Clear();
             backupProgress.ProgressChanged += BackupProgress_ProgressChanged;
-            MenuStrip.Enabled = false;
-            ToolButtonsPanel.Enabled = false;
+            MenuStrip.Visible = false;
+            Wait();
         }
 
         private void BackupProgress_ProgressChanged(object sender, string e)
@@ -141,8 +181,8 @@ namespace UI
 
         public void EndBackupProcess()
         {
-            MenuStrip.Enabled = true;
-            ToolButtonsPanel.Enabled = true;
+            StopWaiting();
+            MenuStrip.Visible = true;
         }
 
         public void ShowError(string message)
@@ -150,6 +190,9 @@ namespace UI
             MessageBox.Show(message, "Ошибка валидации");
         }
 
-       
+        public void ShowSuccess(string message)
+        {
+            MessageBox.Show(message, "Успех");
+        }
     }
 }

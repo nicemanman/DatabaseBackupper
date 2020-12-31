@@ -196,6 +196,7 @@
     <Compile Include="Components\DatabaseRepository\JobRepository.cs" />
     <Compile Include="Components\DatabaseRepository\PathRepository.cs" />
     <Compile Include="Components\DatabaseRepository\ScheduleRepository.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Helpers.cs" />

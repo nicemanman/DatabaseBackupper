@@ -9,8 +9,11 @@ namespace DomainModel.Services
 {
     public interface IBackupService
     {
-        Task<bool> BackupDatabases(BackupModel backupModel, IProgress<string> progress);
-        List<string> GetDatabaseBackupPaths();
+        Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> progress);
+        Task<List<string>> GetDatabaseBackupPaths();
+        Task AddBackupPathToMemory(BackupModel model);
+        void ClearBackupPathsFromMemory();
+        
         void DisconnectFromCurrentSqlServer();
     }
 }
