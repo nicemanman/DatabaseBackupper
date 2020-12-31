@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace UI
 {
@@ -19,7 +20,7 @@ namespace UI
             Load += BackupDatabaseForm_Load;
             //нижняя панель с кнопками
             LogoutButton.Click += (s,e) => Logout();
-            BackupButton.Click += async (s,e) => await Backup();
+            BackupButton.Click += (s,e)=>Backup();
             OpenTasksButton.Click += (s, e) => OpenAllTasks();
             CreateTaskByTemplateButton.Click += (s, e) => CreateTaskByTemplate();
             //меню
@@ -37,6 +38,21 @@ namespace UI
             ChoosePathButton.Click += ChoosePathButton_Click;
             ProgressListBox.MouseDoubleClick += ProgressListBox_MouseDoubleClick;
             DatabasesList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.showCheckBoxToolTip);
+
+            OpenFolder.Click += OpenFolder_Click;
+        }
+
+        private void OpenFolder_Click(object sender, EventArgs e)
+        {
+            
+            if (Directory.Exists(PathsToBackupCombobox.Text))
+            {
+                Process.Start(PathsToBackupCombobox.Text);
+            }
+            else 
+            {
+                ShowError("Данного пути не существует!");
+            }
         }
 
         private void showCheckBoxToolTip(object sender, MouseEventArgs e)
@@ -111,7 +127,7 @@ namespace UI
         }
 
         public event Action Logout;
-        public event Func<Task> Backup;
+        public event Action Backup;
         public event Action CreateNewTask;
         public event Action CreateTaskByTemplate;
         public event Action OpenAllTasks;

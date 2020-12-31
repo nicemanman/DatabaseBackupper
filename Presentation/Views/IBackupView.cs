@@ -19,7 +19,7 @@ namespace Presentation.Views
         void ShowSuccess(string message);
 
         event Action Logout;
-        event Func<Task> Backup;
+        event Action Backup;
         event Action CreateNewTask;
         event Action CreateTaskByTemplate;
         event Action OpenAllTasks;

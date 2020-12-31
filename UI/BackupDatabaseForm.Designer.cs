@@ -56,9 +56,12 @@
             this.ToolButtonsPanel = new System.Windows.Forms.Panel();
             this.PathsToBackupCombobox = new System.Windows.Forms.ComboBox();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.backupPathContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.OpenFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.ChildPanel.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.ToolButtonsPanel.SuspendLayout();
+            this.backupPathContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenSchedulesMenuButton
@@ -272,11 +275,26 @@
             // 
             // PathsToBackupCombobox
             // 
+            this.PathsToBackupCombobox.ContextMenuStrip = this.backupPathContextMenu;
             this.PathsToBackupCombobox.FormattingEnabled = true;
             this.PathsToBackupCombobox.Location = new System.Drawing.Point(20, 45);
             this.PathsToBackupCombobox.Name = "PathsToBackupCombobox";
             this.PathsToBackupCombobox.Size = new System.Drawing.Size(439, 21);
             this.PathsToBackupCombobox.TabIndex = 29;
+            // 
+            // backupPathContextMenu
+            // 
+            this.backupPathContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenFolder});
+            this.backupPathContextMenu.Name = "backupPathContextMenu";
+            this.backupPathContextMenu.Size = new System.Drawing.Size(267, 48);
+            // 
+            // OpenFolder
+            // 
+            this.OpenFolder.Name = "OpenFolder";
+            this.OpenFolder.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.OpenFolder.Size = new System.Drawing.Size(266, 22);
+            this.OpenFolder.Text = "Открыть путь в проводнике";
             // 
             // BackupDatabaseForm
             // 
@@ -295,6 +313,7 @@
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             this.ToolButtonsPanel.ResumeLayout(false);
+            this.backupPathContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -326,5 +345,7 @@
         private System.Windows.Forms.ListBox ProgressListBox;
         private System.Windows.Forms.ComboBox PathsToBackupCombobox;
         private System.Windows.Forms.ToolTip tooltip;
+        private System.Windows.Forms.ContextMenuStrip backupPathContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem OpenFolder;
     }
 }
