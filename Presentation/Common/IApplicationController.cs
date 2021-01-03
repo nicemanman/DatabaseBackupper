@@ -14,7 +14,7 @@ namespace Presentation.Common
         void Run<TPresenter>()
             where TPresenter : class, IPresenter;
 
-        void Run<TPresenter, TArgumnent>(TArgumnent argumnent)
-            where TPresenter : class, IPresenter<TArgumnent>;
+        void Run<TPresenter, TArgument>(TArgument argumnent)
+            where TPresenter : class, IPresenter<TArgument>;
     }
 }

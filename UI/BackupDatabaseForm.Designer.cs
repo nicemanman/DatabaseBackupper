@@ -39,6 +39,9 @@
             this.BackupButton = new System.Windows.Forms.Button();
             this.DatabasesList = new System.Windows.Forms.CheckedListBox();
             this.ChildPanel = new System.Windows.Forms.Panel();
+            this.PathsToBackupCombobox = new System.Windows.Forms.ComboBox();
+            this.backupPathContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.OpenFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.ProgressListBox = new System.Windows.Forms.ListBox();
             this.SelectAllCheckbox = new System.Windows.Forms.CheckBox();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
@@ -54,20 +57,18 @@
             this.AboutProgramm = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutAuthor = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolButtonsPanel = new System.Windows.Forms.Panel();
-            this.PathsToBackupCombobox = new System.Windows.Forms.ComboBox();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
-            this.backupPathContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.OpenFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.ChildPanel.SuspendLayout();
+            this.backupPathContextMenu.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.ToolButtonsPanel.SuspendLayout();
-            this.backupPathContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // OpenSchedulesMenuButton
             // 
             this.OpenSchedulesMenuButton.Name = "OpenSchedulesMenuButton";
-            this.OpenSchedulesMenuButton.Size = new System.Drawing.Size(221, 22);
+            this.OpenSchedulesMenuButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.OpenSchedulesMenuButton.Size = new System.Drawing.Size(261, 22);
             this.OpenSchedulesMenuButton.Text = "Все расписания";
             // 
             // label3
@@ -150,6 +151,29 @@
             this.ChildPanel.Size = new System.Drawing.Size(523, 382);
             this.ChildPanel.TabIndex = 27;
             // 
+            // PathsToBackupCombobox
+            // 
+            this.PathsToBackupCombobox.ContextMenuStrip = this.backupPathContextMenu;
+            this.PathsToBackupCombobox.FormattingEnabled = true;
+            this.PathsToBackupCombobox.Location = new System.Drawing.Point(20, 45);
+            this.PathsToBackupCombobox.Name = "PathsToBackupCombobox";
+            this.PathsToBackupCombobox.Size = new System.Drawing.Size(439, 21);
+            this.PathsToBackupCombobox.TabIndex = 29;
+            // 
+            // backupPathContextMenu
+            // 
+            this.backupPathContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenFolder});
+            this.backupPathContextMenu.Name = "backupPathContextMenu";
+            this.backupPathContextMenu.Size = new System.Drawing.Size(267, 26);
+            // 
+            // OpenFolder
+            // 
+            this.OpenFolder.Name = "OpenFolder";
+            this.OpenFolder.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.OpenFolder.Size = new System.Drawing.Size(266, 22);
+            this.OpenFolder.Text = "Открыть путь в проводнике";
+            // 
             // ProgressListBox
             // 
             this.ProgressListBox.FormattingEnabled = true;
@@ -217,13 +241,14 @@
             // OpenTasksMenuButton
             // 
             this.OpenTasksMenuButton.Name = "OpenTasksMenuButton";
-            this.OpenTasksMenuButton.Size = new System.Drawing.Size(195, 22);
+            this.OpenTasksMenuButton.Size = new System.Drawing.Size(236, 22);
             this.OpenTasksMenuButton.Text = "Все задачи";
             // 
             // CreateNewTaskMenuButton
             // 
             this.CreateNewTaskMenuButton.Name = "CreateNewTaskMenuButton";
-            this.CreateNewTaskMenuButton.Size = new System.Drawing.Size(195, 22);
+            this.CreateNewTaskMenuButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
+            this.CreateNewTaskMenuButton.Size = new System.Drawing.Size(236, 22);
             this.CreateNewTaskMenuButton.Text = "Создать новую задачу";
             // 
             // расписанияToolStripMenuItem
@@ -238,7 +263,8 @@
             // CreateNewScheduleMenuButton
             // 
             this.CreateNewScheduleMenuButton.Name = "CreateNewScheduleMenuButton";
-            this.CreateNewScheduleMenuButton.Size = new System.Drawing.Size(221, 22);
+            this.CreateNewScheduleMenuButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.CreateNewScheduleMenuButton.Size = new System.Drawing.Size(261, 22);
             this.CreateNewScheduleMenuButton.Text = "Создать новое расписание";
             // 
             // справкаToolStripMenuItem
@@ -273,29 +299,6 @@
             this.ToolButtonsPanel.Size = new System.Drawing.Size(523, 68);
             this.ToolButtonsPanel.TabIndex = 27;
             // 
-            // PathsToBackupCombobox
-            // 
-            this.PathsToBackupCombobox.ContextMenuStrip = this.backupPathContextMenu;
-            this.PathsToBackupCombobox.FormattingEnabled = true;
-            this.PathsToBackupCombobox.Location = new System.Drawing.Point(20, 45);
-            this.PathsToBackupCombobox.Name = "PathsToBackupCombobox";
-            this.PathsToBackupCombobox.Size = new System.Drawing.Size(439, 21);
-            this.PathsToBackupCombobox.TabIndex = 29;
-            // 
-            // backupPathContextMenu
-            // 
-            this.backupPathContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenFolder});
-            this.backupPathContextMenu.Name = "backupPathContextMenu";
-            this.backupPathContextMenu.Size = new System.Drawing.Size(267, 48);
-            // 
-            // OpenFolder
-            // 
-            this.OpenFolder.Name = "OpenFolder";
-            this.OpenFolder.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.OpenFolder.Size = new System.Drawing.Size(266, 22);
-            this.OpenFolder.Text = "Открыть путь в проводнике";
-            // 
             // BackupDatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,13 +310,13 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "BackupDatabaseForm";
-            this.Text = " ";
+            this.Text = " Бэкап баз данных";
             this.ChildPanel.ResumeLayout(false);
             this.ChildPanel.PerformLayout();
+            this.backupPathContextMenu.ResumeLayout(false);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             this.ToolButtonsPanel.ResumeLayout(false);
-            this.backupPathContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

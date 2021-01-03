@@ -15,6 +15,7 @@ namespace Presentation.Views
         List<string> DatabasesToBackup { get; set; }
         void StartBackupProcess(Progress<string> progress);
         void EndBackupProcess();
+        
         void ShowError(string message);
         void ShowSuccess(string message);
 

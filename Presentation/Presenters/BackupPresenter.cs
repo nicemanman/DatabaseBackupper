@@ -90,7 +90,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                throw new NotImplementedException();
+                Controller.Run<ScheduleDetailsPresenter,string>("Создать новое расписание");
             }
             catch (Exception ex)
             {

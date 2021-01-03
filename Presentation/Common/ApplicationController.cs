@@ -40,7 +40,7 @@
             presenter.Run();
         }
 
-        public void Run<TPresenter, TArgumnent>(TArgumnent argumnent) where TPresenter : class, IPresenter<TArgumnent>
+        public void Run<TPresenter, TArgument>(TArgument argumnent) where TPresenter : class, IPresenter<TArgument>
         {
             if (!_container.IsRegistered<TPresenter>())
                 _container.Register<TPresenter>();
