@@ -54,8 +54,8 @@
             this.расписанияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateNewScheduleMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutProgramm = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutAuthor = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutProgrammMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutAuthorMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolButtonsPanel = new System.Windows.Forms.Panel();
             this.tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.ChildPanel.SuspendLayout();
@@ -270,23 +270,23 @@
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutProgramm,
-            this.AboutAuthor});
+            this.AboutProgrammMenuButton,
+            this.AboutAuthorMenuButton});
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
-            // AboutProgramm
+            // AboutProgrammMenuButton
             // 
-            this.AboutProgramm.Name = "AboutProgramm";
-            this.AboutProgramm.Size = new System.Drawing.Size(149, 22);
-            this.AboutProgramm.Text = "О программе";
+            this.AboutProgrammMenuButton.Name = "AboutProgrammMenuButton";
+            this.AboutProgrammMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.AboutProgrammMenuButton.Text = "О программе";
             // 
-            // AboutAuthor
+            // AboutAuthorMenuButton
             // 
-            this.AboutAuthor.Name = "AboutAuthor";
-            this.AboutAuthor.Size = new System.Drawing.Size(149, 22);
-            this.AboutAuthor.Text = "Об авторе";
+            this.AboutAuthorMenuButton.Name = "AboutAuthorMenuButton";
+            this.AboutAuthorMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.AboutAuthorMenuButton.Text = "Об авторе";
             // 
             // ToolButtonsPanel
             // 
@@ -339,8 +339,8 @@
         private System.Windows.Forms.ToolStripMenuItem CreateNewTaskMenuButton;
         private System.Windows.Forms.ToolStripMenuItem расписанияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AboutProgramm;
-        private System.Windows.Forms.ToolStripMenuItem AboutAuthor;
+        private System.Windows.Forms.ToolStripMenuItem AboutProgrammMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem AboutAuthorMenuButton;
         private System.Windows.Forms.ToolStripMenuItem CreateNewScheduleMenuButton;
         private System.Windows.Forms.ToolStripMenuItem OpenSchedulesMenuButton;
         private System.Windows.Forms.CheckBox SelectAllCheckbox;

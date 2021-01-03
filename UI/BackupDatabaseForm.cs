@@ -33,6 +33,9 @@ namespace UI
             //расписания
             OpenSchedulesMenuButton.Click += (s, e) => OpenAllSchedules();
             CreateNewScheduleMenuButton.Click += (s, e) => CreateNewSchedule();
+            //справка
+            AboutProgrammMenuButton.Click += (s, e) => OpenAboutProgram();
+            AboutAuthorMenuButton.Click += (s, e) => OpenAboutAuthor();
 
             SelectAllCheckbox.CheckedChanged += SelectAllCheckbox_CheckedChanged;
             ChoosePathButton.Click += ChoosePathButton_Click;
@@ -133,6 +136,8 @@ namespace UI
         public event Action OpenAllTasks;
         public event Action CreateNewSchedule;
         public event Action OpenAllSchedules;
+        public event Action OpenAboutAuthor;
+        public event Action OpenAboutProgram;
 
         private List<string> databasesToBackup;
         public List<string> DatabasesToBackup

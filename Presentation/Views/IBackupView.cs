@@ -26,5 +26,7 @@ namespace Presentation.Views
         event Action OpenAllTasks;
         event Action CreateNewSchedule;
         event Action OpenAllSchedules;
+        event Action OpenAboutAuthor;
+        event Action OpenAboutProgram;
     }
 }

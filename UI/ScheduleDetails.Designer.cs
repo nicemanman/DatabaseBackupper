@@ -438,7 +438,7 @@
             // 
             this.SaveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SaveButton.Location = new System.Drawing.Point(0, 158);
+            this.SaveButton.Location = new System.Drawing.Point(0, 102);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(398, 35);
             this.SaveButton.TabIndex = 4;
@@ -471,7 +471,7 @@
             this.AllPeriodicsPanel.Controls.Add(this.SaveButton);
             this.AllPeriodicsPanel.Location = new System.Drawing.Point(17, 78);
             this.AllPeriodicsPanel.Name = "AllPeriodicsPanel";
-            this.AllPeriodicsPanel.Size = new System.Drawing.Size(398, 193);
+            this.AllPeriodicsPanel.Size = new System.Drawing.Size(398, 137);
             this.AllPeriodicsPanel.TabIndex = 12;
             // 
             // label5

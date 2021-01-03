@@ -34,7 +34,32 @@ namespace Presentation.Presenters
             View.CreateTaskByTemplate += View_CreateTaskByTemplate;
             View.OpenAllSchedules += View_OpenAllSchedules;
             View.OpenAllTasks += View_OpenAllTasks;
-            
+            View.OpenAboutAuthor += View_OpenAboutAuthor;
+            View.OpenAboutProgram += View_OpenAboutProgram;
+        }
+
+        private void View_OpenAboutProgram()
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                View.ShowError(ex.Message);
+            }
+        }
+
+        private void View_OpenAboutAuthor()
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                View.ShowError(ex.Message);
+            }
         }
 
         private void View_OpenAllTasks()
