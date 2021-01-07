@@ -13,7 +13,7 @@ namespace Presentation.Presenters
     {
         public ScheduleDetailsPresenter(IApplicationController controller, IScheduleDetailsView view) : base(controller, view)
         {
-            View.SchedulePeriodics = Constants.GetListOfSchedulePeriodics();
+            
             
         }
 

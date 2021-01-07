@@ -1,6 +1,7 @@
 ﻿
 using DomainModel;
 using Presentation.Views;
+using QuartzCronGenerator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,36 +11,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Components;
 
 namespace UI
 {
     public partial class ScheduleDetails : Form, IScheduleDetailsView
     {
-        private Dictionary<Constants.SchedulePeriodics, Panel> periodicPanels;
+        private Dictionary<CronExpressionType, SchedulePeriodPanel> periodicPanels;
+        private Dictionary<string, CronExpressionType> namings;
+        private SchedulePeriodPanel currentPanel;
         public ScheduleDetails()
         {
             InitializeComponent();
-            PeriodicList.SelectedValueChanged += PeriodicList_SelectedValueChanged;
-            Load += ScheduleDetails_Load;
             
-            periodicPanels = new Dictionary<Constants.SchedulePeriodics, Panel>
+            Load += ScheduleDetails_Load;
+            SaveButton.Click += SaveButton_Click;
+            periodicPanels = new Dictionary<CronExpressionType, SchedulePeriodPanel>
             {
-                { Constants.SchedulePeriodics.Minutes, MinutesIntervalPanel },
-                { Constants.SchedulePeriodics.Hours, HoursIntervalPanel },
-                { Constants.SchedulePeriodics.Weeks, WeekIntervalPanel },
-                { Constants.SchedulePeriodics.Days, DaysIntervalPanel }
+                { CronExpressionType.EveryNSeconds, null },//секунда
+                { CronExpressionType.EveryNMinutes, EveryNMinutes },//минута
+                { CronExpressionType.EveryNHours, EveryNHours},//час
+                { CronExpressionType.EveryNDaysAt, null },//интервал в днях, час, минута
+                { CronExpressionType.EveryDayAt, EveryDayAt },//час, минута
+                { CronExpressionType.EveryWeekDayAt, null },//час, минута
+                { CronExpressionType.EverySpecificWeekDayAt, EverySpecificWeekdayAt },//список дней, час, минута
             };
 
-            MinutesIntervalPanel.Parent = AllPeriodicsPanel;
-            HoursIntervalPanel.Parent = AllPeriodicsPanel;
-            WeekIntervalPanel.Parent = AllPeriodicsPanel;
-            DaysIntervalPanel.Parent = AllPeriodicsPanel;
+            namings = new Dictionary<string, CronExpressionType>
+            {
+                
+                { "Минутная периодичность",CronExpressionType.EveryNMinutes  },//минута
+                { "Часовая периодичность", CronExpressionType.EveryNHours},//час
+                { "Каждый день", CronExpressionType.EveryDayAt},//час, минута
+                { "В определенные дни", CronExpressionType.EverySpecificWeekDayAt},//список дней, час, минута
+            };
 
-            MinutesIntervalPanel.Dock = DockStyle.Fill;
-            HoursIntervalPanel.Dock = DockStyle.Fill;
-            WeekIntervalPanel.Dock = DockStyle.Fill;
-            DaysIntervalPanel.Dock = DockStyle.Fill;
-            
+            foreach (var panel in periodicPanels)
+            {
+                if (panel.Value == null) continue;
+                panel.Value.Parent = AllPeriodicsPanel;
+                panel.Value.Dock = DockStyle.Fill;
+                panel.Value.LoadPanel();
+            }
             var minutesIntervalRange = new List<string>();
             for (int i = 1; i < 60; i += 1) 
             {
@@ -51,36 +64,52 @@ namespace UI
             {
                 hoursIntervalRange.Add(i.ToString());
             }
-            //Minutes
-            MinutesIntervalCombobox.DataSource = minutesIntervalRange;
-            //Days
-            HoursIntervalCombobox.DataSource = hoursIntervalRange;
-            MinutesIntervalCombobox2.DataSource = minutesIntervalRange;
-            //Hours
-            HoursIntervalCombobox2.DataSource = hoursIntervalRange;
-            HoursIntervalCombobox3.DataSource = hoursIntervalRange;
-            MinutesIntervalCombobox3.DataSource = minutesIntervalRange;
-            //Weekly
-            HoursIntervalCombobox4.DataSource = hoursIntervalRange;
-            MinutesIntervalCombobox4.DataSource = minutesIntervalRange;
+            
+            PeriodicList.SelectedValueChanged += PeriodicList_SelectedValueChanged;
+            specificDays.Items.Add(DaysOfWeek.Monday);
+            specificDays.Items.Add(DaysOfWeek.Tuesday);
+            specificDays.Items.Add(DaysOfWeek.Wednesday);
+            specificDays.Items.Add(DaysOfWeek.Thursday);
+            specificDays.Items.Add(DaysOfWeek.Friday);
+            specificDays.Items.Add(DaysOfWeek.Saturday);
+            specificDays.Items.Add(DaysOfWeek.Sunday);
         }
 
-        
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var cron = currentPanel.GetCronExpression();
+                if (cron == null)
+                    MessageBox.Show("Генерация этого cron выражения еще не реализована!");
+                else
+                    MessageBox.Show(cron);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void ScheduleDetails_Load(object sender, EventArgs e)
         {
-            PeriodicList.DataSource = SchedulePeriodics;
+
+            PeriodicList.DataSource = namings.Keys.ToList();
             this.Text = Caption;
         }
 
         private void PeriodicList_SelectedValueChanged(object sender, EventArgs e)
         {
             var list = (ComboBox)sender;
-            var enumItem = Constants.GetItem(list.SelectedItem.ToString());
-
+            namings.TryGetValue(list.SelectedItem.ToString(), out var enumItem);
+            
             foreach (var item in periodicPanels)
             {
-                if (item.Key == enumItem)
+                if (item.Key == enumItem) 
+                {
                     item.Value.BringToFront();
+                    currentPanel = item.Value;
+                }
             }
 
         }

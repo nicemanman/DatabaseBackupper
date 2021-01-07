@@ -81,12 +81,30 @@
     <Compile Include="BackupDatabaseForm.Designer.cs">
       <DependentUpon>BackupDatabaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\RadioButtonsList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\RadioButtonsList.Designer.cs">
+      <DependentUpon>RadioButtonsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SchedulePeriodPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\SchedulePeriodPanel.Designer.cs">
+      <DependentUpon>SchedulePeriodPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConnectForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConnectForm.Designer.cs">
       <DependentUpon>ConnectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CronExpression\CronConverter.cs" />
+    <Compile Include="CronExpression\CronExpression.cs" />
+    <Compile Include="CronExpression\CronExpressionType.cs" />
+    <Compile Include="CronExpression\DaySeqNumber.cs" />
+    <Compile Include="CronExpression\DaysOfWeek.cs" />
+    <Compile Include="CronExpression\Months.cs" />
     <Compile Include="LightInjectAdapder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
