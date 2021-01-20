@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
+    /// <summary>
+    /// Enum -> IEnumerable<Enum>
+    /// </summary>
     public static class SelectList
     {
         public static List<Enum> Of<T>() where T : struct, IConvertible
