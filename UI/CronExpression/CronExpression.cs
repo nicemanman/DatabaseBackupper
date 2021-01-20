@@ -39,7 +39,7 @@ namespace QuartzCronGenerator
                 case CronExpressionType.EveryWeekDayAt:
                     _cronString = string.Format("0 {0} {1} ? * MON-FRI *", _startMinute, _startHour);
                     break;
-                case CronExpressionType.EverySpecificWeekDayAt:
+                case CronExpressionType.EverySpecificDayAt:
                     _cronString = string.Format("0 {0} {1} ? * {2} *", _startMinute, _startHour, CronConverter.ToCronRepresentation(_days));
                     break;
                 case CronExpressionType.EverySpecificDayEveryNMonthAt:
@@ -222,7 +222,7 @@ namespace QuartzCronGenerator
         /// <returns>New CronExpression instance</returns>
         public static CronExpression EverySpecificWeekDayAt(int hour, int minute, DaysOfWeek days)
         {
-            var ce = new CronExpression(days, hour, minute, CronExpressionType.EverySpecificWeekDayAt);
+            var ce = new CronExpression(days, hour, minute, CronExpressionType.EverySpecificDayAt);
             return ce;
         }
 

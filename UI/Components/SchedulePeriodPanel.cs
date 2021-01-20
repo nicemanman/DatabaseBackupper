@@ -34,9 +34,9 @@ namespace UI.Components
         public Control SpecificDays { get; set; }
 
 
-        private int minutes { get { Int32.TryParse(MinutesControl.Text, out var value);  return value; } }
-        private int hours { get { Int32.TryParse(HoursControl.Text, out var value);  return value; } }
-        private int daysInterval { get { Int32.TryParse(HoursControl.Text, out var value);  return value; } }
+        private int minutes { get => GetIntValueFromControl(MinutesControl); }
+        private int hours { get => GetIntValueFromControl(HoursControl); }
+        private int daysInterval { get => GetIntValueFromControl(DaysInterval); }
         
 
         public SchedulePeriodPanel()
@@ -55,6 +55,8 @@ namespace UI.Components
 
         public string GetCronExpression() 
         {
+            var daysOfWeek = DaysOfWeek.Friday;
+            
             switch (Type) 
             {
                 case CronExpressionType.EveryNMinutes:
@@ -63,8 +65,8 @@ namespace UI.Components
                     return CronExpression.EveryNHours(hours);
                 case CronExpressionType.EveryDayAt:
                     return CronExpression.EveryDayAt(hours,minutes);
-                case CronExpressionType.EverySpecificWeekDayAt:
-                    return CronExpression.EverySpecificWeekDayAt(hours, minutes, DaysOfWeek.Friday | DaysOfWeek.Monday);
+                case CronExpressionType.EverySpecificDayAt:
+                    return CronExpression.EverySpecificWeekDayAt(hours, minutes, GetSelectedDays());
 
             }
             return null;
@@ -90,7 +92,7 @@ namespace UI.Components
 
         public int GetIntValueFromControl(Control control) 
         {
-            Int32.TryParse(MinutesControl.Text, out var value);
+            Int32.TryParse(control?.Text, out var value);
             return value;
         }
 
@@ -99,6 +101,50 @@ namespace UI.Components
             MinutesControl = FindControlWithTag(this.Controls, "minutes");
             HoursControl = FindControlWithTag(this.Controls, "hours");
             SpecificDays = FindControlWithTag(this.Controls, "days");
+            if (MinutesControl != null) 
+            {
+                var list = ((ComboBox)MinutesControl);
+                for (int i = 1; i < 60; i++)
+                {
+                    list.Items.Add(i);
+                }
+                list.SelectedIndex = 0;
+            }
+            if (HoursControl != null)
+            {
+                var list = ((ComboBox)HoursControl);
+                for (int i = 1; i < 24; i++)
+                {
+                    list.Items.Add(i);
+                }
+                list.SelectedIndex = 0;
+            }
+        }
+
+        public DaysOfWeek GetSelectedDays() 
+        {
+            if (SpecificDays == null)
+                throw new Exception("Контрол со списком дней не задан!");
+            var checkBoxList = (CheckedListBox)SpecificDays;
+            if (checkBoxList.CheckedItems.Count == 0)
+                throw new Exception("Необходимо выбрать хотя бы один день!");
+            DaysOfWeek daysOfWeek = DaysOfWeek.Monday;
+            int index = 0;
+            foreach (DaysOfWeek item in checkBoxList.CheckedItems)
+            {
+                if (index == 0)
+                {
+                    daysOfWeek = item;
+                }
+                else 
+                {
+                    daysOfWeek = daysOfWeek | item;
+                }
+                index++;
+            }
+            return daysOfWeek;
+            
+            
         }
         
     }

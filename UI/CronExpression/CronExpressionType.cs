@@ -8,7 +8,7 @@
         EveryDayAt,
         EveryNDaysAt,
         EveryWeekDayAt,
-        EverySpecificWeekDayAt,
+        EverySpecificDayAt,
         EverySpecificDayEveryNMonthAt,
         EverySpecificSeqWeekDayEveryNMonthAt,
         EverySpecificDayOfMonthAt,

@@ -34,7 +34,7 @@ namespace UI
                 { CronExpressionType.EveryNDaysAt, null },//интервал в днях, час, минута
                 { CronExpressionType.EveryDayAt, EveryDayAt },//час, минута
                 { CronExpressionType.EveryWeekDayAt, null },//час, минута
-                { CronExpressionType.EverySpecificWeekDayAt, EverySpecificWeekdayAt },//список дней, час, минута
+                { CronExpressionType.EverySpecificDayAt, EverySpecificWeekdayAt },//список дней, час, минута
             };
 
             namings = new Dictionary<string, CronExpressionType>
@@ -43,7 +43,7 @@ namespace UI
                 { "Минутная периодичность",CronExpressionType.EveryNMinutes  },//минута
                 { "Часовая периодичность", CronExpressionType.EveryNHours},//час
                 { "Каждый день", CronExpressionType.EveryDayAt},//час, минута
-                { "В определенные дни", CronExpressionType.EverySpecificWeekDayAt},//список дней, час, минута
+                { "В определенные дни", CronExpressionType.EverySpecificDayAt},//список дней, час, минута
             };
 
             foreach (var panel in periodicPanels)
@@ -109,6 +109,7 @@ namespace UI
                 {
                     item.Value.BringToFront();
                     currentPanel = item.Value;
+                    
                 }
             }
 
