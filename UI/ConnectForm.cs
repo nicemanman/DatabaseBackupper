@@ -20,7 +20,8 @@ namespace UI
         public string Username { get => UsernameTextbox.Text; }
         public string Password { get => PasswordTextbox.Text; }
         public event Action Login;
-        
+        private enum Test { Test1, Test2 };
+        private List<string> ReadableList = new List<string>() { "Тестовый вариант 1","Тестовый вариант 2" };
 
         public ConnectForm(ApplicationContext context)
         {
@@ -29,6 +30,12 @@ namespace UI
             this.Load += ConnectForm_Load;
             LoginTypesList.SelectedValueChanged += LoginTypesList_SelectedValueChanged;
             _context = context;
+
+            var TestEnumList = SelectList.Of<Test>();
+            ReadableEnumeration readableEnumeration = new ReadableEnumeration(ReadableList, TestEnumList);
+            
+            var readableList = readableEnumeration.GetReadableList();
+            var testResult = readableEnumeration.GetSelectedEnum("Тестовый вариант 1");
         }
 
         private void LoginTypesList_SelectedValueChanged(object sender, EventArgs e)
