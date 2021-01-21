@@ -104,6 +104,12 @@ namespace UI
             UsernameTextbox.Enabled = false;
             PasswordTextbox.Enabled = false;
             UsernameTextbox.Text = Environment.UserDomainName + "\\" + Environment.UserName;
+            PasswordTextbox.Text = "";
+        }
+
+        public void Wait(Progress<string> progress)
+        {
+            OpenChildPanel(new WaitForm(progress));
         }
     }
 }

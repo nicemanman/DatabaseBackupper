@@ -167,9 +167,9 @@ namespace UI
                 activeForm.Close();
         }
 
-        public void Wait()
+        public void Wait(Progress<string> progress)
         {
-            OpenChildPanel(new WaitForm("Бэкапим базы данных..."));
+            OpenChildPanel(new WaitForm(progress));
         }
 
         private Form activeForm = null;
@@ -192,7 +192,7 @@ namespace UI
             ProgressListBox.Items.Clear();
             backupProgress.ProgressChanged += BackupProgress_ProgressChanged;
             MenuStrip.Visible = false;
-            Wait();
+            Wait(backupProgress);
         }
 
         private void BackupProgress_ProgressChanged(object sender, string e)
@@ -214,6 +214,11 @@ namespace UI
         public void ShowSuccess(string message)
         {
             MessageBox.Show(message, "Успех");
+        }
+
+        public void Wait()
+        {
+            OpenChildPanel(new WaitForm("Ожидайте..."));
         }
     }
 }

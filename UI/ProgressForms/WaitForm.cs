@@ -17,5 +17,17 @@ namespace UI
             InitializeComponent();
             StatusLabel.Text = statusText;
         }
+
+        public WaitForm(Progress<string> progress)
+        {
+            InitializeComponent();
+            progress.ProgressChanged += Progress_ProgressChanged;
+            
+        }
+
+        private void Progress_ProgressChanged(object sender, string e)
+        {
+            StatusLabel.Text = e;
+        }
     }
 }

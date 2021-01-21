@@ -138,5 +138,10 @@ namespace UI
         {
             ShowDialog();
         }
+
+        public void Wait(Progress<string> progres)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

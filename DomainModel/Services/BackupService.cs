@@ -22,6 +22,9 @@ namespace DomainModel.Services
         {
             await AddBackupPathToMemory(backupModel);
             var connectionString = Context.GetDBConnectionString();
+            int stepCount = backupModel.DatabasesToBackup.Count();
+            int currentStep = 1;
+            progress.Report($"Всего баз данных - {stepCount}. Начали...");
             if (!string.IsNullOrWhiteSpace(connectionString)) 
             {
                 foreach (var database in backupModel.DatabasesToBackup)
@@ -50,7 +53,7 @@ namespace DomainModel.Services
                                 {
                                     cmd.ExecuteNonQuery();
                                 }
-                                progress.Report($"{database} - OK");
+                                progress.Report($"Шаг {currentStep++}/{stepCount}, база {database} - успех");
                             }
                             catch (Exception ex)
                             {

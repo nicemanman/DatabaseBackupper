@@ -68,6 +68,7 @@ namespace UI
             // 
             this.PasswordTextbox.Location = new System.Drawing.Point(118, 232);
             this.PasswordTextbox.Name = "PasswordTextbox";
+            this.PasswordTextbox.PasswordChar = '*';
             this.PasswordTextbox.Size = new System.Drawing.Size(267, 20);
             this.PasswordTextbox.TabIndex = 33;
             // 
