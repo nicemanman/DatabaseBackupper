@@ -13,11 +13,14 @@ namespace Presentation.Views
     {
         List<string> SqlServers{ get; set; }
         string ServerName { get; }
-        List<Enum> LoginTypes { get; set; }
-        Enums.LoginTypesEnumeration LoginType { get; }
+        List<string> LoginTypes { get; set; }
+        string LoginType { get; }
         string Username { get; }
         string Password { get; }
         event Action Login;
+        event Action LoginTypeChanged;
         void ShowError(string text);
+        void SetMSSQLAuth();
+        void SetWindowsAuth();
     }
 }

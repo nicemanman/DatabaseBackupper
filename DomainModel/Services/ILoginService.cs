@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DomainModel.Enums;
 
 namespace DomainModel.Services
 {
@@ -11,10 +12,10 @@ namespace DomainModel.Services
     {
         List<string> GetSqlServers();
         
-        List<Enum> GetLoginTypes();
+        List<string> GetLoginTypes();
 
         Task<BackupModel> ConnectToSqlServer(LoginModel model);
-        
+        LoginTypesEnumeration GetByName(string name);
 
     }
 }

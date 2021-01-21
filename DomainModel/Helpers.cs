@@ -11,12 +11,12 @@ namespace DomainModel
     /// </summary>
     public static class SelectList
     {
-        public static List<Enum> Of<T>() where T : struct, IConvertible
+        public static List<T> Of<T>() where T : struct, IConvertible
         {
             Type t = typeof(T);
             if (t.IsEnum)
             {
-                return Enum.GetValues(t).Cast<Enum>().ToList();
+                return Enum.GetValues(t).Cast<T>().ToList();
             }
             throw new ArgumentException("<T> must be an enumerated type.");
         }

@@ -14,12 +14,13 @@ namespace UI
     {
         private readonly ApplicationContext _context;
         public List<string> SqlServers { get; set; }
-        public List<Enum> LoginTypes { get; set; }
+        public List<string> LoginTypes { get; set; }
         public string ServerName { get => ServersList.SelectedItem as string; }
-        public Enums.LoginTypesEnumeration LoginType { get => (Enums.LoginTypesEnumeration)LoginTypesList.SelectedItem; }
+        public string LoginType { get => LoginTypesList.SelectedItem.ToString(); }
         public string Username { get => UsernameTextbox.Text; }
         public string Password { get => PasswordTextbox.Text; }
         public event Action Login;
+        public event Action LoginTypeChanged;
         private enum Test { Test1, Test2 };
         private List<string> ReadableList = new List<string>() { "Тестовый вариант 1","Тестовый вариант 2" };
 
@@ -30,28 +31,11 @@ namespace UI
             this.Load += ConnectForm_Load;
             LoginTypesList.SelectedValueChanged += LoginTypesList_SelectedValueChanged;
             _context = context;
-
-            var TestEnumList = SelectList.Of<Test>();
-            ReadableEnumeration readableEnumeration = new ReadableEnumeration(ReadableList, TestEnumList);
-            
-            var readableList = readableEnumeration.GetReadableList();
-            var testResult = readableEnumeration.GetSelectedEnum("Тестовый вариант 1");
         }
 
         private void LoginTypesList_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (LoginType == Enums.LoginTypesEnumeration.Windows)
-            {
-                UsernameTextbox.Enabled = false;
-                PasswordTextbox.Enabled = false;
-                UsernameTextbox.Text = Environment.UserDomainName + "\\" + Environment.UserName;
-            }
-            else
-            {
-                UsernameTextbox.Text = "sa";
-                UsernameTextbox.Enabled = true;
-                PasswordTextbox.Enabled = true;
-            }
+            LoginTypeChanged();
         }
 
         private void ConnectButton_Click(object sender, EventArgs e)
@@ -106,6 +90,20 @@ namespace UI
         {
             StatusBar.Text = text;
             StatusBar.BackColor = Color.Red;
+        }
+
+        public void SetMSSQLAuth()
+        {
+            UsernameTextbox.Text = "sa";
+            UsernameTextbox.Enabled = true;
+            PasswordTextbox.Enabled = true;
+        }
+
+        public void SetWindowsAuth()
+        {
+            UsernameTextbox.Enabled = false;
+            PasswordTextbox.Enabled = false;
+            UsernameTextbox.Text = Environment.UserDomainName + "\\" + Environment.UserName;
         }
     }
 }

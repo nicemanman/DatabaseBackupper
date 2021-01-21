@@ -182,7 +182,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReadableEnumsManagerInterface.cs" />
+    <Compile Include="Components\CronBox\CronConverter.cs" />
+    <Compile Include="Components\CronBox\CronExpression.cs" />
+    <Compile Include="Components\CronBox\CronExpressionType.cs" />
+    <Compile Include="Components\CronBox\DaySeqNumber.cs" />
+    <Compile Include="Components\CronBox\DaysOfWeek.cs" />
+    <Compile Include="Components\CronBox\Months.cs" />
+    <Compile Include="Components\ReadableEnumeration\ReadableEnumeration.cs" />
     <Compile Include="Components\DatabaseRepository\AppDbContext.cs" />
     <Compile Include="Components\DatabaseRepository\DatabaseController.cs" />
     <Compile Include="Components\DatabaseRepository\DatabaseModels\Job.cs" />
@@ -214,10 +220,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\CronBox\" />
-    <Folder Include="Components\ReadableEnumeration\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

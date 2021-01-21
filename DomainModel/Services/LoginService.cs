@@ -1,4 +1,5 @@
 ﻿using DomainModel.Components.DatabaseRepository;
+using DomainModel.Components.ReadableEnumeration;
 using DomainModel.Models;
 using Microsoft.SqlServer.Management.Smo;
 using Microsoft.Win32;
@@ -10,17 +11,21 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DomainModel.Enums;
 
 namespace DomainModel.Services
 {
-    
+
     public class LoginService : ILoginService
     {
         private IDatabaseController databaseController;
-
+        
+        private List<string> LoginTypesNames = new List<string>() { "Аутентификация Windows","Аутентификация сервера MS SQL" };
+        private ReadableEnumeration<LoginTypesEnumeration> loginTypesReadableList;
         public LoginService(IDatabaseController databaseController)
         {
             this.databaseController = databaseController;
+            loginTypesReadableList = new ReadableEnumeration<LoginTypesEnumeration>(LoginTypesNames); 
         }
 
         public async Task<BackupModel> ConnectToSqlServer(LoginModel model)
@@ -28,7 +33,7 @@ namespace DomainModel.Services
             var SystemDatabases = new List<string>() { "master", "msdb", "model", "resource", "tempdb" };
             var list = new List<String>();
             var IntegratedSecurity = "False";
-            if (model.LoginType == Enums.LoginTypesEnumeration.Windows)
+            if (loginTypesReadableList.GetEnumItem(model.LoginType) == LoginTypesEnumeration.Windows)
                 IntegratedSecurity = "True";
             var connectionString = $"Data Source={model.Servername}; User ID={model.Username}; Password={model.Password}; Integrated Security={IntegratedSecurity};";
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -68,9 +73,9 @@ namespace DomainModel.Services
         {
             Context.SetDBConnectionString(connectionString);
         }
-        public List<Enum> GetLoginTypes()
+        public List<string> GetLoginTypes()
         {
-            return SelectList.Of<Enums.LoginTypesEnumeration>();
+            return loginTypesReadableList.GetReadableList();
         }
 
         public List<string> GetSqlServers()
@@ -93,6 +98,9 @@ namespace DomainModel.Services
             return list;
         }
 
-        
+        public LoginTypesEnumeration GetByName(string name)
+        {
+            return loginTypesReadableList.GetEnumItem(name);
+        }
     }
 }

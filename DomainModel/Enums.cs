@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public static class Enums
+    public class Enums
     {
-        public enum LoginTypesEnumeration { Windows };
+        public enum LoginTypesEnumeration { Windows,SQL };
+
     }
 }
