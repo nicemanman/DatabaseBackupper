@@ -1,4 +1,5 @@
-﻿using QuartzCronGenerator;
+﻿
+using DomainModel.Components.CronBox;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DomainModel.Enums;
 
 namespace UI.Components
 {

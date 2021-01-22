@@ -99,12 +99,6 @@
     <Compile Include="ConnectForm.Designer.cs">
       <DependentUpon>ConnectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CronExpression\CronConverter.cs" />
-    <Compile Include="CronExpression\CronExpression.cs" />
-    <Compile Include="CronExpression\CronExpressionType.cs" />
-    <Compile Include="CronExpression\DaySeqNumber.cs" />
-    <Compile Include="CronExpression\DaysOfWeek.cs" />
-    <Compile Include="CronExpression\Months.cs" />
     <Compile Include="LightInjectAdapder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,6 @@
-﻿namespace UI
+﻿using static DomainModel.Enums;
+
+namespace UI
 {
     partial class ScheduleDetails
     {
@@ -157,7 +159,7 @@
             this.EverySpecificWeekdayAt.Name = "EverySpecificWeekdayAt";
             this.EverySpecificWeekdayAt.Size = new System.Drawing.Size(387, 134);
             this.EverySpecificWeekdayAt.TabIndex = 16;
-            this.EverySpecificWeekdayAt.Type = QuartzCronGenerator.CronExpressionType.EverySpecificDayAt;
+            this.EverySpecificWeekdayAt.Type = CronExpressionType.EverySpecificDayAt;
             // 
             // label15
             // 
@@ -225,7 +227,7 @@
             this.EveryDayAt.Name = "EveryDayAt";
             this.EveryDayAt.Size = new System.Drawing.Size(387, 29);
             this.EveryDayAt.TabIndex = 15;
-            this.EveryDayAt.Type = QuartzCronGenerator.CronExpressionType.EveryDayAt;
+            this.EveryDayAt.Type = CronExpressionType.EveryDayAt;
             // 
             // label7
             // 
@@ -283,7 +285,7 @@
             this.EveryNHours.Name = "EveryNHours";
             this.EveryNHours.Size = new System.Drawing.Size(387, 29);
             this.EveryNHours.TabIndex = 14;
-            this.EveryNHours.Type = QuartzCronGenerator.CronExpressionType.EveryNHours;
+            this.EveryNHours.Type = CronExpressionType.EveryNHours;
             // 
             // laleb
             // 
@@ -321,7 +323,7 @@
             this.EveryNMinutes.Name = "EveryNMinutes";
             this.EveryNMinutes.Size = new System.Drawing.Size(387, 27);
             this.EveryNMinutes.TabIndex = 13;
-            this.EveryNMinutes.Type = QuartzCronGenerator.CronExpressionType.EveryNMinutes;
+            this.EveryNMinutes.Type = CronExpressionType.EveryNMinutes;
             // 
             // label5
             // 

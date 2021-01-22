@@ -1,7 +1,7 @@
 ﻿
 using DomainModel;
 using Presentation.Views;
-using QuartzCronGenerator;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.Components;
+using static DomainModel.Enums;
 
 namespace UI
 {
