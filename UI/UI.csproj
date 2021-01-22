@@ -108,7 +108,6 @@
     <Compile Include="LightInjectAdapder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IReadableEnumsManager.cs" />
     <Compile Include="ScheduleDetails.cs">
       <SubType>Form</SubType>
     </Compile>

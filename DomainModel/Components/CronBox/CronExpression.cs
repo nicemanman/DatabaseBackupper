@@ -1,4 +1,5 @@
 ﻿using System;
+using static DomainModel.Enums;
 
 namespace DomainModel.Components.CronBox
 {
@@ -23,37 +24,23 @@ namespace DomainModel.Components.CronBox
         {
             switch (ExpressionType)
             {
-                case CronExpressionType.EveryNSeconds:
-                    _cronString = string.Format("0/{0} * * 1/1 * ? *", _interval);
-                    break;
+               
                 case CronExpressionType.EveryNMinutes:
                     _cronString = string.Format("0 0/{0} * 1/1 * ? *", _interval);
                     break;
                 case CronExpressionType.EveryNHours:
                     _cronString = string.Format("0 0 0/{0} 1/1 * ? *", _interval);
                     break;
-                case CronExpressionType.EveryNDaysAt:
+                
                 case CronExpressionType.EveryDayAt:
                     _cronString = string.Format("0 {0} {1} 1/{2} * ? *", _startMinute, _startHour, _interval);
                     break;
-                case CronExpressionType.EveryWeekDayAt:
-                    _cronString = string.Format("0 {0} {1} ? * MON-FRI *", _startMinute, _startHour);
-                    break;
+                
                 case CronExpressionType.EverySpecificDayAt:
                     _cronString = string.Format("0 {0} {1} ? * {2} *", _startMinute, _startHour, CronConverter.ToCronRepresentation(_days));
                     break;
-                case CronExpressionType.EverySpecificDayEveryNMonthAt:
-                    _cronString = string.Format("0 {0} {1} {2} 1/{3} ? *", _startMinute, _startHour, _dayNumber, _interval);
-                    break;
-                case CronExpressionType.EverySpecificSeqWeekDayEveryNMonthAt:
-                    _cronString = string.Format("0 {0} {1} ? 1/{2} {3}#{4} *", _startMinute, _startHour, _interval, CronConverter.ToCronRepresentationSingle(_days), _dayNumber);
-                    break;
-                case CronExpressionType.EverySpecificDayOfMonthAt:
-                    _cronString = string.Format("0 {0} {1} {2} {3} ? *", _startMinute, _startHour, _dayNumber, (int)_month);
-                    break;
-                case CronExpressionType.EverySpecificSeqWeekDayOfMonthAt:
-                    _cronString = string.Format("0 {0} {1} ? {2} {3}#{4} *", _startMinute, _startHour, (int)_month, CronConverter.ToCronRepresentationSingle(_days), _dayNumber);
-                    break;
+                
+                
                 default:
                     throw new ArgumentException();
             }
@@ -142,16 +129,7 @@ namespace DomainModel.Components.CronBox
             BuildCronExpression();
         }
 
-        /// <summary>
-        /// Create new CronExpression instance, which occurs every *secondsInteval* seconds
-        /// </summary>
-        /// <param name="secondsInteval">Interval in seconds</param>
-        /// <returns>New CronExpression instance</returns>
-        public static CronExpression EveryNSeconds(int secondsInteval)
-        {
-            var ce = new CronExpression(secondsInteval, CronExpressionType.EveryNSeconds);
-            return ce;
-        }
+        
 
 
         /// <summary>
@@ -188,30 +166,9 @@ namespace DomainModel.Components.CronBox
             return ce;
         }
 
-        /// <summary>
-        /// Create new CronExpression instance, which occurs every *daysInterval* days at specified hours
-        /// </summary>
-        /// <param name="daysInterval">Interval in days</param>
-        /// <param name="hour">Hour, when occurence will happen</param>
-        /// <param name="minute">Minute, when occurence will happen</param>
-        /// <returns>New CronExpression instance</returns>
-        public static CronExpression EveryNDaysAt(int daysInterval, int hour, int minute)
-        {
-            var ce = new CronExpression(daysInterval, hour, minute, CronExpressionType.EveryNDaysAt);
-            return ce;
-        }
+       
 
-        /// <summary>
-        /// Create new CronExpression instance, which occurs monday to friday at specified hours
-        /// </summary>
-        /// <param name="hour">Hour, when occurence will happen</param>
-        /// <param name="minute">Minute, when occurence will happen</param>
-        /// <returns>New CronExpression instance</returns>
-        public static CronExpression EveryWeekDayAt(int hour, int minute)
-        {
-            var ce = new CronExpression(hour, minute, CronExpressionType.EveryWeekDayAt);
-            return ce;
-        }
+        
 
         /// <summary>
         /// Create new CronExpression instance, which occurs on specified days at specified hours
@@ -223,71 +180,6 @@ namespace DomainModel.Components.CronBox
         public static CronExpression EverySpecificWeekDayAt(int hour, int minute, DaysOfWeek days)
         {
             var ce = new CronExpression(days, hour, minute, CronExpressionType.EverySpecificDayAt);
-            return ce;
-        }
-
-        /// <summary>
-        /// Create new CronExpression instance, which occurs every specific day of month 
-        /// every *monthInterval* month at specified hours
-        /// </summary>
-        /// <param name="dayNumber">Day of the month, when occurence will happen</param>
-        /// <param name="monthInterval">Interval in months</param>
-        /// <param name="hour">Hour, when occurence will happen</param>
-        /// <param name="minute">Minute, when occurence will happen</param>
-        /// <returns>New CronExpression instance</returns>
-        public static CronExpression EverySpecificDayEveryNMonthAt(int dayNumber, int monthInterval, int hour, int minute)
-        {
-            var ce = new CronExpression(dayNumber, monthInterval, hour, minute, CronExpressionType.EverySpecificDayEveryNMonthAt);
-            return ce;
-        }
-
-        // TODO Add comments
-        /// <summary>
-        /// Create new CronExpression instance, which occurs on every first, 
-        /// second, third or fourth day of the week each *monthInterval* months
-        /// at specified hours
-        /// </summary>
-        /// <param name="dayNumber">Day sequental number (first, second, third, fourth)</param>
-        /// <param name="days">Day of week</param>
-        /// <param name="monthInverval">Interval in months</param>
-        /// <param name="hour">Hour, when occurence will happen</param>
-        /// <param name="minute">Minute, when occurence will happen</param>
-        /// <returns>New CronExpression instance</returns>
-        public static CronExpression EverySpecificSeqWeekDayEveryNMonthAt(DaySeqNumber dayNumber, DaysOfWeek days, int monthInverval, int hour, int minute)
-        {
-            var ce = new CronExpression(dayNumber, days, monthInverval, hour, minute, CronExpressionType.EverySpecificSeqWeekDayEveryNMonthAt);
-            return ce;
-        }
-
-        /// <summary>
-        /// Create new CronExpression instance, which occurs on every specific day *dayNumber* of 
-        /// specific month *month* at specified hours
-        /// </summary>
-        /// <param name="month">Month</param>
-        /// <param name="dayNumber">Day number</param>
-        /// <param name="hour">Hour, when occurence will happen</param>
-        /// <param name="minute">Minute, when occurence will happen</param>
-        /// <returns>New CronExpression instance</returns>
-        public static CronExpression EverySpecificDayOfMonthAt(Months month, int dayNumber, int hour, int minute)
-        {
-            var ce = new CronExpression(month, dayNumber, hour, minute, CronExpressionType.EverySpecificDayOfMonthAt);
-            return ce;
-        }
-
-        /// <summary>
-        /// Create new CronExpression instance, which occurs on every first, 
-        /// second, third or fourth day of the week on specific month *month*
-        /// at specified hours
-        /// </summary>
-        /// <param name="dayNumber">Day sequental number (first, second, third, fourth)</param>
-        /// <param name="days">Day of week</param>
-        /// <param name="month">Month</param>
-        /// <param name="hour">Hour, when occurence will happen</param>
-        /// <param name="minute">Minute, when occurence will happen</param>
-        /// <returns>New CronExpression instance</returns>
-        public static CronExpression EverySpecificSeqWeekDayOfMonthAt(DaySeqNumber dayNumber, DaysOfWeek days, Months month, int hour, int minute)
-        {
-            var ce = new CronExpression(dayNumber, days, month, hour, minute, CronExpressionType.EverySpecificSeqWeekDayOfMonthAt);
             return ce;
         }
 

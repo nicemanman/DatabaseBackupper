@@ -4,14 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DomainModel.Enums;
 
 namespace Presentation.Views
 {
     public interface IScheduleDetailsView : IView
     {
         string Caption { get; set; }
+        int Minutes { get; set; }
+        int Hours { get; set; }
+        List<string> days { get; set; }
+        List<string> selectedDays { get; set; }
         List<string> SchedulePeriodics { get; set; }
         string SelectedPeriodic { get; set; }
-        void SetSchedule(string selectedPeriodic);
+        /// <summary>
+        /// Установить интерфейс определенной периодичности
+        /// </summary>
+        /// <param name="type"></param>
+        void SetSchedule(CronExpressionType type);
+        /// <summary>
+        /// Получить выбранное расписание с формы
+        /// </summary>
+        /// <returns></returns>
+        string GetSchedule();
+        event Action OnPeriodicChanged;
     }
 }

@@ -25,6 +25,7 @@ namespace UI
                 .RegisterView<IBackupView, BackupDatabaseForm>()
                 .RegisterService<IBackupService, BackupService>()
                 .RegisterView<IScheduleDetailsView, ScheduleDetails>()
+                .RegisterService<IScheduleDetailsService, ScheduleDetailsService>()
                 .RegisterInstance(new ApplicationContext())
                 .RegisterInstance<IDatabaseController>(new DatabaseController("name=dbfile"));
                 

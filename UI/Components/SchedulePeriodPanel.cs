@@ -12,51 +12,44 @@ namespace UI.Components
 {
     public partial class SchedulePeriodPanel : Panel
     {
-        
+
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always),
         DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public CronExpressionType Type { get; set; }
 
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Always),
         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Control MinutesControl { get; set; }
+        public ComboBox MinutesControl { get; set; }
 
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Always),
         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Control HoursControl { get; set; }
+        public ComboBox HoursControl { get; set; }
+
+       
 
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Always),
         DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Control DaysInterval { get; set; }
-
-        [Browsable(false), EditorBrowsable(EditorBrowsableState.Always),
-        DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Control SpecificDays { get; set; }
+        public CheckedListBox SpecificDays { get; set; }
 
 
-        private int minutes { get => GetIntValueFromControl(MinutesControl); }
-        private int hours { get => GetIntValueFromControl(HoursControl); }
-        private int daysInterval { get => GetIntValueFromControl(DaysInterval); }
+        public int minutes { get => GetIntValueFromControl(MinutesControl); }
+        public int hours { get => GetIntValueFromControl(HoursControl); }
+       
         
 
         public SchedulePeriodPanel()
         {
-            
             InitializeComponent();
-            
         }
 
         public SchedulePeriodPanel(IContainer container)
         {
             container.Add(this);
             InitializeComponent();
-            
         }
 
         public string GetCronExpression() 
         {
-            var daysOfWeek = DaysOfWeek.Friday;
-            
             switch (Type) 
             {
                 case CronExpressionType.EveryNMinutes:
@@ -98,9 +91,9 @@ namespace UI.Components
 
         public void LoadPanel() 
         {
-            MinutesControl = FindControlWithTag(this.Controls, "minutes");
-            HoursControl = FindControlWithTag(this.Controls, "hours");
-            SpecificDays = FindControlWithTag(this.Controls, "days");
+            MinutesControl = (ComboBox)FindControlWithTag(this.Controls, "minutes");
+            HoursControl = (ComboBox)FindControlWithTag(this.Controls, "hours");
+            SpecificDays = (CheckedListBox)FindControlWithTag(this.Controls, "days");
             if (MinutesControl != null) 
             {
                 var list = ((ComboBox)MinutesControl);
@@ -149,5 +142,6 @@ namespace UI.Components
         
     }
 
+    
     
 }

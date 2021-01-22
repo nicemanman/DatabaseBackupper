@@ -1,4 +1,5 @@
 ﻿using DomainModel;
+using DomainModel.Services;
 using Presentation.Common;
 using Presentation.Views;
 using System;
@@ -11,10 +12,19 @@ namespace Presentation.Presenters
 {
     public class ScheduleDetailsPresenter : BasePresenter<IScheduleDetailsView, string>
     {
-        public ScheduleDetailsPresenter(IApplicationController controller, IScheduleDetailsView view) : base(controller, view)
+        private readonly IScheduleDetailsService scheduleDetailsService;
+        public ScheduleDetailsPresenter(IApplicationController controller, IScheduleDetailsView view, IScheduleDetailsService scheduleDetailsService) : base(controller, view)
         {
-            
-            
+            this.scheduleDetailsService = scheduleDetailsService;
+            View.SchedulePeriodics = scheduleDetailsService.GetListOfPeriodics();
+            View.days = scheduleDetailsService.GetListOfDays();
+            View.OnPeriodicChanged += View_OnPeriodicChanged;
+        }
+
+        private void View_OnPeriodicChanged()
+        {
+            var cronType = scheduleDetailsService.GetCronTypeByName(View.SelectedPeriodic);
+            View.SetSchedule(cronType);
         }
 
         public override void Run(string argument)
