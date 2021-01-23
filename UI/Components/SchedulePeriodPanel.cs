@@ -55,13 +55,13 @@ namespace UI.Components
             switch (Type) 
             {
                 case CronExpressionType.EveryNMinutes:
-                    return CronExpression.EveryNMinutes(minutes);
+                    return CronExpressionManager.EveryNMinutes(minutes);
                 case CronExpressionType.EveryNHours:
-                    return CronExpression.EveryNHours(hours);
+                    return CronExpressionManager.EveryNHours(hours);
                 case CronExpressionType.EveryDayAt:
-                    return CronExpression.EveryDayAt(hours,minutes);
+                    return CronExpressionManager.EveryDayAt(hours,minutes);
                 case CronExpressionType.EverySpecificDayAt:
-                    return CronExpression.EverySpecificWeekDayAt(hours, minutes, GetSelectedDays());
+                    return CronExpressionManager.EverySpecificWeekDayAt(hours, minutes, GetSelectedDays());
 
             }
             return null;

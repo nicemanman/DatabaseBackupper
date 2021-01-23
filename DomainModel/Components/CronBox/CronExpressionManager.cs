@@ -3,7 +3,7 @@ using static DomainModel.Enums;
 
 namespace DomainModel.Components.CronBox
 {
-    public class CronExpression
+    public class CronExpressionManager
     {
         private readonly DaysOfWeek _days;
         private readonly Months _month;
@@ -46,7 +46,7 @@ namespace DomainModel.Components.CronBox
             }
         }
 
-        protected CronExpression(int interval, CronExpressionType expressionType)
+        protected CronExpressionManager(int interval, CronExpressionType expressionType)
         {
             _interval = interval;
             _expressionType = expressionType;
@@ -54,7 +54,7 @@ namespace DomainModel.Components.CronBox
             BuildCronExpression();
         }
 
-        protected CronExpression(int startHour, int startMinute, CronExpressionType expressionType)
+        protected CronExpressionManager(int startHour, int startMinute, CronExpressionType expressionType)
         {
             _startHour = startHour;
             _startMinute = startMinute;
@@ -63,7 +63,7 @@ namespace DomainModel.Components.CronBox
             BuildCronExpression();
         }
 
-        protected CronExpression(int interval, int startHour, int startMinute, CronExpressionType expressionType)
+        protected CronExpressionManager(int interval, int startHour, int startMinute, CronExpressionType expressionType)
         {
             _interval = interval;
             _startHour = startHour;
@@ -73,7 +73,7 @@ namespace DomainModel.Components.CronBox
             BuildCronExpression();
         }
 
-        protected CronExpression(DaysOfWeek days, int startHour, int startMinute, CronExpressionType expressionType)
+        protected CronExpressionManager(DaysOfWeek days, int startHour, int startMinute, CronExpressionType expressionType)
         {
             _days = days;
             _startHour = startHour;
@@ -83,7 +83,7 @@ namespace DomainModel.Components.CronBox
             BuildCronExpression();
         }
 
-        protected CronExpression(int dayNumber, int interval, int startHour, int startMinute, CronExpressionType expressionType)
+        protected CronExpressionManager(int dayNumber, int interval, int startHour, int startMinute, CronExpressionType expressionType)
         {
             _dayNumber = dayNumber;
             _interval = interval;
@@ -94,7 +94,7 @@ namespace DomainModel.Components.CronBox
             BuildCronExpression();
         }
 
-        protected CronExpression(DaySeqNumber dayNumber, DaysOfWeek days, int monthInverval, int startHour, int startMinute, CronExpressionType expressionType)
+        protected CronExpressionManager(DaySeqNumber dayNumber, DaysOfWeek days, int monthInverval, int startHour, int startMinute, CronExpressionType expressionType)
         {
             _dayNumber = (int)dayNumber;
             _days = days;
@@ -106,7 +106,7 @@ namespace DomainModel.Components.CronBox
             BuildCronExpression();
         }
 
-        protected CronExpression(Months month, int dayNumber, int startHour, int startMinute, CronExpressionType expressionType)
+        protected CronExpressionManager(Months month, int dayNumber, int startHour, int startMinute, CronExpressionType expressionType)
         {
             _month = month;
             _dayNumber = dayNumber;
@@ -117,7 +117,7 @@ namespace DomainModel.Components.CronBox
             BuildCronExpression();
         }
 
-        protected CronExpression(DaySeqNumber dayNumber, DaysOfWeek days, Months month, int startHour, int startMinute, CronExpressionType expressionType)
+        protected CronExpressionManager(DaySeqNumber dayNumber, DaysOfWeek days, Months month, int startHour, int startMinute, CronExpressionType expressionType)
         {
             _dayNumber = (int)dayNumber;
             _days = days;
@@ -137,9 +137,9 @@ namespace DomainModel.Components.CronBox
         /// </summary>
         /// <param name="minutesInteval">Interval in minutes</param>
         /// <returns>New CronExpression instance</returns>
-        public static CronExpression EveryNMinutes(int minutesInteval)
+        public static CronExpressionManager EveryNMinutes(int minutesInteval)
         {
-            var ce = new CronExpression(minutesInteval, CronExpressionType.EveryNMinutes);
+            var ce = new CronExpressionManager(minutesInteval, CronExpressionType.EveryNMinutes);
             return ce;
         }
 
@@ -148,9 +148,9 @@ namespace DomainModel.Components.CronBox
         /// </summary>
         /// <param name="hoursInterval">Interval in hours</param>
         /// <returns>New CronExpression instance</returns>
-        public static CronExpression EveryNHours(int hoursInterval)
+        public static CronExpressionManager EveryNHours(int hoursInterval)
         {
-            var ce = new CronExpression(hoursInterval, CronExpressionType.EveryNHours);
+            var ce = new CronExpressionManager(hoursInterval, CronExpressionType.EveryNHours);
             return ce;
         }
 
@@ -160,9 +160,9 @@ namespace DomainModel.Components.CronBox
         /// <param name="hour">Hour, when occurence will happen</param>
         /// <param name="minute">Minute, when occurence will happen</param>
         /// <returns>New CronExpression instance</returns>
-        public static CronExpression EveryDayAt(int hour, int minute)
+        public static CronExpressionManager EveryDayAt(int hour, int minute)
         {
-            var ce = new CronExpression(1, hour, minute, CronExpressionType.EveryDayAt);
+            var ce = new CronExpressionManager(1, hour, minute, CronExpressionType.EveryDayAt);
             return ce;
         }
 
@@ -177,9 +177,9 @@ namespace DomainModel.Components.CronBox
         /// <param name="minute">Minute, when occurence will happen</param>
         /// <param name="days">Days, when occurence will happen</param>
         /// <returns>New CronExpression instance</returns>
-        public static CronExpression EverySpecificWeekDayAt(int hour, int minute, DaysOfWeek days)
+        public static CronExpressionManager EverySpecificWeekDayAt(int hour, int minute, DaysOfWeek days)
         {
-            var ce = new CronExpression(days, hour, minute, CronExpressionType.EverySpecificDayAt);
+            var ce = new CronExpressionManager(days, hour, minute, CronExpressionType.EverySpecificDayAt);
             return ce;
         }
 
@@ -188,7 +188,7 @@ namespace DomainModel.Components.CronBox
             return _cronString;
         }
 
-        public static implicit operator string(CronExpression expression)
+        public static implicit operator string(CronExpressionManager expression)
         {
             return expression.ToString();
         }

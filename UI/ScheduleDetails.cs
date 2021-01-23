@@ -23,6 +23,7 @@ namespace UI
         private SchedulePeriodPanel currentPanel;
 
         public event Action OnPeriodicChanged;
+        public event Action SaveButtonPressed;
 
         public ScheduleDetails()
         {
@@ -53,18 +54,7 @@ namespace UI
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var cron = currentPanel.GetCronExpression();
-                if (cron == null)
-                    MessageBox.Show("Генерация этого cron выражения еще не реализована!");
-                else
-                    MessageBox.Show(cron);
-            }
-            catch (Exception ex) 
-            {
-                MessageBox.Show(ex.Message);
-            }
+            SaveButtonPressed();
         }
 
         private void ScheduleDetails_Load(object sender, EventArgs e)
@@ -85,10 +75,13 @@ namespace UI
                 PeriodicList.SelectedItem = value;
             } 
         }
-        public string Caption { get; set; }
+        public string Caption { get => ScheduleName.Text; set => ScheduleName.Text = value; }
         public int Minutes { get => currentPanel.minutes; set => currentPanel.MinutesControl.Text = value.ToString(); }
         public int Hours { get => currentPanel.hours; set => currentPanel.HoursControl.Text = value.ToString(); }
-        public List<string> days { get => throw new NotImplementedException(); set 
+        
+        public List<string> days { 
+            get => throw new NotImplementedException(); 
+            set 
             {
                 var panel = periodicPanels.Values.Where(x => x.SpecificDays != null).FirstOrDefault();
                 foreach (var day in value)
@@ -140,6 +133,11 @@ namespace UI
         public string GetSchedule()
         {
             throw new NotImplementedException();
+        }
+
+        public void ShowError(string text)
+        {
+            MessageBox.Show(text, "Ошибка валидации");
         }
     }
 }

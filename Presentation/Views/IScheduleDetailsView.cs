@@ -17,6 +17,7 @@ namespace Presentation.Views
         List<string> selectedDays { get; set; }
         List<string> SchedulePeriodics { get; set; }
         string SelectedPeriodic { get; set; }
+        void ShowError(string text);
         /// <summary>
         /// Установить интерфейс определенной периодичности
         /// </summary>
@@ -28,5 +29,6 @@ namespace Presentation.Views
         /// <returns></returns>
         string GetSchedule();
         event Action OnPeriodicChanged;
+        event Action SaveButtonPressed;
     }
 }

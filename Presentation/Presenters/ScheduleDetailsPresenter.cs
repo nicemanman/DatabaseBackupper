@@ -1,4 +1,5 @@
 ﻿using DomainModel;
+using DomainModel.Models;
 using DomainModel.Services;
 using Presentation.Common;
 using Presentation.Views;
@@ -19,6 +20,29 @@ namespace Presentation.Presenters
             View.SchedulePeriodics = scheduleDetailsService.GetListOfPeriodics();
             View.days = scheduleDetailsService.GetListOfDays();
             View.OnPeriodicChanged += View_OnPeriodicChanged;
+            View.SaveButtonPressed += View_SaveButtonPressed;
+        }
+
+        private void View_SaveButtonPressed()
+        {
+            try
+            {
+                var selectedPeriodicEnum = scheduleDetailsService.GetCronTypeByName(View.SelectedPeriodic);
+                ScheduleDetailsModel model = new ScheduleDetailsModel()
+                {
+                    Name = View.Caption,
+                    cronExpressionType = selectedPeriodicEnum,
+                    minutes = View.Minutes,
+                    hours = View.Hours,
+                    selectedDays = View.selectedDays
+                };
+                scheduleDetailsService.SaveCronExpression(model);
+                View.Close();
+            }
+            catch (Exception ex) 
+            {
+                View.ShowError(ex.Message);
+            }
         }
 
         private void View_OnPeriodicChanged()

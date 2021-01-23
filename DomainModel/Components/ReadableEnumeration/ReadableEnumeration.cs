@@ -15,7 +15,7 @@ namespace DomainModel.Components.ReadableEnumeration
             UIEnumerationValues = new List<ReadableEnumerationValue>();
             SetReadableList(readableNames, enumerationNames);
         }
-
+        
         public T GetEnumItem(string readableName)
         {
             return UIEnumerationValues.Where(x => x.Name == readableName).Select(x => x.EnumerationItem).FirstOrDefault();

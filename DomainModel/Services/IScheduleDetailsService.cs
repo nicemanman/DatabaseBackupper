@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainModel.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,7 @@ namespace DomainModel.Services
 
         List<string> GetListOfDays();
         DaysOfWeek GetDayTypeByName(string name);
+        void SaveCronExpression(ScheduleDetailsModel model);
+        ScheduleDetailsModel GetCronExpression(int id);
     }
 }
