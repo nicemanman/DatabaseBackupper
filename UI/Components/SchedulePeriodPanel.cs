@@ -50,22 +50,6 @@ namespace UI.Components
             InitializeComponent();
         }
 
-        public string GetCronExpression() 
-        {
-            switch (Type) 
-            {
-                case CronExpressionType.EveryNMinutes:
-                    return CronExpressionManager.EveryNMinutes(minutes);
-                case CronExpressionType.EveryNHours:
-                    return CronExpressionManager.EveryNHours(hours);
-                case CronExpressionType.EveryDayAt:
-                    return CronExpressionManager.EveryDayAt(hours,minutes);
-                case CronExpressionType.EverySpecificDayAt:
-                    return CronExpressionManager.EverySpecificWeekDayAt(hours, minutes, GetSelectedDays());
-
-            }
-            return null;
-        }
 
         /// <summary>
         /// Позволяет обойти все контролы рекурсивно в поисках тега
@@ -116,31 +100,6 @@ namespace UI.Components
             }
         }
 
-        public DaysOfWeek GetSelectedDays() 
-        {
-            if (SpecificDays == null)
-                throw new Exception("Контрол со списком дней не задан!");
-            var checkBoxList = (CheckedListBox)SpecificDays;
-            if (checkBoxList.CheckedItems.Count == 0)
-                throw new Exception("Необходимо выбрать хотя бы один день!");
-            DaysOfWeek daysOfWeek = DaysOfWeek.Monday;
-            int index = 0;
-            foreach (DaysOfWeek item in checkBoxList.CheckedItems)
-            {
-                if (index == 0)
-                {
-                    daysOfWeek = item;
-                }
-                else 
-                {
-                    daysOfWeek = daysOfWeek | item;
-                }
-                index++;
-            }
-            return daysOfWeek;
-            
-            
-        }
         
     }
 

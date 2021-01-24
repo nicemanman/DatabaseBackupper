@@ -25,16 +25,17 @@ namespace Presentation.Presenters
 
         private void View_SaveButtonPressed()
         {
+            
             try
             {
                 var selectedPeriodicEnum = scheduleDetailsService.GetCronTypeByName(View.SelectedPeriodic);
                 ScheduleDetailsModel model = new ScheduleDetailsModel()
                 {
                     Name = View.Caption,
-                    cronExpressionType = selectedPeriodicEnum,
-                    minutes = View.Minutes,
-                    hours = View.Hours,
-                    selectedDays = View.selectedDays
+                    CronExpressionType = selectedPeriodicEnum,
+                    Minutes = View.Minutes,
+                    Hours = View.Hours,
+                    SelectedDays = View.selectedDays
                 };
                 scheduleDetailsService.SaveCronExpression(model);
                 View.Close();

@@ -47,9 +47,35 @@ namespace DomainModel.Services
             daysOfWeekReadable = new ReadableEnumeration<DaysOfWeek>(daysReadable);
         }
 
-        public ScheduleDetailsModel GetCronExpression(int id)
+        public List<ScheduleDetailsModel> GetAllSchedules()
         {
-            throw new NotImplementedException();
+            var result = databaseController.scheduleRepository.GetAll().ToList();
+            List<ScheduleDetailsModel> clientList = new List<ScheduleDetailsModel>();
+            foreach (var item in result)
+            {
+                ScheduleDetailsModel model = new ScheduleDetailsModel()
+                {
+                    CronExpressionType = (CronExpressionType)item.CronTypeExpressionId,
+                    Id = item.Id,
+                    Name = item.Name,
+                    Hours = item.Hours,
+                    Minutes = item.Minutes,
+                    SelectedDays = GetSpecificDaysList(item.Days)
+                };
+                
+                clientList.Add(model);
+            }
+            return clientList;
+        }
+
+        public void RemoveSchedule(int id)
+        {
+            var model = databaseController.scheduleRepository.Get(id);
+            if (model == null) 
+            {
+                throw new Exception("Расписание не найдено, попробуйте обновить список, возможно, оно уже было удалено");
+            }
+            databaseController.scheduleRepository.Remove(model);
         }
 
         public CronExpressionType GetCronTypeByName(string name)
@@ -75,43 +101,79 @@ namespace DomainModel.Services
 
         public void SaveCronExpression(ScheduleDetailsModel model)
         {
-            string expression = "";
-            var daysFlags = GetSetOfValuesAsFlags(model.selectedDays);
-            switch (model.cronExpressionType)
-            {
-                case CronExpressionType.EveryNMinutes:
-                    expression = CronExpressionManager.EveryNMinutes(model.minutes);
-                    break;
-                case CronExpressionType.EveryNHours:
-                    expression = CronExpressionManager.EveryNHours(model.hours);
-                    break;
-                case CronExpressionType.EveryDayAt:
-                    expression = CronExpressionManager.EveryDayAt(model.hours, model.minutes);
-                    break;
-                case CronExpressionType.EverySpecificDayAt:
-                    expression = CronExpressionManager.EverySpecificWeekDayAt(model.hours, model.minutes, daysFlags);
-                    break;
-            }
             try
             {
-                CronExpression.ValidateExpression(expression);
+
+                string expression = "";
+                string messages = "";
+                if (string.IsNullOrEmpty(model.Name))
+                    messages += "Не задано название расписания!\n";
+                var daysFlags = GetSetOfValuesAsFlags(model.SelectedDays);
+                switch (model.CronExpressionType)
+                {
+                    case CronExpressionType.EveryNMinutes:
+                        if (model.Minutes == 0 || model.Minutes == 60)
+                            throw new Exception("Укажите верное количество минут от 1 до 59!");
+                        if (!string.IsNullOrWhiteSpace(messages))
+                            throw new Exception(messages);
+                        expression = CronExpressionManager.EveryNMinutes(model.Minutes);
+                        break;
+                    case CronExpressionType.EveryNHours:
+                        if (model.Hours == 0 || model.Hours == 24)
+                            messages += "Укажите верное количество часов от 1 до 23!";
+                        if (!string.IsNullOrWhiteSpace(messages))
+                            throw new Exception(messages);
+                        expression = CronExpressionManager.EveryNHours(model.Hours);
+                        break;
+                    case CronExpressionType.EveryDayAt:
+                        if (model.Minutes == 0 || model.Minutes == 60)
+                            messages += "Укажите верное количество минут от 1 до 59!\n";
+                        if (model.Hours == 0 || model.Hours == 24)
+                            messages += "Укажите верное количество часов от 1 до 23!\n";
+                        if (!string.IsNullOrWhiteSpace(messages))
+                            throw new Exception(messages);
+                        expression = CronExpressionManager.EveryDayAt(model.Hours, model.Minutes);
+                        break;
+                    case CronExpressionType.EverySpecificDayAt:
+                        if (model.Minutes == 0)
+                            messages += "Укажите верное количество минут от 1 до 59!\n";
+                        if (model.Hours == 0)
+                            messages += "Укажите верное количество часов от 1 до 23!\n";
+                        if (daysFlags == default(DaysOfWeek))
+                            messages += "Выберите хотя бы один день!\n";
+                        if (!string.IsNullOrWhiteSpace(messages))
+                            throw new Exception(messages);
+
+                        expression = CronExpressionManager.EverySpecificWeekDayAt(model.Hours, model.Minutes, daysFlags);
+                        break;
+                }
+                try
+                {
+                    CronExpression.ValidateExpression(expression);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Внутренняя ошибка при сохранении расписания!\n{ex.Message}");
+                }
+                var days = CronConverter.ToCronRepresentation(daysFlags);
+
+                Schedule dbModel = new Schedule()
+                {
+                    Name = model.Name,
+                    Cron = expression,
+                    Minutes = model.Minutes,
+                    Hours = model.Hours,
+                    Days = days,
+                    CronTypeExpressionId = (int)model.CronExpressionType
+                };
+
+                databaseController.scheduleRepository.Add(dbModel);
+                databaseController.Complete();
             }
             catch (Exception ex) 
             {
-                throw new Exception("Внутренняя ошибка при формировании cron выражения!");
+                throw ex;
             }
-            var days = CronConverter.ToCronRepresentation(daysFlags);
-            Schedule dbModel = new Schedule()
-            {
-                Name = model.Name,
-                Cron = expression,
-                Minutes = model.minutes.ToString(),
-                Hours = model.hours.ToString(),
-                Days = days
-            };
-
-            databaseController.scheduleRepository.Add(dbModel);
-            databaseController.Complete();
         }
 
         private DaysOfWeek GetSetOfValuesAsFlags(List<string> selectedReadableValues)
@@ -135,6 +197,43 @@ namespace DomainModel.Services
             return enumItem;
 
 
+        }
+        /// <summary>
+        /// "MON,TUE,WED,THU,FRI,SAT,SUN" -> "Понедельник", "Вторник"...
+        /// </summary>
+        /// <param name="days">"MON,TUE,WED,THU,FRI,SAT,SUN"</param>
+        /// <returns></returns>
+        private List<string> GetSpecificDaysList(string days) 
+        {
+            List<string> specificDays = days.Split(',').ToList();
+            List<string> representationDays = new List<string>();
+            foreach (var item in specificDays)
+            {
+                representationDays.Add(GetSpecificDayRepresentation(item));
+            }
+            return representationDays;
+        }
+        private string GetSpecificDayRepresentation(string day) 
+        {
+            switch (day)
+            {
+                case "MON":
+                    return daysReadable[0];
+                case "TUE":
+                    return daysReadable[1];
+                case "WED":
+                    return daysReadable[2];
+                case "THU":
+                    return daysReadable[3];
+                case "FRI":
+                    return daysReadable[4];
+                case "SAT":
+                    return daysReadable[5];
+                case "SUN":
+                    return daysReadable[6];
+                default:
+                    throw new ArgumentException();
+            }
         }
     }
 }

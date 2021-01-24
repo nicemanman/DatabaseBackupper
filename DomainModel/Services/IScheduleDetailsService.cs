@@ -16,6 +16,7 @@ namespace DomainModel.Services
         List<string> GetListOfDays();
         DaysOfWeek GetDayTypeByName(string name);
         void SaveCronExpression(ScheduleDetailsModel model);
-        ScheduleDetailsModel GetCronExpression(int id);
+        void RemoveSchedule(int id);
+        List<ScheduleDetailsModel> GetAllSchedules();
     }
 }

@@ -14,7 +14,7 @@ namespace DomainModel.Components.DatabaseRepository
         {
             Database.SetInitializer<AppDbContext>(new CreateDatabaseIfNotExists<AppDbContext>());
         }
-        public AppDbContext(string connectionString) : base(connectionString)
+        public AppDbContext() : base("name=dbfile")
         {
             
         }

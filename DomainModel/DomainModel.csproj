@@ -228,6 +228,11 @@
     <Compile Include="Context.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Helpers.cs" />
+    <Compile Include="Migrations\202101240552116_InitialCreate.cs" />
+    <Compile Include="Migrations\202101240552116_InitialCreate.designer.cs">
+      <DependentUpon>202101240552116_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BackupModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ScheduleDetailsModel.cs" />
@@ -243,7 +248,11 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202101240552116_InitialCreate.resx">
+      <DependentUpon>202101240552116_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

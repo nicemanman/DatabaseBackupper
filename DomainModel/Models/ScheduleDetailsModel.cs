@@ -9,10 +9,11 @@ namespace DomainModel.Models
 {
     public class ScheduleDetailsModel
     {
-        public string Name;
-        public CronExpressionType cronExpressionType;
-        public int minutes;
-        public int hours;
-        public List<string> selectedDays;
+        public int Id { get; set; } = 0;
+        public string Name { get; set; }
+        public CronExpressionType CronExpressionType { get; set; }
+        public int Minutes { get; set; }
+        public int Hours { get; set; }
+        public List<string> SelectedDays { get; set; }
     }
 }

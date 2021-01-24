@@ -45,5 +45,7 @@ namespace DomainModel.Components.CronBox
         {
             return Enum.GetValues(days.GetType()).Cast<DaysOfWeek>().Where(v => days.HasFlag(v));
         }
+
+       
     }
 }

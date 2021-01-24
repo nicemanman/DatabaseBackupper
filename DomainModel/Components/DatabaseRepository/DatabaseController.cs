@@ -9,9 +9,9 @@ namespace DomainModel.Components.DatabaseRepository
         public IJobRepository jobRepository { get; set; }
         public IScheduleRepository scheduleRepository { get; set; }
         public IPathRepository pathRepository { get; set; }
-        public DatabaseController(string connectionString)
+        public DatabaseController()
         {
-            context = new AppDbContext(connectionString);
+            context = new AppDbContext();
             jobRepository = new JobRepository(context);
             scheduleRepository = new ScheduleRepository(context);
             pathRepository = new PathRepository(context);

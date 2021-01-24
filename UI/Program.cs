@@ -27,7 +27,7 @@ namespace UI
                 .RegisterView<IScheduleDetailsView, ScheduleDetails>()
                 .RegisterService<IScheduleDetailsService, ScheduleDetailsService>()
                 .RegisterInstance(new ApplicationContext())
-                .RegisterInstance<IDatabaseController>(new DatabaseController("name=dbfile"));
+                .RegisterInstance<IDatabaseController>(new DatabaseController());
                 
                 
             controller.Run<LoginPresenter>();
