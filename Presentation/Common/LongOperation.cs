@@ -10,10 +10,13 @@ namespace Presentation.Common
     {
         private readonly IView view;
 
-        public LongOperation(IView view)
+        public LongOperation(IView view, string text = null)
         {
             this.view = view;
-            view.Wait();
+            if (text == null)
+                view.Wait();
+            else
+                view.Wait(text);
         }
         public void Dispose()
         {

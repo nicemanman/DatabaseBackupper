@@ -41,6 +41,7 @@ namespace UI
             this.ChildPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.StatusBar = new System.Windows.Forms.Label();
+            this.UpdateServersListButton = new System.Windows.Forms.Button();
             this.ChildPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -100,6 +101,7 @@ namespace UI
             // ChildPanel
             // 
             this.ChildPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ChildPanel.Controls.Add(this.UpdateServersListButton);
             this.ChildPanel.Controls.Add(this.panel1);
             this.ChildPanel.Controls.Add(this.label1);
             this.ChildPanel.Controls.Add(this.ConnectButton);
@@ -132,6 +134,15 @@ namespace UI
             this.StatusBar.Text = "Добро пожаловать!";
             this.StatusBar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // UpdateServersListButton
+            // 
+            this.UpdateServersListButton.Location = new System.Drawing.Point(391, 154);
+            this.UpdateServersListButton.Name = "UpdateServersListButton";
+            this.UpdateServersListButton.Size = new System.Drawing.Size(67, 21);
+            this.UpdateServersListButton.TabIndex = 37;
+            this.UpdateServersListButton.Text = "Обновить";
+            this.UpdateServersListButton.UseVisualStyleBackColor = true;
+            // 
             // ConnectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,6 +173,7 @@ namespace UI
         private Panel ChildPanel;
         private Panel panel1;
         private Label StatusBar;
+        private Button UpdateServersListButton;
     }
 }
 

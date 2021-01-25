@@ -4,7 +4,7 @@ namespace Presentation.Common
 {
     public interface IView
     {
-        void Wait();
+        void Wait(string text = null);
         void Wait(Progress<string> progres);
         void StopWaiting();
         void Show();

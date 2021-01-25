@@ -24,6 +24,15 @@ namespace Presentation.Presenters
             View.SqlServers = sqlServers;
             View.Login += async () => await Login(View.ServerName, View.LoginType, View.Username, View.Password);
             View.LoginTypeChanged += () => LoginTypeChanged(View.LoginType);
+            View.RefreshSQLServersList += View_RefreshSQLServersList;
+        }
+
+        private void View_RefreshSQLServersList()
+        {
+            using (new LongOperation(View)) 
+            {
+                View.SqlServers = _service.GetSqlServers();
+            }
         }
 
         private void LoginTypeChanged(string loginType)

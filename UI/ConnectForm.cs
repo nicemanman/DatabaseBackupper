@@ -13,7 +13,15 @@ namespace UI
     public partial class ConnectForm : Form, ILoginView
     {
         private readonly ApplicationContext _context;
-        public List<string> SqlServers { get; set; }
+        public List<string> SqlServers 
+        { 
+            set 
+            {
+                if (value.Count == 0)
+                    OpenChildPanel(new SQLServersNotFound(() => { RefreshSQLServersList(); }));
+                ServersList.DataSource = value;
+            } 
+        }
         public List<string> LoginTypes { get; set; }
         public string ServerName { get => ServersList.SelectedItem as string; }
         public string LoginType { get => LoginTypesList.SelectedItem.ToString(); }
@@ -21,6 +29,8 @@ namespace UI
         public string Password { get => PasswordTextbox.Text; }
         public event Action Login;
         public event Action LoginTypeChanged;
+        public event Action RefreshSQLServersList;
+
         private enum Test { Test1, Test2 };
         private List<string> ReadableList = new List<string>() { "Тестовый вариант 1","Тестовый вариант 2" };
 
@@ -30,7 +40,13 @@ namespace UI
             ConnectButton.Click += ConnectButton_Click;
             this.Load += ConnectForm_Load;
             LoginTypesList.SelectedValueChanged += LoginTypesList_SelectedValueChanged;
+            UpdateServersListButton.Click += UpdateServersListButton_Click;
             _context = context;
+        }
+
+        private void UpdateServersListButton_Click(object sender, EventArgs e)
+        {
+            RefreshSQLServersList();
         }
 
         private void LoginTypesList_SelectedValueChanged(object sender, EventArgs e)
@@ -45,7 +61,6 @@ namespace UI
         private void ConnectForm_Load(object sender, EventArgs e)
         {
             LoginTypesList.DataSource = LoginTypes;
-            ServersList.DataSource = SqlServers;
         }
 
         public new void Show() 
@@ -60,9 +75,12 @@ namespace UI
             base.Show();
         }
 
-        public void Wait()
+        public void Wait(string text = null)
         {
-            OpenChildPanel(new WaitForm("Подключаемся к SQL серверу..."));
+            if (text == null)
+                OpenChildPanel(new WaitForm("Подключаемся к SQL серверу..."));
+            else
+                OpenChildPanel(new WaitForm(text));
         }
 
         public void StopWaiting()

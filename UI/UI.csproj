@@ -101,6 +101,12 @@
     </Compile>
     <Compile Include="LightInjectAdapder.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgressForms\SQLServersNotFound.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressForms\SQLServersNotFound.Designer.cs">
+      <DependentUpon>SQLServersNotFound.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScheduleDetails.cs">
       <SubType>Form</SubType>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConnectForm.resx">
       <DependentUpon>ConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressForms\SQLServersNotFound.resx">
+      <DependentUpon>SQLServersNotFound.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

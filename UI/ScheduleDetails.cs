@@ -108,7 +108,7 @@ namespace UI
             throw new NotImplementedException();
         }
 
-        public void Wait()
+        public void Wait(string text = null)
         {
             throw new NotImplementedException();
         }

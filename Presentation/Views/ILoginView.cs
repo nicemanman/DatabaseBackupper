@@ -11,7 +11,7 @@ namespace Presentation.Views
 {
     public interface ILoginView : IView
     {
-        List<string> SqlServers{ get; set; }
+        List<string> SqlServers{ set; }
         string ServerName { get; }
         List<string> LoginTypes { get; set; }
         string LoginType { get; }
@@ -19,6 +19,7 @@ namespace Presentation.Views
         string Password { get; }
         event Action Login;
         event Action LoginTypeChanged;
+        event Action RefreshSQLServersList;
         void ShowError(string text);
         void SetMSSQLAuth();
         void SetWindowsAuth();

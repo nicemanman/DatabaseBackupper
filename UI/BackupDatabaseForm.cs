@@ -216,9 +216,12 @@ namespace UI
             MessageBox.Show(message, "Успех");
         }
 
-        public void Wait()
+        public void Wait(string text = null)
         {
-            OpenChildPanel(new WaitForm("Ожидайте..."));
+            if (text == null)
+                OpenChildPanel(new WaitForm("Ожидайте..."));
+            else
+                OpenChildPanel(new WaitForm(text));
         }
     }
 }
