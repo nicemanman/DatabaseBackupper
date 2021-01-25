@@ -39,9 +39,9 @@ namespace UI
             this.ServersList = new System.Windows.Forms.ComboBox();
             this.ConnectButton = new System.Windows.Forms.Button();
             this.ChildPanel = new System.Windows.Forms.Panel();
+            this.UpdateServersListButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.StatusBar = new System.Windows.Forms.Label();
-            this.UpdateServersListButton = new System.Windows.Forms.Button();
             this.ChildPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -77,7 +77,7 @@ namespace UI
             // 
             this.UsernameTextbox.Location = new System.Drawing.Point(117, 206);
             this.UsernameTextbox.Name = "UsernameTextbox";
-            this.UsernameTextbox.Size = new System.Drawing.Size(267, 20);
+            this.UsernameTextbox.Size = new System.Drawing.Size(268, 20);
             this.UsernameTextbox.TabIndex = 32;
             // 
             // ServersList
@@ -91,9 +91,9 @@ namespace UI
             // 
             // ConnectButton
             // 
-            this.ConnectButton.Location = new System.Drawing.Point(235, 258);
+            this.ConnectButton.Location = new System.Drawing.Point(254, 258);
             this.ConnectButton.Name = "ConnectButton";
-            this.ConnectButton.Size = new System.Drawing.Size(150, 29);
+            this.ConnectButton.Size = new System.Drawing.Size(131, 29);
             this.ConnectButton.TabIndex = 30;
             this.ConnectButton.Text = "Подключиться";
             this.ConnectButton.UseVisualStyleBackColor = true;
@@ -115,6 +115,15 @@ namespace UI
             this.ChildPanel.Size = new System.Drawing.Size(523, 379);
             this.ChildPanel.TabIndex = 36;
             // 
+            // UpdateServersListButton
+            // 
+            this.UpdateServersListButton.Location = new System.Drawing.Point(117, 258);
+            this.UpdateServersListButton.Name = "UpdateServersListButton";
+            this.UpdateServersListButton.Size = new System.Drawing.Size(131, 29);
+            this.UpdateServersListButton.TabIndex = 37;
+            this.UpdateServersListButton.Text = "Обновить";
+            this.UpdateServersListButton.UseVisualStyleBackColor = true;
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.PaleGreen;
@@ -133,15 +142,6 @@ namespace UI
             this.StatusBar.TabIndex = 0;
             this.StatusBar.Text = "Добро пожаловать!";
             this.StatusBar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // UpdateServersListButton
-            // 
-            this.UpdateServersListButton.Location = new System.Drawing.Point(391, 154);
-            this.UpdateServersListButton.Name = "UpdateServersListButton";
-            this.UpdateServersListButton.Size = new System.Drawing.Size(67, 21);
-            this.UpdateServersListButton.TabIndex = 37;
-            this.UpdateServersListButton.Text = "Обновить";
-            this.UpdateServersListButton.UseVisualStyleBackColor = true;
             // 
             // ConnectForm
             // 
