@@ -37,14 +37,17 @@ namespace Presentation.Presenters
         {
             using (new LongOperation(View))
             {
-                var loginModel = new LoginModel() { Servername = serverName, Username = userName, Password = password, LoginType = loginType };
-                var backupModel = await _service.ConnectToSqlServer(loginModel);
-                if (backupModel == null)
+                
+                try { 
+                    var loginModel = new LoginModel() { Servername = serverName, Username = userName, Password = password, LoginType = loginType };
+                    var backupModel = await _service.ConnectToSqlServer(loginModel);
+                    Controller.Run<BackupPresenter, BackupModel>(backupModel);
+                }
+                catch(Exception ex)
                 {
-                    View.ShowError("Ошибка подключения:(");
+                    View.ShowError(ex.Message);
                     return;
                 }
-                Controller.Run<BackupPresenter, BackupModel>(backupModel);
             }
                 View.Close();
         }

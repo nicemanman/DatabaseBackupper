@@ -88,8 +88,9 @@ namespace UI
 
         public void ShowError(string text)
         {
-            StatusBar.Text = text;
+            StatusBar.Text = "Не удалось подключиться:(";
             StatusBar.BackColor = Color.Red;
+            MessageBox.Show(text, "Ошибка подключения");
         }
 
         public void SetMSSQLAuth()

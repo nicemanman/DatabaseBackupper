@@ -46,7 +46,7 @@ namespace DomainModel.Services
                 }
                 catch (Exception ex) 
                 {
-                    return null;
+                    throw ex;
                 }
                 using (SqlCommand cmd = new SqlCommand("SELECT name from sys.databases", con))
                 {
