@@ -35,7 +35,6 @@
             this.Cron = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Open = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Return = new System.Windows.Forms.Button();
             this.CreateNewSchedule = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.SchedulesTable)).BeginInit();
@@ -102,32 +101,18 @@
             this.Delete.ToolTipText = "Удалить";
             this.Delete.UseColumnTextForButtonValue = true;
             // 
-            // Return
-            // 
-            this.Return.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Return.Location = new System.Drawing.Point(252, 272);
-            this.Return.Name = "Return";
-            this.Return.Size = new System.Drawing.Size(194, 22);
-            this.Return.TabIndex = 5;
-            this.Return.Text = "Вернуться";
-            this.Return.UseVisualStyleBackColor = true;
-            
-            // 
             // CreateNewSchedule
             // 
-            this.CreateNewSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CreateNewSchedule.Location = new System.Drawing.Point(3, 272);
+            this.CreateNewSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CreateNewSchedule.Location = new System.Drawing.Point(281, 272);
             this.CreateNewSchedule.Name = "CreateNewSchedule";
-            this.CreateNewSchedule.Size = new System.Drawing.Size(243, 21);
+            this.CreateNewSchedule.Size = new System.Drawing.Size(165, 21);
             this.CreateNewSchedule.TabIndex = 4;
             this.CreateNewSchedule.Text = "Создать новое расписание";
             this.CreateNewSchedule.UseVisualStyleBackColor = true;
-            
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.Return);
             this.panel1.Controls.Add(this.SchedulesTable);
             this.panel1.Controls.Add(this.CreateNewSchedule);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -145,7 +130,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Schedules";
             this.Text = "Расписания";
-            
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.SchedulesTable)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -155,7 +140,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView SchedulesTable;
-        private System.Windows.Forms.Button Return;
         private System.Windows.Forms.Button CreateNewSchedule;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;

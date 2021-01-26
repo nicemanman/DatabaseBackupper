@@ -15,13 +15,9 @@ namespace DomainModel.Components.DatabaseRepository.DatabaseModels
         [Required]
         public string Cron { get; set; }
         public List<Job> tasks { get; set; }
-        [Required]
         public int Minutes { get; set; }
-        [Required]
         public int Hours { get; set; }
-        [Required]
         public string Days { get; set; }
-        [Required]
         public int CronTypeExpressionId { get; set; }
     }
 }

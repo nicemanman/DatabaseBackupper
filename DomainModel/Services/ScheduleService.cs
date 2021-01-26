@@ -13,7 +13,7 @@ using DomainModel.Components.DatabaseRepository.DatabaseModels;
 
 namespace DomainModel.Services
 {
-    public class ScheduleDetailsService : IScheduleDetailsService
+    public class ScheduleService : IScheduleService
     {
         private IDatabaseController databaseController;
 
@@ -22,7 +22,7 @@ namespace DomainModel.Services
 
         List<string> daysReadable;
         ReadableEnumeration<DaysOfWeek> daysOfWeekReadable;
-        public ScheduleDetailsService(IDatabaseController databaseController)
+        public ScheduleService(IDatabaseController databaseController)
         {
             this.databaseController = databaseController;
             cronExpressionTypes = new List<string>()
@@ -60,7 +60,8 @@ namespace DomainModel.Services
                     Name = item.Name,
                     Hours = item.Hours,
                     Minutes = item.Minutes,
-                    SelectedDays = GetSpecificDaysList(item.Days)
+                    SelectedDays = GetSpecificDaysList(item.Days),
+                    CronExpression = item.Cron
                 };
                 
                 clientList.Add(model);
@@ -68,7 +69,7 @@ namespace DomainModel.Services
             return clientList;
         }
 
-        public void RemoveSchedule(int id)
+        public async Task RemoveSchedule(int id)
         {
             var model = databaseController.scheduleRepository.Get(id);
             if (model == null) 
@@ -76,6 +77,7 @@ namespace DomainModel.Services
                 throw new Exception("Расписание не найдено, попробуйте обновить список, возможно, оно уже было удалено");
             }
             databaseController.scheduleRepository.Remove(model);
+            await databaseController.Complete();
         }
 
         public CronExpressionType GetCronTypeByName(string name)
@@ -99,7 +101,7 @@ namespace DomainModel.Services
             return cronExpressionTypesReadable.GetReadableList();
         }
 
-        public void SaveCronExpression(ScheduleDetailsModel model)
+        public async Task SaveCronExpression(ScheduleDetailsModel model)
         {
             try
             {
@@ -164,11 +166,23 @@ namespace DomainModel.Services
                     Minutes = model.Minutes,
                     Hours = model.Hours,
                     Days = days,
-                    CronTypeExpressionId = (int)model.CronExpressionType
+                    CronTypeExpressionId = (int)model.CronExpressionType,
+                    Id = model.Id
                 };
-
-                databaseController.scheduleRepository.Add(dbModel);
-                databaseController.Complete();
+                var findItem = databaseController.scheduleRepository.Get(model.Id);
+                if (findItem == null)
+                    databaseController.scheduleRepository.Add(dbModel);
+                else 
+                {
+                    findItem.Name = dbModel.Name;
+                    findItem.Cron = dbModel.Cron;
+                    findItem.Minutes = dbModel.Minutes;
+                    findItem.Hours = dbModel.Hours;
+                    findItem.Days = dbModel.Days;
+                    findItem.CronTypeExpressionId = dbModel.CronTypeExpressionId;
+                    findItem.Id = model.Id;
+                }
+                await databaseController.Complete();
             }
             catch (Exception ex) 
             {
@@ -205,6 +219,7 @@ namespace DomainModel.Services
         /// <returns></returns>
         private List<string> GetSpecificDaysList(string days) 
         {
+            if (string.IsNullOrWhiteSpace(days)) return new List<string>();
             List<string> specificDays = days.Split(',').ToList();
             List<string> representationDays = new List<string>();
             foreach (var item in specificDays)
@@ -234,6 +249,11 @@ namespace DomainModel.Services
                 default:
                     throw new ArgumentException();
             }
+        }
+
+        public string GetNameByCronType(CronExpressionType type)
+        {
+            return cronExpressionTypesReadable.GetEnumItemName(type);
         }
     }
 }

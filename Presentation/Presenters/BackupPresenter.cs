@@ -78,7 +78,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                throw new NotImplementedException();
+                Controller.Run<SchedulesPresenter>();
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                Controller.Run<ScheduleDetailsPresenter,string>("Создать новое расписание");
+                Controller.Run<ScheduleDetailsPresenter, ScheduleDetailsModel>(new ScheduleDetailsModel());
             }
             catch (Exception ex)
             {

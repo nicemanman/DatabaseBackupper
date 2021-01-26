@@ -20,7 +20,10 @@ namespace DomainModel.Components.ReadableEnumeration
         {
             return UIEnumerationValues.Where(x => x.Name == readableName).Select(x => x.EnumerationItem).FirstOrDefault();
         }
-
+        public string GetEnumItemName(T item)
+        {
+            return UIEnumerationValues.Where(x => x.EnumerationItem.Equals(item)).Select(x => x.Name).FirstOrDefault();
+        }
         public List<string> GetReadableList()
         {
             return UIEnumerationValues.Select(x => x.Name).ToList();

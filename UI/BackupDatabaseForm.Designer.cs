@@ -74,10 +74,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(251, 76);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(254, 83);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 25);
+            this.label3.Size = new System.Drawing.Size(116, 17);
             this.label3.TabIndex = 25;
             this.label3.Text = "Лог выполнения";
             // 
@@ -279,13 +279,13 @@
             // AboutProgrammMenuButton
             // 
             this.AboutProgrammMenuButton.Name = "AboutProgrammMenuButton";
-            this.AboutProgrammMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.AboutProgrammMenuButton.Size = new System.Drawing.Size(149, 22);
             this.AboutProgrammMenuButton.Text = "О программе";
             // 
             // AboutAuthorMenuButton
             // 
             this.AboutAuthorMenuButton.Name = "AboutAuthorMenuButton";
-            this.AboutAuthorMenuButton.Size = new System.Drawing.Size(180, 22);
+            this.AboutAuthorMenuButton.Size = new System.Drawing.Size(149, 22);
             this.AboutAuthorMenuButton.Text = "Об авторе";
             // 
             // ToolButtonsPanel

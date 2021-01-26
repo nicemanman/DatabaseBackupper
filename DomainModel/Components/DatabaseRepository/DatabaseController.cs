@@ -24,7 +24,7 @@ namespace DomainModel.Components.DatabaseRepository
 
         public void Initialize()
         {
-                context.Database.Initialize(false);
+            context.Database.Initialize(false);
         }
     }
 }

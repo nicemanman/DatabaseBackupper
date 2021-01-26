@@ -19,7 +19,6 @@ namespace UI
     public partial class ScheduleDetails : Form, IScheduleDetailsView
     {
         private Dictionary<Enums.CronExpressionType, SchedulePeriodPanel> periodicPanels;
-        private Dictionary<string, CronExpressionType> namings;
         private SchedulePeriodPanel currentPanel;
 
         public event Action OnPeriodicChanged;
@@ -60,7 +59,6 @@ namespace UI
         private void ScheduleDetails_Load(object sender, EventArgs e)
         {
 
-            PeriodicList.DataSource = SchedulePeriodics;
             this.Text = Caption;
         }
 
@@ -69,26 +67,33 @@ namespace UI
             OnPeriodicChanged();
         }
 
-        public List<string> SchedulePeriodics { get; set; }
+        public List<string> SchedulePeriodics { set { PeriodicList.DataSource = value; } }
         public string SelectedPeriodic { get { return PeriodicList.SelectedItem.ToString(); } set 
             {
-                PeriodicList.SelectedItem = value;
+                foreach (var item in PeriodicList.Items)
+                {
+                    if (item.ToString() == value) 
+                    {
+                        PeriodicList.SelectedItem = item;
+                        break;
+                    }
+                }
             } 
         }
         public string Caption { get => ScheduleName.Text; set => ScheduleName.Text = value; }
         public int Minutes { get => currentPanel.minutes; set => currentPanel.MinutesControl.Text = value.ToString(); }
         public int Hours { get => currentPanel.hours; set => currentPanel.HoursControl.Text = value.ToString(); }
-        
-        public List<string> days { 
-            get => throw new NotImplementedException(); 
+        private List<string> selectedDaysList = new List<string>();
+        public List<string> days {
+            get 
+            {
+                return selectedDaysList;
+            } 
             set 
             {
-                var panel = periodicPanels.Values.Where(x => x.SpecificDays != null).FirstOrDefault();
-                foreach (var day in value)
-                {
-                    panel.SpecificDays.Items.Add(day);
-                }
-            } }
+                selectedDaysList = value;
+            } 
+        }
         public List<string> selectedDays { 
             get
             {
@@ -100,9 +105,22 @@ namespace UI
                 }
                 return list;
             }
-            set => throw new NotImplementedException(); }
+            set 
+            {
+                var panel = periodicPanels.Values.Where(x => x.SpecificDays != null).FirstOrDefault();
+                foreach (var day in days)
+                {
+                    if (value != null && value.Contains(day)) 
+                    {
+                        panel.SpecificDays.Items.Add(day, true);
+                    } else
+                        panel.SpecificDays.Items.Add(day, false);
+                }
+                }
+            }
 
-        
+        public int Id { get; set; }
+
         public void StopWaiting()
         {
             throw new NotImplementedException();

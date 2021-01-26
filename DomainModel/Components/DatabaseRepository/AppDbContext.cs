@@ -12,9 +12,6 @@ namespace DomainModel.Components.DatabaseRepository
     {
         static AppDbContext() 
         {
-            string executable = System.Reflection.Assembly.Load("DomainModel").Location;
-            string path = (System.IO.Path.GetDirectoryName(executable));
-            AppDomain.CurrentDomain.SetData("DataDirectory", path);
             Database.SetInitializer<AppDbContext>(new CreateDatabaseIfNotExists<AppDbContext>());
         }
         public AppDbContext() : base("name=dbfile")

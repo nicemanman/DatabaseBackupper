@@ -15,5 +15,6 @@ namespace DomainModel.Models
         public int Minutes { get; set; }
         public int Hours { get; set; }
         public List<string> SelectedDays { get; set; }
+        public string CronExpression { get; set; }
     }
 }

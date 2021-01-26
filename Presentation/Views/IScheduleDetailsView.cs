@@ -15,7 +15,7 @@ namespace Presentation.Views
         int Hours { get; set; }
         List<string> days { get; set; }
         List<string> selectedDays { get; set; }
-        List<string> SchedulePeriodics { get; set; }
+        List<string> SchedulePeriodics { set; }
         string SelectedPeriodic { get; set; }
         void ShowError(string text);
         /// <summary>
@@ -28,6 +28,7 @@ namespace Presentation.Views
         /// </summary>
         /// <returns></returns>
         string GetSchedule();
+        int Id { get; set; }
         event Action OnPeriodicChanged;
         event Action SaveButtonPressed;
     }

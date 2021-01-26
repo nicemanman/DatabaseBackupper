@@ -8,15 +8,15 @@ using static DomainModel.Enums;
 
 namespace DomainModel.Services
 {
-    public interface IScheduleDetailsService
+    public interface IScheduleService
     {
         List<string> GetListOfPeriodics();
         CronExpressionType GetCronTypeByName(string name);
-
+        string GetNameByCronType(CronExpressionType type);
         List<string> GetListOfDays();
         DaysOfWeek GetDayTypeByName(string name);
-        void SaveCronExpression(ScheduleDetailsModel model);
-        void RemoveSchedule(int id);
+        Task SaveCronExpression(ScheduleDetailsModel model);
+        Task RemoveSchedule(int id);
         List<ScheduleDetailsModel> GetAllSchedules();
     }
 }
