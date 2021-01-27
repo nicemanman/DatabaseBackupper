@@ -41,7 +41,7 @@ namespace DomainModel.Services
                 try
                 {
                     await con.OpenAsync();
-                    SetSqlServerConnection(connectionString);
+                    SetSqlServerConnection(connectionString, model);
                     await Task.Run(() => databaseController.Initialize());
                 }
                 catch (Exception ex) 
@@ -69,9 +69,10 @@ namespace DomainModel.Services
             }
         }
 
-        private void SetSqlServerConnection(string connectionString) 
+        private void SetSqlServerConnection(string connectionString, LoginModel model) 
         {
             Context.SetDBConnectionString(connectionString);
+            Context.SetServerInstance(model.Servername);
         }
         public List<string> GetLoginTypes()
         {
