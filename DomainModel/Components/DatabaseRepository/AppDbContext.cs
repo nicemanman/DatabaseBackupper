@@ -12,6 +12,9 @@ namespace DomainModel.Components.DatabaseRepository
     {
         static AppDbContext() 
         {
+            //TODO - Если у пользователя уже была создана база, это не получится сделать.
+            //плюс к тому же, необходимо обновлять схему базы данных у пользователя, если она поменялась.
+            //Кастомный инициализатор
             Database.SetInitializer<AppDbContext>(new CreateDatabaseIfNotExists<AppDbContext>());
         }
         public AppDbContext() : base("name=dbfile")

@@ -54,7 +54,7 @@ namespace Presentation.Presenters
                 }
                 catch(Exception ex)
                 {
-                    View.ShowError(ex.Message);
+                    View.ShowError("Message: " +ex.Message+" InnerException: "+ex.InnerException + " StackTrace: " +ex.StackTrace);
                     return;
                 }
             }
