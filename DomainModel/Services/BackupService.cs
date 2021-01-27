@@ -4,6 +4,7 @@ using DomainModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,7 @@ namespace DomainModel.Services
             {
                 foreach (var database in backupModel.DatabasesToBackup)
                 {
-                    var dateNow = DateTime.Now.ToShortDateString();
+                    var dateNow = DateTime.Now.ToString("dd'.'MM'.'yyyy");
                     var timeNow = DateTime.Now.ToLongTimeString();
                     string path = backupModel.PathToBackup + "\\" + dateNow + "\\" + database;
                     var databaseFileName = database + " " + timeNow.Replace(":", ".");
