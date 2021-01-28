@@ -1,7 +1,9 @@
 ﻿using DomainModel.Components.DatabaseRepository.DatabaseModels;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,15 +17,26 @@ namespace DomainModel.Components.DatabaseRepository
             //TODO - Если у пользователя уже была создана база, это не получится сделать.
             //плюс к тому же, необходимо обновлять схему базы данных у пользователя, если она поменялась.
             //Кастомный инициализатор
-            Database.SetInitializer<AppDbContext>(new CreateDatabaseIfNotExists<AppDbContext>());
+            Database.SetInitializer(new CustomInitializer());
         }
-        public AppDbContext() : base("name=dbfile")
+        public AppDbContext(string InitialCatalog) : base(ConnectionString(InitialCatalog))
         {
             
         }
-
+        
         public DbSet<Job> Tasks { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<BackupPath> Paths { get; set; }
+        private static string ConnectionString(string InitialCatalog)
+        {
+            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
+            sqlBuilder.DataSource = "(LocalDb)\\MSSQLLocalDB";
+            sqlBuilder.InitialCatalog = InitialCatalog;
+            sqlBuilder.PersistSecurityInfo = true;
+            sqlBuilder.IntegratedSecurity = true;
+            sqlBuilder.MultipleActiveResultSets = true;
+
+            return sqlBuilder.ToString();
+        }
     }
 }

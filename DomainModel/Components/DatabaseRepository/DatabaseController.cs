@@ -11,7 +11,7 @@ namespace DomainModel.Components.DatabaseRepository
         public IPathRepository pathRepository { get; set; }
         public DatabaseController()
         {
-            context = new AppDbContext();
+            context = new AppDbContext("DB");
             jobRepository = new JobRepository(context);
             scheduleRepository = new ScheduleRepository(context);
             pathRepository = new PathRepository(context);
@@ -22,6 +22,7 @@ namespace DomainModel.Components.DatabaseRepository
             await context.SaveChangesAsync();
         }
 
+        
         public void Initialize()
         {
             context.Database.Initialize(false);

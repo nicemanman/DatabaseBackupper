@@ -209,6 +209,7 @@
     <Compile Include="Components\CronBox\CronExpressionManager.cs" />
     <Compile Include="Components\CronBox\DaySeqNumber.cs" />
     <Compile Include="Components\CronBox\Months.cs" />
+    <Compile Include="Components\DatabaseRepository\CustomInitializer.cs" />
     <Compile Include="Components\ReadableEnumeration\ReadableEnumeration.cs" />
     <Compile Include="Components\DatabaseRepository\AppDbContext.cs" />
     <Compile Include="Components\DatabaseRepository\DatabaseController.cs" />

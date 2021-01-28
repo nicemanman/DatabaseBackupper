@@ -58,7 +58,7 @@ namespace Presentation.Presenters
                     return;
                 }
             }
-                View.Close();
+            View.Close();
         }
     }
 }
