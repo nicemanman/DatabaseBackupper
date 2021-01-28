@@ -13,7 +13,7 @@ namespace Presentation.Views
         string PathToBackup { get; set; }
         List<string> AllDatabases { get; set; }
         List<string> DatabasesToBackup { get; set; }
-        void StartBackupProcess(Progress<string> progress);
+        void StartBackupProcess(Progress<string> successProgress, Progress<string> detailsProgress);
         void EndBackupProcess();
         
         void ShowError(string message);

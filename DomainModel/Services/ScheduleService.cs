@@ -53,6 +53,17 @@ namespace DomainModel.Services
             List<ScheduleDetailsModel> clientList = new List<ScheduleDetailsModel>();
             foreach (var item in result)
             {
+                CronExpression expression = new CronExpression(item.Cron);
+                var nextFire = expression.GetTimeAfter(DateTime.Now);
+                List<string> nextDateTimes = new List<string>();
+                for (int i = 0; i < 3; i++)
+                {
+                    if (nextFire.HasValue)
+                    {
+                        nextFire = expression.GetNextValidTimeAfter(nextFire.Value).Value.ToLocalTime();
+                        nextDateTimes.Add(nextFire.Value.ToString("G"));
+                    }
+                }
                 ScheduleDetailsModel model = new ScheduleDetailsModel()
                 {
                     CronExpressionType = (CronExpressionType)item.CronTypeExpressionId,
@@ -61,7 +72,8 @@ namespace DomainModel.Services
                     Hours = item.Hours,
                     Minutes = item.Minutes,
                     SelectedDays = GetSpecificDaysList(item.Days),
-                    CronExpression = item.Cron
+                    CronExpression = item.Cron,
+                    NextFireTimes = nextDateTimes
                 };
                 
                 clientList.Add(model);

@@ -64,11 +64,15 @@
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\ScheduleDetailsPresenter.cs" />
     <Compile Include="Presenters\SchedulesPresenter.cs" />
+    <Compile Include="Presenters\TaskDetailsPresenter.cs" />
+    <Compile Include="Presenters\TasksPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\IBackupView.cs" />
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\IScheduleDetailsView.cs" />
     <Compile Include="Views\ISchedulesView.cs" />
+    <Compile Include="Views\ITaskDetailsView.cs" />
+    <Compile Include="Views\ITasksView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">

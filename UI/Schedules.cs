@@ -58,7 +58,8 @@ namespace UI
                 SchedulesTable.Rows.Clear();
                 foreach (var schedule in value)
                 {
-                    SchedulesTable.Rows.Add(schedule.Id, schedule.Name, schedule.CronExpression);
+                    var nextFireTimes = String.Join("\n", schedule.NextFireTimes);
+                    SchedulesTable.Rows.Add(schedule.Id, schedule.Name, schedule.CronExpression, nextFireTimes);
                 }
             } 
         }

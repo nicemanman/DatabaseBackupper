@@ -42,6 +42,7 @@
             this.ServerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Schedule = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.OpenTaskButton = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.TasksTable)).BeginInit();
@@ -58,7 +59,6 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Создать новую задачу";
             this.button1.UseVisualStyleBackColor = true;
-            
             // 
             // button2
             // 
@@ -70,7 +70,6 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Вернуться";
             this.button2.UseVisualStyleBackColor = true;
-            
             // 
             // TasksTable
             // 
@@ -86,6 +85,7 @@
             this.ServerName,
             this.Path,
             this.Schedule,
+            this.IsEnabled,
             this.Delete,
             this.OpenTaskButton});
             this.TasksTable.GridColor = System.Drawing.SystemColors.ControlLightLight;
@@ -94,7 +94,6 @@
             this.TasksTable.ReadOnly = true;
             this.TasksTable.Size = new System.Drawing.Size(671, 345);
             this.TasksTable.TabIndex = 0;
-            
             // 
             // panel1
             // 
@@ -123,14 +122,12 @@
             this.OpenTaskMenuButton.Name = "OpenTaskMenuButton";
             this.OpenTaskMenuButton.Size = new System.Drawing.Size(160, 22);
             this.OpenTaskMenuButton.Text = "Открыть задачу";
-            
             // 
             // DeleteTaskMenuButton
             // 
             this.DeleteTaskMenuButton.Name = "DeleteTaskMenuButton";
             this.DeleteTaskMenuButton.Size = new System.Drawing.Size(160, 22);
             this.DeleteTaskMenuButton.Text = "Удалить задачу";
-            
             // 
             // TaskName
             // 
@@ -167,6 +164,12 @@
             this.Schedule.Name = "Schedule";
             this.Schedule.ReadOnly = true;
             // 
+            // IsEnabled
+            // 
+            this.IsEnabled.HeaderText = "Действует";
+            this.IsEnabled.Name = "IsEnabled";
+            this.IsEnabled.ReadOnly = true;
+            // 
             // Delete
             // 
             this.Delete.HeaderText = "";
@@ -194,7 +197,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Tasks";
             this.Text = "Задачи";
-           
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.TasksTable)).EndInit();
             this.panel1.ResumeLayout(false);
             this.contextMenu.ResumeLayout(false);
@@ -215,6 +218,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ServerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Path;
         private System.Windows.Forms.DataGridViewTextBoxColumn Schedule;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsEnabled;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.DataGridViewButtonColumn OpenTaskButton;
     }

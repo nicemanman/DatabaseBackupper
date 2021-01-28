@@ -1,4 +1,5 @@
 ﻿
+using Presentation.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class Tasks : Form
+    public partial class Tasks : Form, ITasksView
     {
 
         public Tasks()
@@ -20,5 +21,19 @@ namespace UI
             InitializeComponent();
         }
 
+        public void StopWaiting()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Wait(string text = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Wait(Progress<string> progres)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

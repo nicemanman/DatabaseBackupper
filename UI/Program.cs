@@ -27,6 +27,8 @@ namespace UI
                 .RegisterView<IScheduleDetailsView, ScheduleDetails>()
                 .RegisterService<IScheduleService, ScheduleService>()
                 .RegisterView<ISchedulesView, Schedules>()
+                .RegisterView<ITasksView, Tasks>()
+                .RegisterView<ITaskDetailsView, TaskDetail>()
                 .RegisterInstance(new ApplicationContext())
                 .RegisterInstance<IDatabaseController>(new DatabaseController());
                 

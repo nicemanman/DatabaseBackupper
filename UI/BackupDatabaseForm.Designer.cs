@@ -105,7 +105,7 @@
             this.CreateTaskByTemplateButton.Name = "CreateTaskByTemplateButton";
             this.CreateTaskByTemplateButton.Size = new System.Drawing.Size(235, 23);
             this.CreateTaskByTemplateButton.TabIndex = 22;
-            this.CreateTaskByTemplateButton.Text = "Создать задачу";
+            this.CreateTaskByTemplateButton.Text = "Создать задачу по текущим данным";
             this.CreateTaskByTemplateButton.UseVisualStyleBackColor = true;
             // 
             // LogoutButton
@@ -219,15 +219,15 @@
             // 
             this.BackupMenuButton.Name = "BackupMenuButton";
             this.BackupMenuButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.BackupMenuButton.Size = new System.Drawing.Size(197, 22);
+            this.BackupMenuButton.Size = new System.Drawing.Size(314, 22);
             this.BackupMenuButton.Text = "Бэкап";
             // 
             // CreateTaskByTemplateMenuButton
             // 
             this.CreateTaskByTemplateMenuButton.Name = "CreateTaskByTemplateMenuButton";
             this.CreateTaskByTemplateMenuButton.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.CreateTaskByTemplateMenuButton.Size = new System.Drawing.Size(197, 22);
-            this.CreateTaskByTemplateMenuButton.Text = "Создать задачу";
+            this.CreateTaskByTemplateMenuButton.Size = new System.Drawing.Size(314, 22);
+            this.CreateTaskByTemplateMenuButton.Text = "Создать задачу по текущим данным";
             // 
             // задачиToolStripMenuItem
             // 
@@ -290,6 +290,8 @@
             // 
             // ToolButtonsPanel
             // 
+            this.ToolButtonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ToolButtonsPanel.Controls.Add(this.LogoutButton);
             this.ToolButtonsPanel.Controls.Add(this.CreateTaskByTemplateButton);
             this.ToolButtonsPanel.Controls.Add(this.OpenTasksButton);

@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Schedules));
             this.SchedulesTable = new System.Windows.Forms.DataGridView();
+            this.CreateNewSchedule = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ScheduleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cron = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NextFireTimes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Open = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.CreateNewSchedule = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.SchedulesTable)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -53,14 +55,37 @@
             this.ID,
             this.ScheduleName,
             this.Cron,
+            this.NextFireTimes,
             this.Open,
             this.Delete});
             this.SchedulesTable.GridColor = System.Drawing.SystemColors.ControlLightLight;
             this.SchedulesTable.Location = new System.Drawing.Point(3, 3);
             this.SchedulesTable.Name = "SchedulesTable";
             this.SchedulesTable.ReadOnly = true;
+            this.SchedulesTable.RowTemplate.Height = 100;
+            this.SchedulesTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.SchedulesTable.Size = new System.Drawing.Size(443, 263);
             this.SchedulesTable.TabIndex = 3;
+            // 
+            // CreateNewSchedule
+            // 
+            this.CreateNewSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CreateNewSchedule.Location = new System.Drawing.Point(281, 272);
+            this.CreateNewSchedule.Name = "CreateNewSchedule";
+            this.CreateNewSchedule.Size = new System.Drawing.Size(165, 21);
+            this.CreateNewSchedule.TabIndex = 4;
+            this.CreateNewSchedule.Text = "Создать новое расписание";
+            this.CreateNewSchedule.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.SchedulesTable);
+            this.panel1.Controls.Add(this.CreateNewSchedule);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(449, 305);
+            this.panel1.TabIndex = 6;
             // 
             // ID
             // 
@@ -83,6 +108,15 @@
             this.Cron.Name = "Cron";
             this.Cron.ReadOnly = true;
             // 
+            // NextFireTimes
+            // 
+            this.NextFireTimes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.NextFireTimes.DefaultCellStyle = dataGridViewCellStyle1;
+            this.NextFireTimes.HeaderText = "Ближайшие дата и время выполнения задач";
+            this.NextFireTimes.Name = "NextFireTimes";
+            this.NextFireTimes.ReadOnly = true;
+            // 
             // Open
             // 
             this.Open.HeaderText = "";
@@ -100,26 +134,6 @@
             this.Delete.Text = "Удалить";
             this.Delete.ToolTipText = "Удалить";
             this.Delete.UseColumnTextForButtonValue = true;
-            // 
-            // CreateNewSchedule
-            // 
-            this.CreateNewSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreateNewSchedule.Location = new System.Drawing.Point(281, 272);
-            this.CreateNewSchedule.Name = "CreateNewSchedule";
-            this.CreateNewSchedule.Size = new System.Drawing.Size(165, 21);
-            this.CreateNewSchedule.TabIndex = 4;
-            this.CreateNewSchedule.Text = "Создать новое расписание";
-            this.CreateNewSchedule.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.SchedulesTable);
-            this.panel1.Controls.Add(this.CreateNewSchedule);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(449, 305);
-            this.panel1.TabIndex = 6;
             // 
             // Schedules
             // 
@@ -145,6 +159,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScheduleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cron;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NextFireTimes;
         private System.Windows.Forms.DataGridViewButtonColumn Open;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
     }

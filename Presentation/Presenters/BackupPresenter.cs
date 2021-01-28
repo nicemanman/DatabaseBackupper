@@ -66,7 +66,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                throw new NotImplementedException();
+                Controller.Run<TasksPresenter>();
             }
             catch (Exception ex)
             {
@@ -90,7 +90,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                throw new NotImplementedException();
+                Controller.Run<TaskDetailsPresenter, TaskModel>(null);
             }
             catch (Exception ex) 
             {
@@ -103,7 +103,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                throw new NotImplementedException();
+                Controller.Run<TaskDetailsPresenter, TaskModel>(null);
             }
             catch (Exception ex)
             {
@@ -144,9 +144,10 @@ namespace Presentation.Presenters
                     return;
                 }
             
-                var progress = new Progress<string>();
-                View.StartBackupProcess(progress);
-                var result = await backupService.BackupDatabases(backupModel, progress);
+                var successProgress = new Progress<string>();
+                var detailsProgress = new Progress<string>();
+                View.StartBackupProcess(successProgress, detailsProgress);
+                var result = await backupService.BackupDatabases(backupModel, successProgress, detailsProgress);
                 View.ShowSuccess(result);
             }
             catch (Exception ex) 

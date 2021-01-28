@@ -11,6 +11,7 @@ namespace Presentation.Views
     public interface ISchedulesView : IView
     {
         List<ScheduleDetailsModel> Schedules { set; }
+        
         event Action Reload;
         event Func<int,Task> RemoveSchedule;
         event Action<int> OpenSchedule;

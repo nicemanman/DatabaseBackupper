@@ -22,13 +22,20 @@ namespace DomainModel.Services
         {
             this.databaseController = databaseController;
         }
-        public async Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> progress)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="backupModel"></param>
+        /// <param name="stagesProgress">Этапы, которые попадают в лог</param>
+        /// <param name="detailProgress">Детальная информация о выполнении бэкапа</param>
+        /// <returns></returns>
+        public async Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> stagesProgress, IProgress<string> detailProgress)
         {
             await AddBackupPathToMemory(backupModel);
             var connectionString = Context.GetDBConnectionString();
             int stepCount = backupModel.DatabasesToBackup.Count();
-            int currentStep = 1;
-            progress.Report($"Всего баз данных - {stepCount}. Начали...");
+ 
+            detailProgress.Report($"Всего баз данных - {stepCount}. Начали...");
             if (!string.IsNullOrWhiteSpace(connectionString)) 
             {
                 foreach (var database in backupModel.DatabasesToBackup)
@@ -43,29 +50,21 @@ namespace DomainModel.Services
                     }
                     catch (NotSupportedException ex) 
                     {
-                        progress.Report($"{database} - {ex.Message}");
+                        stagesProgress.Report($"{database} - {ex.Message}");
                         throw ex;
                     }
                     await Task.Run(() =>
                     {
-                        //using (SqlConnection con = new SqlConnection(connectionString))
-                        //{
-                        //    try
-                        //    {
-                        //        con.Open();
-                        //        using (SqlCommand cmd = new SqlCommand($"BACKUP DATABASE [{database}] TO  DISK = '{path}\\{databaseFileName}.bak'", con))
-                        //        {
-                        //            cmd.ExecuteNonQuery();
-                        //        }
-                        //        progress.Report($"Шаг {currentStep++}/{stepCount}, база {database} - успех");
-                        //    }
-                        //    catch (Exception ex)
-                        //    {
-                        //        progress.Report($"{database} - {ex.Message}");
-                        //        throw ex;
-                        //    }
-                        //}
-                        BackupDatabase(Context.GetServerInstanceName(), database, path, progress);
+                        try
+                        {
+                            BackupDatabase(Context.GetServerInstanceName(), database, path, detailProgress);
+                            stagesProgress.Report($"База {database} - успех");
+                        }
+                        catch (Exception ex) 
+                        {
+                            stagesProgress.Report($"База {database} - {ex.Message}");
+                            throw ex;
+                        }
                     });
                 }
             }
@@ -83,7 +82,8 @@ namespace DomainModel.Services
                 Database = DatabaseName
                  
             };
-            dbBackup.PercentComplete += (s,e) => progress.Report(DatabaseName + " : " + e.Percent.ToString());
+            dbBackup.PercentCompleteNotification = 1;
+            dbBackup.PercentComplete += (s,e) => progress.Report(DatabaseName + " : " + e.Percent.ToString() + "%");
             dbBackup.Devices.AddDevice(pathToBackp + "\\" + fileName, DeviceType.File);
             dbBackup.Initialize = true;
             dbBackup.SqlBackup(dbServer);

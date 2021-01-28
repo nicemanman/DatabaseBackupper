@@ -187,13 +187,14 @@ namespace UI
             childForm.Show();
         }
 
-        public void StartBackupProcess(Progress<string> backupProgress)
+        public void StartBackupProcess(Progress<string> backupProgress, Progress<string> detailsProgress)
         {
             ProgressListBox.Items.Clear();
             backupProgress.ProgressChanged += BackupProgress_ProgressChanged;
             MenuStrip.Visible = false;
-            Wait(backupProgress);
+            Wait(detailsProgress);
         }
+
 
         private void BackupProgress_ProgressChanged(object sender, string e)
         {
