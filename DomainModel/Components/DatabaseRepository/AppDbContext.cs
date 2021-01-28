@@ -19,7 +19,7 @@ namespace DomainModel.Components.DatabaseRepository
             //Кастомный инициализатор
             Database.SetInitializer(new CustomInitializer());
         }
-        public AppDbContext(string InitialCatalog) : base(ConnectionString(InitialCatalog))
+        public AppDbContext() : base("name = dbfile")
         {
             
         }
@@ -27,16 +27,6 @@ namespace DomainModel.Components.DatabaseRepository
         public DbSet<Job> Tasks { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<BackupPath> Paths { get; set; }
-        private static string ConnectionString(string InitialCatalog)
-        {
-            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder();
-            sqlBuilder.DataSource = "(LocalDb)\\MSSQLLocalDB";
-            sqlBuilder.InitialCatalog = InitialCatalog;
-            sqlBuilder.PersistSecurityInfo = true;
-            sqlBuilder.IntegratedSecurity = true;
-            sqlBuilder.MultipleActiveResultSets = true;
-
-            return sqlBuilder.ToString();
-        }
+        
     }
 }
