@@ -40,11 +40,13 @@
             this.ServerName = new System.Windows.Forms.Label();
             this.ScheduleDropDownList = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.PathsToBackupCombobox = new System.Windows.Forms.ComboBox();
             this.ChoosePathButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +67,7 @@
             this.DatabasesList.FormattingEnabled = true;
             this.DatabasesList.Location = new System.Drawing.Point(13, 66);
             this.DatabasesList.Name = "DatabasesList";
-            this.DatabasesList.Size = new System.Drawing.Size(470, 214);
+            this.DatabasesList.Size = new System.Drawing.Size(470, 184);
             this.DatabasesList.TabIndex = 2;
             // 
             // contextMenuStrip1
@@ -77,7 +79,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(13, 287);
+            this.label2.Location = new System.Drawing.Point(13, 260);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 6;
@@ -128,7 +130,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ScheduleDropDownList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ScheduleDropDownList.FormattingEnabled = true;
-            this.ScheduleDropDownList.Location = new System.Drawing.Point(87, 284);
+            this.ScheduleDropDownList.Location = new System.Drawing.Point(87, 257);
             this.ScheduleDropDownList.Name = "ScheduleDropDownList";
             this.ScheduleDropDownList.Size = new System.Drawing.Size(364, 21);
             this.ScheduleDropDownList.TabIndex = 14;
@@ -136,6 +138,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.checkBox2);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label3);
@@ -148,41 +152,23 @@
             this.panel1.Size = new System.Drawing.Size(495, 378);
             this.panel1.TabIndex = 17;
             // 
-            // PathsToBackupCombobox
+            // checkBox1
             // 
-            this.PathsToBackupCombobox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PathsToBackupCombobox.FormattingEnabled = true;
-            this.PathsToBackupCombobox.Location = new System.Drawing.Point(87, 312);
-            this.PathsToBackupCombobox.Name = "PathsToBackupCombobox";
-            this.PathsToBackupCombobox.Size = new System.Drawing.Size(364, 21);
-            this.PathsToBackupCombobox.TabIndex = 31;
-            // 
-            // ChoosePathButton
-            // 
-            this.ChoosePathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChoosePathButton.Location = new System.Drawing.Point(457, 312);
-            this.ChoosePathButton.Name = "ChoosePathButton";
-            this.ChoosePathButton.Size = new System.Drawing.Size(26, 21);
-            this.ChoosePathButton.TabIndex = 30;
-            this.ChoosePathButton.Text = "...";
-            this.ChoosePathButton.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(13, 315);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "Путь";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(16, 335);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(119, 17);
+            this.checkBox1.TabIndex = 34;
+            this.checkBox1.Text = "Выполнять задачу";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(457, 283);
+            this.button1.Location = new System.Drawing.Point(457, 256);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(26, 23);
             this.button1.TabIndex = 33;
@@ -190,17 +176,55 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // label3
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(13, 344);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 34;
-            this.checkBox1.Text = "Действует";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(13, 288);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Путь";
+            // 
+            // PathsToBackupCombobox
+            // 
+            this.PathsToBackupCombobox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PathsToBackupCombobox.FormattingEnabled = true;
+            this.PathsToBackupCombobox.Location = new System.Drawing.Point(87, 285);
+            this.PathsToBackupCombobox.Name = "PathsToBackupCombobox";
+            this.PathsToBackupCombobox.Size = new System.Drawing.Size(364, 21);
+            this.PathsToBackupCombobox.TabIndex = 31;
+            // 
+            // ChoosePathButton
+            // 
+            this.ChoosePathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChoosePathButton.Location = new System.Drawing.Point(457, 285);
+            this.ChoosePathButton.Name = "ChoosePathButton";
+            this.ChoosePathButton.Size = new System.Drawing.Size(26, 21);
+            this.ChoosePathButton.TabIndex = 30;
+            this.ChoosePathButton.Text = "...";
+            this.ChoosePathButton.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(16, 312);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(134, 17);
+            this.checkBox2.TabIndex = 35;
+            this.checkBox2.Text = "Уведомлять на почту";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(156, 310);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(295, 21);
+            this.comboBox1.TabIndex = 36;
             // 
             // TaskDetail
             // 
@@ -241,5 +265,7 @@
         private System.Windows.Forms.ComboBox PathsToBackupCombobox;
         private System.Windows.Forms.Button ChoosePathButton;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
