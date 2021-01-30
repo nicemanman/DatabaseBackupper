@@ -31,7 +31,6 @@ namespace DomainModel.Services
         /// <returns></returns>
         public async Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> stagesProgress, IProgress<string> detailProgress)
         {
-            await AddBackupPathToMemory(backupModel);
             var connectionString = Context.GetDBConnectionString();
             int stepCount = backupModel.DatabasesToBackup.Count();
  
@@ -89,48 +88,11 @@ namespace DomainModel.Services
             dbBackup.SqlBackup(dbServer);
         }
 
-        public async Task<List<string>> GetDatabaseBackupPaths()
-        {
-            await RemoveAllBut_N_Newest();
-            var paths = databaseController.pathRepository.GetAll().OrderByDescending(x=>x.dateTime).Select(x => x.PathString).ToList<string>();
-            return paths;
-        }
-
         public void DisconnectFromCurrentSqlServer()
         {
             Context.RemoveDatabaseConnectionString();
         }
 
-        public async Task AddBackupPathToMemory(BackupModel backupModel)
-        {
-            await RemoveAllBut_N_Newest();
-            var path = databaseController.pathRepository.Find(x => x.PathString == backupModel.PathToBackup).FirstOrDefault();
-            if (path == null)
-            {
-                databaseController.pathRepository.Add(new BackupPath() { PathString = backupModel.PathToBackup, dateTime = DateTime.Now });
-            }
-            else
-            {
-                path.dateTime = DateTime.Now;
-            }
-            await databaseController.Complete();
-        }
-
-        public void ClearBackupPathsFromMemory()
-        {
-            databaseController.pathRepository.RemoveRange(databaseController.pathRepository.GetAll());
-            databaseController.Complete();
-        }
-
-        private async Task RemoveAllBut_N_Newest() 
-        {
-            var count = databaseController.pathRepository.GetAll().Count();
-            if (count > Constants.PathsCountRememberValue)
-            {
-                var theOldestPath = databaseController.pathRepository.GetAll().OrderBy(x => x.dateTime).FirstOrDefault();
-                databaseController.pathRepository.Remove(theOldestPath);
-                await databaseController.Complete();
-            }
-        }
+        
     }
 }

@@ -8,5 +8,6 @@ namespace DomainModel.Models
 {
     public class TaskModel
     {
+        public string Name { get; set; }
     }
 }

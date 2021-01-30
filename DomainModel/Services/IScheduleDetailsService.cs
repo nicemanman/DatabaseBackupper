@@ -18,5 +18,7 @@ namespace DomainModel.Services
         Task SaveCronExpression(ScheduleDetailsModel model);
         Task RemoveSchedule(int id);
         List<ScheduleDetailsModel> GetAllSchedules();
+        List<string> GetAllSchedulesNames();
+        List<string> GetNextValidTimesAfter(string name);
     }
 }

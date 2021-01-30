@@ -15,16 +15,18 @@ namespace Presentation.Presenters
     {
         private BackupModel model;
         private readonly IBackupService backupService;
-        public BackupPresenter(IApplicationController controller, IBackupView view, IBackupService backupService) : base(controller, view)
+        private readonly IPathService pathService;
+        public BackupPresenter(IApplicationController controller, IBackupView view, IBackupService backupService, IPathService pathService) : base(controller, view)
         {
             this.backupService = backupService;
+            this.pathService = pathService;
         }
 
         public override void Run(BackupModel argument)
         {
             model = argument;
             View.AllDatabases = model.AllDatabases;
-            View.PathsToBackup = Task.Run(async () => await backupService.GetDatabaseBackupPaths()).Result;
+            View.PathsToBackup = pathService.GetBackupPaths();
             View.Show();
             
             View.Logout += View_Logout;
@@ -143,10 +145,11 @@ namespace Presentation.Presenters
                     View.ShowError(messages);
                     return;
                 }
-            
+                
                 var successProgress = new Progress<string>();
                 var detailsProgress = new Progress<string>();
                 View.StartBackupProcess(successProgress, detailsProgress);
+                await pathService.SaveBackupPath(View.PathToBackup);
                 var result = await backupService.BackupDatabases(backupModel, successProgress, detailsProgress);
                 View.ShowSuccess(result);
             }

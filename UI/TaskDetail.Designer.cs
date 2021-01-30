@@ -29,24 +29,26 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskDetail));
             this.label1 = new System.Windows.Forms.Label();
             this.DatabasesList = new System.Windows.Forms.CheckedListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SaveTaskButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.TaskName = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.ServerName = new System.Windows.Forms.Label();
             this.ScheduleDropDownList = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.EmailsDropDownList = new System.Windows.Forms.ComboBox();
+            this.NotifyCheckbox = new System.Windows.Forms.CheckBox();
+            this.TaskEnabledCheckBox = new System.Windows.Forms.CheckBox();
+            this.AddNewScheduleButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.PathsToBackupCombobox = new System.Windows.Forms.ComboBox();
             this.ChoosePathButton = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.WhatTimeTaskFiredButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,15 +87,15 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Расписание";
             // 
-            // button2
+            // SaveTaskButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(353, 343);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Сохранить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SaveTaskButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveTaskButton.Location = new System.Drawing.Point(353, 343);
+            this.SaveTaskButton.Name = "SaveTaskButton";
+            this.SaveTaskButton.Size = new System.Drawing.Size(130, 23);
+            this.SaveTaskButton.TabIndex = 9;
+            this.SaveTaskButton.Text = "Сохранить";
+            this.SaveTaskButton.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -138,43 +140,64 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.WhatTimeTaskFiredButton);
+            this.panel1.Controls.Add(this.EmailsDropDownList);
+            this.panel1.Controls.Add(this.NotifyCheckbox);
+            this.panel1.Controls.Add(this.TaskEnabledCheckBox);
+            this.panel1.Controls.Add(this.AddNewScheduleButton);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.PathsToBackupCombobox);
             this.panel1.Controls.Add(this.ChoosePathButton);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.SaveTaskButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(495, 378);
             this.panel1.TabIndex = 17;
             // 
-            // checkBox1
+            // EmailsDropDownList
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(16, 335);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(119, 17);
-            this.checkBox1.TabIndex = 34;
-            this.checkBox1.Text = "Выполнять задачу";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.EmailsDropDownList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EmailsDropDownList.FormattingEnabled = true;
+            this.EmailsDropDownList.Location = new System.Drawing.Point(156, 310);
+            this.EmailsDropDownList.Name = "EmailsDropDownList";
+            this.EmailsDropDownList.Size = new System.Drawing.Size(295, 21);
+            this.EmailsDropDownList.TabIndex = 36;
             // 
-            // button1
+            // NotifyCheckbox
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(457, 255);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 23);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "+";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.UseVisualStyleBackColor = true;
+            this.NotifyCheckbox.AutoSize = true;
+            this.NotifyCheckbox.Location = new System.Drawing.Point(16, 312);
+            this.NotifyCheckbox.Name = "NotifyCheckbox";
+            this.NotifyCheckbox.Size = new System.Drawing.Size(134, 17);
+            this.NotifyCheckbox.TabIndex = 35;
+            this.NotifyCheckbox.Text = "Уведомлять на почту";
+            this.NotifyCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // TaskEnabledCheckBox
+            // 
+            this.TaskEnabledCheckBox.AutoSize = true;
+            this.TaskEnabledCheckBox.Checked = true;
+            this.TaskEnabledCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.TaskEnabledCheckBox.Location = new System.Drawing.Point(16, 335);
+            this.TaskEnabledCheckBox.Name = "TaskEnabledCheckBox";
+            this.TaskEnabledCheckBox.Size = new System.Drawing.Size(119, 17);
+            this.TaskEnabledCheckBox.TabIndex = 34;
+            this.TaskEnabledCheckBox.Text = "Выполнять задачу";
+            this.TaskEnabledCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // AddNewScheduleButton
+            // 
+            this.AddNewScheduleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddNewScheduleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AddNewScheduleButton.Location = new System.Drawing.Point(457, 255);
+            this.AddNewScheduleButton.Name = "AddNewScheduleButton";
+            this.AddNewScheduleButton.Size = new System.Drawing.Size(26, 23);
+            this.AddNewScheduleButton.TabIndex = 33;
+            this.AddNewScheduleButton.Text = "+";
+            this.AddNewScheduleButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.AddNewScheduleButton.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -206,25 +229,15 @@
             this.ChoosePathButton.Text = "...";
             this.ChoosePathButton.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // WhatTimeTaskFiredButton
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(16, 312);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(134, 17);
-            this.checkBox2.TabIndex = 35;
-            this.checkBox2.Text = "Уведомлять на почту";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(156, 310);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(295, 21);
-            this.comboBox1.TabIndex = 36;
+            this.WhatTimeTaskFiredButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WhatTimeTaskFiredButton.Location = new System.Drawing.Point(156, 343);
+            this.WhatTimeTaskFiredButton.Name = "WhatTimeTaskFiredButton";
+            this.WhatTimeTaskFiredButton.Size = new System.Drawing.Size(191, 23);
+            this.WhatTimeTaskFiredButton.TabIndex = 37;
+            this.WhatTimeTaskFiredButton.Text = "Когда будет выполнена задача?";
+            this.WhatTimeTaskFiredButton.UseVisualStyleBackColor = true;
             // 
             // TaskDetail
             // 
@@ -239,6 +252,7 @@
             this.Controls.Add(this.DatabasesList);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TaskDetail";
             this.Text = "Детали задачи";
             this.panel1.ResumeLayout(false);
@@ -253,19 +267,20 @@
         private System.Windows.Forms.CheckedListBox DatabasesList;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SaveTaskButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TaskName;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label ServerName;
         private System.Windows.Forms.ComboBox ScheduleDropDownList;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AddNewScheduleButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox PathsToBackupCombobox;
         private System.Windows.Forms.Button ChoosePathButton;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox TaskEnabledCheckBox;
+        private System.Windows.Forms.ComboBox EmailsDropDownList;
+        private System.Windows.Forms.CheckBox NotifyCheckbox;
+        private System.Windows.Forms.Button WhatTimeTaskFiredButton;
     }
 }

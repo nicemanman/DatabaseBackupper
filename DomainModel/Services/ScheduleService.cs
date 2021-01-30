@@ -46,7 +46,33 @@ namespace DomainModel.Services
             };
             daysOfWeekReadable = new ReadableEnumeration<DaysOfWeek>(daysReadable);
         }
-
+        public List<string> GetAllSchedulesNames() 
+        {
+            var result = databaseController.scheduleRepository.GetAll().ToList();
+            List<string> clientList = new List<string>();
+            foreach (var item in result)
+            {
+                clientList.Add(item.Name);
+            }
+            return clientList;
+        }
+        public List<string> GetNextValidTimesAfter(string name) 
+        {
+            var allSchedules = GetAllSchedules();
+            var cron = allSchedules.Where(x => x.Name == name).FirstOrDefault().CronExpression;
+            CronExpression expression = new CronExpression(cron);
+            var nextFire = expression.GetTimeAfter(DateTime.Now);
+            List<string> nextDateTimes = new List<string>();
+            for (int i = 0; i < 3; i++)
+            {
+                if (nextFire.HasValue)
+                {
+                    nextFire = expression.GetNextValidTimeAfter(nextFire.Value).Value.ToLocalTime();
+                    nextDateTimes.Add(nextFire.Value.ToString("G"));
+                }
+            }
+            return nextDateTimes;
+        }
         public List<ScheduleDetailsModel> GetAllSchedules()
         {
             var result = databaseController.scheduleRepository.GetAll().ToList();

@@ -11,6 +11,8 @@ namespace DomainModel.Components.DatabaseRepository
         IJobRepository jobRepository { get; set; }
         IScheduleRepository scheduleRepository { get; set; }
         IPathRepository pathRepository { get; set; }
+        IEmailRepository emailRepository { get; set; }
+
         Task Complete();
         void Initialize();
     }

@@ -9,6 +9,7 @@ namespace DomainModel.Components.DatabaseRepository
         public IJobRepository jobRepository { get; set; }
         public IScheduleRepository scheduleRepository { get; set; }
         public IPathRepository pathRepository { get; set; }
+        public IEmailRepository emailRepository { get; set; }
         public DatabaseController()
         {
             context = new AppDbContext();
@@ -16,6 +17,7 @@ namespace DomainModel.Components.DatabaseRepository
             jobRepository = new JobRepository(context);
             scheduleRepository = new ScheduleRepository(context);
             pathRepository = new PathRepository(context);
+            emailRepository = new EMailRepository(context);
         }
 
         public async Task Complete()

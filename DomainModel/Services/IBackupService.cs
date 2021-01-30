@@ -10,9 +10,6 @@ namespace DomainModel.Services
     public interface IBackupService
     {
         Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress);
-        Task<List<string>> GetDatabaseBackupPaths();
-        Task AddBackupPathToMemory(BackupModel model);
-        void ClearBackupPathsFromMemory();
         
         void DisconnectFromCurrentSqlServer();
     }
