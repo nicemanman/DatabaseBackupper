@@ -31,6 +31,7 @@ namespace Presentation.Presenters
         private void View_GoogleOAuth()
         {
             var result = _service.GetMyGoogleDriveFiles();
+            View.ShowError(string.Join("\n",result));
         }
 
         private void View_RefreshSQLServersList()
