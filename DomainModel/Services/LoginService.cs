@@ -1,4 +1,5 @@
 ﻿using DomainModel.Components.DatabaseRepository;
+using DomainModel.Components.GoogleClient;
 using DomainModel.Components.ReadableEnumeration;
 using DomainModel.Models;
 using Microsoft.SqlServer.Management.Smo;
@@ -102,6 +103,11 @@ namespace DomainModel.Services
         public LoginTypesEnumeration GetByName(string name)
         {
             return loginTypesReadableList.GetEnumItem(name);
+        }
+
+        public List<string> GetMyGoogleDriveFiles()
+        {
+            return GoogleDriveQuickstart.GetMyFilesList();
         }
     }
 }

@@ -16,6 +16,6 @@ namespace DomainModel.Services
 
         Task<BackupModel> ConnectToSqlServer(LoginModel model);
         LoginTypesEnumeration GetByName(string name);
-
+        List<string> GetMyGoogleDriveFiles();
     }
 }

@@ -30,6 +30,7 @@ namespace UI
         public event Action Login;
         public event Action LoginTypeChanged;
         public event Action RefreshSQLServersList;
+        public event Action GoogleOAuth;
 
         private enum Test { Test1, Test2 };
         private List<string> ReadableList = new List<string>() { "Тестовый вариант 1","Тестовый вариант 2" };
@@ -41,7 +42,13 @@ namespace UI
             this.Load += ConnectForm_Load;
             LoginTypesList.SelectedValueChanged += LoginTypesList_SelectedValueChanged;
             UpdateServersListButton.Click += UpdateServersListButton_Click;
+            LogInGoogle.Click += LogInGoogle_Click;
             _context = context;
+        }
+
+        private void LogInGoogle_Click(object sender, EventArgs e)
+        {
+            GoogleOAuth();
         }
 
         private void UpdateServersListButton_Click(object sender, EventArgs e)

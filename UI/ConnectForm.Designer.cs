@@ -30,8 +30,6 @@ namespace UI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectForm));
-            this.ChooseDirectoryToBackup = new System.Windows.Forms.FolderBrowserDialog();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label1 = new System.Windows.Forms.Label();
             this.LoginTypesList = new System.Windows.Forms.ComboBox();
             this.PasswordTextbox = new System.Windows.Forms.TextBox();
@@ -42,7 +40,7 @@ namespace UI
             this.UpdateServersListButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.StatusBar = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.LogInGoogle = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ChildPanel.SuspendLayout();
@@ -53,7 +51,7 @@ namespace UI
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(134, 50);
+            this.label1.Location = new System.Drawing.Point(142, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(236, 39);
             this.label1.TabIndex = 35;
@@ -63,14 +61,14 @@ namespace UI
             // 
             this.LoginTypesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LoginTypesList.FormattingEnabled = true;
-            this.LoginTypesList.Location = new System.Drawing.Point(117, 152);
+            this.LoginTypesList.Location = new System.Drawing.Point(125, 135);
             this.LoginTypesList.Name = "LoginTypesList";
             this.LoginTypesList.Size = new System.Drawing.Size(268, 21);
             this.LoginTypesList.TabIndex = 34;
             // 
             // PasswordTextbox
             // 
-            this.PasswordTextbox.Location = new System.Drawing.Point(118, 204);
+            this.PasswordTextbox.Location = new System.Drawing.Point(126, 187);
             this.PasswordTextbox.Name = "PasswordTextbox";
             this.PasswordTextbox.PasswordChar = '*';
             this.PasswordTextbox.Size = new System.Drawing.Size(267, 20);
@@ -78,7 +76,7 @@ namespace UI
             // 
             // UsernameTextbox
             // 
-            this.UsernameTextbox.Location = new System.Drawing.Point(117, 178);
+            this.UsernameTextbox.Location = new System.Drawing.Point(125, 161);
             this.UsernameTextbox.Name = "UsernameTextbox";
             this.UsernameTextbox.Size = new System.Drawing.Size(268, 20);
             this.UsernameTextbox.TabIndex = 32;
@@ -87,14 +85,14 @@ namespace UI
             // 
             this.ServersList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServersList.FormattingEnabled = true;
-            this.ServersList.Location = new System.Drawing.Point(117, 126);
+            this.ServersList.Location = new System.Drawing.Point(125, 109);
             this.ServersList.Name = "ServersList";
             this.ServersList.Size = new System.Drawing.Size(268, 21);
             this.ServersList.TabIndex = 31;
             // 
             // ConnectButton
             // 
-            this.ConnectButton.Location = new System.Drawing.Point(254, 230);
+            this.ConnectButton.Location = new System.Drawing.Point(262, 213);
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Size = new System.Drawing.Size(131, 29);
             this.ConnectButton.TabIndex = 30;
@@ -106,7 +104,7 @@ namespace UI
             this.ChildPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ChildPanel.Controls.Add(this.textBox1);
             this.ChildPanel.Controls.Add(this.label2);
-            this.ChildPanel.Controls.Add(this.button1);
+            this.ChildPanel.Controls.Add(this.LogInGoogle);
             this.ChildPanel.Controls.Add(this.UpdateServersListButton);
             this.ChildPanel.Controls.Add(this.panel1);
             this.ChildPanel.Controls.Add(this.label1);
@@ -123,7 +121,7 @@ namespace UI
             // 
             // UpdateServersListButton
             // 
-            this.UpdateServersListButton.Location = new System.Drawing.Point(117, 230);
+            this.UpdateServersListButton.Location = new System.Drawing.Point(125, 213);
             this.UpdateServersListButton.Name = "UpdateServersListButton";
             this.UpdateServersListButton.Size = new System.Drawing.Size(131, 29);
             this.UpdateServersListButton.TabIndex = 37;
@@ -149,18 +147,18 @@ namespace UI
             this.StatusBar.Text = "Добро пожаловать!";
             this.StatusBar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // LogInGoogle
             // 
-            this.button1.Location = new System.Drawing.Point(118, 265);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(234, 29);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "Авторизоваться в Google";
-            this.button1.UseVisualStyleBackColor = true;
+            this.LogInGoogle.Location = new System.Drawing.Point(126, 248);
+            this.LogInGoogle.Name = "LogInGoogle";
+            this.LogInGoogle.Size = new System.Drawing.Size(234, 29);
+            this.LogInGoogle.TabIndex = 38;
+            this.LogInGoogle.Text = "Авторизоваться в Google";
+            this.LogInGoogle.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(118, 301);
+            this.label2.Location = new System.Drawing.Point(126, 284);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(267, 23);
             this.label2.TabIndex = 39;
@@ -171,7 +169,7 @@ namespace UI
             // 
             this.textBox1.BackColor = System.Drawing.Color.Red;
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(358, 265);
+            this.textBox1.Location = new System.Drawing.Point(366, 248);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -197,8 +195,6 @@ namespace UI
         }
 
         #endregion
-        private System.Windows.Forms.FolderBrowserDialog ChooseDirectoryToBackup;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Label label1;
         private ComboBox LoginTypesList;
         private TextBox PasswordTextbox;
@@ -209,7 +205,7 @@ namespace UI
         private Panel panel1;
         private Label StatusBar;
         private Button UpdateServersListButton;
-        private Button button1;
+        private Button LogInGoogle;
         private TextBox textBox1;
         private Label label2;
     }

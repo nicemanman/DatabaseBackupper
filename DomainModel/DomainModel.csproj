@@ -228,6 +228,7 @@
     <Compile Include="Components\CronBox\DaySeqNumber.cs" />
     <Compile Include="Components\CronBox\Months.cs" />
     <Compile Include="Components\DatabaseRepository\CustomInitializer.cs" />
+    <Compile Include="Components\GoogleClient\GoogleDriveQuickstart.cs" />
     <Compile Include="Components\ReadableEnumeration\ReadableEnumeration.cs" />
     <Compile Include="Components\DatabaseRepository\AppDbContext.cs" />
     <Compile Include="Components\DatabaseRepository\DatabaseController.cs" />
@@ -270,6 +271,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="Components\GoogleClient\credentials.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +284,7 @@
       <DependentUpon>202101261251451_RemoveRequiredFlag.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

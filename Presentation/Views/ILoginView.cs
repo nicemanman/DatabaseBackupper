@@ -20,6 +20,7 @@ namespace Presentation.Views
         event Action Login;
         event Action LoginTypeChanged;
         event Action RefreshSQLServersList;
+        event Action GoogleOAuth;
         void ShowError(string text);
         void SetMSSQLAuth();
         void SetWindowsAuth();
