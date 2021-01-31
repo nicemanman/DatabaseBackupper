@@ -9,5 +9,12 @@ namespace DomainModel.Models
     public class TaskModel
     {
         public string Name { get; set; }
+        public List<string> AllDatabases { get; set; }
+        public List<string> SelectedDatabases { get; set; }
+        public string SQLServer { get; set; }
+        public string SelectedPath { get; set; }
+        public bool NotifyAboutFinish { get; set; }
+        public string SelectedEmail { get; set; }
+        public bool Enabled { get; set; }
     }
 }

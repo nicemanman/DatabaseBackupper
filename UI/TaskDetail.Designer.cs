@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TaskDetail));
             this.label1 = new System.Windows.Forms.Label();
-            this.DatabasesList = new System.Windows.Forms.CheckedListBox();
+            this.DatabasesCheckedBoxList = new System.Windows.Forms.CheckedListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.SaveTaskButton = new System.Windows.Forms.Button();
@@ -62,15 +62,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Сервер";
             // 
-            // DatabasesList
+            // DatabasesCheckedBoxList
             // 
-            this.DatabasesList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DatabasesCheckedBoxList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DatabasesList.FormattingEnabled = true;
-            this.DatabasesList.Location = new System.Drawing.Point(13, 66);
-            this.DatabasesList.Name = "DatabasesList";
-            this.DatabasesList.Size = new System.Drawing.Size(470, 184);
-            this.DatabasesList.TabIndex = 2;
+            this.DatabasesCheckedBoxList.FormattingEnabled = true;
+            this.DatabasesCheckedBoxList.Location = new System.Drawing.Point(13, 66);
+            this.DatabasesCheckedBoxList.Name = "DatabasesCheckedBoxList";
+            this.DatabasesCheckedBoxList.Size = new System.Drawing.Size(470, 184);
+            this.DatabasesCheckedBoxList.TabIndex = 2;
             // 
             // contextMenuStrip1
             // 
@@ -249,7 +249,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.TaskName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.DatabasesList);
+            this.Controls.Add(this.DatabasesCheckedBoxList);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -264,7 +264,7 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckedListBox DatabasesList;
+        private System.Windows.Forms.CheckedListBox DatabasesCheckedBoxList;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button SaveTaskButton;

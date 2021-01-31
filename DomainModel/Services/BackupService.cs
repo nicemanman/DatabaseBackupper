@@ -108,5 +108,10 @@ namespace DomainModel.Services
             await BackupGoogle(backupModel, successProgress, percentProgress);
             return "";
         }
+
+        public string GetCurrentSQLServerInstanceName()
+        {
+            return Context.GetServerInstanceName();
+        }
     }
 }

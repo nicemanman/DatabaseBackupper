@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using Google.Apis.Drive.v3.Data;
 using File = Google.Apis.Drive.v3.Data.File;
 using Newtonsoft.Json;
-using DomainModel.Components.CredentialManager;
 using Google.Apis.Auth.OAuth2.Flows;
 
 namespace DomainModel.Components.GoogleClient
@@ -41,14 +40,7 @@ namespace DomainModel.Components.GoogleClient
                 throw ex;
             }
         }
-        private UserCredential IsAuthorized() 
-        {
-            var value = CredentialManagerClient.GetValue("oauthcredential");
-            if (string.IsNullOrWhiteSpace(value))
-                return null;
-            else
-                return JsonConvert.DeserializeObject<UserCredential>(value);
-        }
+       
         public void Authorize() 
         {
             using (var stream =

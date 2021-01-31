@@ -28,6 +28,7 @@ namespace UI
                 .RegisterService<IScheduleService, ScheduleService>()
                 .RegisterService<IPathService, PathService>()
                 .RegisterService<IEmailService, EmailService>()
+                .RegisterService<ITaskService, TaskService>()
                 .RegisterView<ISchedulesView, Schedules>()
                 .RegisterView<ITasksView, Tasks>()
                 .RegisterView<ITaskDetailsView, TaskDetail>()

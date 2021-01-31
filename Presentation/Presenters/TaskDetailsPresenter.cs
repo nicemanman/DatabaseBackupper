@@ -13,18 +13,29 @@ namespace Presentation.Presenters
 {
     public class TaskDetailsPresenter : BasePresenter<ITaskDetailsView, TaskModel>
     {
+        private readonly ITaskService taskService;
         private readonly IScheduleService scheduleService;
         private readonly IPathService pathService;
         private readonly IEmailService emailService;
-        public TaskDetailsPresenter(IApplicationController controller, ITaskDetailsView view, IScheduleService scheduleService, IPathService pathService, IEmailService emailService) : base(controller, view)
+        public TaskDetailsPresenter(
+            IApplicationController controller, 
+            ITaskDetailsView view,
+            IScheduleService scheduleService, 
+            IPathService pathService,
+            IEmailService emailService, 
+            ITaskService taskService) : base(controller, view)
         {
             this.scheduleService = scheduleService;
             this.pathService = pathService;
             this.emailService = emailService;
+            this.taskService = taskService;
         }
 
         public override void Run(TaskModel model)
         {
+            View.SQLServer = model.SQLServer;
+            View.DatabasesList = model.AllDatabases;
+            View.SelectedDatabasesList = model.SelectedDatabases;
             View.SchedulesList = scheduleService.GetAllSchedulesNames();
             View.EmailsList = emailService.GetRecentEmails();
             View.PathsToBackup = pathService.GetBackupPaths();
@@ -32,10 +43,7 @@ namespace Presentation.Presenters
             View.AddNewSchedule += View_AddNewSchedule;
             View.TimeTaskFired += View_TimeTaskFired;
             View.SaveTask += View_SaveTask;
-            if (model != null && !string.IsNullOrWhiteSpace(model.Name))
-                View.Caption = model.Name;
-            else
-                View.Caption = "Новая задача";
+            View.Caption = model.Name;
             View.Show();
         }
 
@@ -46,7 +54,9 @@ namespace Presentation.Presenters
                 messages += "Укажите валидный адрес электронной почты!\n";
             bool pathIsNull;
             if ((pathIsNull = string.IsNullOrWhiteSpace(View.SelectedPath))) messages += "Не заполнен путь для бэкапа!\n";
-            if (!pathIsNull && !Directory.Exists(View.SelectedPath)) messages += "Такого путь не найден в системе!";
+            if (!pathIsNull && !Directory.Exists(View.SelectedPath)) messages += "Такого путь не найден в системе!\n";
+            if (View.SelectedDatabasesList.Count == 0) messages += "Необходимо выбрать хотя бы одну базу данных!\n";
+            if (string.IsNullOrWhiteSpace(View.Caption)) messages += "Не задано название задачи!\n";
             if (!string.IsNullOrWhiteSpace(messages))
             {
                 View.ShowError(messages);
@@ -55,6 +65,17 @@ namespace Presentation.Presenters
             await pathService.SaveBackupPath(View.SelectedPath);
             if (View.NotifyAboutFinish)
                 await emailService.SaveEmail(View.SelectedEmail);
+            var taskModel = new TaskModel()
+            {
+                Name = View.Caption,
+                SelectedDatabases = View.SelectedDatabasesList,
+                SelectedEmail = View.SelectedEmail,
+                SelectedPath = View.SelectedPath,
+                NotifyAboutFinish = View.NotifyAboutFinish,
+                Enabled = View.TaskIsEnables,
+                SQLServer = View.SQLServer
+            };
+            await taskService.SaveTask(taskModel);
 
         }
 

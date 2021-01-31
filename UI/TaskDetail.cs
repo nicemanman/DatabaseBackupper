@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+using System.Linq;
 namespace UI
 {
     public partial class TaskDetail : Form, ITaskDetailsView
@@ -101,6 +101,40 @@ namespace UI
         public bool TaskIsEnables { get => TaskEnabledCheckBox.Checked; set => TaskEnabledCheckBox.Checked = value; }
         public string Caption { get => TaskName.Text; set { TaskName.Text = value; this.Text = value; } }
 
+        public List<string> DatabasesList {
+            set
+            {
+                DatabasesCheckedBoxList.DataSource = value;
+            }
+        }
+        public List<string> SelectedDatabasesList { 
+            get 
+            {
+                var selectedDatabases = new List<string>();
+                foreach (var database in DatabasesCheckedBoxList.CheckedItems)
+                {
+                    selectedDatabases.Add(database.ToString());
+                }
+                return selectedDatabases;
+            }
+            set 
+            { 
+                foreach (var database in value)
+                {
+                    for (int i = 0; i < DatabasesCheckedBoxList.Items.Count; i++) 
+                    {
+                        var item = DatabasesCheckedBoxList.Items[i];
+                        if (item.ToString() == database) 
+                        {
+                            DatabasesCheckedBoxList.SetItemChecked(i, true);
+                        }
+                    }
+                }
+            } 
+        }
+
+        public string SQLServer { get => ServerName.Text; set => ServerName.Text = value; }
+
         public event Action Reload;
         public event Action AddNewSchedule;
         public event Action SaveTask;
@@ -114,7 +148,7 @@ namespace UI
         {
             throw new NotImplementedException();
         }
-
+        //TODO - Надо будет переместь методы в общую форму, и наследоваться от нее вместо Form
         public void Wait(string text = null)
         {
             throw new NotImplementedException();

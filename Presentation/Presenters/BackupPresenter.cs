@@ -16,6 +16,7 @@ namespace Presentation.Presenters
         private BackupModel model;
         private readonly IBackupService backupService;
         private readonly IPathService pathService;
+       
         public BackupPresenter(IApplicationController controller, IBackupView view, IBackupService backupService, IPathService pathService) : base(controller, view)
         {
             this.backupService = backupService;
@@ -112,11 +113,19 @@ namespace Presentation.Presenters
             }
         }
 
-        private void View_CreateTaskByTemplate()
+        private async void View_CreateTaskByTemplate()
         {
             try
             {
-                Controller.Run<TaskDetailsPresenter, TaskModel>(null);
+                await pathService.SaveBackupPath(View.PathToBackup);
+                var model = new TaskModel()
+                {
+                    AllDatabases = View.AllDatabases,
+                    SelectedDatabases = View.DatabasesToBackup,
+                    Name = "Создать новую задачу",
+                    SQLServer = backupService.GetCurrentSQLServerInstanceName()
+                };
+                Controller.Run<TaskDetailsPresenter, TaskModel>(model);
             }
             catch (Exception ex) 
             {
@@ -129,7 +138,14 @@ namespace Presentation.Presenters
         {
             try
             {
-                Controller.Run<TaskDetailsPresenter, TaskModel>(null);
+                var model = new TaskModel()
+                {
+                    AllDatabases = View.AllDatabases,
+                    SelectedDatabases = new List<string>(),
+                    Name = "Создать новую задачу",
+                    SQLServer = backupService.GetCurrentSQLServerInstanceName()
+                };
+                Controller.Run<TaskDetailsPresenter, TaskModel>(model);
             }
             catch (Exception ex)
             {
