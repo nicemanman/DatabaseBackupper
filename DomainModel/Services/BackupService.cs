@@ -1,5 +1,6 @@
 ﻿using DomainModel.Components.DatabaseRepository;
 using DomainModel.Components.DatabaseRepository.DatabaseModels;
+using DomainModel.Components.GoogleClient;
 using DomainModel.Models;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
@@ -93,6 +94,19 @@ namespace DomainModel.Services
             Context.RemoveDatabaseConnectionString();
         }
 
-        
+        public async Task<string> BackupGoogle(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress)
+        {
+            var drive = new GoogleDrive();
+            await drive.UploadFile(folderName:"DatabaseBackupper");
+            return "";
+        }
+
+        public async Task<string> ReauthorizeAndBackup(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress)
+        {
+            var drive = new GoogleDrive();
+            await drive.Reauthorize();
+            await BackupGoogle(backupModel, successProgress, percentProgress);
+            return "";
+        }
     }
 }

@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CredentialManagement, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CredentialManagement.1.0.2\lib\net35\CredentialManagement.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -231,7 +234,7 @@
     <Compile Include="Components\DatabaseRepository\DatabaseModels\EMail.cs" />
     <Compile Include="Components\DatabaseRepository\EMailRepository.cs" />
     <Compile Include="Components\DatabaseRepository\IEmailRepository.cs" />
-    <Compile Include="Components\GoogleClient\GoogleDriveQuickstart.cs" />
+    <Compile Include="Components\GoogleClient\GoogleDrive.cs" />
     <Compile Include="Components\ReadableEnumeration\ReadableEnumeration.cs" />
     <Compile Include="Components\DatabaseRepository\AppDbContext.cs" />
     <Compile Include="Components\DatabaseRepository\DatabaseController.cs" />

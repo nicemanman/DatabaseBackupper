@@ -21,6 +21,8 @@ namespace Presentation.Views
 
         event Action Logout;
         event Action Backup;
+        event Action BackupGoogle;
+        event Action GoogleReauthorize;
         event Action CreateNewTask;
         event Action CreateTaskByTemplate;
         event Action OpenAllTasks;

@@ -81,6 +81,12 @@
     <Compile Include="BackupDatabaseForm.Designer.cs">
       <DependentUpon>BackupDatabaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BackupLocalOrGoogle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackupLocalOrGoogle.Designer.cs">
+      <DependentUpon>BackupLocalOrGoogle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\RadioButtonsList.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BackupDatabaseForm.resx">
       <DependentUpon>BackupDatabaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackupLocalOrGoogle.resx">
+      <DependentUpon>BackupLocalOrGoogle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConnectForm.resx">
       <DependentUpon>ConnectForm.cs</DependentUpon>

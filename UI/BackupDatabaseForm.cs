@@ -20,7 +20,7 @@ namespace UI
             Load += BackupDatabaseForm_Load;
             //нижняя панель с кнопками
             LogoutButton.Click += (s,e) => Logout();
-            BackupButton.Click += (s,e)=>Backup();
+            BackupButton.Click += BackupButton_Click;
             OpenTasksButton.Click += (s, e) => OpenAllTasks();
             CreateTaskByTemplateButton.Click += (s, e) => CreateTaskByTemplate();
             //меню
@@ -43,6 +43,14 @@ namespace UI
             DatabasesList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.showCheckBoxToolTip);
 
             OpenFolder.Click += OpenFolder_Click;
+        }
+
+        private void BackupButton_Click(object sender, EventArgs e)
+        {
+            Action local = () => { Backup(); };
+            Action google = () => { BackupGoogle(); };
+            var dialog = new BackupLocalOrGoogle(local, google, GoogleReauthorize);
+            dialog.ShowDialog();
         }
 
         private void OpenFolder_Click(object sender, EventArgs e)
@@ -138,6 +146,8 @@ namespace UI
         public event Action OpenAllSchedules;
         public event Action OpenAboutAuthor;
         public event Action OpenAboutProgram;
+        public event Action BackupGoogle;
+        public event Action GoogleReauthorize;
 
         private List<string> databasesToBackup;
         public List<string> DatabasesToBackup

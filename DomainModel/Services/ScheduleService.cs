@@ -16,7 +16,7 @@ namespace DomainModel.Services
     public class ScheduleService : IScheduleService
     {
         private IDatabaseController databaseController;
-
+        private int validDateTimesAfterNowCount =7;
         List<string> cronExpressionTypes;
         ReadableEnumeration<CronExpressionType> cronExpressionTypesReadable;
 
@@ -63,7 +63,7 @@ namespace DomainModel.Services
             CronExpression expression = new CronExpression(cron);
             var nextFire = expression.GetTimeAfter(DateTime.Now);
             List<string> nextDateTimes = new List<string>();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < validDateTimesAfterNowCount; i++)
             {
                 if (nextFire.HasValue)
                 {
@@ -82,7 +82,7 @@ namespace DomainModel.Services
                 CronExpression expression = new CronExpression(item.Cron);
                 var nextFire = expression.GetTimeAfter(DateTime.Now);
                 List<string> nextDateTimes = new List<string>();
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < validDateTimesAfterNowCount; i++)
                 {
                     if (nextFire.HasValue)
                     {

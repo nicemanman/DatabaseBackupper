@@ -43,6 +43,8 @@
             this.Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Schedule = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NotifyAboutFinish = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.EMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.OpenTaskButton = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.TasksTable)).BeginInit();
@@ -86,6 +88,8 @@
             this.Path,
             this.Schedule,
             this.IsEnabled,
+            this.NotifyAboutFinish,
+            this.EMail,
             this.Delete,
             this.OpenTaskButton});
             this.TasksTable.GridColor = System.Drawing.SystemColors.ControlLightLight;
@@ -170,6 +174,20 @@
             this.IsEnabled.Name = "IsEnabled";
             this.IsEnabled.ReadOnly = true;
             // 
+            // NotifyAboutFinish
+            // 
+            this.NotifyAboutFinish.HeaderText = "Уведомлять при завершении";
+            this.NotifyAboutFinish.Name = "NotifyAboutFinish";
+            this.NotifyAboutFinish.ReadOnly = true;
+            this.NotifyAboutFinish.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NotifyAboutFinish.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // EMail
+            // 
+            this.EMail.HeaderText = "E-Mail для уведомления";
+            this.EMail.Name = "EMail";
+            this.EMail.ReadOnly = true;
+            // 
             // Delete
             // 
             this.Delete.HeaderText = "";
@@ -219,6 +237,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Path;
         private System.Windows.Forms.DataGridViewTextBoxColumn Schedule;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsEnabled;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn NotifyAboutFinish;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EMail;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.DataGridViewButtonColumn OpenTaskButton;
     }

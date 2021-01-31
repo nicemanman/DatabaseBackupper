@@ -25,14 +25,10 @@ namespace Presentation.Presenters
             View.Login += async () => await Login(View.ServerName, View.LoginType, View.Username, View.Password);
             View.LoginTypeChanged += () => LoginTypeChanged(View.LoginType);
             View.RefreshSQLServersList += View_RefreshSQLServersList;
-            View.GoogleOAuth += View_GoogleOAuth;
+            
         }
 
-        private void View_GoogleOAuth()
-        {
-            var result = _service.GetMyGoogleDriveFiles();
-            View.ShowError(string.Join("\n",result));
-        }
+        
 
         private void View_RefreshSQLServersList()
         {

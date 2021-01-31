@@ -105,9 +105,6 @@ namespace DomainModel.Services
             return loginTypesReadableList.GetEnumItem(name);
         }
 
-        public List<string> GetMyGoogleDriveFiles()
-        {
-            return GoogleDriveQuickstart.GetMyFilesList();
-        }
+        
     }
 }

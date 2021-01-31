@@ -10,7 +10,8 @@ namespace DomainModel.Services
     public interface IBackupService
     {
         Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress);
-        
+        Task<string> BackupGoogle(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress);
+        Task<string> ReauthorizeAndBackup(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress);
         void DisconnectFromCurrentSqlServer();
     }
 }
