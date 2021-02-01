@@ -117,7 +117,8 @@ namespace Presentation.Presenters
         {
             try
             {
-                await pathService.SaveBackupPath(View.PathToBackup);
+                if (!string.IsNullOrWhiteSpace(View.PathToBackup))
+                    await pathService.SaveBackupPath(View.PathToBackup);
                 var model = new TaskModel()
                 {
                     AllDatabases = View.AllDatabases,
