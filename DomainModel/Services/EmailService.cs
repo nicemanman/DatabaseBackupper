@@ -51,7 +51,7 @@ namespace DomainModel.Services
             {
                 email.dateTime = DateTime.Now;
             }
-            await databaseController.Complete();
+            await databaseController.CompleteAsync();
         }
         private async Task RemoveAllBut_N_NewestEmails()
         {
@@ -61,7 +61,7 @@ namespace DomainModel.Services
             {
                 var theOldestPath = databaseController.emailRepository.GetAll().OrderBy(x => x.dateTime).FirstOrDefault();
                 databaseController.emailRepository.Remove(theOldestPath);
-                await databaseController.Complete();
+                await databaseController.CompleteAsync();
             }
         }
     }

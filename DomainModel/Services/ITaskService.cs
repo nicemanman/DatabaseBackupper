@@ -11,5 +11,7 @@ namespace DomainModel.Services
     {
         event Action UpdateTasksList;
         Task SaveTask(TaskModel taskModel);
+        List<TaskModel> GetAllTasks();
+        Task RemoveTask(int id);
     }
 }

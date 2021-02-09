@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Presentation.Presenters
 {
-    public class ScheduleDetailsPresenter : BasePresenter<IScheduleDetailsView, ScheduleDetailsModel>
+    public class ScheduleDetailsPresenter : BasePresenter<IScheduleDetailsView, ScheduleModel>
     {
         private readonly IScheduleService scheduleDetailsService;
         public ScheduleDetailsPresenter(IApplicationController controller, IScheduleDetailsView view, IScheduleService scheduleDetailsService) : base(controller, view)
@@ -25,7 +25,7 @@ namespace Presentation.Presenters
             try
             {
                 var selectedPeriodicEnum = scheduleDetailsService.GetCronTypeByName(View.SelectedPeriodic);
-                ScheduleDetailsModel model = new ScheduleDetailsModel()
+                ScheduleModel model = new ScheduleModel()
                 {
                     Name = View.Caption,
                     CronExpressionType = selectedPeriodicEnum,
@@ -49,7 +49,7 @@ namespace Presentation.Presenters
             View.SetSchedule(cronType);
         }
 
-        public override void Run(ScheduleDetailsModel model)
+        public override void Run(ScheduleModel model)
         {
             if (string.IsNullOrWhiteSpace(model.Name))
                 model.Name = "Создать новое расписание";

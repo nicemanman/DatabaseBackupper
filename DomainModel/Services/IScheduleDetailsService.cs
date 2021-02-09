@@ -1,4 +1,5 @@
-﻿using DomainModel.Models;
+﻿using DomainModel.Components.DatabaseRepository.DatabaseModels;
+using DomainModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace DomainModel.Services
         string GetNameByCronType(CronExpressionType type);
         List<string> GetListOfDays();
         DaysOfWeek GetDayTypeByName(string name);
-        Task SaveCronExpression(ScheduleDetailsModel model);
+        Task SaveCronExpression(ScheduleModel model);
         Task RemoveSchedule(int id);
-        List<ScheduleDetailsModel> GetAllSchedules();
+        List<ScheduleModel> GetAllSchedules();
         List<string> GetAllSchedulesNames();
         List<string> GetNextValidTimesAfter(string name);
+        Schedule ClientModelToDBModel(ScheduleModel model);
+        ScheduleModel DBModelToClientModel(Schedule item);
     }
 }

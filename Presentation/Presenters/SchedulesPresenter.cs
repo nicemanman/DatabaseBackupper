@@ -13,7 +13,7 @@ namespace Presentation.Presenters
     public class SchedulesPresenter : BasePresenter<ISchedulesView>
     {
         private readonly IScheduleService service;
-        private List<ScheduleDetailsModel> scheduleModels;
+        private List<ScheduleModel> scheduleModels;
         public SchedulesPresenter(IApplicationController controller, ISchedulesView view, IScheduleService service) : base(controller, view)
         {
             this.service = service;
@@ -27,13 +27,13 @@ namespace Presentation.Presenters
 
         private void View_CreateNewScheduleAction()
         {
-            Controller.Run<ScheduleDetailsPresenter, ScheduleDetailsModel>(new ScheduleDetailsModel());
+            Controller.Run<ScheduleDetailsPresenter, ScheduleModel>(new ScheduleModel());
         }
 
         private void View_OpenSchedule(int obj)
         {
             var model = scheduleModels.Where(x => x.Id == obj).FirstOrDefault();
-            Controller.Run<ScheduleDetailsPresenter, ScheduleDetailsModel>(model);
+            Controller.Run<ScheduleDetailsPresenter, ScheduleModel>(model);
         }
 
         private async Task View_RemoveSchedule(int id)

@@ -36,13 +36,13 @@ namespace DomainModel.Services
             {
                 path.dateTime = DateTime.Now;
             }
-            await databaseController.Complete();
+            await databaseController.CompleteAsync();
         }
 
         public void RemoveBackupPaths()
         {
             databaseController.pathRepository.RemoveRange(databaseController.pathRepository.GetAll());
-            databaseController.Complete();
+            databaseController.CompleteAsync();
         }
 
         private async Task RemoveAllBut_N_NewestPaths()
@@ -52,7 +52,7 @@ namespace DomainModel.Services
             {
                 var theOldestPath = databaseController.pathRepository.GetAll().OrderBy(x => x.dateTime).FirstOrDefault();
                 databaseController.pathRepository.Remove(theOldestPath);
-                await databaseController.Complete();
+                await databaseController.CompleteAsync();
             }
         }
     }

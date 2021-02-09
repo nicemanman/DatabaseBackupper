@@ -66,6 +66,7 @@ namespace DomainModel.Services
                 }
                 var backupModel = new BackupModel();
                 backupModel.AllDatabases = list;
+                Context.backupModel = backupModel;
                 return backupModel;
             }
         }

@@ -158,7 +158,7 @@ namespace Presentation.Presenters
         {
             try
             {
-                Controller.Run<ScheduleDetailsPresenter, ScheduleDetailsModel>(new ScheduleDetailsModel());
+                Controller.Run<ScheduleDetailsPresenter, ScheduleModel>(new ScheduleModel());
             }
             catch (Exception ex)
             {

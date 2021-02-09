@@ -13,6 +13,7 @@ namespace Presentation.Views
         event Action AddNewSchedule;
         event Action SaveTask;
         event Action TimeTaskFired;
+        public int Id { get; set; }
         public string Caption { get; set; }
         public List<string> SchedulesList { set; }
         public string SelectedSchedule { get; set; }

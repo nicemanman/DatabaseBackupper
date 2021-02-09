@@ -92,6 +92,7 @@ namespace DomainModel.Services
         public void DisconnectFromCurrentSqlServer()
         {
             Context.RemoveDatabaseConnectionString();
+            Context.backupModel = null;
         }
 
         public async Task<string> BackupGoogle(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress)
@@ -112,6 +113,11 @@ namespace DomainModel.Services
         public string GetCurrentSQLServerInstanceName()
         {
             return Context.GetServerInstanceName();
+        }
+
+        public List<string> GetAllDatabases()
+        {
+            return Context.backupModel.AllDatabases;
         }
     }
 }

@@ -73,34 +73,14 @@ namespace DomainModel.Services
             }
             return nextDateTimes;
         }
-        public List<ScheduleDetailsModel> GetAllSchedules()
+        public List<ScheduleModel> GetAllSchedules()
         {
             var result = databaseController.scheduleRepository.GetAll().ToList();
-            List<ScheduleDetailsModel> clientList = new List<ScheduleDetailsModel>();
+            List<ScheduleModel> clientList = new List<ScheduleModel>();
             foreach (var item in result)
             {
-                CronExpression expression = new CronExpression(item.Cron);
-                var nextFire = expression.GetTimeAfter(DateTime.Now);
-                List<string> nextDateTimes = new List<string>();
-                for (int i = 0; i < validDateTimesAfterNowCount; i++)
-                {
-                    if (nextFire.HasValue)
-                    {
-                        nextFire = expression.GetNextValidTimeAfter(nextFire.Value).Value.ToLocalTime();
-                        nextDateTimes.Add(nextFire.Value.ToString("G"));
-                    }
-                }
-                ScheduleDetailsModel model = new ScheduleDetailsModel()
-                {
-                    CronExpressionType = (CronExpressionType)item.CronTypeExpressionId,
-                    Id = item.Id,
-                    Name = item.Name,
-                    Hours = item.Hours,
-                    Minutes = item.Minutes,
-                    SelectedDays = GetSpecificDaysList(item.Days),
-                    CronExpression = item.Cron,
-                    NextFireTimes = nextDateTimes
-                };
+                
+                ScheduleModel model = DBModelToClientModel(item);
                 
                 clientList.Add(model);
             }
@@ -115,7 +95,7 @@ namespace DomainModel.Services
                 throw new Exception("Расписание не найдено, попробуйте обновить список, возможно, оно уже было удалено");
             }
             databaseController.scheduleRepository.Remove(model);
-            await databaseController.Complete();
+            await databaseController.CompleteAsync();
         }
 
         public CronExpressionType GetCronTypeByName(string name)
@@ -139,74 +119,11 @@ namespace DomainModel.Services
             return cronExpressionTypesReadable.GetReadableList();
         }
 
-        public async Task SaveCronExpression(ScheduleDetailsModel model)
+        public async Task SaveCronExpression(ScheduleModel model)
         {
             try
             {
-
-                string expression = "";
-                string messages = "";
-                if (string.IsNullOrEmpty(model.Name))
-                    messages += "Не задано название расписания!\n";
-                var daysFlags = GetSetOfValuesAsFlags(model.SelectedDays);
-                switch (model.CronExpressionType)
-                {
-                    case CronExpressionType.EveryNMinutes:
-                        if (model.Minutes == 0 || model.Minutes == 60)
-                            throw new Exception("Укажите верное количество минут от 1 до 59!");
-                        if (!string.IsNullOrWhiteSpace(messages))
-                            throw new Exception(messages);
-                        expression = CronExpressionManager.EveryNMinutes(model.Minutes);
-                        break;
-                    case CronExpressionType.EveryNHours:
-                        if (model.Hours == 0 || model.Hours == 24)
-                            messages += "Укажите верное количество часов от 1 до 23!";
-                        if (!string.IsNullOrWhiteSpace(messages))
-                            throw new Exception(messages);
-                        expression = CronExpressionManager.EveryNHours(model.Hours);
-                        break;
-                    case CronExpressionType.EveryDayAt:
-                        if (model.Minutes == 0 || model.Minutes == 60)
-                            messages += "Укажите верное количество минут от 1 до 59!\n";
-                        if (model.Hours == 0 || model.Hours == 24)
-                            messages += "Укажите верное количество часов от 1 до 23!\n";
-                        if (!string.IsNullOrWhiteSpace(messages))
-                            throw new Exception(messages);
-                        expression = CronExpressionManager.EveryDayAt(model.Hours, model.Minutes);
-                        break;
-                    case CronExpressionType.EverySpecificDayAt:
-                        if (model.Minutes == 0)
-                            messages += "Укажите верное количество минут от 1 до 59!\n";
-                        if (model.Hours == 0)
-                            messages += "Укажите верное количество часов от 1 до 23!\n";
-                        if (daysFlags == default(DaysOfWeek))
-                            messages += "Выберите хотя бы один день!\n";
-                        if (!string.IsNullOrWhiteSpace(messages))
-                            throw new Exception(messages);
-
-                        expression = CronExpressionManager.EverySpecificWeekDayAt(model.Hours, model.Minutes, daysFlags);
-                        break;
-                }
-                try
-                {
-                    CronExpression.ValidateExpression(expression);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Внутренняя ошибка при сохранении расписания!\n{ex.Message}");
-                }
-                var days = CronConverter.ToCronRepresentation(daysFlags);
-
-                Schedule dbModel = new Schedule()
-                {
-                    Name = model.Name,
-                    Cron = expression,
-                    Minutes = model.Minutes,
-                    Hours = model.Hours,
-                    Days = days,
-                    CronTypeExpressionId = (int)model.CronExpressionType,
-                    Id = model.Id
-                };
+                Schedule dbModel = ClientModelToDBModel(model);
                 var findItem = databaseController.scheduleRepository.Get(model.Id);
                 if (findItem == null)
                     databaseController.scheduleRepository.Add(dbModel);
@@ -220,7 +137,7 @@ namespace DomainModel.Services
                     findItem.CronTypeExpressionId = dbModel.CronTypeExpressionId;
                     findItem.Id = model.Id;
                 }
-                await databaseController.Complete();
+                await databaseController.CompleteAsync();
             }
             catch (Exception ex) 
             {
@@ -292,6 +209,108 @@ namespace DomainModel.Services
         public string GetNameByCronType(CronExpressionType type)
         {
             return cronExpressionTypesReadable.GetEnumItemName(type);
+        }
+
+        public ScheduleModel DBModelToClientModel(Schedule item)
+        {
+            try
+            {
+                CronExpression expression = new CronExpression(item?.Cron);
+                var nextFire = expression.GetTimeAfter(DateTime.Now);
+                List<string> nextDateTimes = new List<string>();
+                for (int i = 0; i < validDateTimesAfterNowCount; i++)
+                {
+                    if (nextFire.HasValue)
+                    {
+                        nextFire = expression.GetNextValidTimeAfter(nextFire.Value).Value.ToLocalTime();
+                        nextDateTimes.Add(nextFire.Value.ToString("G"));
+                    }
+                }
+                ScheduleModel model = new ScheduleModel()
+                {
+                    CronExpressionType = (CronExpressionType)item.CronTypeExpressionId,
+                    Id = item.Id,
+                    Name = item.Name,
+                    Hours = item.Hours,
+                    Minutes = item.Minutes,
+                    SelectedDays = GetSpecificDaysList(item.Days),
+                    CronExpression = item.Cron,
+                    NextFireTimes = nextDateTimes
+                };
+                return model;
+            }
+            catch (Exception ex) 
+            {
+                return new ScheduleModel();
+            }
+            
+        }
+        public Schedule ClientModelToDBModel(ScheduleModel model)
+        {
+            string expression = "";
+            string messages = "";
+            if (string.IsNullOrEmpty(model.Name))
+                messages += "Не задано название расписания!\n";
+            var daysFlags = GetSetOfValuesAsFlags(model.SelectedDays);
+            switch (model.CronExpressionType)
+            {
+                case CronExpressionType.EveryNMinutes:
+                    if (model.Minutes == 0 || model.Minutes == 60)
+                        throw new Exception("Укажите верное количество минут от 1 до 59!");
+                    if (!string.IsNullOrWhiteSpace(messages))
+                        throw new Exception(messages);
+                    expression = CronExpressionManager.EveryNMinutes(model.Minutes);
+                    break;
+                case CronExpressionType.EveryNHours:
+                    if (model.Hours == 0 || model.Hours == 24)
+                        messages += "Укажите верное количество часов от 1 до 23!";
+                    if (!string.IsNullOrWhiteSpace(messages))
+                        throw new Exception(messages);
+                    expression = CronExpressionManager.EveryNHours(model.Hours);
+                    break;
+                case CronExpressionType.EveryDayAt:
+                    if (model.Minutes == 0 || model.Minutes == 60)
+                        messages += "Укажите верное количество минут от 1 до 59!\n";
+                    if (model.Hours == 0 || model.Hours == 24)
+                        messages += "Укажите верное количество часов от 1 до 23!\n";
+                    if (!string.IsNullOrWhiteSpace(messages))
+                        throw new Exception(messages);
+                    expression = CronExpressionManager.EveryDayAt(model.Hours, model.Minutes);
+                    break;
+                case CronExpressionType.EverySpecificDayAt:
+                    if (model.Minutes == 0)
+                        messages += "Укажите верное количество минут от 1 до 59!\n";
+                    if (model.Hours == 0)
+                        messages += "Укажите верное количество часов от 1 до 23!\n";
+                    if (daysFlags == default(DaysOfWeek))
+                        messages += "Выберите хотя бы один день!\n";
+                    if (!string.IsNullOrWhiteSpace(messages))
+                        throw new Exception(messages);
+
+                    expression = CronExpressionManager.EverySpecificWeekDayAt(model.Hours, model.Minutes, daysFlags);
+                    break;
+            }
+            try
+            {
+                CronExpression.ValidateExpression(expression);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Внутренняя ошибка при сохранении расписания!\n{ex.Message}");
+            }
+            var days = CronConverter.ToCronRepresentation(daysFlags);
+
+            Schedule dbModel = new Schedule()
+            {
+                Name = model.Name,
+                Cron = expression,
+                Minutes = model.Minutes,
+                Hours = model.Hours,
+                Days = days,
+                CronTypeExpressionId = (int)model.CronExpressionType,
+                Id = model.Id
+            };
+            return dbModel;
         }
     }
 }

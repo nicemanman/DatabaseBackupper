@@ -10,7 +10,7 @@ namespace Presentation.Views
 {
     public interface ISchedulesView : IView
     {
-        List<ScheduleDetailsModel> Schedules { set; }
+        List<ScheduleModel> Schedules { set; }
         
         event Action Reload;
         event Func<int,Task> RemoveSchedule;

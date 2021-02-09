@@ -1,4 +1,5 @@
 ﻿
+using DomainModel.Models;
 using Presentation.Views;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,72 @@ namespace UI
         public Tasks()
         {
             InitializeComponent();
+            Activated += Tasks_Activated;
+            TasksTable.KeyDown += TasksTable_KeyDown;
+            TasksTable.CellClick += TasksTable_CellClick;
+            CreateNewJobButton.Click += CreateNewJobButton_Click;
+        }
+
+        private void CreateNewJobButton_Click(object sender, EventArgs e)
+        {
+            CreateNewJobAction();
+        }
+
+        private void Tasks_Activated(object sender, EventArgs e)
+        {
+            Reload();
+        }
+
+        List<TaskModel> ITasksView.Tasks {
+            set
+            {
+                TasksTable.Rows.Clear();
+                foreach (var task in value)
+                {
+                    TasksTable.Rows.Add(task.Id,task.Name, task.SQLServer, task.SelectedPath, task.SelectedSchedule.Name, task.Enabled, task.NotifyAboutFinish, task.SelectedEmail);
+                }
+            }
+        }
+
+        public event Action Reload;
+        public event Func<int, Task> RemoveTask;
+        public event Action<int> OpenTask;
+        public event Action CreateNewJobAction;
+
+
+        private async void TasksTable_KeyDown(object sender, KeyEventArgs e)
+        {
+            var active = TasksTable.CurrentRow;
+            int id = Int32.Parse(active.Cells["Id"].Value.ToString());
+            if (e.KeyCode == Keys.Delete)
+            {
+                await RemoveTask(id);
+                Reload();
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                OpenTask(id);
+            }
+
+        }
+
+        private async void TasksTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            if (e.ColumnIndex != TasksTable.Columns["Delete"].Index
+                && e.ColumnIndex != TasksTable.Columns["Open"].Index) return;
+            var active = TasksTable.CurrentRow;
+            int id = Int32.Parse(active.Cells["Id"].Value.ToString());
+            if (e.ColumnIndex == TasksTable.Columns["Delete"].Index)
+            {
+                await RemoveTask(id);
+                Reload();
+            }
+            else
+            {
+                OpenTask(id);
+            }
+
         }
 
         public void StopWaiting()

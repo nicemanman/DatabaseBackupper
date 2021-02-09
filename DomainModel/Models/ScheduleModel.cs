@@ -7,7 +7,7 @@ using static DomainModel.Enums;
 
 namespace DomainModel.Models
 {
-    public class ScheduleDetailsModel
+    public class ScheduleModel
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; }

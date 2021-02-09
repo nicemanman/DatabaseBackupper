@@ -14,6 +14,7 @@ namespace UI
             AddNewScheduleButton.Click += AddNewScheduleButton_Click;
             SaveTaskButton.Click += SaveTaskButton_Click;
             WhatTimeTaskFiredButton.Click += WhatTimeTaskFiredButton_Click;
+            
         }
 
         private void WhatTimeTaskFiredButton_Click(object sender, EventArgs e)
@@ -134,6 +135,7 @@ namespace UI
         }
 
         public string SQLServer { get => ServerName.Text; set => ServerName.Text = value; }
+        public int Id { get; set; }
 
         public event Action Reload;
         public event Action AddNewSchedule;

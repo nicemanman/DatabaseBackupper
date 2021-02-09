@@ -14,5 +14,6 @@ namespace DomainModel.Services
         Task<string> ReauthorizeAndBackup(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress);
         void DisconnectFromCurrentSqlServer();
         string GetCurrentSQLServerInstanceName();
+        List<string> GetAllDatabases();
     }
 }

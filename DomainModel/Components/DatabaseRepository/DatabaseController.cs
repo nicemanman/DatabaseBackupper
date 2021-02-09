@@ -20,7 +20,7 @@ namespace DomainModel.Components.DatabaseRepository
             emailRepository = new EMailRepository(context);
         }
 
-        public async Task Complete()
+        public async Task CompleteAsync()
         {
             await context.SaveChangesAsync();
         }

@@ -52,7 +52,7 @@ namespace UI
             throw new NotImplementedException();
         }
 
-        List<ScheduleDetailsModel> ISchedulesView.Schedules { 
+        List<ScheduleModel> ISchedulesView.Schedules { 
             set 
             {
                 SchedulesTable.Rows.Clear();

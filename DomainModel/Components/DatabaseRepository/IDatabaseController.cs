@@ -13,7 +13,7 @@ namespace DomainModel.Components.DatabaseRepository
         IPathRepository pathRepository { get; set; }
         IEmailRepository emailRepository { get; set; }
 
-        Task Complete();
+        Task CompleteAsync();
         void Initialize();
     }
 }

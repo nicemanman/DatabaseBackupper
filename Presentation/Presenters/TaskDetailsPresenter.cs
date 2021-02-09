@@ -17,6 +17,7 @@ namespace Presentation.Presenters
         private readonly IScheduleService scheduleService;
         private readonly IPathService pathService;
         private readonly IEmailService emailService;
+        
         public TaskDetailsPresenter(
             IApplicationController controller, 
             ITaskDetailsView view,
@@ -29,6 +30,7 @@ namespace Presentation.Presenters
             this.pathService = pathService;
             this.emailService = emailService;
             this.taskService = taskService;
+            
         }
 
         public override void Run(TaskModel model)
@@ -44,6 +46,8 @@ namespace Presentation.Presenters
             View.TimeTaskFired += View_TimeTaskFired;
             View.SaveTask += View_SaveTask;
             View.Caption = model.Name;
+            View.SelectedSchedule = model.SelectedSchedule?.Name ?? "";
+            View.Id = model.Id;
             View.Show();
         }
 
@@ -65,18 +69,22 @@ namespace Presentation.Presenters
             await pathService.SaveBackupPath(View.SelectedPath);
             if (View.NotifyAboutFinish)
                 await emailService.SaveEmail(View.SelectedEmail);
+            var schedules = scheduleService.GetAllSchedules();
+            var selectedSchedule = schedules.Where(x => x.Name == View.SelectedSchedule).FirstOrDefault() ;
             var taskModel = new TaskModel()
             {
+                Id = View.Id,
                 Name = View.Caption,
                 SelectedDatabases = View.SelectedDatabasesList,
                 SelectedEmail = View.SelectedEmail,
                 SelectedPath = View.SelectedPath,
                 NotifyAboutFinish = View.NotifyAboutFinish,
                 Enabled = View.TaskIsEnables,
-                SQLServer = View.SQLServer
+                SQLServer = View.SQLServer,
+                SelectedSchedule = selectedSchedule
             };
             await taskService.SaveTask(taskModel);
-
+            View.Close();
         }
 
         private void View_TimeTaskFired()
@@ -88,7 +96,7 @@ namespace Presentation.Presenters
 
         private void View_AddNewSchedule()
         {
-            Controller.Run<ScheduleDetailsPresenter, ScheduleDetailsModel>(new ScheduleDetailsModel());
+            Controller.Run<ScheduleDetailsPresenter, ScheduleModel>(new ScheduleModel());
         }
 
         private void View_Reload()
