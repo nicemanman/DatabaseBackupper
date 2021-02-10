@@ -196,10 +196,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseBackupperWindowsLibrary\DatabaseBackupperWindowsLibrary.csproj">
-      <Project>{5E4285BB-0999-40F5-9C64-EC76BDE61440}</Project>
-      <Name>DatabaseBackupperWindowsLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">
       <Project>{4E447230-53E7-4223-A9DE-A6E2594D2076}</Project>
       <Name>DomainModel</Name>

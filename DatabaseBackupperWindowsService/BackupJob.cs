@@ -1,5 +1,4 @@
-﻿using DatabaseBackupperWindowsLibrary.Managers;
-using DatabaseBackupperWindowsLibrary;
+﻿
 using NLog;
 using Quartz;
 using System;
@@ -21,7 +20,7 @@ namespace DatabaseBackupperWindowsService
             {
                 logger.Info(status);
             });
-            TasksManager manager = new TasksManager();
+            
             var tasks = (List<TaskModel>)context.JobDetail.JobDataMap["tasks"];
             var backupService = (BackupService)context.JobDetail.JobDataMap["backupService"];
             foreach (var task in tasks)

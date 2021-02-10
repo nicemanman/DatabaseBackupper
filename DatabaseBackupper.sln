@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseBackupperWindowsLibrary", "DatabaseBackupperWindowsLibrary\DatabaseBackupperWindowsLibrary.csproj", "{5E4285BB-0999-40F5-9C64-EC76BDE61440}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseBackupperWindowsApp", "DatabaseBackupperWindowsApp\DatabaseBackupperWindowsApp.csproj", "{4BED6CFD-1486-44FF-ADB4-86DFCD1E0459}"
-EndProject
 Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "Installer", "Installer\Installer.aiproj", "{D66132C4-9F90-4BCB-A4D2-F01A64692A66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseBackupperWindowsService", "DatabaseBackupperWindowsService\DatabaseBackupperWindowsService.csproj", "{CEED5E3B-D3D4-474E-9280-0AB609F2E840}"
@@ -24,18 +20,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5E4285BB-0999-40F5-9C64-EC76BDE61440}.All|Any CPU.ActiveCfg = Release|Any CPU
-		{5E4285BB-0999-40F5-9C64-EC76BDE61440}.All|Any CPU.Build.0 = Release|Any CPU
-		{5E4285BB-0999-40F5-9C64-EC76BDE61440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E4285BB-0999-40F5-9C64-EC76BDE61440}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E4285BB-0999-40F5-9C64-EC76BDE61440}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E4285BB-0999-40F5-9C64-EC76BDE61440}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BED6CFD-1486-44FF-ADB4-86DFCD1E0459}.All|Any CPU.ActiveCfg = Release|Any CPU
-		{4BED6CFD-1486-44FF-ADB4-86DFCD1E0459}.All|Any CPU.Build.0 = Release|Any CPU
-		{4BED6CFD-1486-44FF-ADB4-86DFCD1E0459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BED6CFD-1486-44FF-ADB4-86DFCD1E0459}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BED6CFD-1486-44FF-ADB4-86DFCD1E0459}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BED6CFD-1486-44FF-ADB4-86DFCD1E0459}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D66132C4-9F90-4BCB-A4D2-F01A64692A66}.All|Any CPU.ActiveCfg = DefaultBuild
 		{D66132C4-9F90-4BCB-A4D2-F01A64692A66}.Debug|Any CPU.ActiveCfg = DefaultBuild
 		{D66132C4-9F90-4BCB-A4D2-F01A64692A66}.Release|Any CPU.ActiveCfg = DefaultBuild
