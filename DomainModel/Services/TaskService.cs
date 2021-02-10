@@ -71,7 +71,7 @@ namespace DomainModel.Services
                 NotifyAboutFinish = model.NotifyAboutFinish,
                 IsEnabled = model.Enabled,
                 Name = model.Name,
-                Schedule = scheduleService.ClientModelToDBModel(model.SelectedSchedule)
+                ScheduleID = model.SelectedSchedule.Id
             };
             
             return JobModel;

@@ -18,6 +18,7 @@ namespace DomainModel.Components.DatabaseRepository.DatabaseModels
         public bool NotifyAboutFinish { get; set; }
         public string EmailToNotify { get; set; }
         public bool IsEnabled { get; set; }
+        public int ScheduleID { get; set; }
         public Schedule Schedule { get; set; }
     }
 }

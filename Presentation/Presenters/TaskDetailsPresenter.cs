@@ -48,6 +48,8 @@ namespace Presentation.Presenters
             View.Caption = model.Name;
             View.SelectedSchedule = model.SelectedSchedule?.Name ?? "";
             View.Id = model.Id;
+            View.TaskIsEnables = model.Enabled;
+            View.NotifyAboutFinish = model.NotifyAboutFinish;
             View.Show();
         }
 

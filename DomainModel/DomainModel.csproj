@@ -270,6 +270,10 @@
     <Compile Include="Migrations\202102091345060_ColumnsForTasksTable.designer.cs">
       <DependentUpon>202102091345060_ColumnsForTasksTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102100320573_ColumnsForTasksTable2.cs" />
+    <Compile Include="Migrations\202102100320573_ColumnsForTasksTable2.designer.cs">
+      <DependentUpon>202102100320573_ColumnsForTasksTable2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BackupModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -292,9 +296,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="Components\GoogleClient\credentials.json">
+    <EmbeddedResource Include="Components\GoogleClient\credentials.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102091345060_ColumnsForTasksTable.resx">
       <DependentUpon>202102091345060_ColumnsForTasksTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102100320573_ColumnsForTasksTable2.resx">
+      <DependentUpon>202102100320573_ColumnsForTasksTable2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

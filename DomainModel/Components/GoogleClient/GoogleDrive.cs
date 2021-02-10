@@ -25,7 +25,7 @@ namespace DomainModel.Components.GoogleClient
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/drive-dotnet-quickstart.json
         private string[] Scopes = { DriveService.Scope.Drive };
-        private string ApplicationName = "Drive API .NET Quickstart";
+        private string ApplicationName = "DatabaseBackupper";
         private UserCredential credential;
         private DriveService service;
 
@@ -43,8 +43,10 @@ namespace DomainModel.Components.GoogleClient
        
         public void Authorize() 
         {
+            string dir = System.IO.Path.GetDirectoryName(
+            System.Reflection.Assembly.GetExecutingAssembly().Location);
             using (var stream =
-                new FileStream("C:\\0Repository\\DatabaseBackupper\\DomainModel\\Components\\GoogleClient\\credentials.json", FileMode.Open, FileAccess.Read))
+                new FileStream(dir+ "\\Components\\GoogleClient\\credentials.json", FileMode.Open, FileAccess.Read))
             {
                 // The file token.json stores the user's access and refresh tokens, and is created
                 // automatically when the authorization flow completes for the first time.
