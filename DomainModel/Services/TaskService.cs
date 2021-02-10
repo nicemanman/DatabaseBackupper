@@ -11,7 +11,7 @@ namespace DomainModel.Services
 {
     public class TaskService : ITaskService
     {
-        public event Action UpdateTasksList;
+        
         private readonly IDatabaseController databaseController;
         private readonly IScheduleService scheduleService;
         private List<ScheduleModel> schedules;
@@ -41,6 +41,7 @@ namespace DomainModel.Services
 
             }
             await databaseController.CompleteAsync();
+            
         }
 
         private TaskModel DBModelToClientModel(Job job) 
@@ -48,7 +49,7 @@ namespace DomainModel.Services
             var clientModel = new TaskModel()
             {
                 Id = job.Id,
-                AllDatabases = Context.backupModel.AllDatabases,
+                AllDatabases = Context.backupModel?.AllDatabases ?? new List<string>(),
                 Enabled = job.IsEnabled,
                 Name = job.Name,
                 NotifyAboutFinish = job.NotifyAboutFinish,
@@ -56,7 +57,7 @@ namespace DomainModel.Services
                 SelectedEmail = job.EmailToNotify,
                 SelectedPath = job.Path,
                 SQLServer = job.ServerName,
-                SelectedSchedule = scheduleService.DBModelToClientModel(job.Schedule)
+                SelectedSchedule = scheduleService.GetAllSchedules().Where(x => x.Id == job.ScheduleID).FirstOrDefault()
             };
             return clientModel;
         }
@@ -77,12 +78,18 @@ namespace DomainModel.Services
             return JobModel;
         }
 
-        public List<TaskModel> GetAllTasks()
+        public List<TaskModel> GetAllTasks(bool service = false)
         {
-            var result = databaseController.jobRepository.GetAll().ToList();
+            List<Job> result;
+            if (service)
+                result = databaseController.jobRepository.GetAll().ToList();
+            else
+                result = databaseController.jobRepository.GetAll().Where(x=>x.ServerName == Context.GetServerInstanceName()).ToList();
+            
             List<TaskModel> clientList = new List<TaskModel>();
             foreach (var item in result)
             {
+                
                 var model = DBModelToClientModel(item);
                 clientList.Add(model);
             }

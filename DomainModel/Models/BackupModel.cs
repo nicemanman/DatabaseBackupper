@@ -11,6 +11,7 @@ namespace DomainModel.Models
         public string PathToBackup { get; set; }
         public List<string> AllDatabases { get; set; } = new List<string>();
         public List<string> DatabasesToBackup { get; set; } = new List<string>();
+        
     }
 }
 

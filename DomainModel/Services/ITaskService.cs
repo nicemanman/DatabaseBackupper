@@ -9,9 +9,9 @@ namespace DomainModel.Services
 {
     public interface ITaskService
     {
-        event Action UpdateTasksList;
+        
         Task SaveTask(TaskModel taskModel);
-        List<TaskModel> GetAllTasks();
+        List<TaskModel> GetAllTasks(bool service = false);
         Task RemoveTask(int id);
     }
 }

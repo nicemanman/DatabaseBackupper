@@ -30,9 +30,13 @@ namespace DomainModel.Services
         /// <param name="stagesProgress">Этапы, которые попадают в лог</param>
         /// <param name="detailProgress">Детальная информация о выполнении бэкапа</param>
         /// <returns></returns>
-        public async Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> stagesProgress, IProgress<string> detailProgress)
+        public async Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> stagesProgress, IProgress<string> detailProgress, string ServerName = "")
         {
-            var connectionString = Context.GetDBConnectionString();
+            string connectionString = "";
+            if (string.IsNullOrWhiteSpace(ServerName))
+                connectionString = Context.GetDBConnectionString();
+            else
+                connectionString = $"Data Source={ServerName}; Integrated Security=True;";
             int stepCount = backupModel.DatabasesToBackup.Count();
  
             detailProgress.Report($"Всего баз данных - {stepCount}. Начали...");
@@ -57,7 +61,9 @@ namespace DomainModel.Services
                     {
                         try
                         {
-                            BackupDatabase(Context.GetServerInstanceName(), database, path, detailProgress);
+                            if (!string.IsNullOrWhiteSpace(Context.GetServerInstanceName()))
+                                ServerName = Context.GetServerInstanceName();
+                            BackupDatabase(ServerName, database, path, detailProgress);
                             stagesProgress.Report($"База {database} - успех");
                         }
                         catch (Exception ex) 

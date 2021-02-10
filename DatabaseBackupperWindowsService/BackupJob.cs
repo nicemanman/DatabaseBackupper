@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DomainModel.Services;
+using DomainModel.Models;
 
 namespace DatabaseBackupperWindowsService
 {
@@ -20,16 +22,17 @@ namespace DatabaseBackupperWindowsService
                 logger.Info(status);
             });
             TasksManager manager = new TasksManager();
-            var tasksId = (List<int>)context.JobDetail.JobDataMap["tasks"];
-            foreach (var taskId in tasksId)
+            var tasks = (List<TaskModel>)context.JobDetail.JobDataMap["tasks"];
+            var backupService = (BackupService)context.JobDetail.JobDataMap["backupService"];
+            foreach (var task in tasks)
             {
-                var item = manager.GetTask(taskId);
-                DatabasesManager dbManager = new DatabasesManager(item.LoginData.ServerName, item.LoginData.UserName, item.LoginData.Password);
-                foreach (var database in item.BackupData.DatabasesToBackup)
+                BackupModel model = new BackupModel()
                 {
-                    logger.Info("Начинаем делать бэкапы - ");
-                    dbManager.Backup(database, item.BackupData.Path, progress);
-                }
+                    PathToBackup = task.SelectedPath,
+                    DatabasesToBackup = task.SelectedDatabases
+                };
+                //DatabasesManager dbManager = new DatabasesManager(task.LoginData.ServerName, item.LoginData.UserName, item.LoginData.Password);
+                backupService.BackupDatabases(model, progress, progress, task.SQLServer).Wait();
             }
             return Task.CompletedTask;
         }

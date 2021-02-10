@@ -9,7 +9,7 @@ using DomainModel.Components.DatabaseRepository;
 
 namespace UI
 {
-    static class Program
+     static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -19,6 +19,7 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             var controller = new ApplicationController(new LightInjectAdapder())
                 .RegisterView<ILoginView, ConnectForm>()
                 .RegisterService<ILoginService, LoginService>()
