@@ -9,7 +9,7 @@ set PATH=%PATH%;%DOTNETFX2%
 
 echo Uninstalling MyService...
 echo ---------------------------------------------------
-InstallUtil /u C:\0Repository\DatabaseBackupper\DatabaseBackupperWindowsService\bin\Debug\DatabaseBackupperWindowsService.exe
+InstallUtil /u DatabaseBackupperWindowsService.exe
 echo ---------------------------------------------------
 echo Done
 pause

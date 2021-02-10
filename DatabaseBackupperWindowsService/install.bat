@@ -8,7 +8,7 @@ set PATH=%PATH%;%DOTNETFX2%
 
 echo Installing MyService...
 echo ---------------------------------------------------
-InstallUtil /i C:\0Repository\DatabaseBackupper\DatabaseBackupperWindowsService\bin\Debug\DatabaseBackupperWindowsService.exe
+InstallUtil /i DatabaseBackupperWindowsService.exe
 echo ---------------------------------------------------
 echo Done.
 pause
