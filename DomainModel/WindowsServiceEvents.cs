@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public class WindowsServiceEvents
+    public static class WindowsServiceEvents
     {
-        public event Action UpdateTasksList;
+        public static event Action UpdateTasksList;
+        public static void TaskSaved() 
+        {
+            UpdateTasksList?.Invoke();
+        }
     }
 }

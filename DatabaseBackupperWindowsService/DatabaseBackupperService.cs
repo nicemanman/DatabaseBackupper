@@ -1,4 +1,5 @@
-﻿using DomainModel.Services;
+﻿using DomainModel;
+using DomainModel.Services;
 using NLog;
 using Quartz;
 using Quartz.Impl;
@@ -35,7 +36,7 @@ namespace DatabaseBackupperWindowsService
             StdSchedulerFactory factory = new StdSchedulerFactory();
             IScheduler scheduler = Task.Run(async () => await factory.GetScheduler()).Result;
             ReloadTasks(scheduler);
-            
+            WindowsServiceEvents.UpdateTasksList += () => ReloadTasks(scheduler);
             // and start it off
             Task.Run(async () => await scheduler.Start()).Wait();
         }
@@ -47,7 +48,7 @@ namespace DatabaseBackupperWindowsService
             var schedules = scheduleService.GetAllSchedules();
             foreach (var schedule in schedules)
             {
-                var tasksBySchedule = tasks.Where(x => x.SelectedSchedule.Id == schedule.Id).ToList();
+                var tasksBySchedule = tasks.Where(x => x.SelectedSchedule.Id == schedule.Id && x.Enabled == true).ToList();
                 if (tasksBySchedule.Count == 0) continue;
                 // define the job and tie it to our HelloJob class
                 IJobDetail job = JobBuilder.Create<BackupJob>()

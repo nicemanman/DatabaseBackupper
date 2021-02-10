@@ -41,7 +41,7 @@ namespace DomainModel.Services
 
             }
             await databaseController.CompleteAsync();
-            
+            WindowsServiceEvents.TaskSaved();
         }
 
         private TaskModel DBModelToClientModel(Job job) 

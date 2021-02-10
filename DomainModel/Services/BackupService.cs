@@ -38,7 +38,7 @@ namespace DomainModel.Services
             else
                 connectionString = $"Data Source={ServerName}; Integrated Security=True;";
             int stepCount = backupModel.DatabasesToBackup.Count();
- 
+            if (detailProgress != null)
             detailProgress.Report($"Всего баз данных - {stepCount}. Начали...");
             if (!string.IsNullOrWhiteSpace(connectionString)) 
             {
@@ -89,7 +89,10 @@ namespace DomainModel.Services
                  
             };
             dbBackup.PercentCompleteNotification = 1;
-            dbBackup.PercentComplete += (s,e) => progress.Report(DatabaseName + " : " + e.Percent.ToString() + "%");
+
+            if (progress != null)
+                dbBackup.PercentComplete += (s,e) => progress.Report(DatabaseName + " : " + e.Percent.ToString() + "%");
+
             dbBackup.Devices.AddDevice(pathToBackp + "\\" + fileName, DeviceType.File);
             dbBackup.Initialize = true;
             dbBackup.SqlBackup(dbServer);

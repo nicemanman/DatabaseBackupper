@@ -18,5 +18,6 @@ namespace DomainModel.Models
         public bool NotifyAboutFinish { get; set; }
         public string SelectedEmail { get; set; }
         public bool Enabled { get; set; }
+        public string BackupResult { get; set; }
     }
 }
