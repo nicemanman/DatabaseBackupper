@@ -23,22 +23,27 @@ namespace DatabaseBackupperWindowsService
             var tasks = (List<TaskModel>)context.JobDetail.JobDataMap["tasks"];
             var backupService = (BackupService)context.JobDetail.JobDataMap["backupService"];
 
-
             foreach (var task in tasks)
             {
+                task.BackupResult = "";
                 var progress = new Progress<string>(status =>
                 {
                     logger.Info(status);
-                    task.BackupResult += status + "\n";
+                    task.BackupResult += status + "<br />";
                 });
                 BackupModel model = new BackupModel()
                 {
                     PathToBackup = task.SelectedPath,
                     DatabasesToBackup = task.SelectedDatabases
                 };
-
-                backupService.BackupDatabases(model, progress, null, task.SQLServer).Wait();
-
+                try
+                {
+                    backupService.BackupDatabases(model, progress, null, task.SQLServer).Wait();
+                }
+                catch (Exception ex) 
+                {
+                    logger.Error(ex.StackTrace);
+                }
             }
             SendEmailNotifications(tasks);
             return Task.CompletedTask;
@@ -46,6 +51,7 @@ namespace DatabaseBackupperWindowsService
 
         public void SendEmailNotifications(List<TaskModel> tasks)
         {
+            //группируем задачи по электронным адресам
             var tasksByEmail = tasks.Where(x => x.NotifyAboutFinish).GroupBy(x => x.SelectedEmail);
 
             foreach (var taskGroup in tasksByEmail)
@@ -65,15 +71,43 @@ namespace DatabaseBackupperWindowsService
                 MailMessage m = new MailMessage(from, to);
                 // тема письма
                 m.Subject = "Результат бэкапа баз данных";
-                foreach (var task in taskGroup)
+
+                StringBuilder sb = new StringBuilder();
+
+                using (Table table = new Table(sb))
                 {
-                    // текст письма
-                    m.Body += task.BackupResult + "\n";
+                    using (Row headerRow = table.AddHeaderRow()) 
+                    {
+                        headerRow.AddCell("Дата выполнения задачи");
+                        headerRow.AddCell("Имя задачи");
+                        headerRow.AddCell("Базы данных");
+                        headerRow.AddCell("Путь бэкапа");
+                        headerRow.AddCell("Расписание");
+                        headerRow.AddCell("MS SQL Server");
+                        headerRow.AddCell("Результат бэкапа");
+                    }
+                    foreach (var task in taskGroup)
+                    {
+                        using (Row row = table.AddRow())
+                        {
+                            row.AddCell(DateTime.Now.ToString());
+                            row.AddCell(task.Name);
+                            row.AddCell(string.Join("<br />",task.SelectedDatabases));
+                            row.AddCell(task.SelectedPath);
+                            row.AddCell(task.SelectedSchedule.Name);
+                            row.AddCell(task.SQLServer);
+                            row.AddCell(task.BackupResult);
+                        }
+                    }
                 }
+
+                string finishedTable = sb.ToString();
+                
+                m.Body = finishedTable;
 
                 // письмо представляет код html
                 m.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 25);
                 smtp.Credentials = new NetworkCredential(credentials.email, credentials.password);
                 smtp.EnableSsl = true;
                 smtp.Send(m);

@@ -159,6 +159,7 @@
     <Compile Include="DatabaseBackupperService.Designer.cs">
       <DependentUpon>DatabaseBackupperService.cs</DependentUpon>
     </Compile>
+    <Compile Include="HtmlHelpers\Table.cs" />
     <Compile Include="LightInjectAdapder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
