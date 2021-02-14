@@ -55,6 +55,8 @@ namespace DomainModel.Services
                     catch (NotSupportedException ex) 
                     {
                         stagesProgress.Report($"{database} - {ex.Message}");
+                        if (!string.IsNullOrWhiteSpace(backupModel.BackupResult)) backupModel.BackupResult += "<br />";
+                        backupModel.BackupResult += $"База {database} - {ex.Message}";
                         throw ex;
                     }
                     await Task.Run(() =>
@@ -71,6 +73,8 @@ namespace DomainModel.Services
                         catch (Exception ex) 
                         {
                             stagesProgress.Report($"База {database} - {ex.Message}");
+                            if (!string.IsNullOrWhiteSpace(backupModel.BackupResult)) backupModel.BackupResult += "<br />";
+                            backupModel.BackupResult += $"База {database} - {ex.Message}";
                             throw ex;
                         }
                     });

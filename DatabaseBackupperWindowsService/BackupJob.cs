@@ -44,6 +44,7 @@ namespace DatabaseBackupperWindowsService
                 catch (Exception ex) 
                 {
                     logger.Error(ex.StackTrace);
+                    task.BackupResult = model.BackupResult;
                 }
             }
             SendEmailNotifications(tasks);
@@ -59,7 +60,7 @@ namespace DatabaseBackupperWindowsService
                 Credentials credentials;
                 string dir = System.IO.Path.GetDirectoryName(
                             System.Reflection.Assembly.GetExecutingAssembly().Location);
-                using (StreamReader file = File.OpenText(dir+"\\NotifyEmailCredentials.json"))
+                using (StreamReader file = File.OpenText(dir+"\\email.json"))
                 {
                     credentials = JsonConvert.DeserializeObject<Credentials>(file.ReadToEnd());
                 }
@@ -122,7 +123,7 @@ namespace DatabaseBackupperWindowsService
                 
                 // письмо представляет код html
                 m.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 25);
+                SmtpClient smtp = new SmtpClient(credentials.host, credentials.port);
                 smtp.Credentials = new NetworkCredential(credentials.email, credentials.password);
                 smtp.EnableSsl = true;
                 smtp.Send(m);
@@ -133,5 +134,7 @@ namespace DatabaseBackupperWindowsService
     {
         public string email { get; set; }
         public string password { get; set; }
+        public string host { get; set; }
+        public int port { get; set; }
     }
 }
