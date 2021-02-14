@@ -10,7 +10,7 @@ public class Table : IDisposable
     public Table(StringBuilder sb, string id = "default", string classValue = "")
     {
         _sb = sb;
-        _sb.Append($"<table border = \"1\" id=\"{id}\" class=\"{classValue}\">\n");
+        _sb.Append($"<table border = \"1\" id=\"{id}\" class=\"{classValue}\">");
     }
 
     public void Dispose()
@@ -51,24 +51,24 @@ public class Row : IDisposable
         _isHeader = isHeader;
         if (_isHeader)
         {
-            _sb.Append("<thead>\n");
+            _sb.Append("<thead>");
         }
-        _sb.Append("\t<tr>\n");
+        _sb.Append("<tr>");
     }
 
     public void Dispose()
     {
-        _sb.Append("\t</tr>\n");
+        _sb.Append("</tr>");
         if (_isHeader)
         {
-            _sb.Append("</thead>\n");
+            _sb.Append("</thead>");
         }
     }
 
     public void AddCell(string innerText)
     {
-        _sb.Append("\t\t<td>\n");
-        _sb.Append("\t\t\t" + innerText);
-        _sb.Append("\t\t</td>\n");
+        _sb.Append("<td>");
+        _sb.Append(innerText);
+        _sb.Append("</td>");
     }
 }

@@ -65,6 +65,8 @@ namespace DomainModel.Services
                                 ServerName = Context.GetServerInstanceName();
                             BackupDatabase(ServerName, database, path, detailProgress);
                             stagesProgress.Report($"База {database} - успех");
+                            if (!string.IsNullOrWhiteSpace(backupModel.BackupResult)) backupModel.BackupResult += "<br />";
+                            backupModel.BackupResult += $"База {database} - успех";
                         }
                         catch (Exception ex) 
                         {

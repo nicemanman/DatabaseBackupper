@@ -17,7 +17,7 @@ namespace DatabaseBackupperWindowsService
 {
     public partial class DatabaseBackupperService : ServiceBase
     {
-
+        
         Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IScheduleService scheduleService;
         public readonly ITaskService taskService;
@@ -36,9 +36,7 @@ namespace DatabaseBackupperWindowsService
             StdSchedulerFactory factory = new StdSchedulerFactory();
             IScheduler scheduler = Task.Run(async () => await factory.GetScheduler()).Result;
             ReloadTasks(scheduler);
-            WindowsServiceEvents.UpdateTasksList += () => ReloadTasks(scheduler);
-            // and start it off
-            Task.Run(async () => await scheduler.Start()).Wait();
+            scheduler.Start();
         }
         public void ReloadTasks(IScheduler scheduler)
         {
@@ -67,9 +65,7 @@ namespace DatabaseBackupperWindowsService
 
             foreach (var job in jobs)
             {
-                Thread thread = new Thread(async (x) => { await scheduler.ScheduleJob(job.Key, job.Value); });
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
+                scheduler.ScheduleJob(job.Key, job.Value);
             }
         }
         protected override void OnStop()

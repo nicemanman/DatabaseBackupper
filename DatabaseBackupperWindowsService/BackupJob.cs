@@ -18,18 +18,18 @@ namespace DatabaseBackupperWindowsService
     public class BackupJob : IJob
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
-        public Task Execute(IJobExecutionContext context)
+        public async Task Execute(IJobExecutionContext context)
         {
             var tasks = (List<TaskModel>)context.JobDetail.JobDataMap["tasks"];
             var backupService = (BackupService)context.JobDetail.JobDataMap["backupService"];
 
             foreach (var task in tasks)
             {
+                
                 task.BackupResult = "";
                 var progress = new Progress<string>(status =>
                 {
                     logger.Info(status);
-                    task.BackupResult += status + "<br />";
                 });
                 BackupModel model = new BackupModel()
                 {
@@ -38,7 +38,8 @@ namespace DatabaseBackupperWindowsService
                 };
                 try
                 {
-                    backupService.BackupDatabases(model, progress, null, task.SQLServer).Wait();
+                    await backupService.BackupDatabases(model, progress, null, task.SQLServer);
+                    task.BackupResult = model.BackupResult;
                 }
                 catch (Exception ex) 
                 {
@@ -46,7 +47,6 @@ namespace DatabaseBackupperWindowsService
                 }
             }
             SendEmailNotifications(tasks);
-            return Task.CompletedTask;
         }
 
         public void SendEmailNotifications(List<TaskModel> tasks)
@@ -99,12 +99,27 @@ namespace DatabaseBackupperWindowsService
                             row.AddCell(task.BackupResult);
                         }
                     }
+                    
                 }
 
                 string finishedTable = sb.ToString();
                 
-                m.Body = finishedTable;
+                m.Body = @" <html>
+                            <head>
+                            <style>
+                            table {
+                              border-collapse: collapse;
+                              width: 100%;
+                            }
 
+                            th, td {
+                              text-align: left;
+                              padding: 8px;
+                            }
+                            </style>
+                            </head>
+                            <body>" + finishedTable + "</body></html>";
+                
                 // письмо представляет код html
                 m.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 25);
