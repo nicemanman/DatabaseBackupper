@@ -1,6 +1,6 @@
 ﻿<img align="left" width="160" height="160" src="https://icons.iconarchive.com/icons/iconleak/cerulean/256/database-icon.png" alt="Resume application project app icon">
 
-# Database backupper
+# Бэкаппер баз данных
 Данная небольшая программа возникла после того, как я по неосторожности потерял свои MS SQL базы данных. Она до сих пор в процессе разработки, в данный момент я переношу ее достаточно скромный функционал на паттерн Model-View-Presenter.
 
 <br/>
