@@ -9,8 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-credentials.json
-NotifyEmailCredentials.json
+*.json
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
