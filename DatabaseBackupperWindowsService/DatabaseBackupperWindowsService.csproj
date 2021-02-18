@@ -181,6 +181,9 @@
     <EmbeddedResource Include="email.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="install.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="uninstall.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

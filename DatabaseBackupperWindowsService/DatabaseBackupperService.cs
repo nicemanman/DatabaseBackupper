@@ -31,7 +31,7 @@ namespace DatabaseBackupperWindowsService
         }
         protected override void OnStart(string[] args)
         {
-            Debugger.Launch();
+            //Debugger.Launch();
             logger.Info("Service is started at " + DateTime.Now);
             StdSchedulerFactory factory = new StdSchedulerFactory();
             IScheduler scheduler = Task.Run(async () => await factory.GetScheduler()).Result;

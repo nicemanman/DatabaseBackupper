@@ -2,20 +2,39 @@
 <DOCUMENT Type="Advanced Installer" CreateVersion="17.6" version="17.6" Modules="professional" RootPath="." Language="en" Id="{8AA37EA8-7DB0-4C29-9F5E-5169F6CCE975}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_CF_FrameBottomLeft" Value="frame_bottom_left.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameBottomLeftInactive" Value="frame_bottom_left_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameBottomMid" Value="frame_bottom_mid.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameBottomMidInactive" Value="frame_bottom_mid_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameBottomRight" Value="frame_bottom_right.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameBottomRightInactive" Value="frame_bottom_right_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameCaption" Value="frame_caption.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameCaptionInactive" Value="frame_caption_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameLeft" Value="frame_left.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameLeftInactive" Value="frame_left_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameRight" Value="frame_right.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameRightInactive" Value="frame_right_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameTopLeft" Value="frame_top_left.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameTopLeftInactive" Value="frame_top_left_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameTopMid" Value="frame_top_mid.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameTopMidInactive" Value="frame_top_mid_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameTopRight" Value="frame_top_right.bmp" Type="1"/>
+    <ROW Property="AI_CF_FrameTopRightInactive" Value="frame_top_right_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_SysCloseDown" Value="sys_close_down.bmp" Type="1"/>
+    <ROW Property="AI_CF_SysCloseHot" Value="sys_close_hot.bmp" Type="1"/>
+    <ROW Property="AI_CF_SysCloseInactive" Value="sys_close_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_SysCloseNormal" Value="sys_close_normal.bmp" Type="1"/>
+    <ROW Property="AI_CF_SysMinDown" Value="sys_min_down.bmp" Type="1"/>
+    <ROW Property="AI_CF_SysMinHot" Value="sys_min_hot.bmp" Type="1"/>
+    <ROW Property="AI_CF_SysMinInactive" Value="sys_min_inactive.bmp" Type="1"/>
+    <ROW Property="AI_CF_SysMinNormal" Value="sys_min_normal.bmp" Type="1"/>
+    <ROW Property="AI_CF_TYPE" Value="0" MultiBuildValue="DefaultBuild:1" Type="4"/>
     <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_DatabaseBackupperWindowsApp.exe" Value="..\DatabaseBackupperWindowsApp\bin\Debug"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_DatabaseBackupperWindowsApp.exe.config" Value="..\DatabaseBackupperWindowsApp\bin\Debug"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_DatabaseBackupperWindowsLibrary.dll" Value="..\DatabaseBackupperWindowsLibrary\bin\Debug"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Newtonsoft.Json.dll" Value="..\packages\Newtonsoft.Json.11.0.1\lib\net45"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsApp.exe" Value="DatabaseBackupperWindowsApp.exe"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsApp.exe.config" Value="DatabaseBackupperWindowsApp.exe.config"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsLibrary.dll" Value="DatabaseBackupperWindowsLibrary.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Newtonsoft.Json.dll" Value="Newtonsoft.Json.dll"/>
     <ROW Property="AI_RUN_AS_ADMIN" Value="1"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="DatabaseBackupper installer" ValueLocId="*"/>
     <ROW Property="ARPNOREPAIR" MultiBuildValue="DefaultBuild:1"/>
-    <ROW Property="ARPPRODUCTICON" Value="IconleakCeruleanDatabase_1.exe" Type="8"/>
+    <ROW Property="ARPPRODUCTICON" Value="IconleakCeruleanDatabase.exe" Type="8"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="NicemanSoft"/>
     <ROW Property="ProductCode" Value="1033:{EC5A8E39-F990-47D6-B1EF-5E8A1A64F078} " Type="16"/>
@@ -36,39 +55,201 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
-    <ROW Directory="DatabaseBackupperWindowsApp_Dir" Directory_Parent="APPDIR" DefaultDir="DATABA~3|DatabaseBackupperApp"/>
-    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="DatabaseBackupperWindowsApp_Dir" Directory_Parent="APPDIR" DefaultDir="DATABA~1|DatabaseBackupper"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="__Dir" Directory_Parent="DatabaseBackupperWindowsApp_Dir" DefaultDir="Service"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AI_ExePath" ComponentId="{A4E773B1-EBA1-4C92-896C-942D6961309C}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="APPDIR" ComponentId="{A3D5B34E-A78F-4954-8C08-DEBA99E8506E}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="DatabaseBackupperWindowsApp_PrimaryOutput" ComponentId="{20E52E90-048F-4BC9-AA90-7AC30C07C5A1}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="DatabaseBackupperWindowsApp.exe"/>
-    <ROW Component="DatabaseBackupperWindowsApp_References" ComponentId="{B5DE70D0-9504-4F3A-AA74-DB5D1E2A8D95}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="DatabaseBackupperWindowsService.exe" ComponentId="{29504089-EB69-4357-90B1-740DF4F1CB9D}" Directory_="__Dir" Attributes="0" KeyPath="DatabaseBackupperWindowsService.exe"/>
+    <ROW Component="DomainModel.dll" ComponentId="{141B348C-4B4B-4E5F-8727-5F9E6557B88A}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="DomainModel.dll"/>
+    <ROW Component="DomainModel.dll.config_1" ComponentId="{2B86EA6B-7250-44E5-851B-D1A1520C72EF}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="DomainModel.dll.config" Type="0"/>
+    <ROW Component="DomainModel.dll_1" ComponentId="{BFAAF329-3B98-4206-8454-040452E87E31}" Directory_="__Dir" Attributes="0" KeyPath="DomainModel.dll_1"/>
+    <ROW Component="EntityFramework.SqlServer.dll" ComponentId="{856DF0EE-0F6F-4A31-BA22-4FCA27AC88BD}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="EntityFramework.SqlServer.dll"/>
+    <ROW Component="EntityFramework.SqlServer.dll_1" ComponentId="{8625D18D-ECD6-43A6-B272-76A6DC039968}" Directory_="__Dir" Attributes="0" KeyPath="EntityFramework.SqlServer.dll_1"/>
+    <ROW Component="EntityFramework.dll" ComponentId="{19E47103-0C7B-499E-A65A-11F3524E35F3}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="EntityFramework.dll"/>
+    <ROW Component="EntityFramework.dll_1" ComponentId="{14A7A158-CD49-48D2-A4A5-3CE7C2FAF4A0}" Directory_="__Dir" Attributes="0" KeyPath="EntityFramework.dll_1"/>
+    <ROW Component="Google.Apis.Auth.dll" ComponentId="{A429F7F6-15BF-4BA6-BE44-F41EB59CFA0C}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Google.Apis.Auth.dll"/>
+    <ROW Component="Google.Apis.Core.dll" ComponentId="{C1FD313C-0D99-4652-90C0-C3732FB31C42}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Google.Apis.Core.dll"/>
+    <ROW Component="Google.Apis.Drive.v3.dll" ComponentId="{E1F69746-5302-45A3-9701-B6BF335078EA}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Google.Apis.Drive.v3.dll"/>
+    <ROW Component="Google.Apis.dll" ComponentId="{C5C99F83-6ECE-4AC7-AE29-B9CA3C7B2FFC}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Google.Apis.dll"/>
+    <ROW Component="LightInject.dll" ComponentId="{B06F2730-A57B-4C7A-A59C-8B8462EA5A71}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="LightInject.dll"/>
+    <ROW Component="LightInject.dll_1" ComponentId="{488A1E00-20F9-4FE9-94BA-E93F7D22182E}" Directory_="__Dir" Attributes="0" KeyPath="LightInject.dll_1"/>
+    <ROW Component="Microsoft.Data.SqlClient.SNI.x64.dll" ComponentId="{E0BE8699-22A0-4B26-87D9-4216F160E2C1}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="256" KeyPath="Microsoft.Data.SqlClient.SNI.x64.dll"/>
+    <ROW Component="Microsoft.Data.SqlClient.SNI.x64.dll_1" ComponentId="{E76BA044-6598-4676-A58D-F90DBEE8C6F5}" Directory_="__Dir" Attributes="256" KeyPath="Microsoft.Data.SqlClient.SNI.x64.dll_1"/>
+    <ROW Component="Microsoft.Data.SqlClient.SNI.x86.dll" ComponentId="{5E641BC0-5320-45B3-B0EA-40EB5578C5B4}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.Data.SqlClient.SNI.x86.dll"/>
+    <ROW Component="Microsoft.Data.SqlClient.SNI.x86.dll_1" ComponentId="{47ADE127-2604-4456-A521-D0F30AFF1000}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.Data.SqlClient.SNI.x86.dll_1"/>
+    <ROW Component="Microsoft.Data.SqlClient.dll" ComponentId="{BEC885C5-53D2-40A0-A00F-610DE5A3C26A}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.Data.SqlClient.dll"/>
+    <ROW Component="Microsoft.Data.SqlClient.dll_1" ComponentId="{893A0988-C11B-4FF4-8D59-BAD8B90213A4}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.Data.SqlClient.dll_1"/>
+    <ROW Component="Microsoft.Data.SqlClient.resources.dll" ComponentId="{F8F106BB-2BCC-4E2F-873B-AD461D7BC2DB}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.Data.SqlClient.resources.dll"/>
+    <ROW Component="Microsoft.Data.SqlClient.resources.dll_2" ComponentId="{E6A568F3-6FA6-4F3E-A737-194DBC5AE022}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.Data.SqlClient.resources.dll_2"/>
+    <ROW Component="Microsoft.Data.Tools.Sql.BatchParser.dll" ComponentId="{5191D4B4-3B22-451B-ABB1-183603327D8A}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.Data.Tools.Sql.BatchParser.dll"/>
+    <ROW Component="Microsoft.Data.Tools.Sql.BatchParser.dll_1" ComponentId="{762E1128-38CA-4BD2-8CFB-A8B924A31F0E}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.Data.Tools.Sql.BatchParser.dll_1"/>
+    <ROW Component="Microsoft.Extensions.Logging.Abstractions.dll" ComponentId="{D88A3FD3-9AAA-49E2-9BD2-57418933AF6E}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Abstractions.dll"/>
+    <ROW Component="Microsoft.Extensions.Logging.Abstractions.dll_1" ComponentId="{B3E91B69-43A0-45BD-8DFC-68DDD7E20DFD}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.Extensions.Logging.Abstractions.dll_1"/>
+    <ROW Component="Microsoft.Identity.Client.dll" ComponentId="{BD9E1B97-4922-4E51-8B41-1E1112ED04E8}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.Identity.Client.dll"/>
+    <ROW Component="Microsoft.Identity.Client.dll_1" ComponentId="{BE49440D-40C4-47EC-8473-3DAB05AB5FE3}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.Identity.Client.dll_1"/>
+    <ROW Component="Microsoft.IdentityModel.JsonWebTokens.dll" ComponentId="{65D8172E-76D5-413D-86B1-D60FE43C6A7D}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.JsonWebTokens.dll"/>
+    <ROW Component="Microsoft.IdentityModel.JsonWebTokens.dll_1" ComponentId="{D232E3CB-044C-425E-BBA4-3044D3A34092}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.JsonWebTokens.dll_1"/>
+    <ROW Component="Microsoft.IdentityModel.Logging.dll" ComponentId="{E95E0C5A-8DA0-48DB-A812-D953201D6D5E}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.Logging.dll"/>
+    <ROW Component="Microsoft.IdentityModel.Logging.dll_1" ComponentId="{2E784FAB-438A-4A3F-8961-19EAB0594364}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.Logging.dll_1"/>
+    <ROW Component="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" ComponentId="{A1EEAEEC-FA8B-4C2A-B8FF-744DD85A888D}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll"/>
+    <ROW Component="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll_1" ComponentId="{7DC91A79-2592-4103-BAC3-F1E0084B3EE2}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll_1"/>
+    <ROW Component="Microsoft.IdentityModel.Protocols.dll" ComponentId="{5BAF6521-45FD-4614-ADF2-482CDC8836DC}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.Protocols.dll"/>
+    <ROW Component="Microsoft.IdentityModel.Protocols.dll_1" ComponentId="{2A144C47-E25E-4714-9270-F49CEE94E336}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.Protocols.dll_1"/>
+    <ROW Component="Microsoft.IdentityModel.Tokens.dll" ComponentId="{11FCCF85-FE40-44C8-84A4-030668206667}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.Tokens.dll"/>
+    <ROW Component="Microsoft.IdentityModel.Tokens.dll_1" ComponentId="{B27D90E7-AF01-4F30-8E81-8504C1F8170E}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.IdentityModel.Tokens.dll_1"/>
+    <ROW Component="Microsoft.SqlServer.ConnectionInfo.dll" ComponentId="{8DE57A9A-B9E2-4658-9DC1-25F03213EE9A}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.SqlServer.ConnectionInfo.dll"/>
+    <ROW Component="Microsoft.SqlServer.ConnectionInfo.dll_1" ComponentId="{872F0556-10AA-4A0F-AC69-14B78564A05B}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.SqlServer.ConnectionInfo.dll_1"/>
+    <ROW Component="Microsoft.SqlServer.Dmf.Common.dll" ComponentId="{AD707680-8F25-466E-BE17-50DFBDB95728}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.SqlServer.Dmf.Common.dll"/>
+    <ROW Component="Microsoft.SqlServer.Dmf.Common.dll_1" ComponentId="{34252046-C4FF-4D82-BFB9-016DC7DDDB64}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.SqlServer.Dmf.Common.dll_1"/>
+    <ROW Component="Microsoft.SqlServer.Management.Sdk.Sfc.dll" ComponentId="{C78E89DA-813B-4A79-986B-BEB85D478C01}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.SqlServer.Management.Sdk.Sfc.dll"/>
+    <ROW Component="Microsoft.SqlServer.Management.Sdk.Sfc.dll_1" ComponentId="{5BB63AA0-163A-4FEB-8163-2A6AA773F15A}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.SqlServer.Management.Sdk.Sfc.dll_1"/>
+    <ROW Component="Microsoft.SqlServer.ServiceBrokerEnum.dll" ComponentId="{FFE7E3A2-CEAD-47EA-AD43-FE088E096CBF}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.SqlServer.ServiceBrokerEnum.dll"/>
+    <ROW Component="Microsoft.SqlServer.ServiceBrokerEnum.dll_1" ComponentId="{48048422-036D-4C37-BC33-1DCFAD02DE62}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.SqlServer.ServiceBrokerEnum.dll_1"/>
+    <ROW Component="Microsoft.SqlServer.Smo.dll" ComponentId="{0ED6D2D1-B6DE-4E21-962D-148A2302F2E3}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.SqlServer.Smo.dll"/>
+    <ROW Component="Microsoft.SqlServer.Smo.dll_1" ComponentId="{7B7B838A-ADC6-44C0-B645-05F0AADC735F}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.SqlServer.Smo.dll_1"/>
+    <ROW Component="Microsoft.SqlServer.SmoExtended.dll" ComponentId="{F2344B5D-2520-460B-8939-FC77788CDAEF}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.SqlServer.SmoExtended.dll"/>
+    <ROW Component="Microsoft.SqlServer.SmoExtended.dll_1" ComponentId="{0C961BCC-04AC-4B04-B911-F4496CCB4A57}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.SqlServer.SmoExtended.dll_1"/>
+    <ROW Component="Microsoft.SqlServer.SqlEnum.dll" ComponentId="{12C7C4CE-2F05-4F75-BB68-162F3B285E50}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Microsoft.SqlServer.SqlEnum.dll"/>
+    <ROW Component="Microsoft.SqlServer.SqlEnum.dll_1" ComponentId="{FC5FBDF3-2DD2-4664-87FB-70B325E4E4E5}" Directory_="__Dir" Attributes="0" KeyPath="Microsoft.SqlServer.SqlEnum.dll_1"/>
+    <ROW Component="NLog.dll" ComponentId="{AF69B00D-F16E-43DF-8BB5-B5D0438BA62A}" Directory_="__Dir" Attributes="0" KeyPath="NLog.dll"/>
+    <ROW Component="Newtonsoft.Json.dll" ComponentId="{DBDE46EA-7283-4B8B-9A6E-0A3D89E6BEB7}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll"/>
+    <ROW Component="Newtonsoft.Json.dll_1" ComponentId="{04F98764-77CF-4F5A-BC63-9BF433E239CC}" Directory_="__Dir" Attributes="0" KeyPath="Newtonsoft.Json.dll_1"/>
+    <ROW Component="Presentation.dll" ComponentId="{92E552B6-56D3-4729-AE7A-82263C8FB0C4}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Presentation.dll"/>
+    <ROW Component="Presentation.dll_1" ComponentId="{189D4174-3C8B-4A5C-8FCA-3789FEDC8952}" Directory_="__Dir" Attributes="0" KeyPath="Presentation.dll_1"/>
     <ROW Component="ProductInformation" ComponentId="{11F9E55C-8F54-4820-A6ED-81C836BCDDC9}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{85D76AF3-2CCD-491B-A5F1-5FC0E717B7EE}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="Quartz.dll" ComponentId="{14AE4F22-D8DA-4F51-AE15-D99241143532}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="Quartz.dll"/>
+    <ROW Component="Quartz.dll_1" ComponentId="{C2959D59-5301-44F0-ADBF-8DD2E57E3DA6}" Directory_="__Dir" Attributes="0" KeyPath="Quartz.dll_1"/>
+    <ROW Component="SQLite.Interop.dll" ComponentId="{2D670244-2EC8-464B-AEB9-F7E39C17C098}" Directory_="__Dir" Attributes="0" KeyPath="SQLite.Interop.dll"/>
+    <ROW Component="System.Buffers.dll" ComponentId="{E36D86C9-1A71-41FC-8FE7-AD1A12DB9EAA}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="System.Buffers.dll"/>
+    <ROW Component="System.Buffers.dll_1" ComponentId="{F2CECB15-A7DC-43F6-9085-1281C37A077D}" Directory_="__Dir" Attributes="0" KeyPath="System.Buffers.dll_1"/>
+    <ROW Component="System.Data.OleDb.dll" ComponentId="{B72E9B9A-1B55-4945-ABF4-F862417F75C3}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="System.Data.OleDb.dll"/>
+    <ROW Component="System.Data.OleDb.dll_1" ComponentId="{F5C77712-8D20-418F-B486-1E0CF4A9474F}" Directory_="__Dir" Attributes="0" KeyPath="System.Data.OleDb.dll_1"/>
+    <ROW Component="System.Data.SQLite.EF6.dll" ComponentId="{4457C962-E70D-49C0-B3B2-BAA705F9CBF5}" Directory_="__Dir" Attributes="0" KeyPath="System.Data.SQLite.EF6.dll"/>
+    <ROW Component="System.Data.SQLite.Linq.dll" ComponentId="{842018C3-56D5-4F58-8735-C172C4B2D373}" Directory_="__Dir" Attributes="0" KeyPath="System.Data.SQLite.Linq.dll"/>
+    <ROW Component="System.Data.SQLite.dll" ComponentId="{D863B30F-D5CF-4676-B97C-C03B65769F5F}" Directory_="__Dir" Attributes="0" KeyPath="System.Data.SQLite.dll"/>
+    <ROW Component="System.Diagnostics.DiagnosticSource.dll" ComponentId="{62D2FE8E-3704-46C4-8059-2A7258B4D60D}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="System.Diagnostics.DiagnosticSource.dll"/>
+    <ROW Component="System.Diagnostics.DiagnosticSource.dll_1" ComponentId="{F9F7A77C-87B9-489D-ACFC-EC349EC22F4C}" Directory_="__Dir" Attributes="0" KeyPath="System.Diagnostics.DiagnosticSource.dll_1"/>
+    <ROW Component="System.IdentityModel.Tokens.Jwt.dll" ComponentId="{4DFB9ED2-2DAB-4550-A532-F631475BCC0F}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="System.IdentityModel.Tokens.Jwt.dll"/>
+    <ROW Component="System.IdentityModel.Tokens.Jwt.dll_1" ComponentId="{265EAE56-C769-4D84-B2E0-78170B8AD6CA}" Directory_="__Dir" Attributes="0" KeyPath="System.IdentityModel.Tokens.Jwt.dll_1"/>
+    <ROW Component="System.Memory.dll" ComponentId="{7AFF197E-EB8F-4353-A050-8F4756FE070B}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="System.Memory.dll"/>
+    <ROW Component="System.Memory.dll_1" ComponentId="{DBEB3D88-F940-4E52-9680-C8BB12DECB84}" Directory_="__Dir" Attributes="0" KeyPath="System.Memory.dll_1"/>
+    <ROW Component="System.Numerics.Vectors.dll" ComponentId="{A8306AA4-04AC-40A1-9CB7-0484BEC790F2}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="System.Numerics.Vectors.dll"/>
+    <ROW Component="System.Numerics.Vectors.dll_1" ComponentId="{B0312A03-C1CC-46F4-A056-184CA20B8CFD}" Directory_="__Dir" Attributes="0" KeyPath="System.Numerics.Vectors.dll_1"/>
+    <ROW Component="System.Runtime.CompilerServices.Unsafe.dll" ComponentId="{B76DF722-94D4-4642-A521-DABE71D68043}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Component="System.Runtime.CompilerServices.Unsafe.dll_1" ComponentId="{1176A893-3F40-4854-BE79-1CBE0EFD6F07}" Directory_="__Dir" Attributes="0" KeyPath="System.Runtime.CompilerServices.Unsafe.dll_1"/>
+    <ROW Component="System.Security.Principal.Windows.dll" ComponentId="{D95DF943-05CD-4B71-906C-52F7D7FFBA54}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="System.Security.Principal.Windows.dll"/>
+    <ROW Component="System.Security.Principal.Windows.dll_1" ComponentId="{FAE4C462-59F5-4C5E-8C2F-E601A8497DC6}" Directory_="__Dir" Attributes="0" KeyPath="System.Security.Principal.Windows.dll_1"/>
+    <ROW Component="System.Security.Principal.dll" ComponentId="{DCB4088E-CC31-4157-81B7-4FF633B311CD}" Directory_="__Dir" Attributes="0" KeyPath="System.Security.Principal.dll"/>
+    <ROW Component="System.ValueTuple.dll" ComponentId="{2C43F6EC-2AD6-4129-8FFD-14722B45D6FC}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="System.ValueTuple.dll"/>
+    <ROW Component="UI.exe_1" ComponentId="{5906CEBB-5E70-4DBD-9AC1-8A3F69BD9103}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="UI.exe"/>
+    <ROW Component="email.json" ComponentId="{C8BA5C6D-C43C-4F10-A757-FEA2F949DA02}" Directory_="__Dir" Attributes="0" KeyPath="email.json" Type="0"/>
+    <ROW Component="netstandard.dll" ComponentId="{D82FF0FB-5058-4EA2-8C32-0FAA1B81B7C3}" Directory_="DatabaseBackupperWindowsApp_Dir" Attributes="0" KeyPath="netstandard.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="DatabaseBackupperWindowsApp.exe" Component_="DatabaseBackupperWindowsApp_PrimaryOutput" FileName="DATABA~2.EXE|[|AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsApp.exe]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_DatabaseBackupperWindowsApp.exe&gt;" SelfReg="false" DigSign="true"/>
-    <ROW File="DatabaseBackupperWindowsApp.exe.config" Component_="DatabaseBackupperWindowsApp_PrimaryOutput" FileName="DATABA~2.CON|[|AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsApp.exe.config]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_DatabaseBackupperWindowsApp.exe.config&gt;" SelfReg="false"/>
-    <ROW File="DatabaseBackupperWindowsLibrary.dll" Component_="DatabaseBackupperWindowsApp_References" FileName="DATABA~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsLibrary.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_DatabaseBackupperWindowsLibrary.dll&gt;" SelfReg="false"/>
-    <ROW File="Newtonsoft.Json.dll" Component_="DatabaseBackupperWindowsApp_References" FileName="NEWTON~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Newtonsoft.Json.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Newtonsoft.Json.dll&gt;" SelfReg="false"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.AppPathsComponent">
-    <ROW Name="AI_APPPATH_PERBUILD_DatabaseBackupperWindowsApp.exe" Path="[|AI_PROPPATH_DIR_PERBUILD_DatabaseBackupperWindowsApp.exe]\[|AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsApp.exe]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_DatabaseBackupperWindowsApp.exe.config" Path="[|AI_PROPPATH_DIR_PERBUILD_DatabaseBackupperWindowsApp.exe.config]\[|AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsApp.exe.config]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_DatabaseBackupperWindowsLibrary.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_DatabaseBackupperWindowsLibrary.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_DatabaseBackupperWindowsLibrary.dll]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Newtonsoft.Json.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Newtonsoft.Json.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Newtonsoft.Json.dll]" Type="2" Content="0"/>
+    <ROW File="DomainModel.dll" Component_="DomainModel.dll" FileName="DOMAIN~1.DLL|DomainModel.dll" Attributes="0" SourcePath="..\UI\bin\Release\DomainModel.dll" SelfReg="false"/>
+    <ROW File="DomainModel.dll.config" Component_="DomainModel.dll.config_1" FileName="DOMAIN~1.CON|DomainModel.dll.config" Attributes="0" SourcePath="..\UI\bin\Release\DomainModel.dll.config" SelfReg="false"/>
+    <ROW File="EntityFramework.dll" Component_="EntityFramework.dll" FileName="ENTITY~1.DLL|EntityFramework.dll" Attributes="0" SourcePath="..\UI\bin\Release\EntityFramework.dll" SelfReg="false"/>
+    <ROW File="EntityFramework.SqlServer.dll" Component_="EntityFramework.SqlServer.dll" FileName="ENTITY~2.DLL|EntityFramework.SqlServer.dll" Attributes="0" SourcePath="..\UI\bin\Release\EntityFramework.SqlServer.dll" SelfReg="false"/>
+    <ROW File="Google.Apis.Auth.dll" Component_="Google.Apis.Auth.dll" FileName="GOOGLE~1.DLL|Google.Apis.Auth.dll" Attributes="0" SourcePath="..\UI\bin\Release\Google.Apis.Auth.dll" SelfReg="false"/>
+    <ROW File="Google.Apis.Core.dll" Component_="Google.Apis.Core.dll" FileName="GOOGLE~2.DLL|Google.Apis.Core.dll" Attributes="0" SourcePath="..\UI\bin\Release\Google.Apis.Core.dll" SelfReg="false"/>
+    <ROW File="Google.Apis.dll" Component_="Google.Apis.dll" FileName="GOOGLE~3.DLL|Google.Apis.dll" Attributes="0" SourcePath="..\UI\bin\Release\Google.Apis.dll" SelfReg="false"/>
+    <ROW File="Google.Apis.Drive.v3.dll" Component_="Google.Apis.Drive.v3.dll" FileName="GOOGLE~4.DLL|Google.Apis.Drive.v3.dll" Attributes="0" SourcePath="..\UI\bin\Release\Google.Apis.Drive.v3.dll" SelfReg="false"/>
+    <ROW File="LightInject.dll" Component_="LightInject.dll" FileName="LIGHTI~1.DLL|LightInject.dll" Attributes="0" SourcePath="..\UI\bin\Release\LightInject.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.SqlClient.dll" Component_="Microsoft.Data.SqlClient.dll" FileName="MICROS~1.DLL|Microsoft.Data.SqlClient.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.Data.SqlClient.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.SqlClient.resources.dll" Component_="Microsoft.Data.SqlClient.resources.dll" FileName="MICROS~2.DLL|Microsoft.Data.SqlClient.resources.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.Data.SqlClient.resources.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.SqlClient.SNI.x64.dll" Component_="Microsoft.Data.SqlClient.SNI.x64.dll" FileName="MICROS~3.DLL|Microsoft.Data.SqlClient.SNI.x64.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.Data.SqlClient.SNI.x64.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.SqlClient.SNI.x86.dll" Component_="Microsoft.Data.SqlClient.SNI.x86.dll" FileName="MICROS~4.DLL|Microsoft.Data.SqlClient.SNI.x86.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.Data.SqlClient.SNI.x86.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.Tools.Sql.BatchParser.dll" Component_="Microsoft.Data.Tools.Sql.BatchParser.dll" FileName="MICROS~5.DLL|Microsoft.Data.Tools.Sql.BatchParser.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.Data.Tools.Sql.BatchParser.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Logging.Abstractions.dll" Component_="Microsoft.Extensions.Logging.Abstractions.dll" FileName="MICROS~6.DLL|Microsoft.Extensions.Logging.Abstractions.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.Extensions.Logging.Abstractions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Identity.Client.dll" Component_="Microsoft.Identity.Client.dll" FileName="MICROS~7.DLL|Microsoft.Identity.Client.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.Identity.Client.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.JsonWebTokens.dll" Component_="Microsoft.IdentityModel.JsonWebTokens.dll" FileName="MICROS~8.DLL|Microsoft.IdentityModel.JsonWebTokens.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.IdentityModel.JsonWebTokens.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.Logging.dll" Component_="Microsoft.IdentityModel.Logging.dll" FileName="MICROS~9.DLL|Microsoft.IdentityModel.Logging.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.IdentityModel.Logging.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.Protocols.dll" Component_="Microsoft.IdentityModel.Protocols.dll" FileName="MICRO~10.DLL|Microsoft.IdentityModel.Protocols.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.IdentityModel.Protocols.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" Component_="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" FileName="MICRO~11.DLL|Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.Tokens.dll" Component_="Microsoft.IdentityModel.Tokens.dll" FileName="MICRO~12.DLL|Microsoft.IdentityModel.Tokens.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.IdentityModel.Tokens.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.ConnectionInfo.dll" Component_="Microsoft.SqlServer.ConnectionInfo.dll" FileName="MICRO~13.DLL|Microsoft.SqlServer.ConnectionInfo.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.SqlServer.ConnectionInfo.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.Dmf.Common.dll" Component_="Microsoft.SqlServer.Dmf.Common.dll" FileName="MICRO~14.DLL|Microsoft.SqlServer.Dmf.Common.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.SqlServer.Dmf.Common.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.Management.Sdk.Sfc.dll" Component_="Microsoft.SqlServer.Management.Sdk.Sfc.dll" FileName="MICRO~15.DLL|Microsoft.SqlServer.Management.Sdk.Sfc.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.SqlServer.Management.Sdk.Sfc.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.ServiceBrokerEnum.dll" Component_="Microsoft.SqlServer.ServiceBrokerEnum.dll" FileName="MICRO~16.DLL|Microsoft.SqlServer.ServiceBrokerEnum.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.SqlServer.ServiceBrokerEnum.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.Smo.dll" Component_="Microsoft.SqlServer.Smo.dll" FileName="MICRO~17.DLL|Microsoft.SqlServer.Smo.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.SqlServer.Smo.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.SmoExtended.dll" Component_="Microsoft.SqlServer.SmoExtended.dll" FileName="MICRO~18.DLL|Microsoft.SqlServer.SmoExtended.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.SqlServer.SmoExtended.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.SqlEnum.dll" Component_="Microsoft.SqlServer.SqlEnum.dll" FileName="MICRO~19.DLL|Microsoft.SqlServer.SqlEnum.dll" Attributes="0" SourcePath="..\UI\bin\Release\Microsoft.SqlServer.SqlEnum.dll" SelfReg="false"/>
+    <ROW File="netstandard.dll" Component_="netstandard.dll" FileName="NETSTA~1.DLL|netstandard.dll" Attributes="0" SourcePath="..\UI\bin\Release\netstandard.dll" SelfReg="false"/>
+    <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\UI\bin\Release\Newtonsoft.Json.dll" SelfReg="false"/>
+    <ROW File="Presentation.dll" Component_="Presentation.dll" FileName="PRESEN~1.DLL|Presentation.dll" Attributes="0" SourcePath="..\UI\bin\Release\Presentation.dll" SelfReg="false"/>
+    <ROW File="Presentation.dll.config" Component_="DomainModel.dll.config_1" FileName="PRESEN~1.CON|Presentation.dll.config" Attributes="0" SourcePath="..\UI\bin\Release\Presentation.dll.config" SelfReg="false"/>
+    <ROW File="Quartz.dll" Component_="Quartz.dll" FileName="Quartz.dll" Attributes="0" SourcePath="..\UI\bin\Release\Quartz.dll" SelfReg="false"/>
+    <ROW File="System.Buffers.dll" Component_="System.Buffers.dll" FileName="SYSTEM~1.DLL|System.Buffers.dll" Attributes="0" SourcePath="..\UI\bin\Release\System.Buffers.dll" SelfReg="false"/>
+    <ROW File="System.Data.OleDb.dll" Component_="System.Data.OleDb.dll" FileName="SYSTEM~2.DLL|System.Data.OleDb.dll" Attributes="0" SourcePath="..\UI\bin\Release\System.Data.OleDb.dll" SelfReg="false"/>
+    <ROW File="System.Diagnostics.DiagnosticSource.dll" Component_="System.Diagnostics.DiagnosticSource.dll" FileName="SYSTEM~3.DLL|System.Diagnostics.DiagnosticSource.dll" Attributes="0" SourcePath="..\UI\bin\Release\System.Diagnostics.DiagnosticSource.dll" SelfReg="false"/>
+    <ROW File="System.IdentityModel.Tokens.Jwt.dll" Component_="System.IdentityModel.Tokens.Jwt.dll" FileName="SYSTEM~4.DLL|System.IdentityModel.Tokens.Jwt.dll" Attributes="0" SourcePath="..\UI\bin\Release\System.IdentityModel.Tokens.Jwt.dll" SelfReg="false"/>
+    <ROW File="System.Memory.dll" Component_="System.Memory.dll" FileName="SYSTEM~5.DLL|System.Memory.dll" Attributes="0" SourcePath="..\UI\bin\Release\System.Memory.dll" SelfReg="false"/>
+    <ROW File="System.Numerics.Vectors.dll" Component_="System.Numerics.Vectors.dll" FileName="SYSTEM~6.DLL|System.Numerics.Vectors.dll" Attributes="0" SourcePath="..\UI\bin\Release\System.Numerics.Vectors.dll" SelfReg="false"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.dll" Component_="System.Runtime.CompilerServices.Unsafe.dll" FileName="SYSTEM~7.DLL|System.Runtime.CompilerServices.Unsafe.dll" Attributes="0" SourcePath="..\UI\bin\Release\System.Runtime.CompilerServices.Unsafe.dll" SelfReg="false"/>
+    <ROW File="System.Security.Principal.Windows.dll" Component_="System.Security.Principal.Windows.dll" FileName="SYSTEM~8.DLL|System.Security.Principal.Windows.dll" Attributes="0" SourcePath="..\UI\bin\Release\System.Security.Principal.Windows.dll" SelfReg="false"/>
+    <ROW File="System.ValueTuple.dll" Component_="System.ValueTuple.dll" FileName="SYSTEM~9.DLL|System.ValueTuple.dll" Attributes="0" SourcePath="..\UI\bin\Release\System.ValueTuple.dll" SelfReg="false"/>
+    <ROW File="UI.exe.config" Component_="DomainModel.dll.config_1" FileName="LAUNCH~1.CON|Launch.exe.config" Attributes="0" SourcePath="..\UI\bin\Release\UI.exe.config" SelfReg="false"/>
+    <ROW File="UI.exe" Component_="UI.exe_1" FileName="Launch.exe" Attributes="0" SourcePath="..\UI\bin\Release\UI.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="DatabaseBackupperWindowsService.exe" Component_="DatabaseBackupperWindowsService.exe" FileName="DATABA~1.EXE|DatabaseBackupperWindowsService.exe" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\DatabaseBackupperWindowsService.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="DomainModel.dll_1" Component_="DomainModel.dll_1" FileName="DOMAIN~1.DLL|DomainModel.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\DomainModel.dll" SelfReg="false"/>
+    <ROW File="email.json" Component_="email.json" FileName="EMAIL~1.JSO|email.json" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\email.json" SelfReg="false"/>
+    <ROW File="EntityFramework.dll_1" Component_="EntityFramework.dll_1" FileName="ENTITY~1.DLL|EntityFramework.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\EntityFramework.dll" SelfReg="false"/>
+    <ROW File="EntityFramework.SqlServer.dll_1" Component_="EntityFramework.SqlServer.dll_1" FileName="ENTITY~2.DLL|EntityFramework.SqlServer.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\EntityFramework.SqlServer.dll" SelfReg="false"/>
+    <ROW File="installandstart.bat" Component_="email.json" FileName="INSTAL~1.BAT|install-and-start.bat" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\install-and-start.bat" SelfReg="false"/>
+    <ROW File="LightInject.dll_1" Component_="LightInject.dll_1" FileName="LIGHTI~1.DLL|LightInject.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\LightInject.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.SqlClient.dll_1" Component_="Microsoft.Data.SqlClient.dll_1" FileName="MICROS~1.DLL|Microsoft.Data.SqlClient.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.Data.SqlClient.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.SqlClient.resources.dll_2" Component_="Microsoft.Data.SqlClient.resources.dll_2" FileName="MICROS~2.DLL|Microsoft.Data.SqlClient.resources.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.Data.SqlClient.resources.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.SqlClient.SNI.x64.dll_1" Component_="Microsoft.Data.SqlClient.SNI.x64.dll_1" FileName="MICROS~3.DLL|Microsoft.Data.SqlClient.SNI.x64.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.Data.SqlClient.SNI.x64.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.SqlClient.SNI.x86.dll_1" Component_="Microsoft.Data.SqlClient.SNI.x86.dll_1" FileName="MICROS~4.DLL|Microsoft.Data.SqlClient.SNI.x86.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.Data.SqlClient.SNI.x86.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Data.Tools.Sql.BatchParser.dll_1" Component_="Microsoft.Data.Tools.Sql.BatchParser.dll_1" FileName="MICROS~5.DLL|Microsoft.Data.Tools.Sql.BatchParser.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.Data.Tools.Sql.BatchParser.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Extensions.Logging.Abstractions.dll_1" Component_="Microsoft.Extensions.Logging.Abstractions.dll_1" FileName="MICROS~6.DLL|Microsoft.Extensions.Logging.Abstractions.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.Extensions.Logging.Abstractions.dll" SelfReg="false"/>
+    <ROW File="Microsoft.Identity.Client.dll_1" Component_="Microsoft.Identity.Client.dll_1" FileName="MICROS~7.DLL|Microsoft.Identity.Client.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.Identity.Client.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.JsonWebTokens.dll_1" Component_="Microsoft.IdentityModel.JsonWebTokens.dll_1" FileName="MICROS~8.DLL|Microsoft.IdentityModel.JsonWebTokens.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.IdentityModel.JsonWebTokens.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.Logging.dll_1" Component_="Microsoft.IdentityModel.Logging.dll_1" FileName="MICROS~9.DLL|Microsoft.IdentityModel.Logging.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.IdentityModel.Logging.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.Protocols.dll_1" Component_="Microsoft.IdentityModel.Protocols.dll_1" FileName="MICRO~10.DLL|Microsoft.IdentityModel.Protocols.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.IdentityModel.Protocols.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll_1" Component_="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll_1" FileName="MICRO~11.DLL|Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" SelfReg="false"/>
+    <ROW File="Microsoft.IdentityModel.Tokens.dll_1" Component_="Microsoft.IdentityModel.Tokens.dll_1" FileName="MICRO~12.DLL|Microsoft.IdentityModel.Tokens.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.IdentityModel.Tokens.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.ConnectionInfo.dll_1" Component_="Microsoft.SqlServer.ConnectionInfo.dll_1" FileName="MICRO~13.DLL|Microsoft.SqlServer.ConnectionInfo.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.SqlServer.ConnectionInfo.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.Dmf.Common.dll_1" Component_="Microsoft.SqlServer.Dmf.Common.dll_1" FileName="MICRO~14.DLL|Microsoft.SqlServer.Dmf.Common.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.SqlServer.Dmf.Common.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.Management.Sdk.Sfc.dll_1" Component_="Microsoft.SqlServer.Management.Sdk.Sfc.dll_1" FileName="MICRO~15.DLL|Microsoft.SqlServer.Management.Sdk.Sfc.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.SqlServer.Management.Sdk.Sfc.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.ServiceBrokerEnum.dll_1" Component_="Microsoft.SqlServer.ServiceBrokerEnum.dll_1" FileName="MICRO~16.DLL|Microsoft.SqlServer.ServiceBrokerEnum.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.SqlServer.ServiceBrokerEnum.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.Smo.dll_1" Component_="Microsoft.SqlServer.Smo.dll_1" FileName="MICRO~17.DLL|Microsoft.SqlServer.Smo.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.SqlServer.Smo.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.SmoExtended.dll_1" Component_="Microsoft.SqlServer.SmoExtended.dll_1" FileName="MICRO~18.DLL|Microsoft.SqlServer.SmoExtended.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.SqlServer.SmoExtended.dll" SelfReg="false"/>
+    <ROW File="Microsoft.SqlServer.SqlEnum.dll_1" Component_="Microsoft.SqlServer.SqlEnum.dll_1" FileName="MICRO~19.DLL|Microsoft.SqlServer.SqlEnum.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Microsoft.SqlServer.SqlEnum.dll" SelfReg="false"/>
+    <ROW File="Newtonsoft.Json.dll_1" Component_="Newtonsoft.Json.dll_1" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Newtonsoft.Json.dll" SelfReg="false"/>
+    <ROW File="NLog.dll" Component_="NLog.dll" FileName="NLog.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\NLog.dll" SelfReg="false"/>
+    <ROW File="Presentation.dll_1" Component_="Presentation.dll_1" FileName="PRESEN~1.DLL|Presentation.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Presentation.dll" SelfReg="false"/>
+    <ROW File="Quartz.dll_1" Component_="Quartz.dll_1" FileName="Quartz.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\Quartz.dll" SelfReg="false"/>
+    <ROW File="SQLite.Interop.dll" Component_="SQLite.Interop.dll" FileName="SQLITE~1.DLL|SQLite.Interop.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\SQLite.Interop.dll" SelfReg="false"/>
+    <ROW File="System.Buffers.dll_1" Component_="System.Buffers.dll_1" FileName="SYSTEM~1.DLL|System.Buffers.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Buffers.dll" SelfReg="false"/>
+    <ROW File="System.Data.OleDb.dll_1" Component_="System.Data.OleDb.dll_1" FileName="SYSTEM~2.DLL|System.Data.OleDb.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Data.OleDb.dll" SelfReg="false"/>
+    <ROW File="System.Data.SQLite.dll" Component_="System.Data.SQLite.dll" FileName="SYSTEM~3.DLL|System.Data.SQLite.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Data.SQLite.dll" SelfReg="false"/>
+    <ROW File="System.Data.SQLite.EF6.dll" Component_="System.Data.SQLite.EF6.dll" FileName="SYSTEM~4.DLL|System.Data.SQLite.EF6.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Data.SQLite.EF6.dll" SelfReg="false"/>
+    <ROW File="System.Data.SQLite.Linq.dll" Component_="System.Data.SQLite.Linq.dll" FileName="SYSTEM~5.DLL|System.Data.SQLite.Linq.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Data.SQLite.Linq.dll" SelfReg="false"/>
+    <ROW File="System.Diagnostics.DiagnosticSource.dll_1" Component_="System.Diagnostics.DiagnosticSource.dll_1" FileName="SYSTEM~6.DLL|System.Diagnostics.DiagnosticSource.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Diagnostics.DiagnosticSource.dll" SelfReg="false"/>
+    <ROW File="System.IdentityModel.Tokens.Jwt.dll_1" Component_="System.IdentityModel.Tokens.Jwt.dll_1" FileName="SYSTEM~7.DLL|System.IdentityModel.Tokens.Jwt.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.IdentityModel.Tokens.Jwt.dll" SelfReg="false"/>
+    <ROW File="System.Memory.dll_1" Component_="System.Memory.dll_1" FileName="SYSTEM~8.DLL|System.Memory.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Memory.dll" SelfReg="false"/>
+    <ROW File="System.Numerics.Vectors.dll_1" Component_="System.Numerics.Vectors.dll_1" FileName="SYSTEM~9.DLL|System.Numerics.Vectors.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Numerics.Vectors.dll" SelfReg="false"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.dll_1" Component_="System.Runtime.CompilerServices.Unsafe.dll_1" FileName="SYSTE~10.DLL|System.Runtime.CompilerServices.Unsafe.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Runtime.CompilerServices.Unsafe.dll" SelfReg="false"/>
+    <ROW File="System.Security.Principal.dll" Component_="System.Security.Principal.dll" FileName="SYSTE~11.DLL|System.Security.Principal.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Security.Principal.dll" SelfReg="false"/>
+    <ROW File="System.Security.Principal.Windows.dll_1" Component_="System.Security.Principal.Windows.dll_1" FileName="SYSTE~12.DLL|System.Security.Principal.Windows.dll" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\System.Security.Principal.Windows.dll" SelfReg="false"/>
+    <ROW File="uninstall.bat" Component_="email.json" FileName="UNINST~1.BAT|uninstall.bat" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\uninstall.bat" SelfReg="false"/>
+    <ROW File="install.bat" Component_="email.json" FileName="install.bat" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\install.bat" SelfReg="false"/>
+    <ROW File="App.config_1" Component_="email.json" FileName="APP~1.CON|App.config" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\App.config" SelfReg="false"/>
+    <ROW File="DatabaseBackupperWindowsService.exe.config" Component_="email.json" FileName="DATABA~1.CON|DatabaseBackupperWindowsService.exe.config" Attributes="0" SourcePath="..\DatabaseBackupperWindowsService\bin\Release\DatabaseBackupperWindowsService.exe.config" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
     <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="..\..\..\Users\Илья\Downloads\Iconleak-Cerulean-Database.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -79,6 +260,9 @@
     <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
     <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
     <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="PreparePrereqDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\PreparePrereqDlg.aip"/>
+    <ROW Fragment="PrerequisitesDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\PrerequisitesDlg.aip"/>
+    <ROW Fragment="ProgressPrereqDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\ProgressPrereqDlg.aip"/>
     <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
     <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
     <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
@@ -87,6 +271,7 @@
     <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
     <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
     <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+    <ROW Fragment="WelcomePrereqDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomePrereqDlg.aip"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
     <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
@@ -101,7 +286,33 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="frame_bottom_left.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_bottom_left.bmp"/>
+    <ROW Name="frame_bottom_left_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_bottom_left_inactive.bmp"/>
+    <ROW Name="frame_bottom_mid.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_bottom_mid.bmp"/>
+    <ROW Name="frame_bottom_mid_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_bottom_mid_inactive.bmp"/>
+    <ROW Name="frame_bottom_right.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_bottom_right.bmp"/>
+    <ROW Name="frame_bottom_right_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_bottom_right_inactive.bmp"/>
+    <ROW Name="frame_caption.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_caption.bmp"/>
+    <ROW Name="frame_caption_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_caption_inactive.bmp"/>
+    <ROW Name="frame_left.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_left.bmp"/>
+    <ROW Name="frame_left_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_left_inactive.bmp"/>
+    <ROW Name="frame_right.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_right.bmp"/>
+    <ROW Name="frame_right_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_right_inactive.bmp"/>
+    <ROW Name="frame_top_left.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_top_left.bmp"/>
+    <ROW Name="frame_top_left_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_top_left_inactive.bmp"/>
+    <ROW Name="frame_top_mid.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_top_mid.bmp"/>
+    <ROW Name="frame_top_mid_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_top_mid_inactive.bmp"/>
+    <ROW Name="frame_top_right.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_top_right.bmp"/>
+    <ROW Name="frame_top_right_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;frame_top_right_inactive.bmp"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+    <ROW Name="sys_close_down.bmp" SourcePath="&lt;AI_FRAME_BTNS&gt;sys_close_down.bmp"/>
+    <ROW Name="sys_close_hot.bmp" SourcePath="&lt;AI_FRAME_BTNS&gt;sys_close_hot.bmp"/>
+    <ROW Name="sys_close_inactive.bmp" SourcePath="&lt;AI_FRAME_BTNS&gt;sys_close_inactive.bmp"/>
+    <ROW Name="sys_close_normal.bmp" SourcePath="&lt;AI_FRAME_BTNS&gt;sys_close_normal.bmp"/>
+    <ROW Name="sys_min_down.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;sys_min_down.bmp"/>
+    <ROW Name="sys_min_hot.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;sys_min_hot.bmp"/>
+    <ROW Name="sys_min_inactive.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;sys_min_inactive.bmp"/>
+    <ROW Name="sys_min_normal.bmp" SourcePath="&lt;AI_FRAME_COLOR&gt;sys_min_normal.bmp"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
     <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
@@ -126,12 +337,15 @@
     <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+    <ROW Dialog_="WelcomePrereqDlg" Control_="Next" Event="NewDialog" Argument="PrerequisitesDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
+    <ROW Dialog_="PrerequisitesDlg" Control_="Next" Event="EndDialog" Argument="Return" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
+    <ROW Dialog_="PrerequisitesDlg" Control_="Back" Event="NewDialog" Argument="WelcomePrereqDlg" Condition="AI_BOOTSTRAPPER" Ordering="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
-    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
@@ -146,7 +360,7 @@
     <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
     <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
-    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#DatabaseBackupperWindowsApp.exe]"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#UI.exe]"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
@@ -160,13 +374,94 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="ProductInformation"/>
-    <ROW Feature_="MainFeature" Component_="DatabaseBackupperWindowsApp_PrimaryOutput"/>
-    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
-    <ROW Feature_="MainFeature" Component_="DatabaseBackupperWindowsApp_References"/>
     <ROW Feature_="MainFeature" Component_="AI_ExePath"/>
+    <ROW Feature_="MainFeature" Component_="DomainModel.dll"/>
+    <ROW Feature_="MainFeature" Component_="EntityFramework.dll"/>
+    <ROW Feature_="MainFeature" Component_="EntityFramework.SqlServer.dll"/>
+    <ROW Feature_="MainFeature" Component_="Google.Apis.Auth.dll"/>
+    <ROW Feature_="MainFeature" Component_="Google.Apis.Core.dll"/>
+    <ROW Feature_="MainFeature" Component_="Google.Apis.dll"/>
+    <ROW Feature_="MainFeature" Component_="Google.Apis.Drive.v3.dll"/>
+    <ROW Feature_="MainFeature" Component_="LightInject.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.SqlClient.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.SqlClient.resources.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.SqlClient.SNI.x64.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.SqlClient.SNI.x86.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.Tools.Sql.BatchParser.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Extensions.Logging.Abstractions.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Identity.Client.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.JsonWebTokens.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.Logging.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.Protocols.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.Tokens.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.ConnectionInfo.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.Dmf.Common.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.Management.Sdk.Sfc.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.ServiceBrokerEnum.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.Smo.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.SmoExtended.dll"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.SqlEnum.dll"/>
+    <ROW Feature_="MainFeature" Component_="netstandard.dll"/>
+    <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll"/>
+    <ROW Feature_="MainFeature" Component_="Presentation.dll"/>
+    <ROW Feature_="MainFeature" Component_="Quartz.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Buffers.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Data.OleDb.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.DiagnosticSource.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.IdentityModel.Tokens.Jwt.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Memory.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.Vectors.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Principal.Windows.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.ValueTuple.dll"/>
+    <ROW Feature_="MainFeature" Component_="DomainModel.dll.config_1"/>
+    <ROW Feature_="MainFeature" Component_="UI.exe_1"/>
+    <ROW Feature_="MainFeature" Component_="DomainModel.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="DatabaseBackupperWindowsService.exe"/>
+    <ROW Feature_="MainFeature" Component_="email.json"/>
+    <ROW Feature_="MainFeature" Component_="EntityFramework.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="EntityFramework.SqlServer.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="LightInject.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.SqlClient.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.SqlClient.resources.dll_2"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.SqlClient.SNI.x64.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.SqlClient.SNI.x86.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Data.Tools.Sql.BatchParser.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Extensions.Logging.Abstractions.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.Identity.Client.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.JsonWebTokens.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.Logging.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.Protocols.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.IdentityModel.Tokens.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.ConnectionInfo.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.Dmf.Common.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.Management.Sdk.Sfc.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.ServiceBrokerEnum.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.Smo.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.SmoExtended.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Microsoft.SqlServer.SqlEnum.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Newtonsoft.Json.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="NLog.dll"/>
+    <ROW Feature_="MainFeature" Component_="Presentation.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="Quartz.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="SQLite.Interop.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Buffers.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Data.OleDb.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Data.SQLite.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Data.SQLite.EF6.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Data.SQLite.Linq.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Diagnostics.DiagnosticSource.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.IdentityModel.Tokens.Jwt.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Memory.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Numerics.Vectors.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Runtime.CompilerServices.Unsafe.dll_1"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Principal.dll"/>
+    <ROW Feature_="MainFeature" Component_="System.Security.Principal.Windows.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="IconleakCeruleanDatabase_1.exe" SourcePath="..\..\..\Users\i.falko\Pictures\Iconleak-Cerulean-Database.ico" Index="0"/>
+    <ROW Name="IconleakCeruleanDatabase.exe" SourcePath="..\..\..\Users\Илья\Downloads\Iconleak-Cerulean-Database.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -176,7 +471,7 @@
     <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
-    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102" Builds="DefaultBuild"/>
     <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
     <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
     <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
@@ -186,6 +481,7 @@
     <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
     <ROW Action="AI_ExtractFiles" Sequence="1399" Builds="DefaultBuild"/>
     <ROW Action="AI_DATA_SETTER" Sequence="1398"/>
+    <ROW Action="AI_AppSearchEx" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -193,7 +489,8 @@
     <ROW Action="AI_DpiContentScale" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
-    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
+    <ROW Action="AI_AppSearchEx" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
@@ -211,9 +508,6 @@
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="DatabaseBackupperWindowsApp" Directory_="SHORTCUTDIR" Name="DATABA~1|DatabaseBackupperWindowsApp" Component_="DatabaseBackupperWindowsApp_PrimaryOutput" Target="[#DatabaseBackupperWindowsApp.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
-  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
   </COMPONENT>
@@ -221,10 +515,11 @@
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.VsProjectComponent">
-    <ROW ProjectId="{4bed6cfd-1486-44ff-adb4-86dfcd1e0459}" ProjectName="DatabaseBackupperWindowsApp" OutputGroup="PrimaryOutput" OutputFile="DatabaseBackupperWindowsApp.exe" OutputFileShortcut="DatabaseBackupperWindowsApp"/>
-    <ROW ProjectId="{4bed6cfd-1486-44ff-adb4-86dfcd1e0459}" ProjectName="DatabaseBackupperWindowsApp" OutputGroup="PrimaryOutput" OutputFile="DatabaseBackupperWindowsApp.exe.config"/>
-    <ROW ProjectId="{4bed6cfd-1486-44ff-adb4-86dfcd1e0459}" ProjectName="DatabaseBackupperWindowsApp" OutputGroup="References" OutputFile="DatabaseBackupperWindowsLibrary.dll"/>
-    <ROW ProjectId="{4bed6cfd-1486-44ff-adb4-86dfcd1e0459}" ProjectName="DatabaseBackupperWindowsApp" OutputGroup="References" OutputFile="Newtonsoft.Json.dll"/>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
+    <ROW PrereqKey="MicrosoftSQLServer" DisplayName="Microsoft SQL Server 2017 LocalDB" VersionMin="14.0.1000.169" SetupFileUrl="SqlLocalDB.msi" Location="0" ExactSize="0" Operator="1" Options="y" TargetName="Microsoft SQL Server 2017 LocalDB \SqlLocalDB.msi"/>
+    <ATTRIBUTE name="PrereqsOrder" value="MicrosoftSQLServer"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
+    <ROW SearchKey="UpgradeCode" Prereq="MicrosoftSQLServer" SearchType="4" SearchString="{2FB0EAA0-4D14-47B4-B12E-6E83D98C21D5}" VerMin="14.0.1000.169" Order="1" Property="PreReqSearch"/>
   </COMPONENT>
 </DOCUMENT>
