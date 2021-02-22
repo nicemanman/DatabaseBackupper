@@ -78,9 +78,6 @@
     <Compile Include="AboutProgram.Designer.cs">
       <DependentUpon>AboutProgram.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbstractForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="BackupDatabaseForm.cs">
       <SubType>Form</SubType>
     </Compile>

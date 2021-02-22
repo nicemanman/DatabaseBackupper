@@ -50,6 +50,7 @@ namespace DatabaseBackupperWindowsService
             SendEmailNotifications(tasks);
         }
 
+        //TODO - Необходимо сохранять пароль в KeyPassManager, нельзя хранить в открытую
         public void SendEmailNotifications(List<TaskModel> tasks)
         {
             //группируем задачи по электронным адресам

@@ -31,13 +31,14 @@ namespace DatabaseBackupperWindowsService
         }
         protected override void OnStart(string[] args)
         {
-            //Debugger.Launch();
+            Debugger.Launch();
             logger.Info("Service is started at " + DateTime.Now);
             StdSchedulerFactory factory = new StdSchedulerFactory();
             IScheduler scheduler = Task.Run(async () => await factory.GetScheduler()).Result;
             ReloadTasks(scheduler);
-            scheduler.Start();
+            Task.Run(async () => await scheduler.Start()).Wait();
         }
+        
         public void ReloadTasks(IScheduler scheduler)
         {
             Dictionary<IJobDetail, ITrigger> jobs = new Dictionary<IJobDetail, ITrigger>();
@@ -65,7 +66,9 @@ namespace DatabaseBackupperWindowsService
 
             foreach (var job in jobs)
             {
-                scheduler.ScheduleJob(job.Key, job.Value);
+                Thread thread = new Thread(async (x) => { await scheduler.ScheduleJob(job.Key, job.Value); });
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
             }
         }
         protected override void OnStop()

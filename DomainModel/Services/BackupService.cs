@@ -86,7 +86,7 @@ namespace DomainModel.Services
 
         private void BackupDatabase(string InstanceName, string DatabaseName, string pathToBackp, IProgress<string> progress)
         {
-            string fileName = string.Format("{0}_{1}.bak", DatabaseName, DateTime.Now.ToString("h_mm_tt"));
+            string fileName = string.Format("{0}_{1}.bak", DatabaseName, DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss"));
             Server dbServer = new Server(new ServerConnection(InstanceName));
             Backup dbBackup = new Backup()
             {

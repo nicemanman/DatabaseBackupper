@@ -1,6 +1,6 @@
 {
-  "email": "email",
-  "password": "password",
-  "host": "host",
-  "port": 0
+  "email": "ilya.falko2013@gmail.com",
+  "password": "Gravicapa321",
+  "host": "smtp.gmail.com",
+  "port": 25
 }

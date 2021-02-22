@@ -14,7 +14,7 @@ namespace UI
             AddNewScheduleButton.Click += AddNewScheduleButton_Click;
             SaveTaskButton.Click += SaveTaskButton_Click;
             WhatTimeTaskFiredButton.Click += WhatTimeTaskFiredButton_Click;
-            
+            ChoosePathButton.Click += ChoosePathButton_Click;
         }
 
         private void WhatTimeTaskFiredButton_Click(object sender, EventArgs e)
@@ -168,6 +168,18 @@ namespace UI
         public void ShowError(string text) 
         {
             MessageBox.Show(text, "Ошибка валидации");
+        }
+        private void ChoosePathButton_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    PathsToBackupCombobox.Text = fbd.SelectedPath;
+                }
+            }
         }
     }
 }

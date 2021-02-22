@@ -31,6 +31,7 @@ namespace DomainModel.Services
                 databaseController.jobRepository.Add(JobModel);
             else 
             {
+                findItem.ScheduleID = JobModel.ScheduleID;
                 findItem.ServerName = JobModel.ServerName;
                 findItem.Databases = string.Join(",", model.SelectedDatabases);
                 findItem.EmailToNotify = model.SelectedEmail;
