@@ -218,6 +218,10 @@
       <Project>{79028C61-48FB-421F-ABBF-335E30DF8EA5}</Project>
       <Name>Presentation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UI\UI.csproj">
+      <Project>{24BD4BFF-20CE-426A-938D-694F8ABA70C9}</Project>
+      <Name>UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -47,10 +47,7 @@ namespace UI
 
         private void BackupButton_Click(object sender, EventArgs e)
         {
-            Action local = () => { Backup(); };
-            Action google = () => { BackupGoogle(); };
-            var dialog = new BackupLocalOrGoogle(local, google, GoogleReauthorize);
-            dialog.ShowDialog();
+            Backup();
         }
 
         private void OpenFolder_Click(object sender, EventArgs e)

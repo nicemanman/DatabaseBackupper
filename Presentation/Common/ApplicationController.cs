@@ -1,10 +1,41 @@
-﻿namespace Presentation.Common
+﻿using DomainModel.Components.DatabaseRepository;
+using DomainModel.Services;
+using Presentation.Views;
+using System.Windows.Forms;
+
+namespace Presentation.Common
 {
     public class ApplicationController : IApplicationController
     {
         private readonly IContainer _container;
+        private static ApplicationController instance;
 
-        public ApplicationController(IContainer container)
+        /// <summary>
+        /// Получить контейнер с зависимостями
+        /// </summary>
+        public static ApplicationController Instance 
+        {
+            get 
+            {
+                if (instance == null)
+                    instance = new ApplicationController(LightInjectContainer.Instance);
+                instance
+                .RegisterService<ILoginService, LoginService>()
+                .RegisterService<IBackupService, BackupService>()
+                .RegisterService<IScheduleService, ScheduleService>()
+                .RegisterService<IPathService, PathService>()
+                .RegisterService<IEmailService, EmailService>()
+                .RegisterService<ITaskService, TaskService>()
+                .RegisterInstance(new ApplicationContext())
+                .RegisterInstance<IDatabaseController>(new DatabaseController());
+                return instance;
+            }
+        }
+        public static IContainer ContainerInstance 
+        {
+            get => Instance._container;
+        }
+        private ApplicationController(IContainer container)
         {
             _container = container;
             _container.RegisterInstance<IApplicationController>(this);
@@ -24,6 +55,7 @@
             return this;
         }
 
+        
         public IApplicationController RegisterService<TModel, TImplementation>()
             where TImplementation : class, TModel
         {

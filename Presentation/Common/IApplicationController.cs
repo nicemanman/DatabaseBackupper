@@ -7,7 +7,7 @@ namespace Presentation.Common
             where TView : IView;
 
         IApplicationController RegisterInstance<TArgument>(TArgument instance);
-
+        
         IApplicationController RegisterService<TService, TImplementation>()
             where TImplementation : class, TService;
 

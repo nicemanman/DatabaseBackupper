@@ -32,8 +32,6 @@ namespace Presentation.Presenters
             
             View.Logout += View_Logout;
             View.Backup += async () => await View_Backup();
-            View.BackupGoogle += async () => await View_BackupGoogle();
-            View.GoogleReauthorize += async () => await View_GoogleReauthorize();
             View.CreateNewSchedule += View_CreateNewSchedule;
             View.CreateNewTask += View_CreateNewTask;
             View.CreateTaskByTemplate += View_CreateTaskByTemplate;
@@ -42,28 +40,7 @@ namespace Presentation.Presenters
             View.OpenAboutAuthor += View_OpenAboutAuthor;
             View.OpenAboutProgram += View_OpenAboutProgram;
         }
-        private async Task View_GoogleReauthorize() 
-        {
-            try
-            {
-                await backupService.ReauthorizeAndBackup(null, null, null);
-            }
-            catch (Exception ex)
-            {
-                View.ShowError(ex.Message);
-            }
-        }
-        private async Task View_BackupGoogle()
-        {
-            try
-            {
-                await backupService.BackupGoogle(null, null, null);
-            }
-            catch (Exception ex)
-            {
-                View.ShowError(ex.Message);
-            }
-        }
+        
 
         private void View_OpenAboutProgram()
         {

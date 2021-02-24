@@ -3,12 +3,27 @@ using System.Linq.Expressions;
 using LightInject;
 using Presentation.Common;
 
-namespace UI
+namespace Presentation.Common
 {
-    public class LightInjectAdapder : IContainer
+    public class LightInjectContainer : IContainer
     {
         private readonly ServiceContainer _container = new ServiceContainer();
+        private static LightInjectContainer instance;
+        
+        public static LightInjectContainer Instance 
+        {
+            get 
+            {
+                if (instance == null) 
+                    instance = new LightInjectContainer();
+                return instance;
+            } 
+        }
+        
+        private LightInjectContainer()
+        { }
 
+        
         public void Register<TService, TImplementation>() where TImplementation : TService
         {
             _container.Register<TService, TImplementation>();

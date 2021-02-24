@@ -19,22 +19,14 @@ namespace UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
-            var controller = new ApplicationController(new LightInjectAdapder())
-                .RegisterView<ILoginView, ConnectForm>()
-                .RegisterService<ILoginService, LoginService>()
-                .RegisterView<IBackupView, BackupDatabaseForm>()
-                .RegisterService<IBackupService, BackupService>()
-                .RegisterView<IScheduleDetailsView, ScheduleDetails>()
-                .RegisterService<IScheduleService, ScheduleService>()
-                .RegisterService<IPathService, PathService>()
-                .RegisterService<IEmailService, EmailService>()
-                .RegisterService<ITaskService, TaskService>()
-                .RegisterView<ISchedulesView, Schedules>()
-                .RegisterView<ITasksView, Tasks>()
-                .RegisterView<ITaskDetailsView, TaskDetail>()
-                .RegisterInstance(new ApplicationContext())
-                .RegisterInstance<IDatabaseController>(new DatabaseController());
+
+            var controller = ApplicationController.Instance;
+            controller.RegisterView<ILoginView, ConnectForm>()
+            .RegisterView<IBackupView, BackupDatabaseForm>()
+            .RegisterView<IScheduleDetailsView, ScheduleDetails>()
+            .RegisterView<ISchedulesView, Schedules>()
+            .RegisterView<ITasksView, Tasks>()
+            .RegisterView<ITaskDetailsView, TaskDetail>();
                 
                 
             controller.Run<LoginPresenter>();

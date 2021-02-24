@@ -110,21 +110,6 @@ namespace DomainModel.Services
             Context.backupModel = null;
         }
 
-        public async Task<string> BackupGoogle(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress)
-        {
-            var drive = new GoogleDrive();
-            await drive.UploadFile(folderName:"DatabaseBackupper");
-            return "";
-        }
-
-        public async Task<string> ReauthorizeAndBackup(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress)
-        {
-            var drive = new GoogleDrive();
-            await drive.Reauthorize();
-            await BackupGoogle(backupModel, successProgress, percentProgress);
-            return "";
-        }
-
         public string GetCurrentSQLServerInstanceName()
         {
             return Context.GetServerInstanceName();

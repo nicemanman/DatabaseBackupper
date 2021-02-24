@@ -84,12 +84,6 @@
     <Compile Include="BackupDatabaseForm.Designer.cs">
       <DependentUpon>BackupDatabaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BackupLocalOrGoogle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BackupLocalOrGoogle.Designer.cs">
-      <DependentUpon>BackupLocalOrGoogle.cs</DependentUpon>
-    </Compile>
     <Compile Include="Components\RadioButtonsList.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -108,7 +102,18 @@
     <Compile Include="ConnectForm.Designer.cs">
       <DependentUpon>ConnectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LightInjectAdapder.cs" />
+    <Compile Include="ConnectFormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectFormTest.Designer.cs">
+      <DependentUpon>ConnectFormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ParentForm.Designer.cs">
+      <DependentUpon>ParentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProgressForms\SQLServersNotFound.cs">
       <SubType>Form</SubType>
@@ -156,11 +161,11 @@
     <EmbeddedResource Include="BackupDatabaseForm.resx">
       <DependentUpon>BackupDatabaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BackupLocalOrGoogle.resx">
-      <DependentUpon>BackupLocalOrGoogle.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ConnectForm.resx">
       <DependentUpon>ConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParentForm.resx">
+      <DependentUpon>ParentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressForms\SQLServersNotFound.resx">
       <DependentUpon>SQLServersNotFound.cs</DependentUpon>
