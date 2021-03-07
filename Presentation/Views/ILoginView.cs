@@ -24,5 +24,6 @@ namespace Presentation.Views
         void ShowError(string text);
         void SetMSSQLAuth();
         void SetWindowsAuth();
+        void SqlNotFoundFunc();
     }
 }

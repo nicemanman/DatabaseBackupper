@@ -20,15 +20,18 @@ namespace Presentation.Presenters
             _service = service;
             var loginTypes = service.GetLoginTypes();
             var sqlServers = service.GetSqlServers();
+            if (sqlServers == null || sqlServers.Count == 0) SqlNotFound();
             View.LoginTypes = loginTypes;
             View.SqlServers = sqlServers;
             View.Login += async () => await Login(View.ServerName, View.LoginType, View.Username, View.Password);
             View.LoginTypeChanged += () => LoginTypeChanged(View.LoginType);
             View.RefreshSQLServersList += View_RefreshSQLServersList;
-            
         }
 
-        
+        public void SqlNotFound()
+        {
+            View.SqlNotFoundFunc();
+        }
 
         private void View_RefreshSQLServersList()
         {

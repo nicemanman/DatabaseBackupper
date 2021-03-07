@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{24BD4BFF-20CE-426A-938D-694F8ABA70C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{02E14D5D-19A6-472B-B3DB-A526BC5770CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIServer", "Server\APIServer.csproj", "{02E14D5D-19A6-472B-B3DB-A526BC5770CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.Tests", "Presentation.Tests\Presentation.Tests.csproj", "{57D3EDFD-5017-4F7E-9C37-2502821012C1}"
 EndProject

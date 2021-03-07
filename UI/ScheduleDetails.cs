@@ -53,7 +53,7 @@ namespace UI
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            SaveButtonPressed();
+            SaveButtonPressed?.Invoke();
         }
 
         private void ScheduleDetails_Load(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace UI
 
         private void PeriodicList_SelectedValueChanged(object sender, EventArgs e)
         {
-            OnPeriodicChanged();
+            OnPeriodicChanged?.Invoke();
         }
 
         public List<string> SchedulePeriodics { set { PeriodicList.DataSource = value; } }
@@ -99,10 +99,11 @@ namespace UI
             {
                 var list = new List<string>();
                 var panel = periodicPanels.Values.Where(x => x.SpecificDays != null).FirstOrDefault();
-                foreach (var day in panel.SpecificDays.CheckedItems)
-                {
-                    list.Add(day.ToString());
-                }
+                if (panel!=null)
+                    foreach (var day in panel.SpecificDays.CheckedItems)
+                    {
+                        list.Add(day.ToString());
+                    }
                 return list;
             }
             set 

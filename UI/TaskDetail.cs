@@ -19,18 +19,18 @@ namespace UI
 
         private void WhatTimeTaskFiredButton_Click(object sender, EventArgs e)
         {
-            TimeTaskFired();
+            TimeTaskFired?.Invoke();
         }
 
         private void SaveTaskButton_Click(object sender, EventArgs e)
         {
-            SaveTask();
+            SaveTask?.Invoke();
         }
 
         private void AddNewScheduleButton_Click(object sender, EventArgs e)
         {
-            AddNewSchedule();
-            Reload();
+            AddNewSchedule?.Invoke();
+            Reload?.Invoke();
         }
 
         public List<string> SchedulesList { 

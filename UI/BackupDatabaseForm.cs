@@ -19,23 +19,23 @@ namespace UI
             InitializeComponent();
             Load += BackupDatabaseForm_Load;
             //нижняя панель с кнопками
-            LogoutButton.Click += (s,e) => Logout();
+            LogoutButton.Click += (s, e) => Logout?.Invoke();
             BackupButton.Click += BackupButton_Click;
-            OpenTasksButton.Click += (s, e) => OpenAllTasks();
-            CreateTaskByTemplateButton.Click += (s, e) => CreateTaskByTemplate();
+            OpenTasksButton.Click += (s, e) => OpenAllTasks?.Invoke();
+            CreateTaskByTemplateButton.Click += (s, e) => CreateTaskByTemplate?.Invoke();
             //меню
             //бэкап
-            BackupMenuButton.Click += (s, e) => Backup();
-            CreateTaskByTemplateMenuButton.Click += (s,e) => CreateTaskByTemplate();
+            BackupMenuButton.Click += (s, e) => Backup?.Invoke();
+            CreateTaskByTemplateMenuButton.Click += (s,e) => CreateTaskByTemplate?.Invoke();
             //задачи
-            OpenTasksMenuButton.Click += (s, e) => OpenAllTasks();
-            CreateNewTaskMenuButton.Click += (s, e) => CreateNewTask();
+            OpenTasksMenuButton.Click += (s, e) => OpenAllTasks?.Invoke();
+            CreateNewTaskMenuButton.Click += (s, e) => CreateNewTask?.Invoke();
             //расписания
-            OpenSchedulesMenuButton.Click += (s, e) => OpenAllSchedules();
-            CreateNewScheduleMenuButton.Click += (s, e) => CreateNewSchedule();
+            OpenSchedulesMenuButton.Click += (s, e) => OpenAllSchedules?.Invoke();
+            CreateNewScheduleMenuButton.Click += (s, e) => CreateNewSchedule?.Invoke();
             //справка
-            AboutProgrammMenuButton.Click += (s, e) => OpenAboutProgram();
-            AboutAuthorMenuButton.Click += (s, e) => OpenAboutAuthor();
+            AboutProgrammMenuButton.Click += (s, e) => OpenAboutProgram?.Invoke();
+            AboutAuthorMenuButton.Click += (s, e) => OpenAboutAuthor?.Invoke();
 
             SelectAllCheckbox.CheckedChanged += SelectAllCheckbox_CheckedChanged;
             ChoosePathButton.Click += ChoosePathButton_Click;
@@ -47,7 +47,7 @@ namespace UI
 
         private void BackupButton_Click(object sender, EventArgs e)
         {
-            Backup();
+            Backup?.Invoke();
         }
 
         private void OpenFolder_Click(object sender, EventArgs e)

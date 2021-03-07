@@ -17,8 +17,6 @@ namespace UI
         { 
             set 
             {
-                if (value.Count == 0)
-                    OpenChildPanel(new SQLServersNotFound(() => { RefreshSQLServersList(); }));
                 ServersList.DataSource = value;
             } 
         }
@@ -30,10 +28,6 @@ namespace UI
         public event Action Login;
         public event Action LoginTypeChanged;
         public event Action RefreshSQLServersList;
-        
-
-        private enum Test { Test1, Test2 };
-        private List<string> ReadableList = new List<string>() { "Тестовый вариант 1","Тестовый вариант 2" };
 
         public ConnectForm(ApplicationContext context)
         {
@@ -50,17 +44,17 @@ namespace UI
 
         private void UpdateServersListButton_Click(object sender, EventArgs e)
         {
-            RefreshSQLServersList();
+            RefreshSQLServersList?.Invoke();
         }
 
         private void LoginTypesList_SelectedValueChanged(object sender, EventArgs e)
         {
-            LoginTypeChanged();
+            LoginTypeChanged?.Invoke();
         }
 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            Login();
+            Login?.Invoke();
         }
         private void ConnectForm_Load(object sender, EventArgs e)
         {
@@ -77,6 +71,10 @@ namespace UI
             }
             _context.MainForm = this;
             base.Show();
+        }
+        public void Wait(Progress<string> progress)
+        {
+            OpenChildPanel(new WaitForm(progress));
         }
 
         public void Wait(string text = null)
@@ -130,11 +128,9 @@ namespace UI
             PasswordTextbox.Text = "";
         }
 
-        public void Wait(Progress<string> progress)
+        public void SqlNotFoundFunc()
         {
-            OpenChildPanel(new WaitForm(progress));
+            OpenChildPanel(new SQLServersNotFound(() => { RefreshSQLServersList?.Invoke(); }));
         }
-
-        
     }
 }

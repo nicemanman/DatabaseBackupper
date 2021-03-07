@@ -27,14 +27,14 @@ namespace UI
 
         private void CreateNewSchedule_Click(object sender, EventArgs e)
         {
-            CreateNewScheduleAction();
+            CreateNewScheduleAction?.Invoke();
         }
 
         
 
         private void Schedules_Activated(object sender, EventArgs e)
         {
-            Reload();
+            Reload?.Invoke();
         }
 
         public void Wait(string text = null)
@@ -74,12 +74,12 @@ namespace UI
             int id = Int32.Parse(active.Cells["Id"].Value.ToString());
             if (e.KeyCode == Keys.Delete)
             {
-                await RemoveSchedule(id);
-                Reload();
+                await RemoveSchedule?.Invoke(id);
+                Reload?.Invoke();
             }
             if (e.KeyCode == Keys.Enter)
             {
-                OpenSchedule(id);
+                OpenSchedule?.Invoke(id);
             }
             
         }
@@ -93,12 +93,12 @@ namespace UI
             int id = Int32.Parse(active.Cells["Id"].Value.ToString());
             if (e.ColumnIndex == SchedulesTable.Columns["Delete"].Index)
             {
-                await RemoveSchedule(id);
-                Reload();
+                await RemoveSchedule?.Invoke(id);
+                Reload?.Invoke();
             }
             else
             {
-                OpenSchedule(id);
+                OpenSchedule?.Invoke(id);
             }
             
         }

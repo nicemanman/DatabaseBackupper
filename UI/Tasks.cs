@@ -28,12 +28,12 @@ namespace UI
 
         private void CreateNewJobButton_Click(object sender, EventArgs e)
         {
-            CreateNewJobAction();
+            CreateNewJobAction?.Invoke();
         }
 
         private void Tasks_Activated(object sender, EventArgs e)
         {
-            Reload();
+            Reload?.Invoke();
         }
 
         List<TaskModel> ITasksView.Tasks {
@@ -59,12 +59,12 @@ namespace UI
             int id = Int32.Parse(active.Cells["Id"].Value.ToString());
             if (e.KeyCode == Keys.Delete)
             {
-                await RemoveTask(id);
-                Reload();
+                await RemoveTask?.Invoke(id);
+                Reload?.Invoke();
             }
             if (e.KeyCode == Keys.Enter)
             {
-                OpenTask(id);
+                OpenTask?.Invoke(id);
             }
 
         }
@@ -78,12 +78,12 @@ namespace UI
             int id = Int32.Parse(active.Cells["Id"].Value.ToString());
             if (e.ColumnIndex == TasksTable.Columns["Delete"].Index)
             {
-                await RemoveTask(id);
-                Reload();
+                await RemoveTask?.Invoke(id);
+                Reload?.Invoke();
             }
             else
             {
-                OpenTask(id);
+                OpenTask?.Invoke(id);
             }
 
         }
