@@ -79,7 +79,7 @@ namespace DomainModel.Components.GoogleClient
             if (folders.Files.FirstOrDefault() == null)
                 return "";
             else
-                return folders.Files.FirstOrDefault().Id;
+                return folders.Files.FirstOrDefault().Id ?? "";
         }
         private async Task<string> CreateFolderIfNotExists(string name, string parentFolderId = null)
         {

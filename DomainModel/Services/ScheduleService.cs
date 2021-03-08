@@ -59,7 +59,7 @@ namespace DomainModel.Services
         public List<string> GetNextValidTimesAfter(string name) 
         {
             var allSchedules = GetAllSchedules();
-            var cron = allSchedules.Where(x => x.Name == name).FirstOrDefault().CronExpression;
+            var cron = allSchedules.Where(x => x.Name == name).FirstOrDefault()?.CronExpression ?? "";
             CronExpression expression = new CronExpression(cron);
             var nextFire = expression.GetTimeAfter(DateTime.Now);
             List<string> nextDateTimes = new List<string>();

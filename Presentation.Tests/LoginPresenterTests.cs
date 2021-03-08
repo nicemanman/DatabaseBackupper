@@ -1,9 +1,11 @@
-﻿using DomainModel.Services;
+﻿using DomainModel.Models;
+using DomainModel.Services;
 using NSubstitute;
 using NUnit.Framework;
 using Presentation.Common;
 using Presentation.Presenters;
 using Presentation.Views;
+using System;
 using System.Collections.Generic;
 
 namespace Presentation.Tests
@@ -45,6 +47,18 @@ namespace Presentation.Tests
             presenter = new LoginPresenter(controller, view, service);
             presenter.Run();
             view.DidNotReceive().SqlNotFoundFunc();
+        }
+        [Test]
+        public void ConnectionNotSuccess() 
+        {
+            view.ServerName.Returns("FailServer");
+            service
+                .When(x => x.ConnectToSqlServer(Arg.Any<LoginModel>()))
+                .Do(x => { throw new Exception(); });
+            presenter = new LoginPresenter(controller, view, service);
+            presenter.Run();
+            view.Login += Raise.Event<Action>();
+            view.Received().ShowError(Arg.Any<string>());
         }
     }
 }
