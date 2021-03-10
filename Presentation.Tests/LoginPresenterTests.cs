@@ -1,4 +1,5 @@
-﻿using DomainModel.Models;
+﻿using DomainModel;
+using DomainModel.Models;
 using DomainModel.Services;
 using NSubstitute;
 using NUnit.Framework;
@@ -7,12 +8,14 @@ using Presentation.Presenters;
 using Presentation.Views;
 using System;
 using System.Collections.Generic;
+using static DomainModel.Enums;
 
 namespace Presentation.Tests
 {
     [TestFixture]
     public class LoginPresenterTests
     {
+        
         private ILoginView view;
         private ILoginService service;
         private LoginPresenter presenter;
@@ -29,7 +32,7 @@ namespace Presentation.Tests
         /// Не найдено ни одного SQL сервера
         /// </summary>
         [Test]
-        public void SqlNotFound() 
+        public void SqlNotFound()
         {
             service.GetSqlServers().Returns(new List<string>());
             presenter = new LoginPresenter(controller, view, service);
@@ -48,8 +51,11 @@ namespace Presentation.Tests
             presenter.Run();
             view.DidNotReceive().SqlNotFoundFunc();
         }
+        /// <summary>
+        /// Подключение неудачно
+        /// </summary>
         [Test]
-        public void ConnectionNotSuccess() 
+        public void ConnectionNotSuccess()
         {
             view.ServerName.Returns("FailServer");
             service
@@ -60,5 +66,23 @@ namespace Presentation.Tests
             view.Login += Raise.Event<Action>();
             view.Received().ShowError(Arg.Any<string>());
         }
+        /// <summary>
+        /// Тип аутентификации меняется
+        /// </summary>
+        [Test]
+        public void ChangeLoginType() 
+        {
+            service.GetByName("MSSQL").Returns(LoginTypesEnumeration.SQL);
+            service.GetByName("Windows").Returns(LoginTypesEnumeration.Windows);
+            presenter = new LoginPresenter(controller, view, service);
+            presenter.Run();
+            view.LoginType.Returns("MSSQL");
+            view.LoginTypeChanged += Raise.Event<Action>();
+            view.Received().SetMSSQLAuth();
+            view.LoginType.Returns("Windows");
+            view.LoginTypeChanged += Raise.Event<Action>();
+            view.Received().SetWindowsAuth();
+        }
+       
     }
 }

@@ -11,9 +11,7 @@ namespace DomainModel.Services
     public interface ILoginService
     {
         List<string> GetSqlServers();
-        
         List<string> GetLoginTypes();
-
         Task<BackupModel> ConnectToSqlServer(LoginModel model);
         LoginTypesEnumeration GetByName(string name);
     }
