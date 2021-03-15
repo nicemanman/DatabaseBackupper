@@ -1,5 +1,6 @@
 language: csharp
 solution: DatabaseBackupper.sln
+os: windows
 install:
   - nuget restore DatabaseBackupper.sln
   - nuget install NUnit.Console -Version 3.12.0 -OutputDirectory testrunner
