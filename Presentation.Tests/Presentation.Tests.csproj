@@ -62,8 +62,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupPresenterTests.cs" />
     <Compile Include="LoginPresenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleDetailsPresenterTests.cs" />
+    <Compile Include="SchedulesPresenterTests.cs" />
+    <Compile Include="TaskDetailsPresenterTests.cs" />
+    <Compile Include="TasksPresenterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -36,8 +36,8 @@ namespace UI
             this.Load += ConnectForm_Load;
             LoginTypesList.SelectedValueChanged += LoginTypesList_SelectedValueChanged;
             UpdateServersListButton.Click += UpdateServersListButton_Click;
-            
             _context = context;
+
         }
 
         
