@@ -10,7 +10,6 @@ namespace DomainModel.Services
     public interface IBackupService
     {
         Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress, string ServerName = "");
-        
         void DisconnectFromCurrentSqlServer();
         string GetCurrentSQLServerInstanceName();
         List<string> GetAllDatabases();
