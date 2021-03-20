@@ -8,6 +8,9 @@ using static DomainModel.Enums;
 
 namespace Presentation.Views
 {
+    //TODO - Необходимо переписать генерацию cron выражений, на данный момент она убога
+    //TODO - Необходимо сделать единый объект отслеживания состояния, откуда можно будет получать информацию о происходящем в системе
+    //TODO - Необходимо придумать как отображать enums на списки выбора в ui
     public interface IScheduleDetailsView : IView
     {
         string Caption { get; set; }
