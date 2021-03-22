@@ -1,6 +1,6 @@
-# Бэкаппер баз данных
-[![Build Status](https://travis-ci.org/nicemanman/DatabaseBackupper.svg?branch=master)](https://travis-ci.org/nicemanman/DatabaseBackupper)
+[![Build Status](https://travis-ci.com/nicemanman/DatabaseBackupper.svg?branch=master)](https://travis-ci.org/nicemanman/DatabaseBackupper)
 
+# Бэкаппер баз данных
 Данная небольшая программа возникла после того, как я по неосторожности потерял свои MS SQL базы данных. Она до сих пор в процессе разработки, в данный момент я переношу ее достаточно скромный функционал на паттерн Model-View-Presenter.
 
 <br/>

@@ -45,27 +45,33 @@ namespace DomainModel.Components.GoogleClient
         {
             string dir = System.IO.Path.GetDirectoryName(
             System.Reflection.Assembly.GetExecutingAssembly().Location);
-            using (var stream =
-                new FileStream(dir+ "\\Components\\GoogleClient\\credentials.json", FileMode.Open, FileAccess.Read))
+            try
             {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                
+                using (var stream =
+                    new FileStream(dir + "\\Components\\GoogleClient\\credentials.json", FileMode.Open, FileAccess.Read))
+                {
+                    // The file token.json stores the user's access and refresh tokens, and is created
+                    // automatically when the authorization flow completes for the first time.
+                    string credPath = "token.json";
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.Load(stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true)).Result;
+
+                }
+                // Create Drive API service.
+                service = new DriveService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName,
+                });
             }
-            // Create Drive API service.
-            service = new DriveService(new BaseClientService.Initializer()
+            catch (FileNotFoundException) 
             {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-            
+                Console.WriteLine("Не найден файл credentials.json");
+            }
         }
         public async Task Reauthorize() 
         {

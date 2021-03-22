@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="CredentialManagement, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CredentialManagement.1.0.2\lib\net35\CredentialManagement.dll</HintPath>
     </Reference>
@@ -255,23 +256,23 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Migrations\202101240552116_InitialCreate.cs" />
-    <Compile Include="Migrations\202101240552116_InitialCreate.designer.cs">
+    <Compile Include="Migrations\202101240552116_InitialCreate.Designer.cs">
       <DependentUpon>202101240552116_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202101261251451_RemoveRequiredFlag.cs" />
-    <Compile Include="Migrations\202101261251451_RemoveRequiredFlag.designer.cs">
+    <Compile Include="Migrations\202101261251451_RemoveRequiredFlag.Designer.cs">
       <DependentUpon>202101261251451_RemoveRequiredFlag.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202101301337202_AddTableWithEmails.cs" />
-    <Compile Include="Migrations\202101301337202_AddTableWithEmails.designer.cs">
+    <Compile Include="Migrations\202101301337202_AddTableWithEmails.Designer.cs">
       <DependentUpon>202101301337202_AddTableWithEmails.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202102091345060_ColumnsForTasksTable.cs" />
-    <Compile Include="Migrations\202102091345060_ColumnsForTasksTable.designer.cs">
+    <Compile Include="Migrations\202102091345060_ColumnsForTasksTable.Designer.cs">
       <DependentUpon>202102091345060_ColumnsForTasksTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202102100320573_ColumnsForTasksTable2.cs" />
-    <Compile Include="Migrations\202102100320573_ColumnsForTasksTable2.designer.cs">
+    <Compile Include="Migrations\202102100320573_ColumnsForTasksTable2.Designer.cs">
       <DependentUpon>202102100320573_ColumnsForTasksTable2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
@@ -296,9 +297,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <EmbeddedResource Include="Components\GoogleClient\credentials.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
