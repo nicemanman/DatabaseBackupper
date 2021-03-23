@@ -24,7 +24,7 @@ namespace DomainModel.Services
 
         public async Task SaveTask(TaskModel model)
         {
-            //TODO - При сохранении задач сохраняются также копии расписаний
+            
             var JobModel = ClientModelToDBModel(model);
             var findItem = databaseController.jobRepository.Get(model.Id);
             if (findItem == null)
