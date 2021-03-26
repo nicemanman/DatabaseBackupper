@@ -1,6 +1,6 @@
 {
-  "email": "***",
-  "password": "***",
-  "host": "***",
-  "port": 0
+  "email": "scheduler@databasebackupper.com",
+  "password": "scheduler",
+  "host": "127.0.0.1",
+  "port": 587
 }

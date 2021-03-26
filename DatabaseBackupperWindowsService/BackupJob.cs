@@ -124,10 +124,16 @@ namespace DatabaseBackupperWindowsService
                 
                 // письмо представляет код html
                 m.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient(credentials.host, credentials.port);
-                smtp.Credentials = new NetworkCredential(credentials.email, credentials.password);
-                smtp.EnableSsl = true;
-                smtp.Send(m);
+                try
+                {
+                    SmtpClient smtp = new SmtpClient(credentials.host, credentials.port);
+                    smtp.Credentials = new NetworkCredential(credentials.email, credentials.password);
+                    smtp.Send(m);
+                }
+                catch (Exception ex) 
+                {
+                    logger.Error(ex);
+                }
             }
         }
     }
