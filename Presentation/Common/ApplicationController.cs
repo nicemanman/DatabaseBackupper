@@ -1,5 +1,6 @@
 ﻿using DomainModel.Components.DatabaseRepository;
 using DomainModel.Services;
+using DomainModel.Services.FakeServices;
 using Presentation.Views;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,12 +22,12 @@ namespace Presentation.Common
                 if (instance == null)
                     instance = new ApplicationController(LightInjectContainer.Instance);
                 instance
-                .RegisterService<ILoginService, LoginService>()
-                .RegisterService<IBackupService, BackupService>()
-                .RegisterService<IScheduleService, ScheduleService>()
-                .RegisterService<IPathService, PathService>()
-                .RegisterService<IEmailService, EmailService>()
-                .RegisterService<ITaskService, TaskService>()
+                .RegisterService<ILoginService, FakeLoginService>()
+                .RegisterService<IBackupService, FakeBackupService>()
+                .RegisterService<IScheduleService, FakeScheduleService>()
+                .RegisterService<IPathService, FakePathService>()
+                .RegisterService<IEmailService, FakeEmailService>()
+                .RegisterService<ITaskService, FakeTaskService>()
                 .RegisterInstance(new ApplicationContext())
                 .RegisterInstance<IDatabaseController>(new DatabaseController());
                 return instance;
