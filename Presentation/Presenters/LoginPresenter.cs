@@ -53,10 +53,11 @@ namespace Presentation.Presenters
             using (new LongOperation(View))
             {
                 
-                try { 
+                try {
                     var loginModel = new LoginModel() { Servername = serverName, Username = userName, Password = password, LoginType = loginType };
                     var backupModel = await _service.ConnectToSqlServer(loginModel);
-                    Controller.Run<BackupPresenter, BackupModel>(backupModel);
+                    await Controller.Run<BackupPresenter, BackupModel>(backupModel);
+
                 }
                 catch(Exception ex)
                 {

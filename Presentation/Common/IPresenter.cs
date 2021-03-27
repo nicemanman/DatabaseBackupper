@@ -1,4 +1,6 @@
-﻿namespace Presentation.Common
+﻿using System.Threading.Tasks;
+
+namespace Presentation.Common
 {
     public interface IPresenter
     {
@@ -7,6 +9,6 @@
 
     public interface IPresenter<in TArg>
     {
-        void Run(TArg argument);
+        Task Run(TArg argument);
     }
 }

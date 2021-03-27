@@ -61,6 +61,11 @@ namespace UI
             LoginTypesList.DataSource = LoginTypes;
         }
 
+        /// <summary>
+        /// TODO - Две реализации функции Show - Показать форму, с которой начинается работа программы,
+        /// Показать следующую форму
+        /// Может быть можно сделать IView абстрактным классом, где будет реализованы функции по умолчанию?
+        /// </summary>
         public new void Show() 
         {
             if (_context.MainForm == null) 
@@ -78,7 +83,7 @@ namespace UI
         }
 
         public void Wait(string text = null)
-        {
+        {   
             if (text == null)
                 OpenChildPanel(new WaitForm("Подключаемся к SQL серверу..."));
             else

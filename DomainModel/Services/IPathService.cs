@@ -9,7 +9,7 @@ namespace DomainModel.Services
 {
     public interface IPathService
     {
-        List<string> GetBackupPaths();
+        Task<List<string>> GetBackupPaths();
         Task SaveBackupPath(string backupPath);
         void RemoveBackupPaths();
         

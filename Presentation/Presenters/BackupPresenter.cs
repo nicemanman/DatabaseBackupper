@@ -23,11 +23,11 @@ namespace Presentation.Presenters
             this.pathService = pathService;
         }
 
-        public override void Run(BackupModel argument)
+        public override async Task Run(BackupModel argument)
         {
             model = argument;
             View.AllDatabases = model.AllDatabases;
-            View.PathsToBackup = pathService.GetBackupPaths();
+            View.PathsToBackup = await pathService.GetBackupPaths();
             View.Show();
             
             View.Logout += View_Logout;
@@ -39,6 +39,7 @@ namespace Presentation.Presenters
             View.OpenAllTasks += View_OpenAllTasks;
             View.OpenAboutAuthor += View_OpenAboutAuthor;
             View.OpenAboutProgram += View_OpenAboutProgram;
+            
         }
         
 

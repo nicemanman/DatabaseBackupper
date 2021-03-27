@@ -16,10 +16,9 @@ namespace DomainModel.Services
         {
             this.databaseController = databaseController;
         }
-        public List<string> GetBackupPaths()
+        public async Task<List<string>> GetBackupPaths()
         {
-            
-            var paths = databaseController.pathRepository.GetAll().OrderByDescending(x => x.dateTime).Select(x => x.PathString).ToList<string>();
+            var paths = await Task.Run(()=>databaseController.pathRepository.GetAll().OrderByDescending(x => x.dateTime).Select(x => x.PathString).ToList<string>());
             return paths;
         }
 

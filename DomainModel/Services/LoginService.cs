@@ -43,7 +43,7 @@ namespace DomainModel.Services
                 {
                     await con.OpenAsync();
                     SetSqlServerConnection(connectionString, model);
-                    await Task.Run(() => databaseController.Initialize());
+                    //await Task.Run(() => databaseController.Initialize());
                 }
                 catch (Exception ex) 
                 {

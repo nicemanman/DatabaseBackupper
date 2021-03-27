@@ -49,7 +49,7 @@ namespace Presentation.Presenters
             View.SetSchedule(cronType);
         }
 
-        public override void Run(ScheduleModel model)
+        public override Task Run(ScheduleModel model)
         {
             if (string.IsNullOrWhiteSpace(model.Name))
                 model.Name = "Создать новое расписание";
@@ -71,6 +71,7 @@ namespace Presentation.Presenters
                 View.Hours = model.Hours;
             }
             View.Show();
+            return Task.CompletedTask;
         }
     }
 }

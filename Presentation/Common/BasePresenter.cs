@@ -1,4 +1,6 @@
-﻿namespace Presentation.Common
+﻿using System.Threading.Tasks;
+
+namespace Presentation.Common
 {
     public abstract class BasePresenter<TView> : IPresenter
         where TView : IView
@@ -30,6 +32,6 @@
             View = view;
         }
 
-        public abstract void Run(TArg argument);
+        public abstract Task Run(TArg argument);
     }
 }

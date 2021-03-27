@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace Presentation.Common
 {
     public interface IApplicationController
@@ -14,7 +16,7 @@ namespace Presentation.Common
         void Run<TPresenter>()
             where TPresenter : class, IPresenter;
 
-        void Run<TPresenter, TArgument>(TArgument argumnent)
+        Task Run<TPresenter, TArgument>(TArgument argumnent)
             where TPresenter : class, IPresenter<TArgument>;
     }
 }

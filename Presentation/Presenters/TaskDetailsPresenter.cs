@@ -33,14 +33,14 @@ namespace Presentation.Presenters
             
         }
 
-        public override void Run(TaskModel model)
+        public override async Task Run(TaskModel model)
         {
             View.SQLServer = model.SQLServer;
             View.DatabasesList = model.AllDatabases;
             View.SelectedDatabasesList = model.SelectedDatabases;
             View.SchedulesList = scheduleService.GetAllSchedulesNames();
             View.EmailsList = emailService.GetRecentEmails();
-            View.PathsToBackup = pathService.GetBackupPaths();
+            View.PathsToBackup = await pathService.GetBackupPaths();
             View.Reload += View_Reload;
             View.AddNewSchedule += View_AddNewSchedule;
             View.TimeTaskFired += View_TimeTaskFired;

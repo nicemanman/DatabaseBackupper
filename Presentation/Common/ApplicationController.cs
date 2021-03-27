@@ -1,6 +1,7 @@
 ﻿using DomainModel.Components.DatabaseRepository;
 using DomainModel.Services;
 using Presentation.Views;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentation.Common
@@ -72,13 +73,13 @@ namespace Presentation.Common
             presenter.Run();
         }
 
-        public void Run<TPresenter, TArgument>(TArgument argumnent) where TPresenter : class, IPresenter<TArgument>
+        public async Task Run<TPresenter, TArgument>(TArgument argumnent) where TPresenter : class, IPresenter<TArgument>
         {
             if (!_container.IsRegistered<TPresenter>())
                 _container.Register<TPresenter>();
 
             var presenter = _container.Resolve<TPresenter>();
-            presenter.Run(argumnent);
+            await presenter.Run(argumnent);
         }
     }
 }
