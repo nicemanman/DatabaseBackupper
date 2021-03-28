@@ -8,19 +8,20 @@ namespace DomainModel.Services.FakeServices
 {
     public class FakePathService : IPathService
     {
-        public Task<List<string>> GetBackupPaths()
+        public async Task<List<string>> GetBackupPaths()
         {
-            throw new NotImplementedException();
+            await Task.Delay(10);
+            return new List<string>() { "Путь для бэкапа 1", "Путь для бэкапа 2" };
         }
 
         public void RemoveBackupPaths()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public Task SaveBackupPath(string backupPath)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

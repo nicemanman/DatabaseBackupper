@@ -104,7 +104,7 @@ namespace Presentation.Presenters
                     Name = "Создать новую задачу",
                     SQLServer = backupService.GetCurrentSQLServerInstanceName()
                 };
-                Controller.Run<TaskDetailsPresenter, TaskModel>(model);
+                await Controller.Run<TaskDetailsPresenter, TaskModel>(model);
             }
             catch (Exception ex) 
             {
@@ -148,23 +148,29 @@ namespace Presentation.Presenters
         {
             try
             {
-                string messages = "";
-                bool pathIsNull;
-                if ((pathIsNull = string.IsNullOrWhiteSpace(View.PathToBackup))) messages += "Не заполнен путь для бэкапа!\n";
-                if (View.DatabasesToBackup.Count == 0) messages+="Должна быть выбрана хотя бы одна база данных!\n";
+                //TODO - перенести валидацию на уровень сервисов
+                //string messages = "";
+                //bool pathIsNull;
+                //if ((pathIsNull = string.IsNullOrWhiteSpace(View.PathToBackup))) messages += "Не заполнен путь для бэкапа!\n";
+                //if (View.DatabasesToBackup.Count == 0) messages+="Должна быть выбрана хотя бы одна база данных!\n";
+                //var backupModel = new BackupModel()
+                //{
+                //    PathToBackup = View.PathToBackup,
+                //    AllDatabases = View.AllDatabases,
+                //    DatabasesToBackup = View.DatabasesToBackup
+                //};
+                //if (!pathIsNull && !Directory.Exists(backupModel.PathToBackup)) messages += "Такого путь не найден в системе!";
+                //if (!string.IsNullOrWhiteSpace(messages)) 
+                //{
+                //    View.ShowError(messages);
+                //    return;
+                //}
                 var backupModel = new BackupModel()
                 {
                     PathToBackup = View.PathToBackup,
                     AllDatabases = View.AllDatabases,
                     DatabasesToBackup = View.DatabasesToBackup
                 };
-                if (!pathIsNull && !Directory.Exists(backupModel.PathToBackup)) messages += "Такого путь не найден в системе!";
-                if (!string.IsNullOrWhiteSpace(messages)) 
-                {
-                    View.ShowError(messages);
-                    return;
-                }
-                
                 var successProgress = new Progress<string>();
                 var detailsProgress = new Progress<string>();
                 View.StartBackupProcess(successProgress, detailsProgress);

@@ -55,19 +55,19 @@ namespace Presentation.Presenters
 
         private async void View_SaveTask()
         {
-            var messages = "";
-            if (View.NotifyAboutFinish && !emailService.IsValidEmail(View.SelectedEmail))
-                messages += "Укажите валидный адрес электронной почты!\n";
-            bool pathIsNull;
-            if ((pathIsNull = string.IsNullOrWhiteSpace(View.SelectedPath))) messages += "Не заполнен путь для бэкапа!\n";
-            if (!pathIsNull && !Directory.Exists(View.SelectedPath)) messages += "Такого путь не найден в системе!\n";
-            if (View.SelectedDatabasesList.Count == 0) messages += "Необходимо выбрать хотя бы одну базу данных!\n";
-            if (string.IsNullOrWhiteSpace(View.Caption)) messages += "Не задано название задачи!\n";
-            if (!string.IsNullOrWhiteSpace(messages))
-            {
-                View.ShowError(messages);
-                return;
-            }
+            //var messages = "";
+            //if (View.NotifyAboutFinish && !emailService.IsValidEmail(View.SelectedEmail))
+            //    messages += "Укажите валидный адрес электронной почты!\n";
+            //bool pathIsNull;
+            //if ((pathIsNull = string.IsNullOrWhiteSpace(View.SelectedPath))) messages += "Не заполнен путь для бэкапа!\n";
+            //if (!pathIsNull && !Directory.Exists(View.SelectedPath)) messages += "Такого путь не найден в системе!\n";
+            //if (View.SelectedDatabasesList.Count == 0) messages += "Необходимо выбрать хотя бы одну базу данных!\n";
+            //if (string.IsNullOrWhiteSpace(View.Caption)) messages += "Не задано название задачи!\n";
+            //if (!string.IsNullOrWhiteSpace(messages))
+            //{
+            //    View.ShowError(messages);
+            //    return;
+            //}
             await pathService.SaveBackupPath(View.SelectedPath);
             if (View.NotifyAboutFinish)
                 await emailService.SaveEmail(View.SelectedEmail);

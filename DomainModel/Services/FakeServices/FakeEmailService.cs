@@ -10,22 +10,25 @@ namespace DomainModel.Services.FakeServices
     {
         public List<string> GetRecentEmails()
         {
-            throw new NotImplementedException();
+            return new List<string>() 
+            {
+                "Недавний email 1","Недавний email 2","Недавний email 3"
+            };
         }
 
         public bool IsValidEmail(string email)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void RemoveEmails()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public Task SaveEmail(string email)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

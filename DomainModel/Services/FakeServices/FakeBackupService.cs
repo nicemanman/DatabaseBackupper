@@ -9,24 +9,30 @@ namespace DomainModel.Services.FakeServices
 {
     public class FakeBackupService : IBackupService
     {
-        public Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress, string ServerName = "")
+        public async Task<string> BackupDatabases(BackupModel backupModel, IProgress<string> successProgress, IProgress<string> percentProgress, string ServerName = "")
         {
-            throw new NotImplementedException();
+            foreach (var item in backupModel.DatabasesToBackup)
+            {
+                percentProgress.Report(item);
+                successProgress.Report(item + " - Успех");
+                await Task.Delay(100);
+            }
+            return "Бэкап удачно завершен!";
         }
 
         public void DisconnectFromCurrentSqlServer()
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public List<string> GetAllDatabases()
         {
-            throw new NotImplementedException();
+            return new List<string>() { "База данных 1", "База данных 2", "База данных 3", "База данных 4" };
         }
 
         public string GetCurrentSQLServerInstanceName()
         {
-            throw new NotImplementedException();
+            return "Текущий SQL сервер";
         }
     }
 }

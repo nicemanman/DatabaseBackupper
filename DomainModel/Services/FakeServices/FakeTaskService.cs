@@ -11,17 +11,41 @@ namespace DomainModel.Services.FakeServices
     {
         public List<TaskModel> GetAllTasks(bool service = false)
         {
-            throw new NotImplementedException();
+            return new List<TaskModel>() 
+            {
+                new TaskModel()
+                {
+                    Id = 1,
+                    AllDatabases = new List<string>()
+                    {
+                        "База данных 1","База данных 2","База данных 3","База данных 4"
+                    },
+                    Enabled = true,
+                    Name = "Тестовая задача для бэкапа баз данных",
+                    SelectedDatabases = new List<string>()
+                    {
+                        "База данных 1","База данных 2"
+                    },
+                    SelectedEmail = "ilya.falko2013@gmail.com",
+                    SelectedPath = "Путь для бэкапа",
+                    SelectedSchedule = new ScheduleModel()
+                    {
+                        Id = 1,
+                        Name = "Каждый час"
+                    },
+                    SQLServer = "Текущий SQL сервер"
+                }
+            };
         }
 
         public Task RemoveTask(int id)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         public Task SaveTask(TaskModel taskModel)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }
