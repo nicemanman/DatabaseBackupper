@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/nicemanman/DatabaseBackupper.svg?branch=master)](https://travis-ci.org/nicemanman/DatabaseBackupper)
+[![Build status](https://ci.appveyor.com/api/projects/status/i5a65ws7fp6pxl98?svg=true)](https://ci.appveyor.com/project/nicemanman/databasebackupper)
 
 # Бэкаппер баз данных
 Проект на WinForms. Предназначен для быстрого резервного копирования баз данных, создания бэкапов по расписанию, а также быстрого восстановления баз данных из резервных копий.
