@@ -42,9 +42,13 @@ namespace BackupServerTray
                 Visible = true,
                 Icon = icon,
                 ContextMenuStrip = menu,
-                Text = "127.0.0.1:5001"
+                Text = "127.0.0.1:5001",
+                
             };
-
+            _notifyIcon.BalloonTipText = "Сервер бэкапов в работе!";
+            _notifyIcon.BalloonTipTitle = "DatabaseBackupper";
+            _notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+            _notifyIcon.ShowBalloonTip(2000);
         }
 
 
