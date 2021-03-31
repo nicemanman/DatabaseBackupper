@@ -28,7 +28,7 @@ namespace Server.Controllers
         [HttpGet]
         public string Get()
         {
-            return Environment.GetEnvironmentVariable("PATH");
+            return "Hello!";
         }
 
         

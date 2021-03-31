@@ -37,10 +37,7 @@ namespace UI
             LoginTypesList.SelectedValueChanged += LoginTypesList_SelectedValueChanged;
             UpdateServersListButton.Click += UpdateServersListButton_Click;
             _context = context;
-
         }
-
-        
 
         private void UpdateServersListButton_Click(object sender, EventArgs e)
         {

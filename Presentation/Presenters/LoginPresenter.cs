@@ -6,6 +6,7 @@ using Presentation.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using static DomainModel.Enums;
@@ -52,6 +53,9 @@ namespace Presentation.Presenters
         {
             using (new LongOperation(View))
             {
+                HttpClient client = new HttpClient();
+                var result = await client.GetAsync("https://127.0.0.1:5001/WeatherForecast");
+                var content = await result.Content.ReadAsStringAsync();
                 
                 try {
                     var loginModel = new LoginModel() { Servername = serverName, Username = userName, Password = password, LoginType = loginType };
