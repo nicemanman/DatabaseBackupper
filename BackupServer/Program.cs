@@ -15,16 +15,9 @@ namespace BackupServer
     {
         public static void Main(string[] args)
         {
-            var hostBuilder = CreateHostBuilder(args);
-            var build = hostBuilder.Build();
-            build.Run();
+            throw new InvalidOperationException("Не запускайте этот сервер напрямую!");
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        
     }
 }

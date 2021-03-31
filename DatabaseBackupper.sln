@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackupServer", "BackupServe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher", "Launcher\Launcher.csproj", "{DF93EE45-523F-4471-8B03-ACCB550D84DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalBackupServer", "LocalBackupServer\LocalBackupServer.csproj", "{65B0498B-767D-4187-A483-CFBECC77EC58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackupServerTray", "LocalBackupServer\BackupServerTray.csproj", "{65B0498B-767D-4187-A483-CFBECC77EC58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

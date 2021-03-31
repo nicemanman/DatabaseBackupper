@@ -38,7 +38,7 @@ namespace BackupServer
             }
             
             app.UseHttpsRedirection();
-            app.UseCertificateForwarding();
+            
             app.UseRouting();
 
             app.UseAuthorization();
