@@ -51,18 +51,9 @@ namespace BackupServerTray
         private void OnExitClick(object sender, EventArgs e)
         {
             _notifyIcon.Visible = false;
-            //TODO: Первый способ останоки веб сервера верный, но он пока не работает. Разобраться почему.
-            //var lifetime = _webHost.Services.GetService<IHostApplicationLifetime>();
-            //lifetime.StopApplication();
-            //_webHost.StopAsync().RunInBackgroundSafely(HandleException);
-            //bad way
             _webHost.Dispose();
             Application.Exit();
         }
 
-        private void HandleException(Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
     }
 }
