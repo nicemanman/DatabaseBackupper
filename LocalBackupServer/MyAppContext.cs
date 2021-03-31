@@ -22,7 +22,7 @@ namespace BackupServerTray
             //запускаем веб сервер
             _webHost = Host.CreateDefaultBuilder().ConfigureWebHostDefaults((x)=> 
             {
-                x.UseStartup<Startup>().ConfigureServices(ConfigureServices);
+                x.UseStartup<Startup>();
             }).Build();
 
             _webHost.Start();
@@ -47,10 +47,6 @@ namespace BackupServerTray
 
         }
 
-        private void ConfigureServices(IServiceCollection services)
-        {
-            
-        }
 
         private void OnExitClick(object sender, EventArgs e)
         {
