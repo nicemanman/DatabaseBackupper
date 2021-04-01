@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Launcher"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        >
-    <Frame Source="Page1.xaml" Name="mainFrame"></Frame>
+        Title="MainWindow"
+        WindowStyle="None"
+        WindowState="Maximized">
+    <Grid Background="DarkBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="81"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <!--Верхняя плашка-->
+        <Grid Grid.Column="0"
+              Grid.Row="0"
+              Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="17"/>
+                <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="66"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Background>
+                <LinearGradientBrush />
+            </Grid.Background>
+        </Grid>
+        <Frame Name="mainFrame" 
+               NavigationUIVisibility="Hidden" 
+               Grid.Row="1" 
+               Grid.Column="1">
+        </Frame> 
+    </Grid>
+    
 
 </Window>
