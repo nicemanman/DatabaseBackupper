@@ -22,6 +22,8 @@ namespace Launcher
     {
         public MainWindow()
         {
+            this.MaxHeight = SystemParameters.WorkArea.Height;
+            this.MaxWidth = SystemParameters.WorkArea.Width;
             InitializeComponent();
         }
 

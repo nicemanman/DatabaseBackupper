@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow"
         WindowStyle="None"
-        Width="1599"
-        Height="848"
+        Width="1599" Height="848"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        AllowsTransparency="True">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -55,11 +57,21 @@
                        FontFamily="{StaticResource NotoSans}"
                        Padding="5,0,0,0"/>
         </Grid>
+        
         <Frame Name="mainFrame" 
                NavigationUIVisibility="Hidden" 
                Grid.Row="1" 
                Grid.Column="1">
         </Frame>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <LinearGradientBrush.Transform>
+                    <RotateTransform Angle="107.36"/>
+                </LinearGradientBrush.Transform>
+                <GradientStop Color="#2C4255" Offset="0"/>
+                <GradientStop Color="#17242F" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
     </Grid>
     
 
