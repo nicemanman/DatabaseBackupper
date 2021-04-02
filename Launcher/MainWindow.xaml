@@ -43,6 +43,7 @@
                     <GradientStop Color="#0B86B4" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
+            
             <Path Data="{StaticResource DatabaseBackupperLogo}"
                   Grid.Column="1"
                   VerticalAlignment="Center"
@@ -56,6 +57,7 @@
                        FontSize="14"
                        FontFamily="{StaticResource NotoSans}"
                        Padding="5,0,0,0"/>
+            
         </Grid>
         
         <Frame Name="mainFrame" 

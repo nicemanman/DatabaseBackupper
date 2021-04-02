@@ -41,6 +41,12 @@
     <Reference Include="LottieSharp, Version=1.1.3.0, Culture=neutral, PublicKeyToken=25f75b656488b9c2, processorArchitecture=MSIL">
       <HintPath>..\packages\LottieSharp.1.1.3\lib\net461\LottieSharp.dll</HintPath>
     </Reference>
+    <Reference Include="MvvmCross, Version=7.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.7.1.2\lib\net461\MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platforms.Wpf, Version=7.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Platforms.Wpf.7.1.2\lib\net461\MvvmCross.Platforms.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -66,6 +72,11 @@
       <HintPath>..\packages\SharpDX.Mathematics.4.2.0\lib\net45\SharpDX.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Console, Version=4.0.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.1\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -155,14 +166,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\vector\minimize.svg" />
     <Resource Include="resources\vector\logo.png" />
     <Resource Include="resources\fonts\montserrat\OFL.txt" />
     <Resource Include="resources\images\background.png" />
     <Resource Include="resources\images\topbar.png" />
+    <Content Include="resources\vector\closecross.svg" />
     <Content Include="resources\vector\logo.svg" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="resources\icons\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
