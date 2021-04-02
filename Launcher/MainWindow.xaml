@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow"
         WindowStyle="None"
-        WindowState="Maximized">
-    <Grid Background="DarkBlue">
+        Width="1599"
+        Height="848"
+        ResizeMode="NoResize">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
@@ -21,29 +23,42 @@
         <!--Верхняя плашка-->
         <Grid Grid.Column="0"
               Grid.Row="0"
-              Grid.ColumnSpan="3">
+              Grid.ColumnSpan="3"
+              MouseDown="Grid_MouseDown">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="17"/>
-                <ColumnDefinition Width="66"/>
-                <ColumnDefinition Width="66"/>
-                <ColumnDefinition Width="66"/>
-                <ColumnDefinition Width="66"/>
-                <ColumnDefinition Width="66"/>
-                <ColumnDefinition Width="66"/>
-                <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="66"/>
                 <ColumnDefinition Width="66"/>
+                <ColumnDefinition Width="17"/>
             </Grid.ColumnDefinitions>
             <Grid.Background>
-                <LinearGradientBrush />
+                <LinearGradientBrush>
+                    <GradientStop Color="#09AFEC" Offset="0.4"/>
+                    <GradientStop Color="#0B86B4" Offset="1"/>
+                </LinearGradientBrush>
             </Grid.Background>
+            <Path Data="{StaticResource DatabaseBackupperLogo}"
+                  Grid.Column="1"
+                  VerticalAlignment="Center"
+                  Fill="White"/>
+            <TextBlock Text="DatabaseBackupper"
+                       Foreground="White"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontSize="14"
+                       FontFamily="{StaticResource NotoSans}"
+                       Padding="5,0,0,0"/>
         </Grid>
         <Frame Name="mainFrame" 
                NavigationUIVisibility="Hidden" 
                Grid.Row="1" 
                Grid.Column="1">
-        </Frame> 
+        </Frame>
     </Grid>
     
 

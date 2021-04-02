@@ -126,9 +126,43 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="resources\fonts\montserrat\Montserrat-Black.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-BlackItalic.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-Bold.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-BoldItalic.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-ExtraBold.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-ExtraLight.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-Italic.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-Light.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-LightItalic.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-Medium.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-MediumItalic.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-Regular.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-SemiBold.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-Thin.ttf" />
+    <Resource Include="resources\fonts\montserrat\Montserrat-ThinItalic.ttf" />
+    <Resource Include="resources\fonts\noto_sans_hk\NotoSansHK-Black.otf" />
+    <Resource Include="resources\fonts\noto_sans_hk\NotoSansHK-Bold.otf" />
+    <Resource Include="resources\fonts\noto_sans_hk\NotoSansHK-Light.otf" />
+    <Resource Include="resources\fonts\noto_sans_hk\NotoSansHK-Medium.otf" />
+    <Resource Include="resources\fonts\noto_sans_hk\NotoSansHK-Regular.otf" />
+    <Resource Include="resources\fonts\noto_sans_hk\NotoSansHK-Thin.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\vector\logo.png" />
+    <Resource Include="resources\fonts\montserrat\OFL.txt" />
+    <Resource Include="resources\images\background.png" />
+    <Resource Include="resources\images\topbar.png" />
+    <Content Include="resources\vector\logo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="resources\icons\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
