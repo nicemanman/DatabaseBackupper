@@ -8,7 +8,8 @@
              Width="240" Height="90"
              Background="Transparent">
     
-    <Grid Background="#486D8E">
+    <Grid Background="#486D8E"
+          Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
