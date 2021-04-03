@@ -53,10 +53,6 @@ namespace Presentation.Presenters
         {
             using (new LongOperation(View))
             {
-                HttpClient client = new HttpClient();
-                var result = await client.GetAsync("https://127.0.0.1:5001/WeatherForecast");
-                var content = await result.Content.ReadAsStringAsync();
-                
                 try {
                     var loginModel = new LoginModel() { Servername = serverName, Username = userName, Password = password, LoginType = loginType };
                     var backupModel = await _service.ConnectToSqlServer(loginModel);
