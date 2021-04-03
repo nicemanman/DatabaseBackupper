@@ -100,6 +100,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\ConnectionsPanel.xaml.cs">
+      <DependentUpon>ConnectionsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ConnectionsSubPanel.xaml.cs">
+      <DependentUpon>ConnectionsSubPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ConnectionTile.xaml.cs">
+      <DependentUpon>ConnectionTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConnectionModel.cs" />
+    <Compile Include="Models\ConnectionTypes.cs" />
+    <Compile Include="ViewModels\AllConnectionsViewModel.cs" />
+    <Compile Include="Views\AllConnectionsView.xaml.cs">
+      <DependentUpon>AllConnectionsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\ConnectionsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ConnectionsSubPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ConnectionTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TopBarButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,10 +139,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\TopBarButton.xaml.cs">
+      <DependentUpon>TopBarButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AllConnectionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Navigator.cs" />
@@ -166,6 +204,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="resources\images\bigImage.jpg" />
+    <Resource Include="resources\images\bigImage.png" />
     <Content Include="resources\vector\minimize.svg" />
     <Resource Include="resources\vector\logo.png" />
     <Resource Include="resources\fonts\montserrat\OFL.txt" />
@@ -175,10 +215,7 @@
     <Content Include="resources\vector\logo.svg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="resources\icons\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

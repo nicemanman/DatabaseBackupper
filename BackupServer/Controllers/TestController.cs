@@ -19,9 +19,9 @@ namespace BackupServer.Controllers
         }
 
         [HttpGet]
-        public string Get() 
+        public OkResult Get() 
         {
-            return "Hello world!";
+            return Ok();
         }
     }
 }

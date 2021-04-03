@@ -1,6 +1,8 @@
 ﻿using BackupServer;
 using BackupServerTray.Extensions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
@@ -23,10 +25,12 @@ namespace BackupServerTray
             _webHost = Host.CreateDefaultBuilder().ConfigureWebHostDefaults((x)=> 
             {
                 x.UseStartup<Startup>();
+                
             }).Build();
 
             _webHost.Start();
             
+
             var exitMenuItem = new ToolStripMenuItem("Выйти", null, onClick:OnExitClick);
             
             Stream iconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BackupServerTray.server.ico");
@@ -42,7 +46,7 @@ namespace BackupServerTray
                 Visible = true,
                 Icon = icon,
                 ContextMenuStrip = menu,
-                Text = "127.0.0.1:5001"
+                Text = ""
             };
 
         }

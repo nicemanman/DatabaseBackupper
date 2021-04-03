@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Launcher"
+        xmlns:local="clr-namespace:Launcher" xmlns:controls="clr-namespace:Launcher.Controls"
         mc:Ignorable="d"
         Title="MainWindow"
         WindowStyle="None"
@@ -15,13 +15,12 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="49"/>
+            <RowDefinition Height="2"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="81"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <!--Верхняя плашка-->
         <Grid Grid.Column="0"
@@ -33,9 +32,9 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="66"/>
-                <ColumnDefinition Width="66"/>
-                <ColumnDefinition Width="17"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Grid.Background>
                 <LinearGradientBrush>
@@ -57,14 +56,18 @@
                        FontSize="14"
                        FontFamily="{StaticResource NotoSans}"
                        Padding="5,0,0,0"/>
+            <controls:CloseMinimizeButtons Grid.Column="4"
+                                           Grid.ColumnSpan="2"/>
             
         </Grid>
         
         <Frame Name="mainFrame" 
                NavigationUIVisibility="Hidden" 
-               Grid.Row="1" 
-               Grid.Column="1">
+               Grid.Row="2" 
+               Grid.Column="0">
+            
         </Frame>
+        
         <Grid.Background>
             <LinearGradientBrush>
                 <LinearGradientBrush.Transform>

@@ -25,6 +25,7 @@ namespace Launcher
             this.MaxHeight = SystemParameters.WorkArea.Height;
             this.MaxWidth = SystemParameters.WorkArea.Width;
             InitializeComponent();
+            mainFrame.Navigate(new Uri("/Views/AllConnectionsView.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)

@@ -7,6 +7,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <FontFamily x:Key="NotoSans">pack://application:,,,/resources/fonts/noto_sans_hk/#Noto Sans HK</FontFamily>
+        <FontFamily x:Key="Montserrat">pack://application:,,,/resources/fonts/montserrat/#Montserrat</FontFamily>
         <PathGeometry x:Key="DatabaseBackupperLogo" Figures="M14.375 6.25C14.7167 6.25 15 6.53333 15 6.875C15 7.21667 14.7167 7.5 14.375 7.5H13.75V6.25H14.375Z
               M14.375 7.5C14.7167 7.5 15 7.21667 15 6.875V7.70833C15 8.05 14.7167 8.33333 14.375 8.33333C14.0333 8.33333 13.75 8.05 13.75 7.70833V7.5H14.375Z
               M1.25 6.25H13.75V7.5H1.25V6.25Z
@@ -30,6 +31,6 @@
                       11.2243 12.0567 11.5988 11.8238 11.8317C11.5988 12.0567 11.2243 12.0567 10.9999 11.8317L5.99689 6.82868L1.00231 
                       11.8317C0.769446 12.0567 0.402838 12.0567 0.169971 11.8317C-0.0550293 11.5988 -0.0550293 11.2238 0.169971 10.9993L5.16455 
                       5.99634L0.169971 1.00123Z"/>
-        <RectangleGeometry x:Key="MinimizeRectangle" RadiusX="1" RadiusY="2" Rect="0,0,15,1"/>
+        <RectangleGeometry x:Key="MinimizeRectangle" RadiusX="1" RadiusY="1" Rect="0,0,15,1"/>
     </Application.Resources>
 </views:MvxApplication>

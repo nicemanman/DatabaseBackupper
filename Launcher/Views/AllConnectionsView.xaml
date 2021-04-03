@@ -1,0 +1,38 @@
+﻿<Page x:Class="Launcher.Views.AllConnectionsView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Launcher.Views" xmlns:controls="clr-namespace:Launcher.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1599"
+      Title="AllConnections">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="154"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="81"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Доступные подключения"
+                   Foreground="White"
+                   FontSize="30"
+                   FontWeight="Medium"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   FontFamily="{StaticResource Montserrat}"/>
+        <Image Source="../resources/images/BigImage.png"
+               Grid.Row="1"
+               Grid.Column="2"
+               Width="735"
+               Height="736"
+               />
+        <Grid Grid.ColumnSpan="3"
+              Grid.Row="1">
+            <controls:ConnectionsPanel/>
+        </Grid>
+    </Grid>
+</Page>
