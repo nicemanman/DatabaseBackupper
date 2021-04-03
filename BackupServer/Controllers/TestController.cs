@@ -16,11 +16,16 @@ namespace BackupServer.Controllers
         public TestController(ILogger<TestController> logger)
         {
             _logger = logger;
+            _logger.LogInformation("Test controller was created");
         }
 
         [HttpGet]
         public OkResult Get() 
         {
+            _logger.LogError("ERROR!");
+            _logger.LogWarning("WARN!");
+            _logger.LogInformation("INFO!");
+            _logger.LogTrace("TRACE!");
             return Ok();
         }
     }

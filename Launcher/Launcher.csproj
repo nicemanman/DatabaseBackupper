@@ -204,8 +204,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\vector\RoundArrow.svg" />
+    <Content Include="resources\vector\RoundPlus.svg" />
     <Resource Include="resources\images\bigImage.jpg" />
     <Resource Include="resources\images\bigImage.png" />
+    <Content Include="resources\vector\BurgerMenu.svg" />
     <Content Include="resources\vector\minimize.svg" />
     <Resource Include="resources\vector\logo.png" />
     <Resource Include="resources\fonts\montserrat\OFL.txt" />

@@ -4,7 +4,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+using NLog.Web;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -17,56 +21,99 @@ namespace BackupServerTray
     {
         private readonly NotifyIcon _notifyIcon;
         private readonly IHost _webHost;
+        private string LocalBackupServerUrlVariable = "LocalDatabaseBackupperServerUrl";
+        private string DefaultLocalBackupServerUrl = "http://127.0.0.1:5000";
+        private string BackupServerUrl;
+        private readonly NLog.Logger logger;
         public MyAppContext()
         {
-            //запускаем веб сервер
-            _webHost = Host.CreateDefaultBuilder().ConfigureWebHostDefaults((x)=> 
+            logger = NLogBuilder.ConfigureNLog("NLog.config").GetCurrentClassLogger();
+            try
             {
-                x.UseStartup<Startup>();
-            }).Build();
+                logger.Debug("init main function");
+                //запускаем веб сервер
+                BackupServerUrl = Environment.GetEnvironmentVariable(LocalBackupServerUrlVariable, EnvironmentVariableTarget.User);
+                if (BackupServerUrl == null)
+                {
+                    Environment.SetEnvironmentVariable(LocalBackupServerUrlVariable, DefaultLocalBackupServerUrl, EnvironmentVariableTarget.User);
+                    BackupServerUrl = DefaultLocalBackupServerUrl;
+                }
+                _webHost = Host.CreateDefaultBuilder()
+                    .ConfigureLogging(logging => 
+                    {
+                        logging.ClearProviders();
+                        logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                    })
+                    .UseNLog()
+                    .ConfigureWebHostDefaults((x) =>
+                    {
+                        x.UseStartup<Startup>();
+                        x.UseUrls(BackupServerUrl);
+                    })
+                    .Build();
 
-            _webHost.Start();
-            
-            var exitMenuItem = new ToolStripMenuItem("Выйти", null, onClick:OnExitClick);
-            
-            Stream iconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BackupServerTray.server.ico");
-            Icon icon;
-            using (iconStream)
-            {
-                icon = new Icon(iconStream);
+                _webHost.Start();
+
+                var settingsMenuItem = new ToolStripMenuItem("Настройки", null, onClick: OnSettingsClick);
+                var exitMenuItem = new ToolStripMenuItem("Выйти", null, onClick: OnExitClick);
+
+                Stream iconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BackupServerTray.server.ico");
+                Icon icon;
+                using (iconStream)
+                {
+                    icon = new Icon(iconStream);
+                }
+                var menu = new ContextMenuStrip();
+                menu.Items.Add(settingsMenuItem);
+                menu.Items.Add(exitMenuItem);
+                _notifyIcon = new NotifyIcon()
+                {
+                    Visible = true,
+                    Icon = icon,
+                    ContextMenuStrip = menu,
+                    Text = BackupServerUrl
+                };
+                _notifyIcon.BalloonTipText = $"Сервер бэкапов в работе - {BackupServerUrl}";
+                _notifyIcon.BalloonTipTitle = "DatabaseBackupper";
+                _notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+                _notifyIcon.ShowBalloonTip(2000);
             }
-            var menu = new ContextMenuStrip();
-            menu.Items.Add(exitMenuItem);
-            _notifyIcon = new NotifyIcon()
+            catch (Exception ex)
             {
-                Visible = true,
-                Icon = icon,
-                ContextMenuStrip = menu,
-                Text = "127.0.0.1:5001",
-                
-            };
-            _notifyIcon.BalloonTipText = "Сервер бэкапов в работе!";
-            _notifyIcon.BalloonTipTitle = "DatabaseBackupper";
-            _notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
-            _notifyIcon.ShowBalloonTip(2000);
+                HandleException(ex);
+            }
+            finally
+            {
+                NLog.LogManager.Shutdown();
+            }
         }
 
+        private void OnSettingsClick(object sender, EventArgs e)
+        {
+            Process myProcess = new Process();
+            try
+            {
+                // true is the default, but it is important not to set it to false
+                myProcess.StartInfo.UseShellExecute = true;
+                myProcess.StartInfo.FileName = BackupServerUrl;
+                myProcess.Start();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
 
         private void OnExitClick(object sender, EventArgs e)
         {
             _notifyIcon.Visible = false;
-            //TODO: Первый способ останоки веб сервера верный, но он пока не работает. Разобраться почему.
-            //var lifetime = _webHost.Services.GetService<IHostApplicationLifetime>();
-            //lifetime.StopApplication();
-            //_webHost.StopAsync().RunInBackgroundSafely(HandleException);
-            //bad way
             _webHost.Dispose();
             Application.Exit();
         }
 
         private void HandleException(Exception ex)
         {
-            Console.WriteLine(ex);
+            logger.Error(ex);
         }
     }
 }
