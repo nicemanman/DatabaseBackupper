@@ -30,9 +30,14 @@
                Width="735"
                Height="736"
                />
-        <Grid Grid.ColumnSpan="3"
-              Grid.Row="1">
-            <controls:ConnectionsPanel/>
-        </Grid>
+        <!--<Grid Grid.ColumnSpan="4"
+              Grid.Column="1"
+              Grid.Row="1"
+              HorizontalAlignment="Left">-->
+                                   
+        <controls:ConnectionsPanel Grid.ColumnSpan="2"
+                                   Grid.Column="1"
+                                   Grid.Row="1"/>
+        
     </Grid>
 </Page>

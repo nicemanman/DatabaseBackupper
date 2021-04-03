@@ -5,8 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Launcher.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             >
     <Grid>
-            
+        <ScrollViewer>
+            <StackPanel HorizontalAlignment="Left">
+                <local:ConnectionsSubPanel/>
+                <local:ConnectionsSubPanel/>
+                <local:ConnectionsSubPanel/>
+                <local:ConnectionsSubPanel/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
