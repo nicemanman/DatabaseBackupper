@@ -1,8 +1,6 @@
 ﻿using BackupServer;
 using BackupServerTray.Extensions;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
@@ -25,12 +23,10 @@ namespace BackupServerTray
             _webHost = Host.CreateDefaultBuilder().ConfigureWebHostDefaults((x)=> 
             {
                 x.UseStartup<Startup>();
-                
             }).Build();
 
             _webHost.Start();
             
-
             var exitMenuItem = new ToolStripMenuItem("Выйти", null, onClick:OnExitClick);
             
             Stream iconStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BackupServerTray.server.ico");
@@ -46,18 +42,31 @@ namespace BackupServerTray
                 Visible = true,
                 Icon = icon,
                 ContextMenuStrip = menu,
-                Text = ""
+                Text = "127.0.0.1:5001",
+                
             };
-
+            _notifyIcon.BalloonTipText = "Сервер бэкапов в работе!";
+            _notifyIcon.BalloonTipTitle = "DatabaseBackupper";
+            _notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+            _notifyIcon.ShowBalloonTip(2000);
         }
 
 
         private void OnExitClick(object sender, EventArgs e)
         {
             _notifyIcon.Visible = false;
+            //TODO: Первый способ останоки веб сервера верный, но он пока не работает. Разобраться почему.
+            //var lifetime = _webHost.Services.GetService<IHostApplicationLifetime>();
+            //lifetime.StopApplication();
+            //_webHost.StopAsync().RunInBackgroundSafely(HandleException);
+            //bad way
             _webHost.Dispose();
             Application.Exit();
         }
 
+        private void HandleException(Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
     }
 }

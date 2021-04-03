@@ -27,6 +27,7 @@ namespace BackupServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,10 +37,12 @@ namespace BackupServer
             {
                 app.UseDeveloperExceptionPage();
             }
-            
-            app.UseHttpsRedirection();
+
             
             app.UseRouting();
+
+            //Static + default
+            app.UseFileServer();
 
             app.UseAuthorization();
             
