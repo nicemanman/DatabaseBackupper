@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bogus, Version=33.0.2.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.33.0.2\lib\net40\Bogus.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetZip, Version=1.13.7.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetZip.1.13.7\lib\net40\DotNetZip.dll</HintPath>
     </Reference>
@@ -109,9 +112,6 @@
     <Compile Include="Controls\ConnectionTile.xaml.cs">
       <DependentUpon>ConnectionTile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\ConnectionModel.cs" />
-    <Compile Include="Models\ConnectionTypes.cs" />
-    <Compile Include="ViewModels\AllConnectionsViewModel.cs" />
     <Compile Include="Views\AllConnectionsView.xaml.cs">
       <DependentUpon>AllConnectionsView.xaml</DependentUpon>
     </Compile>
@@ -152,7 +152,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Navigator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -219,6 +218,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="resources\icons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Launcher.Core\Launcher.Core.csproj">
+      <Project>{7c28ce10-74e8-4256-8c5a-bca42b5f9132}</Project>
+      <Name>Launcher.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-
+using Launcher.Core;
 namespace Launcher
 {
     /// <summary>
@@ -16,9 +16,9 @@ namespace Launcher
     /// </summary>
     public partial class App : MvxApplication
     {
-        public override void ApplicationInitialized()
+        protected override void RegisterSetup()
         {
-            base.ApplicationInitialized();
+            this.RegisterSetupType<MvxWpfSetup<Core.App>>();
         }
     }
 }
