@@ -15,7 +15,7 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         AllowsTransparency="True"
-        >
+        Icon="../resources/icons/logo.ico">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodels:AllConnectionsViewModel}" >
             <views:AllConnectionsView/>

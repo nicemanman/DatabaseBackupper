@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Iconleak-Cerulean-Database.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bogus, Version=33.0.2.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
       <HintPath>..\packages\Bogus.33.0.2\lib\net40\Bogus.dll</HintPath>
@@ -233,6 +236,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="resources\icons\logo.ico" />
+    <Resource Include="Iconleak-Cerulean-Database.ico" />
     <Content Include="resources\vector\RoundArrow.svg" />
     <Content Include="resources\vector\RoundPlus.svg" />
     <Resource Include="resources\images\bigImage.jpg" />
@@ -246,8 +251,6 @@
     <Content Include="resources\vector\closecross.svg" />
     <Content Include="resources\vector\logo.svg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="resources\icons\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:Launcher"
              >
     <Application.Resources>
+        
         <FontFamily x:Key="NotoSans">pack://application:,,,/resources/fonts/noto_sans_hk/#Noto Sans HK</FontFamily>
         <FontFamily x:Key="Montserrat">pack://application:,,,/resources/fonts/montserrat/#Montserrat</FontFamily>
         <PathGeometry x:Key="DatabaseBackupperLogo" Figures="M14.375 6.25C14.7167 6.25 15 6.53333 15 6.875C15 7.21667 14.7167 7.5 14.375 7.5H13.75V6.25H14.375Z

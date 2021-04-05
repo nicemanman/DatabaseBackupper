@@ -14,6 +14,7 @@ namespace Launcher
 {
     public class Bootstrapper : PrismBootstrapper
     {
+        private bool _isTestEnv = true;
         protected override DependencyObject CreateShell()
         {
             return Container.Resolve<MainView>();
@@ -21,13 +22,7 @@ namespace Launcher
         
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            var testEnv = Environment.GetEnvironmentVariable("TEST_ENV_DATABASEBACKUPPER", EnvironmentVariableTarget.User);
-            if (testEnv == null)
-            {
-                Environment.SetEnvironmentVariable("TEST_ENV_DATABASEBACKUPPER", "1", EnvironmentVariableTarget.User);
-                testEnv = "1";
-            }
-            if (testEnv.Equals("1")) 
+            if (_isTestEnv) 
             {
                 containerRegistry.Register<IConnectionService, FakeConnectionService>();
             }

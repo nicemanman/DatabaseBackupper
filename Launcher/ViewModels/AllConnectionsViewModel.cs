@@ -19,7 +19,7 @@ namespace Launcher.ViewModels
         {
             _connectionService = connectionService;
             this.regionManager = regionManager;
-            Test = "Bruh";
+            Test = "Доступные подключения";
         }
         private string _test;
 
