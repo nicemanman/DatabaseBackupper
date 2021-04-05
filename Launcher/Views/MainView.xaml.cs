@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Regions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,12 @@ namespace Launcher.Views
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView()
+        public MainView(IRegionManager regionManager)
         {
             this.MaxHeight = SystemParameters.WorkArea.Height;
             this.MaxWidth = SystemParameters.WorkArea.Width;
             InitializeComponent();
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(AllConnectionsView));
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)

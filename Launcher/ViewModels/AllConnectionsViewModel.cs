@@ -1,5 +1,7 @@
 ﻿using Launcher.Services;
+using Prism.Ioc;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +10,16 @@ using System.Threading.Tasks;
 
 namespace Launcher.ViewModels
 {
-    public class AllConnectionsViewModel : BindableBase
+    public class AllConnectionsViewModel : CustomBindableBase
     {
         private readonly IConnectionService _connectionService;
+        private readonly IRegionManager regionManager;
 
-        public AllConnectionsViewModel(IConnectionService connectionService)
+        public AllConnectionsViewModel(IConnectionService connectionService, IRegionManager regionManager, IContainerExtension container) : base(regionManager, container)
         {
             _connectionService = connectionService;
-            Test = "Доступные подключения";
+            this.regionManager = regionManager;
+            Test = "Bruh";
         }
         private string _test;
 
@@ -27,6 +31,10 @@ namespace Launcher.ViewModels
                 SetProperty(ref _test, value);
             }
         }
-        
+        protected override Task Initialize()
+        {
+            //загрузить подключения
+            return base.Initialize();
+        }
     }
 }

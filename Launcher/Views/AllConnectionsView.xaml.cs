@@ -18,8 +18,10 @@ namespace Launcher.Views
 {
     /// <summary>
     /// Interaction logic for AllConnections.xaml
+    /// In the case of WPF, this is only the default behavior when using region navigation and IDialogService. 
+    /// If you are using view injection, your view will need to opt-in.
     /// </summary>
-    
+
     public partial class AllConnectionsView : UserControl
     {
         public AllConnectionsView()

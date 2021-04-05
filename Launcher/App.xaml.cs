@@ -18,17 +18,14 @@ namespace Launcher
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : PrismApplication
+    public partial class App : Application
     {
-        protected override Window CreateShell()
+        protected override void OnStartup(StartupEventArgs e)
         {
-            var w = Container.Resolve<MainView>();
-            return w;
+            base.OnStartup(e);
+            var bootstrapper = new Bootstrapper();
+            bootstrapper.Run();
         }
-
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.Register<IConnectionService, FakeConnectionService>();
-        }
+        
     }
 }

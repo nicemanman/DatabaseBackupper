@@ -8,23 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Prism.Ioc;
 using Launcher.Services.Fakes;
+using Prism.Unity;
+using Prism.Regions;
 
 namespace Launcher.ViewModels
 {
-    public class MainViewModel : BindableBase
+    public class MainViewModel : CustomBindableBase
     {
-        private BindableBase _currentViewModel;
-        //https://stackoverflow.com/questions/35827605/wpf-with-multiple-views-plus-prism-and-unity
-        public ObservableCollection<BindableBase> ViewModels { get; set; } = new ObservableCollection<BindableBase>();
-        public BindableBase CurrentViewModel
-        {
-            get { return _currentViewModel; }
-            set { SetProperty(ref _currentViewModel, value); }
-        }
-        public MainViewModel()
-        {
-
-            CurrentViewModel = new AllConnectionsViewModel(new FakeConnectionService());
-        }
+        public MainViewModel(IRegionManager manager, IContainerExtension container) : base(manager, container)
+        { }
     }
 }
