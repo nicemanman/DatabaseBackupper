@@ -14,7 +14,7 @@ namespace Launcher.ViewModels
     public class MainViewModel : BindableBase
     {
         private BindableBase _currentViewModel;
-        
+        //https://stackoverflow.com/questions/35827605/wpf-with-multiple-views-plus-prism-and-unity
         public ObservableCollection<BindableBase> ViewModels { get; set; } = new ObservableCollection<BindableBase>();
         public BindableBase CurrentViewModel
         {
@@ -23,6 +23,7 @@ namespace Launcher.ViewModels
         }
         public MainViewModel()
         {
+
             CurrentViewModel = new AllConnectionsViewModel(new FakeConnectionService());
         }
     }

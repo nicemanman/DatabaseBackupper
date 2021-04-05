@@ -15,7 +15,7 @@ namespace Launcher.ViewModels
         public AllConnectionsViewModel(IConnectionService connectionService)
         {
             _connectionService = connectionService;
-            Test = "Test";
+            Test = "Доступные подключения";
         }
         private string _test;
 
