@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,20 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Launcher.Views
 {
     /// <summary>
-    /// Interaction logic for AllConnections.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    
-    public partial class AllConnectionsView : UserControl
+    public partial class MainView : Window
     {
-        public AllConnectionsView()
+        public MainView()
         {
+            this.MaxHeight = SystemParameters.WorkArea.Height;
+            this.MaxWidth = SystemParameters.WorkArea.Width;
             InitializeComponent();
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }

@@ -1,18 +1,19 @@
 ﻿using Bogus;
-using Launcher.Core.Models;
+using Launcher.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Launcher.Core.Services.Fakes
+namespace Launcher.Services.Fakes
 {
     public class FakeConnectionService : IConnectionService
     {
         public Task<List<ConnectionModel>> GetConnections()
         {
             int connectionNameIndex = 0;
-            var connectionTypes = new List<ConnectionType>() 
+            var connectionTypes = new List<ConnectionType>()
             {
                 new ConnectionType() { ConnectionTypeId = 1,ConnectionTypeName = "MySQL" },
                 new ConnectionType() { ConnectionTypeId = 2,ConnectionTypeName = "MSSQL" },
@@ -23,8 +24,8 @@ namespace Launcher.Core.Services.Fakes
             var faker = new Faker<ConnectionModel>()
                 .RuleFor(e => e.Name, (f, e) => { connectionNameIndex++; return e.Name + " " + connectionNameIndex.ToString(); })//Тестовое подключение 
                 .RuleFor(e => e.ConnectionType, (f, e) => connectionTypes[random.Next(connectionTypes.Count)])
-                .RuleFor(e=>e.UserName, (f,e) => f.Person.UserName)
-                .RuleFor(e=>e.Address, (f,e)=>f.Internet.Ip());
+                .RuleFor(e => e.UserName, (f, e) => f.Person.UserName)
+                .RuleFor(e => e.Address, (f, e) => f.Internet.Ip());
             var connections = faker.Generate(50);
             return Task.FromResult(connections);
         }

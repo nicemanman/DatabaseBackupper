@@ -1,10 +1,10 @@
-﻿<views:MvxApplication
-                xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+﻿<behaviors:PrismApplication
+             xmlns:behaviors="http://prismlibrary.com/"
              x:Class="Launcher.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Launcher"
-             StartupUri="MainWindow.xaml">
+             >
     <Application.Resources>
         <FontFamily x:Key="NotoSans">pack://application:,,,/resources/fonts/noto_sans_hk/#Noto Sans HK</FontFamily>
         <FontFamily x:Key="Montserrat">pack://application:,,,/resources/fonts/montserrat/#Montserrat</FontFamily>
@@ -33,4 +33,4 @@
                       5.99634L0.169971 1.00123Z"/>
         <RectangleGeometry x:Key="MinimizeRectangle" RadiusX="1" RadiusY="1" Rect="0,0,15,1"/>
     </Application.Resources>
-</views:MvxApplication>
+</behaviors:PrismApplication>
