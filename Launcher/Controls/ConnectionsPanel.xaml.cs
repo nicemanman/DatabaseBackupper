@@ -48,7 +48,9 @@ namespace Launcher.Controls
                 {
                     connectionsByType.Add(con);
                 }
-                SubPanels.Children.Add(new ConnectionsSubPanel(connectionsByType, connectionType));
+                var subpanel = new ConnectionsSubPanel(connectionsByType, connectionType);
+                subpanel.Padding = new Thickness(0, 40, 0, 0);
+                SubPanels.Children.Add(subpanel);
             }
             base.EndInit();
         }

@@ -5,10 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Launcher.Controls"
              mc:Ignorable="d" 
-             Width="240" Height="90"
+             Width="245" Height="95"
              Background="Transparent"
              FontFamily="{StaticResource Montserrat}"
-             x:Name="_this">
+             x:Name="_this"
+             >
     <UserControl.Resources>
         <Style TargetType="Border">
             <Style.Triggers>
@@ -37,7 +38,9 @@
                    Text="{Binding ConnectionTitle, ElementName=_this}"
                    Foreground="White"
                    HorizontalAlignment="Left"
-                   Padding="0,12,0,5"/>
+                   Padding="0,12,0,5"
+                   FontSize="17"
+                   FontFamily="{StaticResource Montserrat}"/>
             <Viewbox Grid.Column="3">
                 <ContentControl Content="{StaticResource BurgerMenuButton}"/>
             </Viewbox>
