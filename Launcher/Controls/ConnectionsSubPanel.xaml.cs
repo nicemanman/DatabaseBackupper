@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Launcher.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,20 @@ namespace Launcher.Controls
 {
     public partial class ConnectionsSubPanel : UserControl
     {
-        //Тип подключения
-        //Список подключений в этой панели
-        public ConnectionsSubPanel()
+        public string ConnectionTypeName
+        {
+            get { return (string)GetValue(ConnectionTypeNameProperty); }
+            set { SetValue(ConnectionTypeNameProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ConnectionTypeName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ConnectionTypeNameProperty =
+            DependencyProperty.Register("ConnectionTypeName", typeof(string), typeof(ConnectionsSubPanel));
+
+        public ConnectionsSubPanel(List<ConnectionModel> connections, string connectionTypeName)
         {
             InitializeComponent();
+            ConnectionTypeName = connectionTypeName;
         }
     }
 }

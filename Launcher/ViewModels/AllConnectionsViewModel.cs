@@ -1,4 +1,5 @@
-﻿using Launcher.Services;
+﻿using Launcher.Models;
+using Launcher.Services;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -10,31 +11,44 @@ using System.Threading.Tasks;
 
 namespace Launcher.ViewModels
 {
-    public class AllConnectionsViewModel : CustomBindableBase
+    public class AllConnectionsViewModel : BindableBase
     {
         private readonly IConnectionService _connectionService;
         private readonly IRegionManager regionManager;
+        private List<ConnectionModel> _connections;
+        private List<ConnectionType> _connectionTypes;
 
-        public AllConnectionsViewModel(IConnectionService connectionService, IRegionManager regionManager, IContainerExtension container) : base(regionManager, container)
+        public List<ConnectionType> ConnectionTypes
+        {
+            get { return _connectionTypes; }
+            set { SetProperty(ref _connectionTypes, value); }
+        }
+
+        public List<ConnectionModel> Connections
+        {
+            get { return _connections; }
+            set { SetProperty(ref _connections, value); }
+        }
+
+        public AllConnectionsViewModel(IConnectionService connectionService)
         {
             _connectionService = connectionService;
-            this.regionManager = regionManager;
-            Test = "Доступные подключения";
+            Initialize();
         }
-        private string _test;
+        private string test;
 
         public string Test
         {
-            get { return _test; }
-            set
-            {
-                SetProperty(ref _test, value);
-            }
+            get { return test; }
+            set { SetProperty(ref test, value); }
         }
-        protected override Task Initialize()
+
+        protected Task Initialize()
         {
-            //загрузить подключения
-            return base.Initialize();
+            ConnectionTypes = _connectionService.GetConnectionTypes().Result;
+            Connections = _connectionService.GetConnections().Result;
+            Test = "Test";
+            return Task.CompletedTask;
         }
     }
 }

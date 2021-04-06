@@ -8,12 +8,8 @@
              >
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            
-            <StackPanel HorizontalAlignment="Left">
-                <local:ConnectionsSubPanel/>
-                <local:ConnectionsSubPanel/>
-                <local:ConnectionsSubPanel/>
-                <local:ConnectionsSubPanel/>
+            <StackPanel x:Name="SubPanels" HorizontalAlignment="Left" >
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -10,5 +10,7 @@ namespace Launcher.Services
     public interface IConnectionService
     {
         Task<List<ConnectionModel>> GetConnections();
+        Task<List<ConnectionType>> GetConnectionTypes();
+
     }
 }

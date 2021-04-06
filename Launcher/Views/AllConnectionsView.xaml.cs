@@ -1,4 +1,5 @@
 ﻿
+using Launcher.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace Launcher.Views
         public AllConnectionsView()
         {
             InitializeComponent();
+            var panel = new ConnectionsPanel();
+
         }
     }
 }

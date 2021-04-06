@@ -13,9 +13,13 @@ using Prism.Regions;
 
 namespace Launcher.ViewModels
 {
-    public class MainViewModel : CustomBindableBase
+    public class MainViewModel : BindableBase
     {
-        public MainViewModel(IRegionManager manager, IContainerExtension container) : base(manager, container)
-        { }
+        private readonly IContainerExtension container;
+
+        public MainViewModel(IContainerExtension container)
+        {
+            this.container = container;
+        }
     }
 }

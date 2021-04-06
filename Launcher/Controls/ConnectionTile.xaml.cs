@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Launcher.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,46 @@ namespace Launcher.Controls
     /// </summary>
     public partial class ConnectionTile : UserControl
     {
-        public ConnectionTile()
+        /// <summary>
+        /// Заголовок подключения
+        /// </summary>
+        public string ConnectionTitle
+        {
+            get { return (string)GetValue(ConnectionTitleProperty); }
+            set { SetValue(ConnectionTitleProperty, value); }
+        }
+
+        public static readonly DependencyProperty ConnectionTitleProperty =
+            DependencyProperty.Register("ConnectionTitle", typeof(string), typeof(ConnectionTile));
+
+        /// <summary>
+        /// Имя пользователя в подключении
+        /// </summary>
+        public string ConnectionUserName
+        {
+            get { return (string)GetValue(ConnectionUserNameProperty); }
+            set { SetValue(ConnectionUserNameProperty, value); }
+        }
+
+        
+        public static readonly DependencyProperty ConnectionUserNameProperty =
+            DependencyProperty.Register("ConnectionUserName", typeof(string), typeof(ConnectionTile));
+
+        /// <summary>
+        /// Адрес подключения
+        /// </summary>
+        public int ConnectionAddress
+        {
+            get { return (int)GetValue(ConnectionAddressProperty); }
+            set { SetValue(ConnectionAddressProperty, value); }
+        }
+
+       
+        public static readonly DependencyProperty ConnectionAddressProperty =
+            DependencyProperty.Register("ConnectionAddress", typeof(int), typeof(ConnectionTile));
+
+
+        public ConnectionTile(ConnectionModel connection)
         {
             InitializeComponent();
         }

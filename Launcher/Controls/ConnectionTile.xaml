@@ -6,29 +6,64 @@
              xmlns:local="clr-namespace:Launcher.Controls"
              mc:Ignorable="d" 
              Width="240" Height="90"
-             Background="Transparent">
-    
-    <Grid Background="#486D8E"
-          Margin="5">
+             Background="Transparent"
+             FontFamily="{StaticResource Montserrat}">
+    <UserControl.Resources>
+        <Style TargetType="Border">
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border CornerRadius="3" Background="#486D8E" >
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="11"/>
             <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="18"/>
             <ColumnDefinition Width="5"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1"
-                   Grid.Column="2"
-                   Text="Подключение"
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   Text="TestingConnect"
                    Foreground="White"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
-
-    </Grid>
-   
+                   HorizontalAlignment="Left"
+                   Padding="0,12,0,5"/>
+            <Viewbox Grid.Column="3">
+                <ContentControl Content="{StaticResource BurgerMenuButton}"/>
+            </Viewbox>
+            <Path Data="{StaticResource PersonIcon}"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  Fill="White"/>
+            <Path Data="{StaticResource NetIcon}"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  Fill="White"/>
+            <TextBlock Grid.Row="1"
+                   Grid.Column="2"
+                   Text="Root"
+                   Foreground="White"
+                   HorizontalAlignment="Left"
+                   Padding="5,5,0,5"/>
+            <TextBlock Grid.Row="2"
+                   Grid.Column="2"
+                   Text="127.0.0.1:3306"
+                   Foreground="White"
+                   HorizontalAlignment="Left"
+                   Padding="5,5,0,5"/>
+        </Grid>
+    </Border>
 </UserControl>

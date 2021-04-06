@@ -144,7 +144,6 @@
     <Compile Include="Services\Fakes\FakeConnectionService.cs" />
     <Compile Include="Services\IConnectionService.cs" />
     <Compile Include="ViewModels\AllConnectionsViewModel.cs" />
-    <Compile Include="ViewModels\CustomBindableBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\AllConnectionsView.xaml.cs">
       <DependentUpon>AllConnectionsView.xaml</DependentUpon>
@@ -238,6 +237,8 @@
   <ItemGroup>
     <Resource Include="resources\icons\logo.ico" />
     <Resource Include="Iconleak-Cerulean-Database.ico" />
+    <Content Include="resources\vector\NetIcon.svg" />
+    <Content Include="resources\vector\PersonIcon.svg" />
     <Content Include="resources\vector\RoundArrow.svg" />
     <Content Include="resources\vector\RoundPlus.svg" />
     <Resource Include="resources\images\bigImage.jpg" />

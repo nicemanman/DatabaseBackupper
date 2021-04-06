@@ -9,6 +9,6 @@ namespace Launcher.Models
     public class ConnectionType
     {
         public string ConnectionTypeName { get; set; }
-        public int ConnectionTypeId { get; set; }
+        public Guid ConnectionTypeId { get; set; }
     }
 }

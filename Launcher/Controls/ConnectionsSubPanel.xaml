@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Launcher.Controls"
              mc:Ignorable="d" 
-             Width="800">
+             Width="800"
+             x:Name="_this">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -14,24 +15,23 @@
         
         <!--Название подключения и кнопки-->
         <Grid Grid.Row="0">
-        <Grid.RowDefinitions>
+            <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-    </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding ConnectionTypeName, Mode=TwoWay, ElementName=_this}"
+                       Foreground="White"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       FontSize="30"/>
+        </Grid>
         <WrapPanel Grid.Row="1" x:Name="ConnectionsWrapPanel">
-            <local:ConnectionTile/>
-            <local:ConnectionTile/>
-            <local:ConnectionTile/>
-            <local:ConnectionTile/>
-            <local:ConnectionTile/>
-            <local:ConnectionTile/>
-            <local:ConnectionTile/>
+            
         </WrapPanel>
     </Grid>
 </UserControl>

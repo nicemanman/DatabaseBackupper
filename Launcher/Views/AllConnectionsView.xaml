@@ -8,8 +8,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1599"
       xmlns:prism="http://prismlibrary.com/"
-      prism:ViewModelLocator.AutoWireViewModel="True">
-    <Grid>
+      prism:ViewModelLocator.AutoWireViewModel="True"
+      x:Name="_this">
+    <Grid x:Name="AllConnections">
         <Grid.RowDefinitions>
             <RowDefinition Height="154"/>
             <RowDefinition/>
@@ -36,10 +37,12 @@
               Grid.Column="1"
               Grid.Row="1"
               HorizontalAlignment="Left">-->
-                                   
+
         <controls:ConnectionsPanel Grid.ColumnSpan="2"
                                    Grid.Column="1"
-                                   Grid.Row="1"/>
-        
+                                   Grid.Row="1"
+                                   AllConnections="{Binding Connections, Mode=TwoWay}"
+                                   Test="1234"/>
+
     </Grid>
 </UserControl>
