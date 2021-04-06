@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher", "Launcher\Launch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackupServerTray", "BackupServerTray\BackupServerTray.csproj", "{E2CEDBAC-3E0A-4EA1-A675-FE485F7E7E03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreSettings", "CoreSettings\CoreSettings.csproj", "{114175C1-DF11-4875-94BD-D9595BF709DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -87,6 +89,12 @@ Global
 		{E2CEDBAC-3E0A-4EA1-A675-FE485F7E7E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2CEDBAC-3E0A-4EA1-A675-FE485F7E7E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2CEDBAC-3E0A-4EA1-A675-FE485F7E7E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{114175C1-DF11-4875-94BD-D9595BF709DD}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{114175C1-DF11-4875-94BD-D9595BF709DD}.All|Any CPU.Build.0 = Release|Any CPU
+		{114175C1-DF11-4875-94BD-D9595BF709DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{114175C1-DF11-4875-94BD-D9595BF709DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{114175C1-DF11-4875-94BD-D9595BF709DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{114175C1-DF11-4875-94BD-D9595BF709DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
