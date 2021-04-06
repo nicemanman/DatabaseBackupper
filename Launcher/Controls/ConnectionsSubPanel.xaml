@@ -30,7 +30,9 @@
                        Grid.Column="0"
                        FontSize="30"/>
         </Grid>
-        <WrapPanel Grid.Row="1" x:Name="ConnectionsWrapPanel">
+        <WrapPanel Grid.Row="1" 
+                   x:Name="ConnectionsWrapPanel"
+                   >
             
         </WrapPanel>
     </Grid>

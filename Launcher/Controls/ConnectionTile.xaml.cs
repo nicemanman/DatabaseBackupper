@@ -49,20 +49,23 @@ namespace Launcher.Controls
         /// <summary>
         /// Адрес подключения
         /// </summary>
-        public int ConnectionAddress
+        public string ConnectionAddress
         {
-            get { return (int)GetValue(ConnectionAddressProperty); }
+            get { return (string)GetValue(ConnectionAddressProperty); }
             set { SetValue(ConnectionAddressProperty, value); }
         }
 
        
         public static readonly DependencyProperty ConnectionAddressProperty =
-            DependencyProperty.Register("ConnectionAddress", typeof(int), typeof(ConnectionTile));
+            DependencyProperty.Register("ConnectionAddress", typeof(string), typeof(ConnectionTile));
 
 
         public ConnectionTile(ConnectionModel connection)
         {
             InitializeComponent();
+            ConnectionTitle = connection.Title;
+            ConnectionUserName = connection.UserName;
+            ConnectionAddress = connection.Address;
         }
     }
 }

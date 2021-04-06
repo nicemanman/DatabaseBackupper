@@ -12,17 +12,14 @@ namespace Launcher.Controls
     /// </summary>
     public partial class ConnectionsPanel : UserControl
     {
-
-
         public string Test
         {
             get { return (string)GetValue(tProperty); }
             set { SetValue(tProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for t.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty tProperty =
-            DependencyProperty.Register("t", typeof(string), typeof(ConnectionsPanel));
+            DependencyProperty.Register("Test", typeof(string), typeof(ConnectionsPanel), new PropertyMetadata(""));
 
 
         public List<ConnectionModel> AllConnections
@@ -31,7 +28,6 @@ namespace Launcher.Controls
             set { SetValue(AllConnectionsProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty AllConnectionsProperty =
             DependencyProperty.Register("AllConnections", typeof(List<ConnectionModel>), typeof(ConnectionsPanel), new PropertyMetadata(new List<ConnectionModel>()));
 
@@ -39,6 +35,10 @@ namespace Launcher.Controls
         public ConnectionsPanel()
         {
             InitializeComponent();
+        }
+
+        public override void EndInit()
+        {
             var groupOfConnections = AllConnections.GroupBy(x => x.ConnectionType.ConnectionTypeName);
             foreach (var group in groupOfConnections)
             {
@@ -50,6 +50,7 @@ namespace Launcher.Controls
                 }
                 SubPanels.Children.Add(new ConnectionsSubPanel(connectionsByType, connectionType));
             }
+            base.EndInit();
         }
     }
 }

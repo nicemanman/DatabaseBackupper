@@ -32,6 +32,10 @@ namespace Launcher.Controls
         {
             InitializeComponent();
             ConnectionTypeName = connectionTypeName;
+            foreach (var item in connections)
+            {
+                ConnectionsWrapPanel.Children.Add(new ConnectionTile(item));
+            }
         }
     }
 }
