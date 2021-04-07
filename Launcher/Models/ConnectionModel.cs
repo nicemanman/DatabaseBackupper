@@ -10,7 +10,7 @@ namespace Launcher.Models
     {
         public ConnectionType ConnectionType { get; set; }
         public Guid ConnectionId { get; set; }
-        public string Title { get; set; } = "Тестовое подключение";
+        public string Title { get; set; } = "ТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТТ";
         public string UserName { get; set; }
         public string Address { get; set; }
     }

@@ -28,6 +28,7 @@ namespace BackupServerTray
             logger = NLogBuilder.ConfigureNLog("NLog.config").GetCurrentClassLogger();
             try
             {
+                
                 _webHost = Host.CreateDefaultBuilder()
                     .ConfigureLogging(logging => 
                     {

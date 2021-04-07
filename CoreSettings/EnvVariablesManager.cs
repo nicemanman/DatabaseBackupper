@@ -22,5 +22,7 @@ namespace CoreSettings
             }
             return value;
         }
+
+        
     }
 }
