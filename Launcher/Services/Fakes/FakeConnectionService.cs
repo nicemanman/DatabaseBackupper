@@ -23,7 +23,7 @@ namespace Launcher.Services.Fakes
             
             var random = new Random();
             var faker = new Faker<ConnectionModel>()
-                .RuleFor(e => e.Title, (f, e) => { connectionNameIndex++; return e.Title + " " + connectionNameIndex.ToString(); })//Тестовое подключение 
+                .RuleFor(e => e.Title, (f, e) => { return f.Lorem.Word(); })//Тестовое подключение 
                 .RuleFor(e => e.ConnectionType, (f, e) => connectionTypes[random.Next(connectionTypes.Count)])
                 .RuleFor(e => e.UserName, (f, e) => f.Person.UserName)
                 .RuleFor(e => e.Address, (f, e) => f.Internet.Ip())

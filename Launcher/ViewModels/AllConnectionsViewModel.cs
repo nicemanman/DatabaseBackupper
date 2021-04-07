@@ -17,6 +17,13 @@ namespace Launcher.ViewModels
         private readonly IRegionManager regionManager;
         private List<ConnectionModel> _connections;
         private List<ConnectionType> _connectionTypes;
+        private Dictionary<string, List<string>> _test;
+
+        public Dictionary<string, List<string>> TestDict
+        {
+            get { return _test; }
+            set { SetProperty(ref _test, value); }
+        }
 
         public List<ConnectionType> ConnectionTypes
         {
@@ -29,7 +36,7 @@ namespace Launcher.ViewModels
             get { return _connections; }
             set { SetProperty(ref _connections, value); }
         }
-
+        
         public AllConnectionsViewModel(IConnectionService connectionService)
         {
             _connectionService = connectionService;
@@ -47,7 +54,12 @@ namespace Launcher.ViewModels
         {
             ConnectionTypes = _connectionService.GetConnectionTypes().Result;
             Connections = _connectionService.GetConnections().Result;
-            Test = "Test";
+            TestDict = new Dictionary<string, List<string>>()
+            {
+                { "1", new List<string>(){ "a","b","c" } },
+                { "2", new List<string>(){ "d","e","f" } },
+                { "3", new List<string>(){ "g","h","z" } },
+            };
             return Task.CompletedTask;
         }
     }

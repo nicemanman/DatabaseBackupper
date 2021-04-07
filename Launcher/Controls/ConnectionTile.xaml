@@ -11,66 +11,90 @@
              x:Name="_this"
              >
     <UserControl.Resources>
-        <Style TargetType="Border">
-            <Style.Triggers>
-            </Style.Triggers>
-        </Style>
-    </UserControl.Resources>
-    <Border CornerRadius="3" Background="#486D8E" Margin="0,0,20,15">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="11"/>
-            <ColumnDefinition Width="15"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="18"/>
-            <ColumnDefinition Width="5"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="2"
-                   Text="{Binding ConnectionTitle, ElementName=_this}"
-                   Foreground="White"
-                   HorizontalAlignment="Left"
-                   Padding="0,12,0,5"
-                   FontSize="17"
-                   FontFamily="{StaticResource Montserrat}"
-                   TextTrimming="CharacterEllipsis"/>
-            <Viewbox Grid.Column="3" >
-                <ContentControl Content="{StaticResource BurgerMenuButton}"/>
-            </Viewbox>
-            <Path Data="{StaticResource PersonIcon}"
-                  Grid.Row="1"
-                  Grid.Column="1"
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center"
-                  Fill="White"/>
-            <Path Data="{StaticResource NetIcon}"
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#486D8E"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="3"
+                                x:Name="bd"
+                                Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="11"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="18"/>
+                                    <ColumnDefinition Width="5"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="2"
+                                           Text="{Binding ConnectionTitle, ElementName=_this}"
+                                           Foreground="White"
+                                           HorizontalAlignment="Left"
+                                           Padding="0,12,0,5"
+                                           FontSize="17"
+                                           FontFamily="{StaticResource Montserrat}"
+                                           TextTrimming="CharacterEllipsis"/>
+                                <!--<Viewbox Grid.Column="3" >
+                                    <ContentControl Content="{StaticResource BurgerMenuButton}"/>
+                                </Viewbox>-->
+                                <Path Data="{StaticResource PersonIcon}"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Fill="White"/>
+                                <Path Data="{StaticResource NetIcon}"
                   Grid.Row="2"
                   Grid.Column="1"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Center"
                   Fill="White"/>
-            <TextBlock Grid.Row="1"
+                                <TextBlock Grid.Row="1"
                    Grid.Column="2"
                    Text="{Binding ConnectionUserName, ElementName=_this}"
                    Foreground="White"
                    HorizontalAlignment="Left"
                    Padding="5,5,0,5"
                    TextTrimming="CharacterEllipsis"/>
-            <TextBlock Grid.Row="2"
+                                <TextBlock Grid.Row="2"
                    Grid.Column="2"
                    Text="{Binding ConnectionAddress, ElementName=_this}"
                    Foreground="White"
                    HorizontalAlignment="Left"
                    Padding="5,5,0,5"
                    TextTrimming="CharacterEllipsis"/>
-        </Grid>
-    </Border>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#5e8db8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#3a5770"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!--<Setter Property="CornerRadius" Value="3"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5e8db8"/>
+                </Trigger>
+            </Style.Triggers>-->
+        </Style>
+    </UserControl.Resources>
+    <Button Margin="0,0,20,15">
+        
+    </Button>
 </UserControl>
