@@ -11,7 +11,7 @@
              x:Name="_this"
              >
     <UserControl.Resources>
-        <Style TargetType="Button">
+        <Style x:Key="Button" TargetType="Button">
             <Setter Property="Background" Value="#486D8E"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -67,12 +67,12 @@
                    Padding="5,5,0,5"
                    TextTrimming="CharacterEllipsis"/>
                                 <TextBlock Grid.Row="2"
-                   Grid.Column="2"
-                   Text="{Binding ConnectionAddress, ElementName=_this}"
-                   Foreground="White"
-                   HorizontalAlignment="Left"
-                   Padding="5,5,0,5"
-                   TextTrimming="CharacterEllipsis"/>
+                                           Grid.Column="2"
+                                           Text="{Binding ConnectionAddress, ElementName=_this}"
+                                           Foreground="White"
+                                           HorizontalAlignment="Left"
+                                           Padding="5,5,0,5"
+                                           TextTrimming="CharacterEllipsis"/>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -86,15 +86,11 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <!--<Setter Property="CornerRadius" Value="3"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#5e8db8"/>
-                </Trigger>
-            </Style.Triggers>-->
+            
         </Style>
     </UserControl.Resources>
-    <Button Margin="0,0,20,15">
-        
-    </Button>
+    <Button Margin="0,0,20,15"
+            Style="{StaticResource Button}"/>
+
+
 </UserControl>

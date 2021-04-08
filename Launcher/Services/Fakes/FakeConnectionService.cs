@@ -12,14 +12,13 @@ namespace Launcher.Services.Fakes
     {
         private List<ConnectionType> connectionTypes = new List<ConnectionType>()
         {
-            new ConnectionType() { ConnectionTypeId = Guid.NewGuid(),ConnectionTypeName = "MySQL" },
-            new ConnectionType() { ConnectionTypeId = Guid.NewGuid(),ConnectionTypeName = "MSSQL" },
-            new ConnectionType() { ConnectionTypeId = Guid.NewGuid(),ConnectionTypeName = "PostgreSQL" },
-            new ConnectionType() { ConnectionTypeId = Guid.NewGuid(),ConnectionTypeName = "Oracle" }
+            new ConnectionType() { ConnectionTypeId = 1,ConnectionTypeName = "MySQL" },
+            new ConnectionType() { ConnectionTypeId = 2,ConnectionTypeName = "MSSQL" },
+            new ConnectionType() { ConnectionTypeId = 3,ConnectionTypeName = "PostgreSQL" },
+            new ConnectionType() { ConnectionTypeId = 4,ConnectionTypeName = "Oracle" }
         };
         public Task<List<ConnectionModel>> GetConnections()
         {
-            int connectionNameIndex = 0;
             
             var random = new Random();
             var faker = new Faker<ConnectionModel>()

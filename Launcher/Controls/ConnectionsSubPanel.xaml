@@ -29,6 +29,11 @@
                        Grid.Row="0"
                        Grid.Column="0"
                        FontSize="30"/>
+            <Button Grid.Row="0"
+                    Grid.Column="2"
+                    
+                    Content="-"
+                    Click="Button_Click"/>
         </Grid>
         <WrapPanel Grid.Row="1" 
                    x:Name="ConnectionsWrapPanel"

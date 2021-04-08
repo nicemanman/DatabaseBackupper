@@ -18,6 +18,7 @@ namespace Launcher.Controls
 {
     public partial class ConnectionsSubPanel : UserControl
     {
+        private double panelSize;
         public string ConnectionTypeName
         {
             get { return (string)GetValue(ConnectionTypeNameProperty); }
@@ -38,6 +39,15 @@ namespace Launcher.Controls
                 
                 ConnectionsWrapPanel.Children.Add(tile);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (ConnectionsWrapPanel.ActualHeight == 0)
+                ConnectionsWrapPanel.Height = panelSize;
+            panelSize = ConnectionsWrapPanel.ActualHeight;
+            if (ConnectionsWrapPanel.ActualHeight != 0)
+                ConnectionsWrapPanel.Height = 0;
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Launcher.Controls
 
         public override void EndInit()
         {
-            var groupOfConnections = AllConnections.GroupBy(x => x.ConnectionType.ConnectionTypeName);
+            var groupOfConnections = AllConnections.OrderBy(x=>x.ConnectionType.ConnectionTypeId).GroupBy(x => x.ConnectionType.ConnectionTypeName);
             foreach (var group in groupOfConnections)
             {
                 var connectionType = group.Key;
