@@ -13,17 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Launcher.Controls
+namespace Launcher.Controls.WindowButtons
 {
     /// <summary>
-    /// Interaction logic for TopBarButton.xaml
+    /// Interaction logic for MinimizeButton.xaml
     /// </summary>
-    public partial class CloseMinimizeButtons : UserControl
+    public partial class MinimizeButton : UserControl
     {
-        public CloseMinimizeButtons()
+        public MinimizeButton()
         {
             InitializeComponent();
         }
 
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            var myWindow = Window.GetWindow(this);
+            myWindow.WindowState = WindowState.Minimized;
+        }
     }
 }

@@ -142,6 +142,12 @@
     <Compile Include="Controls\ConnectionTile.xaml.cs">
       <DependentUpon>ConnectionTile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WindowButtons\CloseButton.xaml.cs">
+      <DependentUpon>CloseButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WindowButtons\MinimizeButton.xaml.cs">
+      <DependentUpon>MinimizeButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\ConnectionModel.cs" />
     <Compile Include="Models\ConnectionType.cs" />
     <Compile Include="Services\Fakes\FakeConnectionService.cs" />
@@ -153,6 +159,9 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SimpleDialogWindow.xaml.cs">
+      <DependentUpon>SimpleDialogWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\ConnectionContextMenu.xaml">
       <SubType>Designer</SubType>
@@ -181,11 +190,23 @@
     <Compile Include="Controls\TopBarButton.xaml.cs">
       <DependentUpon>TopBarButton.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\WindowButtons\CloseButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WindowButtons\MinimizeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AllConnectionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SimpleDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

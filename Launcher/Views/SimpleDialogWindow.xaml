@@ -1,0 +1,86 @@
+﻿<Window x:Class="Launcher.Views.SimpleDialogWindow"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher" 
+        xmlns:controls="clr-namespace:Launcher.Controls" 
+        xmlns:views="clr-namespace:Launcher.Views"
+        xmlns:viewmodels="clr-namespace:Launcher.ViewModels" xmlns:windowbuttons="clr-namespace:Launcher.Controls.WindowButtons"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        AllowsTransparency="True"
+        Icon="../resources/icons/logo.ico"
+        Width="315"
+        Height="117"
+        Background="Transparent"
+        >
+    <Border CornerRadius="0,0,3,3">
+        <Border.Background>
+            <LinearGradientBrush>
+                <LinearGradientBrush.Transform>
+                    <RotateTransform Angle="107.36"/>
+                </LinearGradientBrush.Transform>
+                <GradientStop Color="#2C4255" Offset="0"/>
+                <GradientStop Color="#17242F" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--Верхняя плашка-->
+        <Border CornerRadius="3,3,0,0">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#09AFEC" Offset="0.4"/>
+                    <GradientStop Color="#0B86B4" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        <Grid Grid.Column="0"
+              Grid.Row="0"
+              Grid.ColumnSpan="3"
+              MouseDown="Grid_MouseDown"
+              Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="17"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Успех"
+                       Foreground="White"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontSize="14"
+                       FontFamily="{StaticResource NotoSans}"
+                       Padding="5,0,0,0"/>
+            <windowbuttons:CloseButton Grid.Column="5"/>
+        </Grid>
+        </Border>
+        <TextBlock Text="Бэкап успешно завершен!"
+                       Foreground="White"
+                       Grid.Row="2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="14"
+                       FontFamily="{StaticResource Montserrat}"
+                       Padding="5,0,0,0"/>
+        
+        
+    </Grid>
+    </Border>
+</Window>

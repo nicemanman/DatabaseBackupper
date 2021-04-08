@@ -13,17 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Launcher.Controls
+namespace Launcher.Controls.WindowButtons
 {
     /// <summary>
-    /// Interaction logic for TopBarButton.xaml
+    /// Interaction logic for CloseButton.xaml
     /// </summary>
-    public partial class CloseMinimizeButtons : UserControl
+    public partial class CloseButton : UserControl
     {
-        public CloseMinimizeButtons()
+        public CloseButton()
         {
             InitializeComponent();
         }
 
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            var myWindow = Window.GetWindow(this);
+            myWindow.Close();
+        }
     }
 }

@@ -10,20 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Launcher.Controls
+namespace Launcher.Views
 {
     /// <summary>
-    /// Interaction logic for TopBarButton.xaml
+    /// Interaction logic for SimpleMainView.xaml
     /// </summary>
-    public partial class CloseMinimizeButtons : UserControl
+    public partial class SimpleDialogWindow : Window
     {
-        public CloseMinimizeButtons()
+        public SimpleDialogWindow()
         {
             InitializeComponent();
         }
 
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
     }
 }

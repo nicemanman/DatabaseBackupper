@@ -20,6 +20,7 @@ namespace Launcher.ViewModels
         public MainViewModel(IContainerExtension container)
         {
             this.container = container;
+            
         }
     }
 }
